@@ -39,6 +39,12 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>io.swagger.parser.v3</groupId>
+                <artifactId>swagger-parser</artifactId>
+                <version>2.0.26</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
                 <version>5.11.0</version>
@@ -67,8 +73,8 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.30</version>
-                <scope>test</scope>
+                <version>1.18.32</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.github.tomakehurst</groupId>
@@ -96,6 +102,7 @@
     <modules>
         <module>core</module>
         <module>subscriptions-v1</module>
+        <module>api-builder</module>
     </modules>
     <build>
         <pluginManagement>
