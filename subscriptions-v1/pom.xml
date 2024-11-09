@@ -16,6 +16,19 @@
             <groupId>io.github.eealba.payper</groupId>
             <artifactId>payper-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.github.eealba</groupId>
+            <artifactId>jasoner</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
