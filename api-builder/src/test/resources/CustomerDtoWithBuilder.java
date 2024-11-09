@@ -5,17 +5,27 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import io.github.eealba.jasoner.JasonerProperty;
 
 class CustomerDTO implements Customer {
 
+
     private final String name;
+
     private final String lastName;
+
     private final Integer id;
+
     private final LocalDate birthday;
+
     private final BigDecimal credit;
+
     private final Boolean active;
+
     private final Instant created;
+
     private final Frequency frequency;
+
     private final List<Link> links;
 
     private CustomerDTO(Builder builder) {

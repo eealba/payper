@@ -19,7 +19,7 @@ public class Customer {
     /**
      * lastname of customer
      */
-
+    @JasonerProperty("last_name")
     private String lastName;
 
     /**
@@ -76,7 +76,7 @@ public class Customer {
      * lastname of customer
      * @return The current value of lastName.
      */
-
+    @JasonerProperty("last_name")
     public String lastName() {
         return lastName;
     }
@@ -156,7 +156,7 @@ public class Customer {
      * lastname of customer
      * @param lastName New value for lastName.
      */
-
+    @JasonerProperty("last_name")
     public void lastName(String lastName) {
         this.lastName = lastName;
     }

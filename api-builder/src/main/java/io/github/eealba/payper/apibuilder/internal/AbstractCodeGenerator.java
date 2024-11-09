@@ -53,8 +53,7 @@ public abstract class AbstractCodeGenerator implements CodeGenerator {
         sb.append(modelDef.fieldDefList()
                 .stream()
                 .map(this::getImport)
-                .map(List::stream)
-                .flatMap(s -> s)
+                .flatMap(List::stream)
                 .sorted()
                 .distinct()
                 .collect(Collectors.joining("\n")));
@@ -111,5 +110,20 @@ public abstract class AbstractCodeGenerator implements CodeGenerator {
         }
         return fieldDef.classDef().simpleName();
     }
+    protected String getFieldAnnotation(FieldDef fieldDef, boolean addOverride) {
+        StringBuilder sb = new StringBuilder();
+        if (addOverride) {
+            sb.append("@Override");
+        }
+        if (codeGeneratorParameter.isUseJasonerProperty() && !fieldDef.originalName().equals(fieldDef.name())) {
+            if(!sb.isEmpty()){
+                sb.append(' ');
+            }
+            sb.append("@JasonerProperty(\"").append(fieldDef.originalName()).append("\")");
+
+        }
+        return sb.toString();
+    }
+
 
 }

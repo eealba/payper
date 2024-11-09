@@ -30,6 +30,24 @@ class PojoDTOGeneratorTest {
         Helper.verify("should_return_class_pojo_bean", generatedCode,"CustomerPojoBean.java");
 
     }
+    @Test
+    void should_return_class_pojo_bean_with_JasonerProperty() throws URISyntaxException, IOException {
+
+        var modelDef = modelDef();
+        var generatedCode = ObjectsFactory.pojoDTOGenerator(modelDef,
+                        CodeGeneratorParameter.builder()
+                                .classAccessLevel(CodeGeneratorParameter.AccessLevel.PUBLIC)
+                                .methodAccessLevel(CodeGeneratorParameter.AccessLevel.PUBLIC)
+                                .fieldsAccessLevel(CodeGeneratorParameter.AccessLevel.PRIVATE)
+                                .accessorChain(false)
+                                .accessorFluent(false)
+                                .useJasonerProperty(true)
+                                .build())
+                .process();
+
+        Helper.verify("should_return_class_pojo_bean", generatedCode,"CustomerPojoBean2.java");
+
+    }
 
 
     @Test

@@ -179,13 +179,7 @@ class OpenApiMapperImpl implements OpenApiMapper {
         }
         var schemaMain = field.schema().get();
         List<Schema<?>> schemaList = new ArrayList<>();
-        if (schemaMain instanceof ComposedSchema composedSchema) {
-            Optional.ofNullable(composedSchema.getOneOf()).orElse(Collections.emptyList()).forEach(schemaList::add);
-            Optional.ofNullable(composedSchema.getAllOf()).orElse(Collections.emptyList()).forEach(schemaList::add);
-            Optional.ofNullable(composedSchema.getAnyOf()).orElse(Collections.emptyList()).forEach(schemaList::add);
-        } else {
-            schemaList.add(schemaMain);
-        }
+        collectSchemas(schemaMain, schemaList, components);
         var fieldList = schemaList.stream().map((Schema<?> schema) -> getFields(field, packageName, schema, components))
                 .flatMap(List::stream).distinct().collect(Collectors.toList());
         if (fieldList.isEmpty()) {
@@ -193,7 +187,26 @@ class OpenApiMapperImpl implements OpenApiMapper {
         }
         return fieldList;
     }
-
+    private void collectSchemas(Schema<?> schema, List<Schema<?>> schemaList, Map<String, Schema<?>> components) {
+        if (schema instanceof ComposedSchema composedSchema) {
+            Optional.ofNullable(composedSchema.getOneOf())
+                    .orElse(Collections.emptyList()).forEach(s -> collectSchemas(s, schemaList, components));
+            Optional.ofNullable(composedSchema.getAllOf())
+                    .orElse(Collections.emptyList()).forEach(s -> collectSchemas(s, schemaList, components));
+            Optional.ofNullable(composedSchema.getAnyOf())
+                    .orElse(Collections.emptyList()).forEach(s -> collectSchemas(s, schemaList, components));
+        } else {
+            if (schema.get$ref() != null) {
+                String ref = getRef(schema).orElseThrow();
+                var obj = components.entrySet().stream()
+                        .filter(entry -> entry.getKey().equals(ref))
+                        .findFirst().orElseThrow();
+                collectSchemas(obj.getValue(), schemaList, components);
+            }else {
+                schemaList.add(schema);
+            }
+        }
+    }
 
     private List<FieldDef> getFields2(FieldInternal parent, String packageName, Schema<?> schema, Map<String, Schema<?>> components,
                                       String name) {

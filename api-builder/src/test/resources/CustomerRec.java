@@ -4,13 +4,16 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
+import io.github.eealba.jasoner.JasonerProperty;
 
 /**
  * This is a customer record
  */
-record CustomerRec(String name, String lastName, Integer id, LocalDate birthday, BigDecimal credit, Boolean active, Instant created, Frequency frequency, List<Link> links) {
+record CustomerRec(String name, String lastName, Integer id, LocalDate birthday, BigDecimal credit, Boolean active, Instant created,
+                   Frequency frequency, List<Link> links) {
 
-    CustomerRec(String name, String lastName, Integer id, LocalDate birthday, BigDecimal credit, Boolean active, Instant created, Frequency frequency, List<Link> links) {
+    CustomerRec(String name, String lastName, Integer id, LocalDate birthday, BigDecimal credit, Boolean active, Instant created,
+                Frequency frequency, List<Link> links) {
         if (name == null) {
             throw new IllegalArgumentException("Field name can`t be null");
         }
