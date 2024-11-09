@@ -112,61 +112,61 @@ public class CustomerDTO {
 
 
         public Builder name(String value) {
-            name = value;
+            this.name = value;
             return this;
         }
 
         @JasonerProperty("last_name")
         public Builder lastName(String value) {
-            lastName = value;
+            this.lastName = value;
             return this;
         }
 
 
         public Builder id(Integer value) {
-            id = value;
+            this.id = value;
             return this;
         }
 
 
         public Builder birthday(LocalDate value) {
-            birthday = value;
+            this.birthday = value;
             return this;
         }
 
 
         public Builder credit(BigDecimal value) {
-            credit = value;
+            this.credit = value;
             return this;
         }
 
 
         public Builder active(Boolean value) {
-            active = value;
+            this.active = value;
             return this;
         }
 
 
         public Builder created(Instant value) {
-            created = value;
+            this.created = value;
             return this;
         }
 
 
         public Builder frequency(Frequency value) {
-            frequency = value;
+            this.frequency = value;
             return this;
         }
 
 
         public Builder links(List<Link> value) {
-            links = value;
+            this.links = value;
             return this;
         }
 
 
         public Builder value(value value) {
-            value = value;
+            this.value = value;
             return this;
         }
 

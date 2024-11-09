@@ -38,7 +38,7 @@ public class ImmutableClassWithBuilderGenerator extends AbstractCodeGenerator{
     private static final String SETTER_TEMPLATE_NORMAL = """
             %s
             public Builder %s(%s value) {
-                %s = value;
+                this.%s = value;
                 return this;
             }
     """;

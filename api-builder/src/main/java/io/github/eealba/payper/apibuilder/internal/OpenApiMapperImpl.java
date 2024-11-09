@@ -232,7 +232,10 @@ class OpenApiMapperImpl implements OpenApiMapper {
         var ref2 = getRef(entry).orElse(null);
         ClassDef classDef2;
         ModelDef modelDef2 = null;
-        if (ref2 == null && type2.equals("object")) {
+        if (ref2 == null && type2 == null) {
+            classDef2 = ClassDef.OBJECT;
+
+        }else if (ref2 == null && type2.equals("object")) {
 //            ref2 = name;
 //            putIfAbsent(name, entry, components);
             classDef2 = new ClassDef(packageName, Utils.normalizeClassName(name));
@@ -323,6 +326,7 @@ class OpenApiMapperImpl implements OpenApiMapper {
             return name;
         }
 
+
         public Optional<Schema<?>> schema() {
             return Optional.ofNullable(schema);
         }
@@ -332,12 +336,6 @@ class OpenApiMapperImpl implements OpenApiMapper {
         var obj = components.entrySet().stream()
                 .filter(entry -> entry.getKey().equals(ref))
                 .findFirst().map(Map.Entry::getValue).orElse(null);
-
-        if (obj instanceof ArraySchema arraySchema) {
-            if (arraySchema.getItems() != null) {
-                return getFieldInternal(arraySchema.get$ref(), components);
-            }
-        }
         return new FieldInternal(ref, obj);
     }
 
@@ -366,6 +364,13 @@ class OpenApiMapperImpl implements OpenApiMapper {
             if (obj instanceof ArraySchema arraySchema) {
                 ref = arraySchema.getItems().get$ref();
             }
+        }
+        return Optional.ofNullable(ref).map(r -> r.substring(r.lastIndexOf('/') + 1));
+    }
+    private Optional<String> getRef(ArraySchema arraySchema) {
+        String ref = arraySchema.get$ref();
+        if (Objects.isNull(ref)) {
+                ref = arraySchema.getItems().get$ref();
         }
         return Optional.ofNullable(ref).map(r -> r.substring(r.lastIndexOf('/') + 1));
     }

@@ -103,55 +103,55 @@ class CustomerDTO implements Customer {
 
         @Override
         public Builder name(String value) {
-            name = value;
+            this.name = value;
             return this;
         }
 
         @Override
         public Builder lastName(String value) {
-            lastName = value;
+            this.lastName = value;
             return this;
         }
 
         @Override
         public Builder id(Integer value) {
-            id = value;
+            this.id = value;
             return this;
         }
 
         @Override
         public Builder birthday(LocalDate value) {
-            birthday = value;
+            this.birthday = value;
             return this;
         }
 
         @Override
         public Builder credit(BigDecimal value) {
-            credit = value;
+            this.credit = value;
             return this;
         }
 
         @Override
         public Builder active(Boolean value) {
-            active = value;
+            this.active = value;
             return this;
         }
 
         @Override
         public Builder created(Instant value) {
-            created = value;
+            this.created = value;
             return this;
         }
 
         @Override
         public Builder frequency(Frequency value) {
-            frequency = value;
+            this.frequency = value;
             return this;
         }
 
         @Override
         public Builder links(List<Link> value) {
-            links = value;
+            this.links = value;
             return this;
         }
 
