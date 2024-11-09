@@ -82,43 +82,43 @@ public class ApplicationContext {
 
         @JasonerProperty("brand_name")
         public Builder brandName(String value) {
-            brandName = value;
+            this.brandName = value;
             return this;
         }
 
         
         public Builder locale(Language value) {
-            locale = value;
+            this.locale = value;
             return this;
         }
 
         @JasonerProperty("shipping_preference")
         public Builder shippingPreference(ShippingPreference value) {
-            shippingPreference = value;
+            this.shippingPreference = value;
             return this;
         }
 
         @JasonerProperty("user_action")
         public Builder userAction(UserAction value) {
-            userAction = value;
+            this.userAction = value;
             return this;
         }
 
         @JasonerProperty("payment_method")
         public Builder paymentMethod(PaymentMethod value) {
-            paymentMethod = value;
+            this.paymentMethod = value;
             return this;
         }
 
         @JasonerProperty("return_url")
         public Builder returnUrl(String value) {
-            returnUrl = value;
+            this.returnUrl = value;
             return this;
         }
 
         @JasonerProperty("cancel_url")
         public Builder cancelUrl(String value) {
-            cancelUrl = value;
+            this.cancelUrl = value;
             return this;
         }
 

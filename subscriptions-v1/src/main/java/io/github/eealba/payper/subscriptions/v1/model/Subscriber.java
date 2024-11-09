@@ -100,55 +100,55 @@ public class Subscriber {
 
         @JasonerProperty("email_address")
         public Builder emailAddress(Email value) {
-            emailAddress = value;
+            this.emailAddress = value;
             return this;
         }
 
         @JasonerProperty("payer_id")
         public Builder payerId(AccountId value) {
-            payerId = value;
+            this.payerId = value;
             return this;
         }
 
         
         public Builder name(Name value) {
-            name = value;
+            this.name = value;
             return this;
         }
 
         
         public Builder phone(PhoneWithType value) {
-            phone = value;
+            this.phone = value;
             return this;
         }
 
         @JasonerProperty("birth_date")
         public Builder birthDate(DateNoTime value) {
-            birthDate = value;
+            this.birthDate = value;
             return this;
         }
 
         @JasonerProperty("tax_info")
         public Builder taxInfo(TaxInfo value) {
-            taxInfo = value;
+            this.taxInfo = value;
             return this;
         }
 
         
         public Builder address(AddressPortable value) {
-            address = value;
+            this.address = value;
             return this;
         }
 
         @JasonerProperty("shipping_address")
         public Builder shippingAddress(ShippingDetail value) {
-            shippingAddress = value;
+            this.shippingAddress = value;
             return this;
         }
 
         @JasonerProperty("payment_source")
         public Builder paymentSource(PaymentSourceResponse value) {
-            paymentSource = value;
+            this.paymentSource = value;
             return this;
         }
 

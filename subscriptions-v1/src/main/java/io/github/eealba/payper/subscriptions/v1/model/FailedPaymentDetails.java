@@ -55,25 +55,25 @@ public class FailedPaymentDetails {
 
         
         public Builder amount(Money value) {
-            amount = value;
+            this.amount = value;
             return this;
         }
 
         
         public Builder time(Instant value) {
-            time = value;
+            this.time = value;
             return this;
         }
 
         @JasonerProperty("reason_code")
         public Builder reasonCode(ReasonCode value) {
-            reasonCode = value;
+            this.reasonCode = value;
             return this;
         }
 
         @JasonerProperty("next_payment_retry_time")
         public Builder nextPaymentRetryTime(Instant value) {
-            nextPaymentRetryTime = value;
+            this.nextPaymentRetryTime = value;
             return this;
         }
 

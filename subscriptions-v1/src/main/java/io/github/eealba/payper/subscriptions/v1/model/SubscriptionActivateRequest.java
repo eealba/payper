@@ -27,7 +27,7 @@ public class SubscriptionActivateRequest {
 
         
         public Builder reason(String value) {
-            reason = value;
+            this.reason = value;
             return this;
         }
 

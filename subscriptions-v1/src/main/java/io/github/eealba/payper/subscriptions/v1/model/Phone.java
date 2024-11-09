@@ -46,19 +46,19 @@ public class Phone {
 
         @JasonerProperty("country_code")
         public Builder countryCode(String value) {
-            countryCode = value;
+            this.countryCode = value;
             return this;
         }
 
         @JasonerProperty("national_number")
         public Builder nationalNumber(String value) {
-            nationalNumber = value;
+            this.nationalNumber = value;
             return this;
         }
 
         @JasonerProperty("extension_number")
         public Builder extensionNumber(String value) {
-            extensionNumber = value;
+            this.extensionNumber = value;
             return this;
         }
 

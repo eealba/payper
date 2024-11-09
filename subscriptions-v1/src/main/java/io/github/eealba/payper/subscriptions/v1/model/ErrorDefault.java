@@ -64,31 +64,31 @@ public class ErrorDefault {
 
         
         public Builder name(String value) {
-            name = value;
+            this.name = value;
             return this;
         }
 
         
         public Builder message(String value) {
-            message = value;
+            this.message = value;
             return this;
         }
 
         
         public Builder issues(List<ErrorDetails> value) {
-            issues = value;
+            this.issues = value;
             return this;
         }
 
         @JasonerProperty("debug_id")
         public Builder debugId(String value) {
-            debugId = value;
+            this.debugId = value;
             return this;
         }
 
         @JasonerProperty("information_link")
         public Builder informationLink(String value) {
-            informationLink = value;
+            this.informationLink = value;
             return this;
         }
 

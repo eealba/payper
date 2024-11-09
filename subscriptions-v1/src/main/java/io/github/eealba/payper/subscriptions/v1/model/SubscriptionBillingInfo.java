@@ -83,43 +83,43 @@ public class SubscriptionBillingInfo {
 
         @JasonerProperty("outstanding_balance")
         public Builder outstandingBalance(Money value) {
-            outstandingBalance = value;
+            this.outstandingBalance = value;
             return this;
         }
 
         @JasonerProperty("cycle_executions")
         public Builder cycleExecutions(List<CycleExecution> value) {
-            cycleExecutions = value;
+            this.cycleExecutions = value;
             return this;
         }
 
         @JasonerProperty("last_payment")
         public Builder lastPayment(LastPaymentDetails value) {
-            lastPayment = value;
+            this.lastPayment = value;
             return this;
         }
 
         @JasonerProperty("next_billing_time")
         public Builder nextBillingTime(Instant value) {
-            nextBillingTime = value;
+            this.nextBillingTime = value;
             return this;
         }
 
         @JasonerProperty("final_payment_time")
         public Builder finalPaymentTime(Instant value) {
-            finalPaymentTime = value;
+            this.finalPaymentTime = value;
             return this;
         }
 
         @JasonerProperty("failed_payments_count")
         public Builder failedPaymentsCount(Integer value) {
-            failedPaymentsCount = value;
+            this.failedPaymentsCount = value;
             return this;
         }
 
         @JasonerProperty("last_failed_payment")
         public Builder lastFailedPayment(FailedPaymentDetails value) {
-            lastFailedPayment = value;
+            this.lastFailedPayment = value;
             return this;
         }
 

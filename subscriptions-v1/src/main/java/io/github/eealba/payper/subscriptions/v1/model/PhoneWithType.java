@@ -37,13 +37,13 @@ public class PhoneWithType {
 
         @JasonerProperty("phone_type")
         public Builder phoneType(PhoneType value) {
-            phoneType = value;
+            this.phoneType = value;
             return this;
         }
 
         @JasonerProperty("phone_number")
         public Builder phoneNumber(Phone value) {
-            phoneNumber = value;
+            this.phoneNumber = value;
             return this;
         }
 

@@ -37,13 +37,13 @@ public class Frequency {
 
         @JasonerProperty("interval_unit")
         public Builder intervalUnit(IntervalUnit value) {
-            intervalUnit = value;
+            this.intervalUnit = value;
             return this;
         }
 
         @JasonerProperty("interval_count")
         public Builder intervalCount(Integer value) {
-            intervalCount = value;
+            this.intervalCount = value;
             return this;
         }
 

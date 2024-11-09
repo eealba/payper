@@ -91,49 +91,49 @@ public class CardResponseWithBillingAddress {
 
         @JasonerProperty("last_digits")
         public Builder lastDigits(String value) {
-            lastDigits = value;
+            this.lastDigits = value;
             return this;
         }
 
         
         public Builder brand(CardBrand value) {
-            brand = value;
+            this.brand = value;
             return this;
         }
 
         
         public Builder type(Type value) {
-            type = value;
+            this.type = value;
             return this;
         }
 
         @JasonerProperty("authentication_result")
         public Builder authenticationResult(AuthenticationResponse value) {
-            authenticationResult = value;
+            this.authenticationResult = value;
             return this;
         }
 
         
         public Builder name(String value) {
-            name = value;
+            this.name = value;
             return this;
         }
 
         @JasonerProperty("billing_address")
         public Builder billingAddress(AddressPortable value) {
-            billingAddress = value;
+            this.billingAddress = value;
             return this;
         }
 
         
         public Builder expiry(DateYearMonth value) {
-            expiry = value;
+            this.expiry = value;
             return this;
         }
 
         @JasonerProperty("currency_code")
         public Builder currencyCode(CurrencyCode value) {
-            currencyCode = value;
+            this.currencyCode = value;
             return this;
         }
 

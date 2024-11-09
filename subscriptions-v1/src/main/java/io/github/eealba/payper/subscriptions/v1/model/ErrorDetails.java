@@ -63,31 +63,31 @@ public class ErrorDetails {
 
         
         public Builder field(String value) {
-            field = value;
+            this.field = value;
             return this;
         }
 
         
         public Builder value(String value) {
-            value = value;
+            this.value = value;
             return this;
         }
 
         
         public Builder location(String value) {
-            location = value;
+            this.location = value;
             return this;
         }
 
         
         public Builder issue(String value) {
-            issue = value;
+            this.issue = value;
             return this;
         }
 
         
         public Builder description(String value) {
-            description = value;
+            this.description = value;
             return this;
         }
 

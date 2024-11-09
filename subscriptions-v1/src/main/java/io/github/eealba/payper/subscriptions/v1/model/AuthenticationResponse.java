@@ -37,13 +37,13 @@ public class AuthenticationResponse {
 
         @JasonerProperty("liability_shift")
         public Builder liabilityShift(LiabilityShift value) {
-            liabilityShift = value;
+            this.liabilityShift = value;
             return this;
         }
 
         @JasonerProperty("three_d_secure")
         public Builder threeDSecure(ThreeDSecureAuthenticationResponse value) {
-            threeDSecure = value;
+            this.threeDSecure = value;
             return this;
         }
 

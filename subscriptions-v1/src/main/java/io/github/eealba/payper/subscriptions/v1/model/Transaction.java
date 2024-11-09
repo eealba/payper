@@ -82,43 +82,43 @@ public class Transaction {
 
         
         public Builder status(Status value) {
-            status = value;
+            this.status = value;
             return this;
         }
 
         @JasonerProperty("status_details")
         public Builder statusDetails(CaptureStatusDetails value) {
-            statusDetails = value;
+            this.statusDetails = value;
             return this;
         }
 
         
         public Builder id(String value) {
-            id = value;
+            this.id = value;
             return this;
         }
 
         @JasonerProperty("amount_with_breakdown")
         public Builder amountWithBreakdown(AmountWithBreakdown value) {
-            amountWithBreakdown = value;
+            this.amountWithBreakdown = value;
             return this;
         }
 
         @JasonerProperty("payer_name")
         public Builder payerName(Name value) {
-            payerName = value;
+            this.payerName = value;
             return this;
         }
 
         @JasonerProperty("payer_email")
         public Builder payerEmail(EmailAddress value) {
-            payerEmail = value;
+            this.payerEmail = value;
             return this;
         }
 
         
         public Builder time(Instant value) {
-            time = value;
+            this.time = value;
             return this;
         }
 

@@ -74,37 +74,37 @@ public class PricingScheme {
 
         
         public Builder version(Integer value) {
-            version = value;
+            this.version = value;
             return this;
         }
 
         @JasonerProperty("fixed_price")
         public Builder fixedPrice(Money value) {
-            fixedPrice = value;
+            this.fixedPrice = value;
             return this;
         }
 
         @JasonerProperty("pricing_model")
         public Builder pricingModel(PricingModel value) {
-            pricingModel = value;
+            this.pricingModel = value;
             return this;
         }
 
         
         public Builder tiers(List<PricingTier> value) {
-            tiers = value;
+            this.tiers = value;
             return this;
         }
 
         @JasonerProperty("create_time")
         public Builder createTime(Instant value) {
-            createTime = value;
+            this.createTime = value;
             return this;
         }
 
         @JasonerProperty("update_time")
         public Builder updateTime(Instant value) {
-            updateTime = value;
+            this.updateTime = value;
             return this;
         }
 

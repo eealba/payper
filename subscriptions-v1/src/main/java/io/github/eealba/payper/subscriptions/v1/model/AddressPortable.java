@@ -109,61 +109,61 @@ public class AddressPortable {
 
         @JasonerProperty("address_line_1")
         public Builder addressLine1(String value) {
-            addressLine1 = value;
+            this.addressLine1 = value;
             return this;
         }
 
         @JasonerProperty("address_line_2")
         public Builder addressLine2(String value) {
-            addressLine2 = value;
+            this.addressLine2 = value;
             return this;
         }
 
         @JasonerProperty("address_line_3")
         public Builder addressLine3(String value) {
-            addressLine3 = value;
+            this.addressLine3 = value;
             return this;
         }
 
         @JasonerProperty("admin_area_4")
         public Builder adminArea4(String value) {
-            adminArea4 = value;
+            this.adminArea4 = value;
             return this;
         }
 
         @JasonerProperty("admin_area_3")
         public Builder adminArea3(String value) {
-            adminArea3 = value;
+            this.adminArea3 = value;
             return this;
         }
 
         @JasonerProperty("admin_area_2")
         public Builder adminArea2(String value) {
-            adminArea2 = value;
+            this.adminArea2 = value;
             return this;
         }
 
         @JasonerProperty("admin_area_1")
         public Builder adminArea1(String value) {
-            adminArea1 = value;
+            this.adminArea1 = value;
             return this;
         }
 
         @JasonerProperty("postal_code")
         public Builder postalCode(String value) {
-            postalCode = value;
+            this.postalCode = value;
             return this;
         }
 
         @JasonerProperty("country_code")
         public Builder countryCode(CountryCode value) {
-            countryCode = value;
+            this.countryCode = value;
             return this;
         }
 
         @JasonerProperty("address_details")
         public Builder addressDetails(AddressDetails value) {
-            addressDetails = value;
+            this.addressDetails = value;
             return this;
         }
 
@@ -242,37 +242,37 @@ public static class AddressDetails {
 
         @JasonerProperty("street_number")
         public Builder streetNumber(String value) {
-            streetNumber = value;
+            this.streetNumber = value;
             return this;
         }
 
         @JasonerProperty("street_name")
         public Builder streetName(String value) {
-            streetName = value;
+            this.streetName = value;
             return this;
         }
 
         @JasonerProperty("street_type")
         public Builder streetType(String value) {
-            streetType = value;
+            this.streetType = value;
             return this;
         }
 
         @JasonerProperty("delivery_service")
         public Builder deliveryService(String value) {
-            deliveryService = value;
+            this.deliveryService = value;
             return this;
         }
 
         @JasonerProperty("building_name")
         public Builder buildingName(String value) {
-            buildingName = value;
+            this.buildingName = value;
             return this;
         }
 
         @JasonerProperty("sub_building")
         public Builder subBuilding(String value) {
-            subBuilding = value;
+            this.subBuilding = value;
             return this;
         }
 

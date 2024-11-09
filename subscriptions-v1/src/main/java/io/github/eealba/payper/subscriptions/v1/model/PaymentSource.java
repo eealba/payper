@@ -27,7 +27,7 @@ public class PaymentSource {
 
         
         public Builder card(Card value) {
-            card = value;
+            this.card = value;
             return this;
         }
 

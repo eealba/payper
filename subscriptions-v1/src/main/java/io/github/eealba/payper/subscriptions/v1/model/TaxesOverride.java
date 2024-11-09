@@ -36,13 +36,13 @@ public class TaxesOverride {
 
         
         public Builder percentage(Percentage value) {
-            percentage = value;
+            this.percentage = value;
             return this;
         }
 
         
         public Builder inclusive(Boolean value) {
-            inclusive = value;
+            this.inclusive = value;
             return this;
         }
 

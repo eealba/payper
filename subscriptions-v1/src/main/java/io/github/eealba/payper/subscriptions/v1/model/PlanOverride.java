@@ -46,19 +46,19 @@ public class PlanOverride {
 
         @JasonerProperty("billing_cycles")
         public Builder billingCycles(List<BillingCycleOverride> value) {
-            billingCycles = value;
+            this.billingCycles = value;
             return this;
         }
 
         @JasonerProperty("payment_preferences")
         public Builder paymentPreferences(PaymentPreferencesOverride value) {
-            paymentPreferences = value;
+            this.paymentPreferences = value;
             return this;
         }
 
         
         public Builder taxes(TaxesOverride value) {
-            taxes = value;
+            this.taxes = value;
             return this;
         }
 

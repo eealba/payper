@@ -91,49 +91,49 @@ public class Card {
 
         
         public Builder id(String value) {
-            id = value;
+            this.id = value;
             return this;
         }
 
         
         public Builder name(String value) {
-            name = value;
+            this.name = value;
             return this;
         }
 
         
         public Builder number(String value) {
-            number = value;
+            this.number = value;
             return this;
         }
 
         
         public Builder expiry(DateYearMonth value) {
-            expiry = value;
+            this.expiry = value;
             return this;
         }
 
         @JasonerProperty("security_code")
         public Builder securityCode(String value) {
-            securityCode = value;
+            this.securityCode = value;
             return this;
         }
 
         @JasonerProperty("last_digits")
         public Builder lastDigits(String value) {
-            lastDigits = value;
+            this.lastDigits = value;
             return this;
         }
 
         @JasonerProperty("card_type")
         public Builder cardType(CardBrand value) {
-            cardType = value;
+            this.cardType = value;
             return this;
         }
 
         @JasonerProperty("billing_address")
         public Builder billingAddress(AddressPortable value) {
-            billingAddress = value;
+            this.billingAddress = value;
             return this;
         }
 

@@ -46,19 +46,19 @@ public class BillingCycleOverride {
 
         @JasonerProperty("pricing_scheme")
         public Builder pricingScheme(PricingScheme value) {
-            pricingScheme = value;
+            this.pricingScheme = value;
             return this;
         }
 
         
         public Builder sequence(Integer value) {
-            sequence = value;
+            this.sequence = value;
             return this;
         }
 
         @JasonerProperty("total_cycles")
         public Builder totalCycles(Integer value) {
-            totalCycles = value;
+            this.totalCycles = value;
             return this;
         }
 

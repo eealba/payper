@@ -100,55 +100,55 @@ public class SubscriptionRequestPost {
 
         @JasonerProperty("plan_id")
         public Builder planId(String value) {
-            planId = value;
+            this.planId = value;
             return this;
         }
 
         @JasonerProperty("start_time")
         public Builder startTime(Instant value) {
-            startTime = value;
+            this.startTime = value;
             return this;
         }
 
         
         public Builder quantity(String value) {
-            quantity = value;
+            this.quantity = value;
             return this;
         }
 
         @JasonerProperty("shipping_amount")
         public Builder shippingAmount(Money value) {
-            shippingAmount = value;
+            this.shippingAmount = value;
             return this;
         }
 
         
         public Builder subscriber(SubscriberRequest value) {
-            subscriber = value;
+            this.subscriber = value;
             return this;
         }
 
         @JasonerProperty("auto_renewal")
         public Builder autoRenewal(Boolean value) {
-            autoRenewal = value;
+            this.autoRenewal = value;
             return this;
         }
 
         @JasonerProperty("application_context")
         public Builder applicationContext(ApplicationContext value) {
-            applicationContext = value;
+            this.applicationContext = value;
             return this;
         }
 
         @JasonerProperty("custom_id")
         public Builder customId(String value) {
-            customId = value;
+            this.customId = value;
             return this;
         }
 
         
         public Builder plan(PlanOverride value) {
-            plan = value;
+            this.plan = value;
             return this;
         }
 

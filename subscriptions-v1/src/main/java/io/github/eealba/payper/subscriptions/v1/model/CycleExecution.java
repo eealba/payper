@@ -73,37 +73,37 @@ public class CycleExecution {
 
         @JasonerProperty("tenure_type")
         public Builder tenureType(TenureType value) {
-            tenureType = value;
+            this.tenureType = value;
             return this;
         }
 
         
         public Builder sequence(Integer value) {
-            sequence = value;
+            this.sequence = value;
             return this;
         }
 
         @JasonerProperty("cycles_completed")
         public Builder cyclesCompleted(Integer value) {
-            cyclesCompleted = value;
+            this.cyclesCompleted = value;
             return this;
         }
 
         @JasonerProperty("cycles_remaining")
         public Builder cyclesRemaining(Integer value) {
-            cyclesRemaining = value;
+            this.cyclesRemaining = value;
             return this;
         }
 
         @JasonerProperty("current_pricing_scheme_version")
         public Builder currentPricingSchemeVersion(Integer value) {
-            currentPricingSchemeVersion = value;
+            this.currentPricingSchemeVersion = value;
             return this;
         }
 
         @JasonerProperty("total_cycles")
         public Builder totalCycles(Integer value) {
-            totalCycles = value;
+            this.totalCycles = value;
             return this;
         }
 

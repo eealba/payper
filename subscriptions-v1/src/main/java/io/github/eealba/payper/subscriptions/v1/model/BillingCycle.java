@@ -64,31 +64,31 @@ public class BillingCycle {
 
         @JasonerProperty("pricing_scheme")
         public Builder pricingScheme(PricingScheme value) {
-            pricingScheme = value;
+            this.pricingScheme = value;
             return this;
         }
 
         
         public Builder frequency(Frequency value) {
-            frequency = value;
+            this.frequency = value;
             return this;
         }
 
         @JasonerProperty("tenure_type")
         public Builder tenureType(TenureType value) {
-            tenureType = value;
+            this.tenureType = value;
             return this;
         }
 
         
         public Builder sequence(Integer value) {
-            sequence = value;
+            this.sequence = value;
             return this;
         }
 
         @JasonerProperty("total_cycles")
         public Builder totalCycles(Integer value) {
-            totalCycles = value;
+            this.totalCycles = value;
             return this;
         }
 

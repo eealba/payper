@@ -37,13 +37,13 @@ public class ThreeDSecureAuthenticationResponse {
 
         @JasonerProperty("authentication_status")
         public Builder authenticationStatus(ParesStatus value) {
-            authenticationStatus = value;
+            this.authenticationStatus = value;
             return this;
         }
 
         @JasonerProperty("enrollment_status")
         public Builder enrollmentStatus(Enrolled value) {
-            enrollmentStatus = value;
+            this.enrollmentStatus = value;
             return this;
         }
 

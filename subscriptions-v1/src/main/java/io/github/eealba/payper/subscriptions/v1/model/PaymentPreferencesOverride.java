@@ -55,25 +55,25 @@ public class PaymentPreferencesOverride {
 
         @JasonerProperty("auto_bill_outstanding")
         public Builder autoBillOutstanding(Boolean value) {
-            autoBillOutstanding = value;
+            this.autoBillOutstanding = value;
             return this;
         }
 
         @JasonerProperty("setup_fee")
         public Builder setupFee(Money value) {
-            setupFee = value;
+            this.setupFee = value;
             return this;
         }
 
         @JasonerProperty("setup_fee_failure_action")
         public Builder setupFeeFailureAction(SetupFeeFailureAction value) {
-            setupFeeFailureAction = value;
+            this.setupFeeFailureAction = value;
             return this;
         }
 
         @JasonerProperty("payment_failure_threshold")
         public Builder paymentFailureThreshold(Integer value) {
-            paymentFailureThreshold = value;
+            this.paymentFailureThreshold = value;
             return this;
         }
 

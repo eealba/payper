@@ -27,7 +27,7 @@ public class PaymentSourceResponse {
 
         
         public Builder card(CardResponseWithBillingAddress value) {
-            card = value;
+            this.card = value;
             return this;
         }
 

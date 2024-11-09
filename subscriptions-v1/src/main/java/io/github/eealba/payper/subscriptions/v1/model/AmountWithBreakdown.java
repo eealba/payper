@@ -73,37 +73,37 @@ public class AmountWithBreakdown {
 
         @JasonerProperty("gross_amount")
         public Builder grossAmount(Money value) {
-            grossAmount = value;
+            this.grossAmount = value;
             return this;
         }
 
         @JasonerProperty("total_item_amount")
         public Builder totalItemAmount(Money value) {
-            totalItemAmount = value;
+            this.totalItemAmount = value;
             return this;
         }
 
         @JasonerProperty("fee_amount")
         public Builder feeAmount(Money value) {
-            feeAmount = value;
+            this.feeAmount = value;
             return this;
         }
 
         @JasonerProperty("shipping_amount")
         public Builder shippingAmount(Money value) {
-            shippingAmount = value;
+            this.shippingAmount = value;
             return this;
         }
 
         @JasonerProperty("tax_amount")
         public Builder taxAmount(Money value) {
-            taxAmount = value;
+            this.taxAmount = value;
             return this;
         }
 
         @JasonerProperty("net_amount")
         public Builder netAmount(Money value) {
-            netAmount = value;
+            this.netAmount = value;
             return this;
         }
 

@@ -91,49 +91,49 @@ public class SubscriptionReviseResponse {
 
         @JasonerProperty("plan_id")
         public Builder planId(String value) {
-            planId = value;
+            this.planId = value;
             return this;
         }
 
         
         public Builder quantity(String value) {
-            quantity = value;
+            this.quantity = value;
             return this;
         }
 
         @JasonerProperty("shipping_amount")
         public Builder shippingAmount(Money value) {
-            shippingAmount = value;
+            this.shippingAmount = value;
             return this;
         }
 
         @JasonerProperty("shipping_address")
         public Builder shippingAddress(ShippingDetail value) {
-            shippingAddress = value;
+            this.shippingAddress = value;
             return this;
         }
 
         @JasonerProperty("application_context")
         public Builder applicationContext(ApplicationContext value) {
-            applicationContext = value;
+            this.applicationContext = value;
             return this;
         }
 
         
         public Builder plan(PlanOverride value) {
-            plan = value;
+            this.plan = value;
             return this;
         }
 
         @JasonerProperty("plan_overridden")
         public Builder planOverridden(Boolean value) {
-            planOverridden = value;
+            this.planOverridden = value;
             return this;
         }
 
         
         public Builder links(List<LinkDescription> value) {
-            links = value;
+            this.links = value;
             return this;
         }
 

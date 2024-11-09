@@ -46,19 +46,19 @@ public class PaymentMethod {
 
         @JasonerProperty("payer_selected")
         public Builder payerSelected(String value) {
-            payerSelected = value;
+            this.payerSelected = value;
             return this;
         }
 
         @JasonerProperty("payee_preferred")
         public Builder payeePreferred(PayeePaymentMethodPreference value) {
-            payeePreferred = value;
+            this.payeePreferred = value;
             return this;
         }
 
         @JasonerProperty("standard_entry_class_code")
         public Builder standardEntryClassCode(StandardEntryClassCode value) {
-            standardEntryClassCode = value;
+            this.standardEntryClassCode = value;
             return this;
         }
 

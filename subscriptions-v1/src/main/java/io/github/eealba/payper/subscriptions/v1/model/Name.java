@@ -82,43 +82,43 @@ public class Name {
 
         
         public Builder prefix(String value) {
-            prefix = value;
+            this.prefix = value;
             return this;
         }
 
         @JasonerProperty("given_name")
         public Builder givenName(String value) {
-            givenName = value;
+            this.givenName = value;
             return this;
         }
 
         
         public Builder surname(String value) {
-            surname = value;
+            this.surname = value;
             return this;
         }
 
         @JasonerProperty("middle_name")
         public Builder middleName(String value) {
-            middleName = value;
+            this.middleName = value;
             return this;
         }
 
         
         public Builder suffix(String value) {
-            suffix = value;
+            this.suffix = value;
             return this;
         }
 
         @JasonerProperty("alternate_full_name")
         public Builder alternateFullName(String value) {
-            alternateFullName = value;
+            this.alternateFullName = value;
             return this;
         }
 
         @JasonerProperty("full_name")
         public Builder fullName(String value) {
-            fullName = value;
+            this.fullName = value;
             return this;
         }
 

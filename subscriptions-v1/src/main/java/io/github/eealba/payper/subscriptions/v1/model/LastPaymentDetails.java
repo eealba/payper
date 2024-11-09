@@ -36,13 +36,13 @@ public class LastPaymentDetails {
 
         
         public Builder amount(Money value) {
-            amount = value;
+            this.amount = value;
             return this;
         }
 
         
         public Builder time(Instant value) {
-            time = value;
+            this.time = value;
             return this;
         }
 

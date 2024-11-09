@@ -55,25 +55,25 @@ public class PlanCollection {
 
         
         public Builder plans(List<Plan> value) {
-            plans = value;
+            this.plans = value;
             return this;
         }
 
         @JasonerProperty("total_items")
         public Builder totalItems(Integer value) {
-            totalItems = value;
+            this.totalItems = value;
             return this;
         }
 
         @JasonerProperty("total_pages")
         public Builder totalPages(Integer value) {
-            totalPages = value;
+            this.totalPages = value;
             return this;
         }
 
         
         public Builder links(List<LinkDescription> value) {
-            links = value;
+            this.links = value;
             return this;
         }
 

@@ -46,19 +46,19 @@ public class PricingTier {
 
         @JasonerProperty("starting_quantity")
         public Builder startingQuantity(String value) {
-            startingQuantity = value;
+            this.startingQuantity = value;
             return this;
         }
 
         @JasonerProperty("ending_quantity")
         public Builder endingQuantity(String value) {
-            endingQuantity = value;
+            this.endingQuantity = value;
             return this;
         }
 
         
         public Builder amount(Money value) {
-            amount = value;
+            this.amount = value;
             return this;
         }
 

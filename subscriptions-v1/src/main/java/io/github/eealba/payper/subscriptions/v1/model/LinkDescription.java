@@ -45,19 +45,19 @@ public class LinkDescription {
 
         
         public Builder href(String value) {
-            href = value;
+            this.href = value;
             return this;
         }
 
         
         public Builder rel(String value) {
-            rel = value;
+            this.rel = value;
             return this;
         }
 
         
         public Builder method(Method value) {
-            method = value;
+            this.method = value;
             return this;
         }
 

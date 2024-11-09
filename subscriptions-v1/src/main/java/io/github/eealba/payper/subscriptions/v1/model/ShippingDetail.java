@@ -45,19 +45,19 @@ public class ShippingDetail {
 
         
         public Builder name(Name value) {
-            name = value;
+            this.name = value;
             return this;
         }
 
         
         public Builder type(Type value) {
-            type = value;
+            this.type = value;
             return this;
         }
 
         
         public Builder address(AddressPortable value) {
-            address = value;
+            this.address = value;
             return this;
         }
 

@@ -91,49 +91,49 @@ public class PlanRequestPOST {
 
         @JasonerProperty("product_id")
         public Builder productId(String value) {
-            productId = value;
+            this.productId = value;
             return this;
         }
 
         
         public Builder name(String value) {
-            name = value;
+            this.name = value;
             return this;
         }
 
         
         public Builder status(Status value) {
-            status = value;
+            this.status = value;
             return this;
         }
 
         
         public Builder description(String value) {
-            description = value;
+            this.description = value;
             return this;
         }
 
         @JasonerProperty("billing_cycles")
         public Builder billingCycles(List<BillingCycle> value) {
-            billingCycles = value;
+            this.billingCycles = value;
             return this;
         }
 
         @JasonerProperty("payment_preferences")
         public Builder paymentPreferences(PaymentPreferences value) {
-            paymentPreferences = value;
+            this.paymentPreferences = value;
             return this;
         }
 
         
         public Builder taxes(Taxes value) {
-            taxes = value;
+            this.taxes = value;
             return this;
         }
 
         @JasonerProperty("quantity_supported")
         public Builder quantitySupported(Boolean value) {
-            quantitySupported = value;
+            this.quantitySupported = value;
             return this;
         }
 

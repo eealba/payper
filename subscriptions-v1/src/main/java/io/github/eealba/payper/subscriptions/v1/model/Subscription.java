@@ -164,97 +164,97 @@ public class Subscription {
 
         
         public Builder status(Status value) {
-            status = value;
+            this.status = value;
             return this;
         }
 
         @JasonerProperty("status_change_note")
         public Builder statusChangeNote(String value) {
-            statusChangeNote = value;
+            this.statusChangeNote = value;
             return this;
         }
 
         @JasonerProperty("status_update_time")
         public Builder statusUpdateTime(Instant value) {
-            statusUpdateTime = value;
+            this.statusUpdateTime = value;
             return this;
         }
 
         
         public Builder id(String value) {
-            id = value;
+            this.id = value;
             return this;
         }
 
         @JasonerProperty("plan_id")
         public Builder planId(String value) {
-            planId = value;
+            this.planId = value;
             return this;
         }
 
         @JasonerProperty("start_time")
         public Builder startTime(Instant value) {
-            startTime = value;
+            this.startTime = value;
             return this;
         }
 
         
         public Builder quantity(String value) {
-            quantity = value;
+            this.quantity = value;
             return this;
         }
 
         @JasonerProperty("shipping_amount")
         public Builder shippingAmount(Money value) {
-            shippingAmount = value;
+            this.shippingAmount = value;
             return this;
         }
 
         
         public Builder subscriber(Subscriber value) {
-            subscriber = value;
+            this.subscriber = value;
             return this;
         }
 
         @JasonerProperty("billing_info")
         public Builder billingInfo(SubscriptionBillingInfo value) {
-            billingInfo = value;
+            this.billingInfo = value;
             return this;
         }
 
         @JasonerProperty("create_time")
         public Builder createTime(Instant value) {
-            createTime = value;
+            this.createTime = value;
             return this;
         }
 
         @JasonerProperty("update_time")
         public Builder updateTime(Instant value) {
-            updateTime = value;
+            this.updateTime = value;
             return this;
         }
 
         @JasonerProperty("custom_id")
         public Builder customId(String value) {
-            customId = value;
+            this.customId = value;
             return this;
         }
 
         @JasonerProperty("plan_overridden")
         public Builder planOverridden(Boolean value) {
-            planOverridden = value;
+            this.planOverridden = value;
             return this;
         }
 
         
         public Builder plan(Plan value) {
-            plan = value;
+            this.plan = value;
             return this;
         }
 
         
         public Builder links(List<LinkDescription> value) {
-            links = value;
+            this.links = value;
             return this;
         }
 
