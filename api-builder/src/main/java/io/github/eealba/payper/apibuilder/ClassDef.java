@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ClassDef {
+    public static final ClassDef OBJECT = new ClassDef("java.lang", "Object");
     public static final ClassDef STRING = new ClassDef("java.lang", "String");
     public static final ClassDef INTEGER = new ClassDef("java.lang", "Integer");
     public static final ClassDef BOOLEAN = new ClassDef("java.lang", "Boolean");

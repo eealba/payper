@@ -5,17 +5,27 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import io.github.eealba.jasoner.JasonerProperty;
 
-class CustomerDTO implements Customer {
+public class CustomerDTO {
+
 
     private final String name;
+    @JasonerProperty("last_name")
     private final String lastName;
+
     private final Integer id;
+
     private final LocalDate birthday;
+
     private final BigDecimal credit;
+
     private final Boolean active;
+
     private final Instant created;
+
     private final Frequency frequency;
+
     private final List<Link> links;
 
     private CustomerDTO(Builder builder) {
@@ -30,56 +40,56 @@ class CustomerDTO implements Customer {
         birthday = Objects.requireNonNull(builder.birthday);
     }
 
-    @Override
+
     public String name() {
         return name;
     }
 
-    @Override
+    @JasonerProperty("last_name")
     public String lastName() {
         return lastName;
     }
 
-    @Override
+
     public Integer id() {
         return id;
     }
 
-    @Override
+
     public LocalDate birthday() {
         return birthday;
     }
 
-    @Override
+
     public BigDecimal credit() {
         return credit;
     }
 
-    @Override
+
     public Boolean active() {
         return active;
     }
 
-    @Override
+
     public Instant created() {
         return created;
     }
 
-    @Override
+
     public Frequency frequency() {
         return frequency;
     }
 
-    @Override
+
     public List<Link> links() {
         return links;
     }
 
-    static CustomerBuilder builder() {
+    public static Builder builder() {
         return new Builder();
     }
 
-    private static class Builder implements CustomerBuilder {
+    public static class Builder {
 
         private String name;
         private String lastName;
@@ -91,62 +101,61 @@ class CustomerDTO implements Customer {
         private Frequency frequency;
         private List<Link> links;
 
-        @Override
+
         public Builder name(String value) {
-            name = value;
+            this.name = value;
             return this;
         }
 
-        @Override
+        @JasonerProperty("last_name")
         public Builder lastName(String value) {
-            lastName = value;
+            this.lastName = value;
             return this;
         }
 
-        @Override
+
         public Builder id(Integer value) {
-            id = value;
+            this.id = value;
             return this;
         }
 
-        @Override
+
         public Builder birthday(LocalDate value) {
-            birthday = value;
+            this.birthday = value;
             return this;
         }
 
-        @Override
+
         public Builder credit(BigDecimal value) {
-            credit = value;
+            this.credit = value;
             return this;
         }
 
-        @Override
+
         public Builder active(Boolean value) {
-            active = value;
+            this.active = value;
             return this;
         }
 
-        @Override
+
         public Builder created(Instant value) {
-            created = value;
+            this.created = value;
             return this;
         }
 
-        @Override
+
         public Builder frequency(Frequency value) {
-            frequency = value;
+            this.frequency = value;
             return this;
         }
 
-        @Override
+
         public Builder links(List<Link> value) {
-            links = value;
+            this.links = value;
             return this;
         }
 
-        @Override
-        public Customer build() {
+        public CustomerDTO build() {
             return new CustomerDTO(this);
         }
 

@@ -179,13 +179,7 @@ class OpenApiMapperImpl implements OpenApiMapper {
         }
         var schemaMain = field.schema().get();
         List<Schema<?>> schemaList = new ArrayList<>();
-        if (schemaMain instanceof ComposedSchema composedSchema) {
-            Optional.ofNullable(composedSchema.getOneOf()).orElse(Collections.emptyList()).forEach(schemaList::add);
-            Optional.ofNullable(composedSchema.getAllOf()).orElse(Collections.emptyList()).forEach(schemaList::add);
-            Optional.ofNullable(composedSchema.getAnyOf()).orElse(Collections.emptyList()).forEach(schemaList::add);
-        } else {
-            schemaList.add(schemaMain);
-        }
+        collectSchemas(schemaMain, schemaList, components);
         var fieldList = schemaList.stream().map((Schema<?> schema) -> getFields(field, packageName, schema, components))
                 .flatMap(List::stream).distinct().collect(Collectors.toList());
         if (fieldList.isEmpty()) {
@@ -193,7 +187,26 @@ class OpenApiMapperImpl implements OpenApiMapper {
         }
         return fieldList;
     }
-
+    private void collectSchemas(Schema<?> schema, List<Schema<?>> schemaList, Map<String, Schema<?>> components) {
+        if (schema instanceof ComposedSchema composedSchema) {
+            Optional.ofNullable(composedSchema.getOneOf())
+                    .orElse(Collections.emptyList()).forEach(s -> collectSchemas(s, schemaList, components));
+            Optional.ofNullable(composedSchema.getAllOf())
+                    .orElse(Collections.emptyList()).forEach(s -> collectSchemas(s, schemaList, components));
+            Optional.ofNullable(composedSchema.getAnyOf())
+                    .orElse(Collections.emptyList()).forEach(s -> collectSchemas(s, schemaList, components));
+        } else {
+            if (schema.get$ref() != null) {
+                String ref = getRef(schema).orElseThrow();
+                var obj = components.entrySet().stream()
+                        .filter(entry -> entry.getKey().equals(ref))
+                        .findFirst().orElseThrow();
+                collectSchemas(obj.getValue(), schemaList, components);
+            }else {
+                schemaList.add(schema);
+            }
+        }
+    }
 
     private List<FieldDef> getFields2(FieldInternal parent, String packageName, Schema<?> schema, Map<String, Schema<?>> components,
                                       String name) {
@@ -219,7 +232,10 @@ class OpenApiMapperImpl implements OpenApiMapper {
         var ref2 = getRef(entry).orElse(null);
         ClassDef classDef2;
         ModelDef modelDef2 = null;
-        if (ref2 == null && type2.equals("object")) {
+        if (ref2 == null && type2 == null) {
+            classDef2 = ClassDef.OBJECT;
+
+        }else if (ref2 == null && type2.equals("object")) {
 //            ref2 = name;
 //            putIfAbsent(name, entry, components);
             classDef2 = new ClassDef(packageName, Utils.normalizeClassName(name));
@@ -310,6 +326,7 @@ class OpenApiMapperImpl implements OpenApiMapper {
             return name;
         }
 
+
         public Optional<Schema<?>> schema() {
             return Optional.ofNullable(schema);
         }
@@ -319,12 +336,6 @@ class OpenApiMapperImpl implements OpenApiMapper {
         var obj = components.entrySet().stream()
                 .filter(entry -> entry.getKey().equals(ref))
                 .findFirst().map(Map.Entry::getValue).orElse(null);
-
-        if (obj instanceof ArraySchema arraySchema) {
-            if (arraySchema.getItems() != null) {
-                return getFieldInternal(arraySchema.get$ref(), components);
-            }
-        }
         return new FieldInternal(ref, obj);
     }
 
@@ -353,6 +364,13 @@ class OpenApiMapperImpl implements OpenApiMapper {
             if (obj instanceof ArraySchema arraySchema) {
                 ref = arraySchema.getItems().get$ref();
             }
+        }
+        return Optional.ofNullable(ref).map(r -> r.substring(r.lastIndexOf('/') + 1));
+    }
+    private Optional<String> getRef(ArraySchema arraySchema) {
+        String ref = arraySchema.get$ref();
+        if (Objects.isNull(ref)) {
+                ref = arraySchema.getItems().get$ref();
         }
         return Optional.ofNullable(ref).map(r -> r.substring(r.lastIndexOf('/') + 1));
     }

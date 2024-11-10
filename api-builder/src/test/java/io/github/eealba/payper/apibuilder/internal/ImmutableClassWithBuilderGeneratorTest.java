@@ -35,7 +35,7 @@ class ImmutableClassWithBuilderGeneratorTest {
         String generatedCode = apiGenerator.process();
 
         Helper.verify("should_generate_class_with_interfaces_and_package_private", generatedCode,
-                "CustomerDtoWithBuider.java");
+                "CustomerDtoWithBuilder.java");
     }
     @Test
     void should_generate_class_without_interfaces_and_public() throws URISyntaxException, IOException {
@@ -46,7 +46,7 @@ class ImmutableClassWithBuilderGeneratorTest {
         String generatedCode = apiGenerator.process();
 
         Helper.verify("should_generate_class_without_interfaces_and_public", generatedCode,
-                "CustomerDtoWithBuider2.java");
+                "CustomerDtoWithBuilder2.java");
     }
 
     @Test
@@ -57,8 +57,7 @@ class ImmutableClassWithBuilderGeneratorTest {
 
         String generatedCode = apiGenerator.process();
 
-        Helper.verify("should_generate_class_with_enum", generatedCode,
-                "CustomerDtoWithBuider3.java");
+        Helper.verify("should_generate_class_with_enum", generatedCode,"CustomerDtoWithBuilder3.java");
     }
 
 }

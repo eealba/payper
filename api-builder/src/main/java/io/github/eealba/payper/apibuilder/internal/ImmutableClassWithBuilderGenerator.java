@@ -10,18 +10,16 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ImmutableClassWithBuilderGenerator extends AbstractCodeGenerator{
-    private static final String FIELD_TEMPLATE = "    private final %s %s;";
+    private static final String FIELD_TEMPLATE = """
+                %s
+                private final %s %s;\
+            """;
     private static final String FIELD_BUILDER_TEMPLATE = "        private %s %s;";
 
     private static final String ASSIGN_FIELD_TEMPLATE = "        %s = builder.%s;";
     private static final String ASSIGN_REQUIRED_FIELD_TEMPLATE = "        %s = Objects.requireNonNull(builder.%s);";
-    private static final String GETTER_TEMPLATE_OVERRIDE = """
-        @Override
-        public %s %s() {
-            return %s;
-        }
-    """;
     private static final String GETTER_TEMPLATE_NORMAL = """
+        %s
         public %s %s() {
             return %s;
         }
@@ -37,16 +35,10 @@ public class ImmutableClassWithBuilderGenerator extends AbstractCodeGenerator{
                 return new %s(this);
             }
     """;
-    private static final String SETTER_TEMPLATE_OVERRIDE = """
-            @Override
-            public Builder %s(%s value) {
-                %s = value;
-                return this;
-            }
-    """;
     private static final String SETTER_TEMPLATE_NORMAL = """
+            %s
             public Builder %s(%s value) {
-                %s = value;
+                this.%s = value;
                 return this;
             }
     """;
@@ -92,7 +84,8 @@ public class ImmutableClassWithBuilderGenerator extends AbstractCodeGenerator{
     }
 
     private String field(FieldDef fieldDef) {
-        return String.format(FIELD_TEMPLATE, getType(fieldDef), fieldDef.name());
+        String annotations = getFieldAnnotation(fieldDef, false);
+        return String.format(FIELD_TEMPLATE,annotations, getType(fieldDef), fieldDef.name());
     }
 
     @Override
@@ -122,8 +115,8 @@ public class ImmutableClassWithBuilderGenerator extends AbstractCodeGenerator{
     }
 
     private String getter(FieldDef fieldDef) {
-        return String.format(modelDef.classDef().interfaces().isEmpty()
-                        ? GETTER_TEMPLATE_NORMAL: GETTER_TEMPLATE_OVERRIDE,
+        String fieldAnnotation = getFieldAnnotation(fieldDef, !modelDef.classDef().interfaces().isEmpty());
+        return String.format(GETTER_TEMPLATE_NORMAL, fieldAnnotation,
                 getType(fieldDef),
                 fieldDef.name(), fieldDef.name());
     }
@@ -224,12 +217,14 @@ public class ImmutableClassWithBuilderGenerator extends AbstractCodeGenerator{
     }
 
     private String setter(FieldDef fieldDef) {
-        return String.format(modelDef.classDef().interfaces().isEmpty()
-                        ? SETTER_TEMPLATE_NORMAL: SETTER_TEMPLATE_OVERRIDE,
+        String fieldAnnotation = getFieldAnnotation(fieldDef, !modelDef.classDef().interfaces().isEmpty());
+        return String.format( SETTER_TEMPLATE_NORMAL, fieldAnnotation,
                 fieldDef.name(),
                 getType(fieldDef),
                 fieldDef.name());
     }
+
+
     @Override
     protected void writeImports() {
         super.writeImports();
@@ -237,8 +232,6 @@ public class ImmutableClassWithBuilderGenerator extends AbstractCodeGenerator{
             sb.append('\n');
             sb.append("import java.util.Objects;");
         }
-//        sb.append('\n');
-//        sb.append("import io.github.eealba.paypal.core.annotation.Field;");
 
         if (modelDef.classDef().packageName().endsWith("internal")) {
             var packageName = modelDef.classDef().packageName()
@@ -250,6 +243,12 @@ public class ImmutableClassWithBuilderGenerator extends AbstractCodeGenerator{
             sb.append("import ").append(packageName).append('.')
                     .append(modelDef.classDef().interfaces().get(0)).append(";");
         }
+        boolean jasonerProperty = modelDef.fieldDefList().stream().anyMatch(f -> !f.originalName().equals(f.name()));
+        if (jasonerProperty) {
+            sb.append('\n');
+            sb.append("import io.github.eealba.jasoner.JasonerProperty;");
+        }
+
     }
     @Override
     protected void writeGroupSeparator(GroupType groupType){

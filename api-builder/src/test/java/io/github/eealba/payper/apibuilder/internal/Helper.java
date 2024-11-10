@@ -83,8 +83,10 @@ public class Helper {
     public static List<String> getDifferents(List<String> lines, List<String> expectedLines) {
         List<String> differents = new ArrayList<>();
         for(int i = 0; i < lines.size(); i++){
-            if (i < expectedLines.size() &&  !expectedLines.get(i).equals(lines.get(i))){
-                differents.add("line: " + (i + 1) + " >> " + lines.get(i));
+            var expectedLine = expectedLines.get(i).trim();
+            var line = lines.get(i).trim();
+            if (!expectedLine.equals(line)){
+                differents.add("line: " + (i + 1) + " >> " + line);
             }
         }
         if (lines.size() != expectedLines.size()){

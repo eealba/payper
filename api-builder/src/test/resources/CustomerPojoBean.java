@@ -13,51 +13,61 @@ public class Customer {
     /**
      * Name of customer
      */
+
     private String name;
 
     /**
      * lastname of customer
      */
+
     private String lastName;
 
     /**
      * customer ID
      */
+
     private Integer id;
 
     /**
      * Birthday
      */
+
     private LocalDate birthday;
 
     /**
      * Credit amount
      */
+
     private BigDecimal credit;
 
     /**
      * Customer active
      */
+
     private Boolean active;
 
     /**
      * created Timestamp
      */
+
     private Instant created;
 
     /**
      * frequency
      */
+
     private Frequency frequency;
 
     /**
      * link array
      */
+
     private List<Link> links;
     /**
      * Name of customer
      * @return The current value of name.
      */
+
     public String name() {
         return name;
     }
@@ -66,6 +76,7 @@ public class Customer {
      * lastname of customer
      * @return The current value of lastName.
      */
+
     public String lastName() {
         return lastName;
     }
@@ -74,6 +85,7 @@ public class Customer {
      * customer ID
      * @return The current value of id.
      */
+
     public Integer id() {
         return id;
     }
@@ -82,6 +94,7 @@ public class Customer {
      * Birthday
      * @return The current value of birthday.
      */
+
     public LocalDate birthday() {
         return birthday;
     }
@@ -90,6 +103,7 @@ public class Customer {
      * Credit amount
      * @return The current value of credit.
      */
+
     public BigDecimal credit() {
         return credit;
     }
@@ -98,6 +112,7 @@ public class Customer {
      * Customer active
      * @return The current value of active.
      */
+
     public Boolean active() {
         return active;
     }
@@ -106,6 +121,7 @@ public class Customer {
      * created Timestamp
      * @return The current value of created.
      */
+
     public Instant created() {
         return created;
     }
@@ -114,6 +130,7 @@ public class Customer {
      * frequency
      * @return The current value of frequency.
      */
+
     public Frequency frequency() {
         return frequency;
     }
@@ -122,6 +139,7 @@ public class Customer {
      * link array
      * @return The current value of links.
      */
+
     public List<Link> links() {
         return links;
     }
@@ -129,6 +147,7 @@ public class Customer {
      * Name of customer
      * @param name New value for name.
      */
+
     public void name(String name) {
         this.name = name;
     }
@@ -137,6 +156,7 @@ public class Customer {
      * lastname of customer
      * @param lastName New value for lastName.
      */
+
     public void lastName(String lastName) {
         this.lastName = lastName;
     }
@@ -145,6 +165,7 @@ public class Customer {
      * customer ID
      * @param id New value for id.
      */
+
     public void id(Integer id) {
         this.id = id;
     }
@@ -153,6 +174,7 @@ public class Customer {
      * Birthday
      * @param birthday New value for birthday.
      */
+
     public void birthday(LocalDate birthday) {
         this.birthday = birthday;
     }
@@ -161,6 +183,7 @@ public class Customer {
      * Credit amount
      * @param credit New value for credit.
      */
+
     public void credit(BigDecimal credit) {
         this.credit = credit;
     }
@@ -169,6 +192,7 @@ public class Customer {
      * Customer active
      * @param active New value for active.
      */
+
     public void active(Boolean active) {
         this.active = active;
     }
@@ -177,6 +201,7 @@ public class Customer {
      * created Timestamp
      * @param created New value for created.
      */
+
     public void created(Instant created) {
         this.created = created;
     }
@@ -185,6 +210,7 @@ public class Customer {
      * frequency
      * @param frequency New value for frequency.
      */
+
     public void frequency(Frequency frequency) {
         this.frequency = frequency;
     }
@@ -193,6 +219,7 @@ public class Customer {
      * link array
      * @param links New value for links.
      */
+
     public void links(List<Link> links) {
         this.links = links;
     }

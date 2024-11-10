@@ -5,19 +5,28 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import io.github.eealba.jasoner.JasonerProperty;
 
-public class CustomerDTO {
+class CustomerDTO implements Customer {
+
 
     private final String name;
+
     private final String lastName;
+
     private final Integer id;
+
     private final LocalDate birthday;
+
     private final BigDecimal credit;
+
     private final Boolean active;
+
     private final Instant created;
+
     private final Frequency frequency;
+
     private final List<Link> links;
-    private final value value;
 
     private CustomerDTO(Builder builder) {
         lastName = builder.lastName;
@@ -26,57 +35,61 @@ public class CustomerDTO {
         created = builder.created;
         frequency = builder.frequency;
         links = builder.links;
-        value = builder.value;
         name = Objects.requireNonNull(builder.name);
         id = Objects.requireNonNull(builder.id);
         birthday = Objects.requireNonNull(builder.birthday);
     }
 
+    @Override
     public String name() {
         return name;
     }
 
+    @Override
     public String lastName() {
         return lastName;
     }
 
+    @Override
     public Integer id() {
         return id;
     }
 
+    @Override
     public LocalDate birthday() {
         return birthday;
     }
 
+    @Override
     public BigDecimal credit() {
         return credit;
     }
 
+    @Override
     public Boolean active() {
         return active;
     }
 
+    @Override
     public Instant created() {
         return created;
     }
 
+    @Override
     public Frequency frequency() {
         return frequency;
     }
 
+    @Override
     public List<Link> links() {
         return links;
     }
 
-    public value value() {
-        return value;
-    }
-
-    public static Builder builder() {
+    static CustomerBuilder builder() {
         return new Builder();
     }
 
-    public static class Builder {
+    private static class Builder implements CustomerBuilder {
 
         private String name;
         private String lastName;
@@ -87,70 +100,66 @@ public class CustomerDTO {
         private Instant created;
         private Frequency frequency;
         private List<Link> links;
-        private value value;
 
+        @Override
         public Builder name(String value) {
-            name = value;
+            this.name = value;
             return this;
         }
 
+        @Override
         public Builder lastName(String value) {
-            lastName = value;
+            this.lastName = value;
             return this;
         }
 
+        @Override
         public Builder id(Integer value) {
-            id = value;
+            this.id = value;
             return this;
         }
 
+        @Override
         public Builder birthday(LocalDate value) {
-            birthday = value;
+            this.birthday = value;
             return this;
         }
 
+        @Override
         public Builder credit(BigDecimal value) {
-            credit = value;
+            this.credit = value;
             return this;
         }
 
+        @Override
         public Builder active(Boolean value) {
-            active = value;
+            this.active = value;
             return this;
         }
 
+        @Override
         public Builder created(Instant value) {
-            created = value;
+            this.created = value;
             return this;
         }
 
+        @Override
         public Builder frequency(Frequency value) {
-            frequency = value;
+            this.frequency = value;
             return this;
         }
 
+        @Override
         public Builder links(List<Link> value) {
-            links = value;
+            this.links = value;
             return this;
         }
 
-        public Builder value(value value) {
-            value = value;
-            return this;
-        }
-
-        public CustomerDTO build() {
+        @Override
+        public Customer build() {
             return new CustomerDTO(this);
         }
 
     }
-    /**
-     * The Card brand
-     */
-    public enum value {
-        VISA,
-        MASTERCARD,
-        AMEX,
-        DISCOVER
-    }
+
 }

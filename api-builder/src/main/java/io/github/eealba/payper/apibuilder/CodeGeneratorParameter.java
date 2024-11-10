@@ -13,12 +13,16 @@ public class CodeGeneratorParameter {
             .classAccessLevel(AccessLevel.PUBLIC)
             .accessorChain(true)
             .accessorFluent(true)
+            .useJasonerProperty(true)
+            .maxLineLength(120)
             .build();
     private final AccessLevel classAccessLevel;
     private final AccessLevel methodAccessLevel;
     private final AccessLevel fieldsAccessLevel;
     private final boolean accessorChain;
     private final boolean accessorFluent;
+    private final boolean useJasonerProperty;
+    private final int maxLineLength;
 
     public static CodeGeneratorParameter defaultParameter() {
         return defaultParameters;
@@ -27,18 +31,12 @@ public class CodeGeneratorParameter {
     public enum AccessLevel {
         PUBLIC, PACKAGE_PRIVATE, PROTECTED, PRIVATE;
         public String toJavaAccessLevel() {
-            switch (this) {
-                case PUBLIC:
-                    return "public";
-                case PACKAGE_PRIVATE:
-                    return "";
-                case PROTECTED:
-                    return "protected";
-                case PRIVATE:
-                    return "private";
-                default:
-                    return "";
-            }
+            return switch (this) {
+                case PUBLIC -> "public";
+                case PROTECTED -> "protected";
+                case PRIVATE -> "private";
+                default -> "";
+            };
         }
     }
 }

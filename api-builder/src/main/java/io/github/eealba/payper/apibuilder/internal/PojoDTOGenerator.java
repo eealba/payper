@@ -20,6 +20,7 @@ public class PojoDTOGenerator extends AbstractCodeGenerator {
                     /**
                      * %s
                      */
+                    %s
                     %s %s %s;
                 """;
     private static final String GETTER_TEMPLATE = """
@@ -27,6 +28,7 @@ public class PojoDTOGenerator extends AbstractCodeGenerator {
          * %s
          * @return The current value of %s.
          */
+        %s
         %s %s %s() {
             return %s;
         }
@@ -36,6 +38,7 @@ public class PojoDTOGenerator extends AbstractCodeGenerator {
          * %s
          * @param %s New value for %s.
          */
+        %s
         %s %s %s(%s %s) {
             %s
         }
@@ -60,6 +63,7 @@ public class PojoDTOGenerator extends AbstractCodeGenerator {
 
     private String field(FieldDef fieldDef) {
         return String.format(FIELD_TEMPLATE, getComments(fieldDef.description()),
+                getFieldAnnotation(fieldDef, false),
                 codeGeneratorParameter.getFieldsAccessLevel().toJavaAccessLevel(),
                getType(fieldDef), fieldDef.name());
     }
@@ -76,6 +80,7 @@ public class PojoDTOGenerator extends AbstractCodeGenerator {
         }
         return String.format(GETTER_TEMPLATE, getComments(fieldDef.description()),
                 fieldDef.name(),
+                getFieldAnnotation(fieldDef, false),
                 codeGeneratorParameter.getMethodAccessLevel().toJavaAccessLevel(),
                 getType(fieldDef), name, fieldDef.name());
     }
@@ -98,6 +103,7 @@ public class PojoDTOGenerator extends AbstractCodeGenerator {
         return String.format(SETTER_TEMPLATE, getComments(fieldDef.description()),
                 fieldDef.name(),
                 fieldDef.name(),
+                getFieldAnnotation(fieldDef, false),
                 codeGeneratorParameter.getMethodAccessLevel().toJavaAccessLevel(),
                 returnType, fieldDef.name(), getType(fieldDef), fieldDef.name(), code);
     }

@@ -55,12 +55,14 @@ class ApiGenerator {
     }
 
     private void cleanSourceFolder() {
+        var filePath = sourceFolder.resolve(packageName.replace(".", "/"));
+
         try {
-            Files.walk(sourceFolder)
+            Files.walk(filePath)
                     .sorted(Comparator.reverseOrder())
                     .forEach(path -> {
                         try {
-                            if (!path.equals(sourceFolder)) {
+                            if (!path.equals(filePath)) {
                                 Files.delete(path);
                             }
                         } catch (IOException e) {
@@ -88,11 +90,12 @@ class ApiGenerator {
 //        list.stream().filter(ApiGenerator::useImmutableClassWithBuilder).distinct().forEach(this::generateLombokDTO);
 //        list.stream().filter(ApiGenerator::useImmutableClassWithBuilder).distinct().forEach(this::generatePojoDTO);
     }
-
+    @SuppressWarnings("unused")
     private void generateLombokDTO(ModelDef modelDef) {
         var generator = ObjectsFactory.lombokDTOGenerator(modelDef);
         generateCode(generator, modelDef);
     }
+    @SuppressWarnings("unused")
     private void generatePojoDTO(ModelDef modelDef) {
         var generator = ObjectsFactory.pojoDTOGenerator(modelDef, CodeGeneratorParameter.defaultParameter());
         generateCode(generator, modelDef);

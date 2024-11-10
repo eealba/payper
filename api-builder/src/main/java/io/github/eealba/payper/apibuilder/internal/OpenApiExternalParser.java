@@ -17,7 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 class OpenApiExternalParser {
-    public static final String MAIN_RESOURCES_OPENAPI = "/Users/enrique/git/paypal-builder/src/main/resources/openapi";
+    private static final String PROJECT_HOME = System.getProperty("user.home") + "/git/payper";
+
+    private static final String MAIN_RESOURCES_OPENAPI = PROJECT_HOME + "/api-builder/src/main/resources/openapi";
+
     private final OpenAPI openAPI;
 
     OpenApiExternalParser(File openApiFile) {
