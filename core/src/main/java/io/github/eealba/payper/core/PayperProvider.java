@@ -13,8 +13,6 @@
  */
 package io.github.eealba.payper.core;
 
-import java.lang.reflect.Constructor;
-
 /**
  * The type Payper provider.
  * This class is used to create Payper objects.
@@ -31,10 +29,6 @@ import java.lang.reflect.Constructor;
  * @author Edgar Alba
  */
 public abstract class PayperProvider {
-    /**
-     * The providerImpl.
-     */
-    private static PayperProvider providerImpl;
     /**
      * A constant representing the name of the default {@code PayperProvider}
      * implementation class.
@@ -54,23 +48,7 @@ public abstract class PayperProvider {
      * @return a Payper provider
      */
     public static PayperProvider provider() {
-        if (providerImpl != null) {
-            return providerImpl;
-        }
-        try {
-            Class<?> clazz = Class.forName(DEFAULT_PROVIDER);
-            Constructor<?>[] constructors = clazz.getDeclaredConstructors();
-            for (Constructor<?> c : constructors) {
-                if (c.getParameterCount() == 0) {
-                    c.setAccessible(true);
-                    providerImpl = (PayperProvider) c.newInstance();
-                    return providerImpl;
-                }
-            }
-        } catch (Exception x) {
-            throw new PayperException("Provider for JasonerProvider not found", x);
-        }
-        throw new PayperException("Provider for JasonerProvider not found");
+        return Providers.getProvider(PayperProvider.class, DEFAULT_PROVIDER);
     }
 
 
