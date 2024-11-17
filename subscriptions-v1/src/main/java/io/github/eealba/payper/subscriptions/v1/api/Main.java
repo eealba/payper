@@ -23,7 +23,7 @@ public class Main {
                 .billingPlans()
                 .create()
                 .withBody(PlanRequestPOST.builder().build())
-                .send()
+                .retrieve()
                 .toEntity();
 
         System.out.println(plan.name());
@@ -36,7 +36,7 @@ public class Main {
                 .withProductId("product_id")
                 .withPlanIds("plan_id")
                 .withStatuses("status")
-                .send()
+                .retrieve()
                 .toEntity();
         System.out.println(plans.size());
 
@@ -45,7 +45,7 @@ public class Main {
                 .billingPlans()
                 .get()
                 .withId("plan_id")
-                .send()
+                .retrieve()
                 .toEntity();
 
         System.out.println(plan2.name());
@@ -62,21 +62,24 @@ public class Main {
                 .update()
                 .withId("plan_id")
                 .withBody(path)
-                .send();
+                .retrieve()
+                .toVoid();
 
         // Activate plan
         subscriptions
                 .billingPlans()
                 .activate()
                 .withId("plan_id")
-                .send();
+                .retrieve()
+                .toVoid();
 
         // Deactivate plan
         subscriptions
                 .billingPlans()
                 .deactivate()
                 .withId("plan_id")
-                .send();
+                .retrieve()
+                .toVoid();
 
         // Update pricing schemes
         List<UpdatePricingSchemeRequest> pricingSchemesList = List.of(
@@ -87,7 +90,8 @@ public class Main {
                 .updatePricingSchemes()
                 .withId("plan_id")
                 .withBody(new UpdatePricingSchemesListRequest(pricingSchemesList))
-                .send();
+                .retrieve()
+                .toVoid();
 
 
     }

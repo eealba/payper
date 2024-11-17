@@ -24,10 +24,10 @@ public interface Subscriptions {
         DeactivatePlan deactivate();
         UpdatePricingSchemes updatePricingSchemes();
     }
-    interface CreatePlan extends PostRequestCommand<CreatePlan,PlanRequestPOST>, CommandExecutor<Plan, ErrorDefault> {
+    interface CreatePlan extends PostRequestSpec<CreatePlan,PlanRequestPOST, Plan, ErrorDefault> {
 
     }
-    interface ListPlans extends RequestCommand<ListPlans>, CommandExecutor<List<Plan>, ErrorDefault> {
+    interface ListPlans extends RequestSpec<ListPlans, List<Plan>, ErrorDefault> {
         ListPlans withProductId(String productId);
         ListPlans withPlanIds(String planIds);
         ListPlans withPageSize(int pageSize);
@@ -36,20 +36,20 @@ public interface Subscriptions {
         //TODO create enum STATUSES
         ListPlans withStatuses(String status);
     }
-    interface GetPlan extends GetByIdRequestCommand<GetPlan>, CommandExecutor<Plan, ErrorDefault> {
+    interface GetPlan extends GetByIdRequestSpec<GetPlan,Plan, ErrorDefault> {
         GetPlan withFields(String fields);
     }
-    interface UpdatePlan extends PatchRequestCommand<UpdatePlan, PatchRequest>, CommandExecutor<Void, ErrorDefault> {
+    interface UpdatePlan extends PatchRequestSpec<UpdatePlan, PatchRequest,Void, ErrorDefault> {
         UpdatePlan withId(String id);
     }
-    interface ActivatePlan extends PostRequestCommand<ActivatePlan,Void>, CommandExecutor<Void, ErrorDefault> {
+    interface ActivatePlan extends PostRequestSpec<ActivatePlan,Void, Void, ErrorDefault> {
         ActivatePlan withId(String id);
     }
-    interface DeactivatePlan extends PostRequestCommand<DeactivatePlan,Void>, CommandExecutor<Void, ErrorDefault> {
+    interface DeactivatePlan extends PostRequestSpec<DeactivatePlan,Void, Void, ErrorDefault> {
         DeactivatePlan withId(String id);
     }
-    interface UpdatePricingSchemes extends PostRequestCommand<UpdatePricingSchemes, UpdatePricingSchemesListRequest>,
-            CommandExecutor<Void, ErrorDefault> {
+    interface UpdatePricingSchemes extends PostRequestSpec<UpdatePricingSchemes, UpdatePricingSchemesListRequest,
+                Void, ErrorDefault> {
         UpdatePricingSchemes withId(String id);
     }
 }
