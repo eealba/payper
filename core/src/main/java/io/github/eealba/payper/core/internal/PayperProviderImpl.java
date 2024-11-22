@@ -13,6 +13,6 @@ public class PayperProviderImpl extends PayperProvider {
      */
     @Override
     public Payper createPayper(PayperConfig config) {
-        return null;
+        return new PayperImpl(config);
     }
 }

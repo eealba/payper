@@ -92,8 +92,8 @@ public class PayperConfig {
      * The type Builder.
      */
     public static class Builder {
-        private Credential credential;
-        private boolean sandbox;
+        private final Credential credential;
+        private final boolean sandbox;
         private Executor executor;
         private Duration connectTimeout;
         /**

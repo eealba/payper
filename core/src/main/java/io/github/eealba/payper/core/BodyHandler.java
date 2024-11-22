@@ -13,5 +13,9 @@
  */
 package io.github.eealba.payper.core;
 
+import java.io.InputStream;
+
+@FunctionalInterface
 public interface BodyHandler<T> {
+    T apply(InputStream body);
 }

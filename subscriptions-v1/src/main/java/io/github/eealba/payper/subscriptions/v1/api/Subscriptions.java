@@ -1,6 +1,10 @@
 package io.github.eealba.payper.subscriptions.v1.api;
 
 import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.rest.GetByIdRequestSpec;
+import io.github.eealba.payper.core.rest.PatchRequestSpec;
+import io.github.eealba.payper.core.rest.PostRequestSpec;
+import io.github.eealba.payper.core.rest.RequestSpec;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
 import io.github.eealba.payper.subscriptions.v1.model.Plan;

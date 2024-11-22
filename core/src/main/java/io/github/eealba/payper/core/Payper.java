@@ -30,15 +30,6 @@ import java.util.concurrent.CompletableFuture;
  */
 public interface Payper {
     /**
-     * Send response.
-     *
-     * @param <T> the type parameter
-     * @param request the request
-     * @param responseBodyHandler the response body handler
-     * @return the response
-     */
-    <T> Response<T>	send(Request request, BodyHandler<T> responseBodyHandler);
-    /**
      * Send async completable future.
      *
      * @param <T> the type parameter
@@ -46,6 +37,6 @@ public interface Payper {
      * @param responseBodyHandler the response body handler
      * @return the completable future
      */
-    <T> CompletableFuture<Response<T>> sendAsync(Request request, BodyHandler<T> responseBodyHandler);
+    <T> CompletableFuture<Response<T>> send(Request request, BodyHandler<T> responseBodyHandler);
 
 }
