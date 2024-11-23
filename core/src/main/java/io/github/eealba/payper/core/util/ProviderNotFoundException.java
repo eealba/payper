@@ -1,4 +1,4 @@
-package io.github.eealba.payper.core;
+package io.github.eealba.payper.core.util;
 
 /**
  * The type Provider not found exception.

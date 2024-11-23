@@ -1,10 +1,11 @@
 package io.github.eealba.payper.core.web.internal;
 
+import io.github.eealba.payper.core.web.Request;
 import io.github.eealba.payper.core.web.WebClient;
 import io.github.eealba.payper.core.web.WebClientConfig;
-import io.github.eealba.payper.core.web.WebClientProvider;
+import io.github.eealba.payper.core.web.WebProvider;
 
-public class WebClientProviderImpl extends WebClientProvider {
+public class WebProviderImpl extends WebProvider {
 
     /**
      * Creates a Payper object.
@@ -14,6 +15,11 @@ public class WebClientProviderImpl extends WebClientProvider {
      */
     @Override
     public WebClient createWebClient(WebClientConfig config) {
-        return null;
+        return new WebClientImpl(config);
+    }
+
+    @Override
+    public Request.Builder createRequestBuilder() {
+        return new RequestImpl.RequestBuilder();
     }
 }

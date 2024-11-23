@@ -13,5 +13,51 @@
  */
 package io.github.eealba.payper.core.web;
 
+import java.net.URI;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.util.Optional;
+
 public interface Request {
+    URI uri();
+    Method method();
+    Optional<Duration> timeout();
+    Optional<Request.BodyPublisher> bodyPublisher();
+    Headers headers();
+    interface Builder {
+        Request.Builder uri(URI uri);
+        Request.Builder header(String name, String value);
+        Request.Builder headers(String... headers);
+        Request.Builder timeout(Duration duration);
+        Request.Builder GET();
+        Request.Builder POST(Request.BodyPublisher bodyPublisher);
+        Request.Builder PATCH(Request.BodyPublisher bodyPublisher);
+        Request.Builder PUT(Request.BodyPublisher bodyPublisher);
+        Request.Builder DELETE();
+        Request build();
+    }
+    static Request.Builder newBuilder() {
+        return WebProvider.provider().createRequestBuilder();
+    }
+    @FunctionalInterface
+    interface BodyPublisher {
+        byte[] get();
+    }
+
+    class BodyPublishers {
+        public static Request.BodyPublisher ofString(String str) {
+            return () -> str.getBytes(StandardCharsets.UTF_8);
+        }
+        public static Request.BodyPublisher ofString(String s, Charset charset) {
+            return () -> s.getBytes(charset);
+        }
+        public static Request.BodyPublisher ofByteArray(byte[] buf) {
+            return () -> buf;
+        }
+
+        public static BodyPublisher noBody() {
+            return () -> null;
+        }
+    }
 }

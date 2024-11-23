@@ -14,7 +14,11 @@
 package io.github.eealba.payper.core.web;
 
 
+import io.github.eealba.payper.core.PayperException;
+
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * The type Response.
@@ -54,8 +58,18 @@ public interface Response<T> {
     }
 
     class BodyHandlers {
-    public static BodyHandler<Void> discarding() {
+        public static BodyHandler<Void> discarding() {
             return body -> null;
+        }
+
+        public static BodyHandler<String> ofString() {
+            return body -> {
+                try {
+                    return new String (body.readAllBytes(), StandardCharsets.UTF_8);
+                } catch (IOException e) {
+                    throw new PayperException(e);
+                }
+            };
         }
     }
 }

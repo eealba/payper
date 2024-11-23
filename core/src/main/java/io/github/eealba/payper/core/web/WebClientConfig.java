@@ -34,6 +34,7 @@ import java.util.concurrent.Executor;
  * @author Edgar Alba
  */
 public class WebClientConfig {
+    public static final WebClientConfig DEFAULT = new WebClientConfig.Builder().build();
     private final Executor executor;
     private final Duration connectTimeout;
     /**

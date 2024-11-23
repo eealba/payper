@@ -15,7 +15,7 @@ package io.github.eealba.payper.core.web;
 
 import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.core.PayperException;
-import io.github.eealba.payper.core.Providers;
+import io.github.eealba.payper.core.util.Providers;
 
 /**
  * The type Payper provider.
@@ -27,21 +27,21 @@ import io.github.eealba.payper.core.Providers;
  * @see WebClient
  * @see PayperConfig
  * @see PayperException
- * @see WebClientProvider
+ * @see WebProvider
  *
  * @author Edgar Alba
  */
-public abstract class WebClientProvider {
+public abstract class WebProvider {
     /**
      * A constant representing the name of the default {@code PayperProvider}
      * implementation class.
      */
-    private static final String DEFAULT_PROVIDER = "io.github.eealba.payper.web.internal.WebClientProviderImpl";
+    private static final String DEFAULT_PROVIDER = "io.github.eealba.payper.core.web.internal.WebProviderImpl";
 
     /**
      * Instantiates a new Payper provider.
      */
-    public WebClientProvider() {
+    public WebProvider() {
     }
 
     /**
@@ -50,8 +50,8 @@ public abstract class WebClientProvider {
      *
      * @return a Payper provider
      */
-    public static WebClientProvider provider() {
-        return Providers.getProvider(WebClientProvider.class, DEFAULT_PROVIDER);
+    public static WebProvider provider() {
+        return Providers.getProvider(WebProvider.class, DEFAULT_PROVIDER);
     }
 
 
@@ -62,4 +62,6 @@ public abstract class WebClientProvider {
      * @return a Payper object
      */
     public abstract WebClient createWebClient(WebClientConfig config);
+
+    public abstract Request.Builder createRequestBuilder();
 }

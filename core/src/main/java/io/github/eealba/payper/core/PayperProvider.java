@@ -13,6 +13,8 @@
  */
 package io.github.eealba.payper.core;
 
+import io.github.eealba.payper.core.util.Providers;
+
 /**
  * The type Payper provider.
  * This class is used to create Payper objects.

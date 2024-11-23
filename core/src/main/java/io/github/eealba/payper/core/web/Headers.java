@@ -12,6 +12,24 @@
  * limitations under the License.
  */
 package io.github.eealba.payper.core.web;
+import java.util.Map;
+import java.util.Optional;
 
-public interface Headers {
+public final class Headers {
+    private final Map<String,String> headers;
+    public Headers(Map<String,String> headers) {
+        this.headers = Map.copyOf(headers);
+    }
+    public Optional<String> getValue(String name) {
+        return Optional.ofNullable(headers.get(name));
+    }
+    public String[] toArray() {
+        var array = new String[headers.size() * 2];
+        int i = 0;
+        for (var entry : headers.entrySet()) {
+            array[i++] = entry.getKey();
+            array[i++] = entry.getValue();
+        }
+        return array;
+    }
 }

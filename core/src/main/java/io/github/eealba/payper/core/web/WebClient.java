@@ -29,6 +29,13 @@ import java.util.concurrent.CompletableFuture;
  * @author Edgar Alba
  */
 public interface WebClient {
+    static WebClient newWebClient() {
+        return WebProvider.provider().createWebClient(WebClientConfig.DEFAULT);
+    }
+    static WebClient newWebClient(WebClientConfig config) {
+        return WebProvider.provider().createWebClient(config);
+    }
+
     /**
      * Send response.
      *

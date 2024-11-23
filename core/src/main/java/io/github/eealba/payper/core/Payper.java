@@ -13,53 +13,6 @@
  */
 package io.github.eealba.payper.core;
 
-import java.util.concurrent.CompletableFuture;
-
-/**
- * The interface Payper.
- * This interface is used to send requests and receive responses.
- *
- * @since 1.0
- * @version 1.0
- *
- * @see Request
- * @see Response
- * @see Response.BodyHandler
- *
- * @author Edgar Alba
- */
 public interface Payper {
-    /**
-     * Send response.
-     *
-     * @param request the request
-     * @return the response
-     */
-    Response<Void> send(Request request);
-    /**
-     * Send response.
-     *
-     * @param <T> the type parameter
-     * @param request the request
-     * @param bodyHandler the body handler
-     * @return the response
-     */
-    <T> Response<T> send(Request request, Response.BodyHandler<T> bodyHandler);
-    /**
-     * Send async completable future.
-     *
-     * @param request the request
-     * @return the completable future
-     */
-    CompletableFuture<Response<Void>> sendAsync(Request request);
-    /**
-     * Send async completable future.
-     *
-     * @param <T> the type parameter
-     * @param request the request
-     * @param bodyHandler the body handler
-     * @return the completable future
-     */
-    <T> CompletableFuture<Response<T>> sendAsync(Request request, Response.BodyHandler<T> bodyHandler);
 
 }

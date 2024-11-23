@@ -1,4 +1,4 @@
-package io.github.eealba.payper.core;
+package io.github.eealba.payper.core.util;
 
 import java.lang.reflect.Constructor;
 import java.util.Iterator;
