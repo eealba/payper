@@ -10,16 +10,16 @@ import org.skyscreamer.jsonassert.JSONAssert;
 
 import java.io.IOException;
 import java.net.URI;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.badRequest;
 import static com.github.tomakehurst.wiremock.client.WireMock.ok;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static io.github.eealba.payper.core.web.Util.readResource;
+
 @WireMockTest
 
-class WebClientTest {
+class WebClientPostTest {
     private static final String EXAMPLES = "/examples/";
     private static WebClient client;
 
@@ -30,49 +30,38 @@ class WebClientTest {
 
 
     @Test
-    void test_ok_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, InterruptedException,
+    void test_post_ok_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, InterruptedException,
             JSONException {
         var jsonRequest = readResource(EXAMPLES + "plan_request_POST.json");
         var jsonResponse = readResource(EXAMPLES + "plan.json");
-        // The static DSL will be automatically configured for you
         stubFor(post("/v1/billing/plans").willReturn(ok(jsonResponse)));
-
-        // Info such as port numbers is also available
         var port = wmRuntimeInfo.getHttpPort();
-
-        // Do some testing...
         var uri = URI.create("http://localhost:" + port + "/v1/billing/plans");
-        executeAndCompare(uri, jsonRequest, 200, jsonResponse);
-    }
 
+        postAndCompare(uri, jsonRequest, 200, jsonResponse);
+    }
     @Test
-    void test_400_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, InterruptedException,
+    void test_post_400_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, InterruptedException,
             JSONException {
         var jsonRequest = readResource(EXAMPLES + "plan_request_POST.json");
         var jsonResponse = readResource(EXAMPLES + "error_plan_request.json");
-        // The static DSL will be automatically configured for you
         stubFor(post("/v1/billing/plans").willReturn(badRequest().withBody(jsonResponse)));
-
-        // Info such as port numbers is also available
         var port = wmRuntimeInfo.getHttpPort();
-
-        // Do some testing...
         var uri = URI.create("http://localhost:" + port + "/v1/billing/plans");
-        executeAndCompare(uri, jsonRequest, 400, jsonResponse);
+
+        postAndCompare(uri, jsonRequest, 400, jsonResponse);
     }
 
-    private static void executeAndCompare(URI uri, String jsonRequest, int expected, String jsonResponse) throws IOException, InterruptedException, JSONException {
+    private static void postAndCompare(URI uri, String jsonRequest, int expected, String jsonResponse) throws JSONException {
         var request = Request.newBuilder().uri(uri)
                 .POST(Request.BodyPublishers.ofString(jsonRequest)).build();
         var response = client.send(request, Response.BodyHandlers.ofString());
         Assertions.assertEquals(expected, response.statusCode());
+        if (jsonResponse == null) {
+            Assertions.assertNull(response.body());
+            return;
+        }
         JSONAssert.assertEquals(jsonResponse, response.body(), true);
     }
 
-
-    private static String readResource(String path) throws IOException {
-        try (var inputStream = WebClientTest.class.getResourceAsStream(path)) {
-            return new String(Objects.requireNonNull(inputStream).readAllBytes(), StandardCharsets.UTF_8);
-        }
-    }
 }

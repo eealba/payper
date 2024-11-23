@@ -2,18 +2,18 @@ package io.github.eealba.payper.core.web.internal;
 import io.github.eealba.payper.core.web.Headers;
 import io.github.eealba.payper.core.web.Response;
 
-import java.io.InputStream;
 import java.net.http.HttpResponse;
+import java.util.function.Function;
 
 
-class InputStreamResponse<T> implements Response<T> {
+class ByteArrayResponse<T> implements Response<T> {
 
 
-    private final HttpResponse<InputStream> httpResponse;
+    private final HttpResponse<byte[]> httpResponse;
     private final BodyHandler<T> bodyHandler;
     private final Mapper mapper = MapperImpl.getInstance();
 
-    public InputStreamResponse(HttpResponse<InputStream> httpResponse, BodyHandler<T> bodyHandler) {
+    public ByteArrayResponse(HttpResponse<byte[]> httpResponse, BodyHandler<T> bodyHandler) {
         this.httpResponse = httpResponse;
         this.bodyHandler = bodyHandler;
     }
@@ -35,6 +35,7 @@ class InputStreamResponse<T> implements Response<T> {
      */
     @Override
     public T body() {
+        Function<byte[], T> bodyHandler = this.bodyHandler.apply(this);
         return bodyHandler.apply(httpResponse.body());
     }
 

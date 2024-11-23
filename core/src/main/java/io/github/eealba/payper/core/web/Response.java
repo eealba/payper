@@ -14,11 +14,9 @@
 package io.github.eealba.payper.core.web;
 
 
-import io.github.eealba.payper.core.PayperException;
-
-import java.io.IOException;
-import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.function.Function;
 
 /**
  * The type Response.
@@ -45,16 +43,34 @@ public interface Response<T> {
      * @return the t
      */
     T body();
+
     /**
      * Headers headers.
      *
      * @return the headers
      */
     Headers headers();
+    default Charset charsetFrom() {
+        String contentType = headers().getValue("Content-Type").orElse("text/html; charset=utf-8");
+        String charset = "utf-8"; // default charset
+        String[] parts = contentType.split(";");
+        for (String part : parts) {
+            part = part.trim();
+            if (part.toLowerCase().startsWith("charset=")) {
+                charset = part.substring("charset=".length());
+                break;
+            }
+        }
+        try {
+            return Charset.forName(charset);
+        } catch (Exception e) {
+            return StandardCharsets.UTF_8;
+        }
+    }
 
     @FunctionalInterface
     interface BodyHandler<T> {
-        T apply(InputStream body);
+        Function<byte[], T> apply(Response<T> response);
     }
 
     class BodyHandlers {
@@ -63,13 +79,7 @@ public interface Response<T> {
         }
 
         public static BodyHandler<String> ofString() {
-            return body -> {
-                try {
-                    return new String (body.readAllBytes(), StandardCharsets.UTF_8);
-                } catch (IOException e) {
-                    throw new PayperException(e);
-                }
-            };
+            return body -> (bytes ) -> new String (bytes, body.charsetFrom());
         }
     }
 }

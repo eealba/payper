@@ -7,7 +7,6 @@ import io.github.eealba.payper.core.web.WebClient;
 import io.github.eealba.payper.core.web.WebClientConfig;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -39,9 +38,9 @@ class WebClientImpl implements WebClient {
      */
     @Override
     public <T> CompletableFuture<Response<T>> sendAsync(Request request, Response.BodyHandler<T> responseBodyHandler) {
-        var bodyHandler = HttpResponse.BodyHandlers.ofInputStream();
+        var bodyHandler = HttpResponse.BodyHandlers.ofByteArray();
         return client.sendAsync(mapper.mapRequest(request), bodyHandler)
-                .thenApply((HttpResponse<InputStream> v) -> new InputStreamResponse<>(v, responseBodyHandler));
+                .thenApply((HttpResponse<byte[]> v) -> new ByteArrayResponse<>(v, responseBodyHandler));
     }
 
     @Override
@@ -55,10 +54,10 @@ class WebClientImpl implements WebClient {
 
     @Override
     public <T> Response<T> send(Request request, Response.BodyHandler<T> bodyHandler){
-        var httpBodyHandler = HttpResponse.BodyHandlers.ofInputStream();
+        var httpBodyHandler = HttpResponse.BodyHandlers.ofByteArray();
         var httpRequest = mapper.mapRequest(request);
 
-        return new InputStreamResponse<>(exec(httpRequest, httpBodyHandler), bodyHandler);
+        return new ByteArrayResponse<>(exec(httpRequest, httpBodyHandler), bodyHandler);
     }
     @Override
     public Response<Void> send(Request request){

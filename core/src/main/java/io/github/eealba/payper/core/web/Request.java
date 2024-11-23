@@ -57,7 +57,7 @@ public interface Request {
         }
 
         public static BodyPublisher noBody() {
-            return () -> null;
+            return () -> new byte[0];
         }
     }
 }
