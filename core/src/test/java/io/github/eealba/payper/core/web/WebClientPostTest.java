@@ -38,24 +38,29 @@ class WebClientPostTest {
         var port = wmRuntimeInfo.getHttpPort();
         var uri = URI.create("http://localhost:" + port + "/v1/billing/plans");
 
-        postAndCompare(uri, jsonRequest, 200, jsonResponse);
+        postAndCompare(uri, jsonRequest, 200, jsonResponse, false);
+        postAndCompare(uri, jsonRequest, 200, jsonResponse, true);
     }
     @Test
-    void test_post_400_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, InterruptedException,
-            JSONException {
+    void test_post_400_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, JSONException {
         var jsonRequest = readResource(EXAMPLES + "plan_request_POST.json");
         var jsonResponse = readResource(EXAMPLES + "error_plan_request.json");
         stubFor(post("/v1/billing/plans").willReturn(badRequest().withBody(jsonResponse)));
         var port = wmRuntimeInfo.getHttpPort();
         var uri = URI.create("http://localhost:" + port + "/v1/billing/plans");
 
-        postAndCompare(uri, jsonRequest, 400, jsonResponse);
+        postAndCompare(uri, jsonRequest, 400, jsonResponse, false);
+        postAndCompare(uri, jsonRequest, 400, jsonResponse, true);
     }
 
-    private static void postAndCompare(URI uri, String jsonRequest, int expected, String jsonResponse) throws JSONException {
+    private static void postAndCompare(URI uri, String jsonRequest, int expected, String jsonResponse, boolean async)
+            throws JSONException {
         var request = Request.newBuilder().uri(uri)
                 .POST(Request.BodyPublishers.ofString(jsonRequest)).build();
-        var response = client.send(request, Response.BodyHandlers.ofString());
+        var bodyHandler = Response.BodyHandlers.ofString();
+
+        var response = async ? client.sendAsync(request, bodyHandler).join() : client.send(request, bodyHandler);
+
         Assertions.assertEquals(expected, response.statusCode());
         if (jsonResponse == null) {
             Assertions.assertNull(response.body());

@@ -29,29 +29,30 @@ class WebClientGetTest {
     }
 
     @Test
-    void test_get_ok_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, InterruptedException,
-            JSONException {
+    void test_get_ok_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, JSONException {
         var jsonResponse = readResource(EXAMPLES + "plan.json");
         stubFor(get("/v1/billing/plans/1").willReturn(ok(jsonResponse)));
         var port = wmRuntimeInfo.getHttpPort();
         var uri = URI.create("http://localhost:" + port + "/v1/billing/plans/1");
 
-        getAndCompare(uri, 200, jsonResponse);
+        getAndCompare(uri, 200, jsonResponse, false);
+        getAndCompare(uri, 200, jsonResponse, true);
     }
     @Test
-    void test_get_not_found_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, InterruptedException,
-            JSONException {
+    void test_get_not_found_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws  JSONException {
         stubFor(get("/v1/billing/plans/1").willReturn(notFound()));
         var port = wmRuntimeInfo.getHttpPort();
         var uri = URI.create("http://localhost:" + port + "/v1/billing/plans/1");
         var request = Request.newBuilder().uri(uri).GET().build();
 
-        getAndCompare(uri, 404, null);
+        getAndCompare(uri, 404, null, false);
+        getAndCompare(uri, 404, null, true);
 
     }
-    private static void getAndCompare(URI uri, int expected, String jsonResponse) throws JSONException {
+    private static void getAndCompare(URI uri, int expected, String jsonResponse, boolean async) throws JSONException {
         var request = Request.newBuilder().uri(uri).GET().build();
-        var response = client.send(request, Response.BodyHandlers.ofString());
+        var bodyHandler = Response.BodyHandlers.ofString();
+        var response = async ? client.sendAsync(request, bodyHandler).join() :client.send(request, bodyHandler);
         Assertions.assertEquals(expected, response.statusCode());
 
         if (jsonResponse != null) {
