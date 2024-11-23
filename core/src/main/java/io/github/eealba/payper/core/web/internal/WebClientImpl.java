@@ -1,10 +1,10 @@
-package io.github.eealba.payper.core.internal;
+package io.github.eealba.payper.core.web.internal;
 
-import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.core.PayperException;
-import io.github.eealba.payper.core.Request;
-import io.github.eealba.payper.core.Response;
+import io.github.eealba.payper.core.web.Request;
+import io.github.eealba.payper.core.web.Response;
+import io.github.eealba.payper.core.web.WebClient;
+import io.github.eealba.payper.core.web.WebClientConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,11 +13,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 
-class PayperImpl implements Payper {
+class WebClientImpl implements WebClient {
     private final HttpClient client;
     private final Mapper mapper = MapperImpl.getInstance();
 
-    PayperImpl(PayperConfig config) {
+    WebClientImpl(WebClientConfig config) {
         var builder  = HttpClient.newBuilder();
         if (config.executor().isPresent()) {
             builder.executor(config.executor().get());

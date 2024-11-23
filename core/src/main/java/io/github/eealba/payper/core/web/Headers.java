@@ -11,11 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.eealba.payper.core;
+package io.github.eealba.payper.core.web;
 
-import java.io.InputStream;
-
-@FunctionalInterface
-public interface BodyHandler<T> {
-    T apply(InputStream body);
+public interface Headers {
 }

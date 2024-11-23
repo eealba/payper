@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.eealba.payper.core;
+package io.github.eealba.payper.core.web;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -28,7 +28,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author Edgar Alba
  */
-public interface Payper {
+public interface WebClient {
     /**
      * Send response.
      *

@@ -3,7 +3,6 @@ package io.github.eealba.payper.core.internal;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import org.json.JSONException;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 
 @WireMockTest
-public class HttpClientTest {
+public class HttpWebClientTest {
     private static final String EXAMPLES = "/examples/";
     private static HttpClient client;
 
@@ -31,10 +30,7 @@ public class HttpClientTest {
     static void setup() {
         client = HttpClient.newBuilder().build();
     }
-    @AfterAll
-    static void tearDown() {
-        client.close();
-    }
+
 
     @Test
     void test_ok_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, InterruptedException,
@@ -78,7 +74,7 @@ public class HttpClientTest {
 
 
     private static String readResource(String path) throws IOException {
-        try (var inputStream = HttpClientTest.class.getResourceAsStream(path)) {
+        try (var inputStream = HttpWebClientTest.class.getResourceAsStream(path)) {
             return new String(Objects.requireNonNull(inputStream).readAllBytes(), StandardCharsets.UTF_8);
         }
     }

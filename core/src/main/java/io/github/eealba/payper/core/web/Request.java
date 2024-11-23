@@ -11,37 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.eealba.payper.core;
-/**
- * The type Response.
- * This class is used to handle responses in the Payper library.
- *
- * @since 1.0
- * @version 1.0
- *
- * @see Headers
- * @see Request
- * @see BodyHandler
- *
- */
-public interface Response<T> {
-    /**
-     * Status code int.
-     *
-     * @return the int
-     */
-    int statusCode();
-    /**
-     * Body t.
-     *
-     * @return the t
-     */
-    T body();
-    /**
-     * Headers headers.
-     *
-     * @return the headers
-     */
-    Headers headers();
+package io.github.eealba.payper.core.web;
 
+public interface Request {
 }

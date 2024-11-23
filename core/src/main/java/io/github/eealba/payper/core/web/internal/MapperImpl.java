@@ -1,4 +1,4 @@
-package io.github.eealba.payper.core.internal;
+package io.github.eealba.payper.core.web.internal;
 
 import io.github.eealba.payper.core.Headers;
 import io.github.eealba.payper.core.Request;
