@@ -4,22 +4,26 @@ import io.github.eealba.payper.core.rest.RequestSpec;
 import io.github.eealba.payper.core.rest.ResponseSpec;
 import io.github.eealba.payper.core.web.Request;
 
-public class RequestSpecImpl<T2, T3> implements RequestSpec<RequestSpecImpl<T2, T3>, T2, T3> {
+public abstract class RequestSpecImpl<T extends RequestSpec<T,T2,T3>,T2, T3> implements RequestSpec<T, T2, T3> {
     Request.Builder requestBuilder = Request.newBuilder();
     @Override
-    public RequestSpecImpl<T2, T3> withPrefer(String prefer) {
+    public T withPrefer(String prefer) {
         requestBuilder.header("Prefer", prefer);
-        return this;
+        return self();
     }
 
     @Override
-    public RequestSpecImpl<T2, T3> withPaypalRequestId(String paypalRequestId) {
+    public T withPaypalRequestId(String paypalRequestId) {
         requestBuilder.header("Paypal-Request-Id", paypalRequestId);
-        return null;
+        return self();
     }
 
     @Override
     public ResponseSpec<T2, T3> retrieve() {
         return null;
+    }
+    @SuppressWarnings("unchecked")
+    T self() {
+        return (T) this;
     }
 }
