@@ -1,10 +1,7 @@
 package io.github.eealba.payper.subscriptions.v1.api;
 
 import io.github.eealba.payper.core.PayperConfig;
-import io.github.eealba.payper.core.rest.GetByIdRequestSpec;
-import io.github.eealba.payper.core.rest.PatchRequestSpec;
-import io.github.eealba.payper.core.rest.PostRequestSpec;
-import io.github.eealba.payper.core.rest.RequestSpec;
+import io.github.eealba.payper.core.web.Method;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
 import io.github.eealba.payper.subscriptions.v1.model.Plan;
@@ -12,48 +9,133 @@ import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
 import io.github.eealba.payper.subscriptions.v1.model.UpdatePricingSchemesListRequest;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 public interface Subscriptions {
     static Subscriptions create(PayperConfig config) {
         return SubscriptionsProvider.provider().createSubscriptions(config);
     }
+
     BillingPlans billingPlans();
 
     interface BillingPlans {
         CreatePlan create();
+
         ListPlans list();
+
         GetPlan get();
+
         UpdatePlan update();
+
         ActivatePlan activate();
+
         DeactivatePlan deactivate();
+
         UpdatePricingSchemes updatePricingSchemes();
     }
+
     interface CreatePlan extends PostRequestSpec<CreatePlan, PlanRequestPOST, Plan, ErrorDefault> {
 
     }
+
     interface ListPlans extends RequestSpec<ListPlans, List<Plan>, ErrorDefault> {
         ListPlans withProductId(String productId);
+
         ListPlans withPlanIds(String planIds);
+
         ListPlans withPageSize(int pageSize);
+
         ListPlans withPage(int page);
+
         ListPlans withTotalRequired(boolean totalRequired);
+
         //TODO create enum STATUSES
         ListPlans withStatuses(String status);
     }
-    interface GetPlan extends GetByIdRequestSpec<GetPlan,Plan, ErrorDefault> {
+
+    interface GetPlan extends GetByIdRequestSpec<GetPlan, Plan, ErrorDefault> {
         GetPlan withFields(String fields);
     }
-    interface UpdatePlan extends PatchRequestSpec<UpdatePlan, PatchRequest,Void, ErrorDefault> {
+
+    interface UpdatePlan extends PatchRequestSpec<UpdatePlan, PatchRequest, Void, ErrorDefault> {
         UpdatePlan withId(String id);
     }
-    interface ActivatePlan extends PostRequestSpec<ActivatePlan,Void, Void, ErrorDefault> {
+
+    interface ActivatePlan extends PostRequestSpec<ActivatePlan, Void, Void, ErrorDefault> {
         ActivatePlan withId(String id);
     }
-    interface DeactivatePlan extends PostRequestSpec<DeactivatePlan,Void, Void, ErrorDefault> {
+
+    interface DeactivatePlan extends PostRequestSpec<DeactivatePlan, Void, Void, ErrorDefault> {
         DeactivatePlan withId(String id);
     }
+
     interface UpdatePricingSchemes extends PostRequestSpec<UpdatePricingSchemes, UpdatePricingSchemesListRequest,
-                Void, ErrorDefault> {
+            Void, ErrorDefault> {
         UpdatePricingSchemes withId(String id);
+    }
+
+    interface RequestSpec<T, T2, T3> {
+        T withPrefer(String prefer);
+
+        T withPaypalRequestId(String paypalRequestId);
+
+        ResponseSpec<T2, T3> retrieve();
+
+        Method getMethod();
+
+    }
+
+    interface BodyRequestSpec<T extends BodyRequestSpec<T, T2, T3, T4>, T2, T3, T4> extends RequestSpec<T, T3, T4> {
+        T withBody(T2 body);
+
+    }
+
+    interface PostRequestSpec<T extends PostRequestSpec<T, T2, T3, T4>, T2, T3, T4> extends BodyRequestSpec<T, T2, T3, T4> {
+        default Method getMethod() {
+            return Method.POST;
+        }
+    }
+
+    interface GetByIdRequestSpec<T, T2, T3> extends RequestSpec<T, T2, T3> {
+        T withId(String id);
+    }
+
+    interface PatchRequestSpec<T extends PatchRequestSpec<T, T2, T3, T4>, T2, T3, T4> extends BodyRequestSpec<T, T2, T3, T4> {
+        default Method getMethod() {
+            return Method.PATCH;
+        }
+    }
+
+    interface ResponseSpec<T, T2> {
+        Response<T, T2> toResponse();
+
+        CompletableFuture<Response<T, T2>> toFuture();
+
+        default T toEntity() {
+            return toResponse().toEntity();
+        }
+
+        default void toVoid() {
+            toResponse().toVoid();
+
+        }
+
+        default void consume(Consumer<Response<T, T2>> consumer) {
+            consumer.accept(toResponse());
+
+        }
+
+        default void consumeAsync(Consumer<Response<T, T2>> consumer) {
+            toFuture().thenAccept(consumer);
+        }
+
+
+    }
+    interface Response<T,T2> {
+        int statusCode();
+        T toEntity();
+        T2 toErrorEntity();
+        void toVoid();
     }
 }

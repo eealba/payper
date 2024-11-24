@@ -13,6 +13,44 @@
  */
 package io.github.eealba.payper.core;
 
+
+/**
+ * The type Payper.
+ * This class is used to handle requests in the Payper library.
+ *
+ * @since 1.0
+ * @version 1.0
+ *
+ * @see PayperProvider
+ * @see PayperConfig
+ * @see PayperRequest
+ * @see PayperResponse
+ * @see PayperResponse.PayperResponseSpec
+ *
+ * @author Edgar Alba
+ */
 public interface Payper {
+    /**
+     * New payper payper.
+     *
+     * @return the payper
+     */
+    static Payper newPayper(PayperConfig config) {
+        return PayperProvider.provider().createPayper(config);
+    }
+
+
+    /**
+     * Send response spec.
+     *
+     * @param request the request
+     * @param bodyHandler the body handler
+     * @return the response spec
+     */
+    <T, T2> PayperResponse.PayperResponseSpec<T, T2> send(PayperRequest request,
+                                     PayperResponse.BodyHandler<T> bodyHandler,
+                                     PayperResponse.BodyHandler<T2> bodyHandler2);
+
+
 
 }

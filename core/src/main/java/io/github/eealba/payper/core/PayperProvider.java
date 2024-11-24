@@ -14,6 +14,7 @@
 package io.github.eealba.payper.core;
 
 import io.github.eealba.payper.core.util.Providers;
+import io.github.eealba.payper.core.web.Response;
 
 /**
  * The type Payper provider.
@@ -61,4 +62,10 @@ public abstract class PayperProvider {
      * @return a Payper object
      */
     public abstract Payper createPayper(PayperConfig config);
+
+    public abstract PayperRequest.Builder createPayperRequestBuilder();
+
+    public abstract PayperRequest.BodyPublisher bodyPublisherOf(Object obj);
+
+    public abstract <T> Response.BodyHandler<T> bodyHandlerOfString(Class<T> clazz);
 }
