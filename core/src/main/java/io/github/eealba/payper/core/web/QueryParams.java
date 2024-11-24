@@ -14,8 +14,8 @@
 package io.github.eealba.payper.core.web;
 import java.util.Map;
 
-public final class Headers extends AbstractMap {
-    public Headers(Map<String,String> values) {
+public final class QueryParams extends AbstractMap {
+    public QueryParams(Map<String,String> values) {
         super(values);
     }
 }

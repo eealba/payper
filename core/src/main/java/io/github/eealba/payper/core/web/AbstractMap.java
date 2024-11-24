@@ -13,9 +13,23 @@
  */
 package io.github.eealba.payper.core.web;
 import java.util.Map;
+import java.util.Optional;
 
-public final class Headers extends AbstractMap {
-    public Headers(Map<String,String> values) {
-        super(values);
+public abstract class AbstractMap {
+    private final Map<String,String> values;
+    public AbstractMap(Map<String,String> values) {
+        this.values = Map.copyOf(values);
+    }
+    public Optional<String> getValue(String name) {
+        return Optional.ofNullable(values.get(name));
+    }
+    public String[] toArray() {
+        var array = new String[values.size() * 2];
+        int i = 0;
+        for (var entry : values.entrySet()) {
+            array[i++] = entry.getKey();
+            array[i++] = entry.getValue();
+        }
+        return array;
     }
 }

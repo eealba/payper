@@ -28,7 +28,7 @@ public interface Subscriptions {
         DeactivatePlan deactivate();
         UpdatePricingSchemes updatePricingSchemes();
     }
-    interface CreatePlan extends PostRequestSpec<CreatePlan,PlanRequestPOST, Plan, ErrorDefault> {
+    interface CreatePlan extends PostRequestSpec<CreatePlan, PlanRequestPOST, Plan, ErrorDefault> {
 
     }
     interface ListPlans extends RequestSpec<ListPlans, List<Plan>, ErrorDefault> {
