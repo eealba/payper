@@ -4,9 +4,13 @@ import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.core.PayperProvider;
 import io.github.eealba.payper.core.PayperRequest;
-import io.github.eealba.payper.core.web.Response;
+import io.github.eealba.payper.core.PayperResponse;
+import io.github.eealba.payper.core.json.Json;
+
+import java.nio.charset.Charset;
 
 public class PayperProviderImpl extends PayperProvider {
+    private static final Json json = Json.newJson();
     /**
      * Creates a Payper object.
      *
@@ -25,11 +29,11 @@ public class PayperProviderImpl extends PayperProvider {
 
     @Override
     public PayperRequest.BodyPublisher bodyPublisherOf(Object obj) {
-        return null;
+        return () -> json.toJson(obj).getBytes();
     }
 
     @Override
-    public <T> Response.BodyHandler<T> bodyHandlerOfString(Class<T> clazz) {
-        return null;
+    public <T> PayperResponse.BodyHandler<T> bodyHandlerOfString(Class<T> clazz) {
+        return () -> (Charset cs, byte[] body) ->  json.fromJson(new String(body, cs), clazz);
     }
 }

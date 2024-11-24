@@ -1,7 +1,6 @@
 package io.github.eealba.payper.core;
 
 import java.net.URI;
-import java.nio.charset.Charset;
 import java.time.Duration;
 import java.util.Map;
 import java.util.Optional;
@@ -32,7 +31,7 @@ public interface PayperRequest {
     }
     @FunctionalInterface
     interface BodyPublisher {
-        byte[] apply(Charset cs);
+        byte[] apply();
     }
 
     class BodyPublishers {
@@ -41,7 +40,7 @@ public interface PayperRequest {
             return PayperProvider.provider().bodyPublisherOf(obj);
         }
         public static PayperRequest.BodyPublisher noBody() {
-            return (cs) -> new byte[0];
+            return () -> new byte[0];
         }
     }
 

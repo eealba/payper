@@ -83,6 +83,8 @@ public interface Subscriptions {
         ResponseSpec<T2, T3> retrieve();
 
         Method getMethod();
+        Class<T2> getEntityClass();
+        Class<T3> getErrorEntityClass();
 
     }
 

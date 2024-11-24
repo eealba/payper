@@ -1,17 +1,14 @@
 package io.github.eealba.payper.subscriptions.v1.internal;
 
+import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
 
-import java.net.http.HttpClient;
-
 public class SubscriptionsImpl implements Subscriptions {
-    private final PayperConfig config;
-    private final HttpClient httpClient;
+    private final Payper payper;
 
     public SubscriptionsImpl(PayperConfig config) {
-        this.config = config;
-        this.httpClient = HttpClient.newHttpClient();
+        this.payper = Payper.newPayper(config);
     }
 
     @Override
@@ -22,7 +19,7 @@ public class SubscriptionsImpl implements Subscriptions {
     private class BillingPlansImpl implements BillingPlans {
         @Override
         public CreatePlan create() {
-            return new CreatePlanImpl();
+            return new CreatePlanImpl(payper);
         }
 
         @Override

@@ -11,5 +11,5 @@ public interface Json {
 
         String toJson(Object object);
 
-        <T> T fromJson(String json, Class<T> clazz);
+    <T> T fromJson(String json, Class<T> clazz);
 }

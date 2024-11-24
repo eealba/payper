@@ -1,10 +1,10 @@
 package io.github.eealba.payper.core;
 
-import io.github.eealba.payper.core.web.Response;
 
+import java.nio.charset.Charset;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 public interface PayperResponse<T,T2> {
     int statusCode();
@@ -36,15 +36,15 @@ public interface PayperResponse<T,T2> {
     }
     @FunctionalInterface
     interface BodyHandler<T> {
-        Function<byte[], T> apply(Response<T> response);
+        BiFunction<Charset,byte[], T> apply();
     }
 
     class BodyHandlers {
-        public static Response.BodyHandler<Void> discarding() {
-            return body -> null;
+        public static PayperResponse.BodyHandler<Void> discarding() {
+            return () -> null;
         }
 
-        public static <T> Response.BodyHandler<T> ofString(Class<T> clazz) {
+        public static <T> PayperResponse.BodyHandler<T> ofClass(Class<T> clazz) {
             return PayperProvider.provider().bodyHandlerOfString(clazz);
         }
     }

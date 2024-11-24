@@ -47,9 +47,9 @@ public interface Payper {
      * @param bodyHandler the body handler
      * @return the response spec
      */
-    <T, T2> PayperResponse.PayperResponseSpec<T, T2> send(PayperRequest request,
-                                     PayperResponse.BodyHandler<T> bodyHandler,
-                                     PayperResponse.BodyHandler<T2> bodyHandler2);
+    <R1, R2> PayperResponse.PayperResponseSpec<R1, R2> send(PayperRequest request,
+                                     PayperResponse.BodyHandler<R1> bodyHandler,
+                                     PayperResponse.BodyHandler<R2> bodyHandler2);
 
 
 
