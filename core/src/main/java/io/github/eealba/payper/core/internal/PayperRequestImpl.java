@@ -1,8 +1,6 @@
-package io.github.eealba.payper.core.web.internal;
+package io.github.eealba.payper.core.internal;
 
-import io.github.eealba.payper.core.web.Headers;
-import io.github.eealba.payper.core.web.Method;
-import io.github.eealba.payper.core.web.Request;
+import io.github.eealba.payper.core.PayperRequest;
 
 import java.net.URI;
 import java.time.Duration;
@@ -10,18 +8,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-class RequestImpl implements Request {
+class PayperRequestImpl implements PayperRequest {
     private final URI uri;
     private final Method method;
     private final Duration timeout;
-    private final Headers headers;
+    private final Map<String, String> headers;
     private final BodyPublisher bodyPublisher;
 
-    private RequestImpl(RequestBuilder requestBuilder) {
+    private PayperRequestImpl(RequestBuilder requestBuilder) {
         this.uri = requestBuilder.uri;
         this.method = requestBuilder.method;
         this.timeout = requestBuilder.timeout;
-        this.headers = new Headers(requestBuilder.headers);
+        this.headers = requestBuilder.headers;
         this.bodyPublisher = requestBuilder.bodyPublisher;
     }
 
@@ -46,30 +44,30 @@ class RequestImpl implements Request {
     }
 
     @Override
-    public Headers headers() {
+    public Map<String, String> headers() {
         return headers;
     }
-    static class RequestBuilder implements Request.Builder {
+    static class RequestBuilder implements Builder {
         private URI uri;
         private final Map<String, String> headers = new HashMap<>();
         private Duration timeout;
         private Method method;
-        private Request.BodyPublisher bodyPublisher;
+        private BodyPublisher bodyPublisher;
 
         @Override
-        public Request.Builder uri(URI uri) {
+        public Builder uri(URI uri) {
             this.uri = uri;
             return this;
         }
 
         @Override
-        public Request.Builder header(String name, String value) {
+        public Builder header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
 
         @Override
-        public Request.Builder headers(String... headers) {
+        public Builder headers(String... headers) {
             for (int i = 0; i < headers.length; i += 2) {
                 this.headers.put(headers[i],headers[i + 1]);
             }
@@ -77,49 +75,49 @@ class RequestImpl implements Request {
         }
 
         @Override
-        public Request.Builder timeout(Duration duration) {
+        public Builder timeout(Duration duration) {
             this.timeout = duration;
             return this;
         }
 
         @Override
-        public Request.Builder GET() {
+        public Builder GET() {
             this.method = Method.GET;
-            this.bodyPublisher = Request.BodyPublishers.noBody();
+            this.bodyPublisher = BodyPublishers.noBody();
             return this;
         }
 
         @Override
-        public Request.Builder POST(Request.BodyPublisher bodyPublisher) {
+        public Builder POST(BodyPublisher bodyPublisher) {
             this.method = Method.POST;
             this.bodyPublisher = bodyPublisher;
             return this;
         }
 
         @Override
-        public Request.Builder PATCH(Request.BodyPublisher bodyPublisher) {
+        public Builder PATCH(BodyPublisher bodyPublisher) {
             this.method = Method.PATCH;
             this.bodyPublisher = bodyPublisher;
             return this;
         }
 
         @Override
-        public Request.Builder PUT(Request.BodyPublisher bodyPublisher) {
+        public Builder PUT(BodyPublisher bodyPublisher) {
             this.method = Method.PUT;
             this.bodyPublisher = bodyPublisher;
             return this;
         }
 
         @Override
-        public Request.Builder DELETE() {
+        public Builder DELETE() {
             this.method = Method.DELETE;
-            this.bodyPublisher = Request.BodyPublishers.noBody();
+            this.bodyPublisher = BodyPublishers.noBody();
             return this;
         }
 
         @Override
-        public Request build() {
-            return new RequestImpl(this);
+        public PayperRequest build() {
+            return new PayperRequestImpl(this);
         }
     }
 }

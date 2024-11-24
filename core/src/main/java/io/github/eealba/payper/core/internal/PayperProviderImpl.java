@@ -24,7 +24,7 @@ public class PayperProviderImpl extends PayperProvider {
 
     @Override
     public PayperRequest.Builder createPayperRequestBuilder() {
-        return null;
+        return new PayperRequestImpl.RequestBuilder();
     }
 
     @Override

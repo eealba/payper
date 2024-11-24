@@ -50,7 +50,7 @@ public interface Response<T> {
      * @return the headers
      */
     Headers headers();
-    default Charset charsetFrom() {
+    default Charset charset() {
         String contentType = headers().getValue("Content-Type").orElse("text/html; charset=utf-8");
         String charset = "utf-8"; // default charset
         String[] parts = contentType.split(";");
@@ -79,7 +79,10 @@ public interface Response<T> {
         }
 
         public static BodyHandler<String> ofString() {
-            return body -> (bytes ) -> new String (bytes, body.charsetFrom());
+            return body -> (bytes ) -> new String (bytes, body.charset());
+        }
+        public static BodyHandler<byte[]> ofBytes() {
+            return body -> (bytes ) -> bytes;
         }
     }
 }
