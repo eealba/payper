@@ -9,14 +9,14 @@ import java.time.Duration;
 
 class Mapper {
 
-    public static WebClientConfig mapWebClientConfig(PayperConfig config) {
+    static WebClientConfig mapWebClientConfig(PayperConfig config) {
         var builder = WebClientConfig.builder();
         builder.connectTimeout(config.connectTimeout().orElse(Duration.ofSeconds(30)));
         builder.executor(config.executor().orElse(null));
         return builder.build();
     }
 
-    public static Request mapRequest(PayperRequest request) {
+    static Request mapRequest(PayperRequest request) {
         var builder = Request.newBuilder();
         builder.uri(request.uri());
         request.headers().forEach(builder::header);
