@@ -16,8 +16,21 @@ package io.github.eealba.payper.core.web;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * The interface Payper.
+ * The interface WebClient.
  * This interface is used to send requests and receive responses.
+ *
+ * <p>Example usage:</p>
+ * <pre>{@code
+ * // Synchronous request
+ * WebClient client = WebClient.newWebClient();
+ * Request request = Request.newBuilder().uri("http://example.com").GET().build();
+ * Response<String> response = client.send(request, Response.BodyHandlers.ofString());
+ * System.out.println(response.body());
+ *
+ * // Asynchronous request
+ * CompletableFuture<Response<String>> futureResponse = client.sendAsync(request, Response.BodyHandlers.ofString());
+ * futureResponse.thenAccept(resp -> System.out.println(resp.body()));
+ * }</pre>
  *
  * @since 1.0
  * @version 1.0
@@ -25,48 +38,60 @@ import java.util.concurrent.CompletableFuture;
  * @see Request
  * @see Response
  * @see Response.BodyHandler
- *
- * @author Edgar Alba
  */
 public interface WebClient {
+    /**
+     * Creates a new WebClient with the default configuration.
+     *
+     * @return a new WebClient instance
+     */
     static WebClient newWebClient() {
         return WebProvider.provider().createWebClient(WebClientConfig.DEFAULT);
     }
+
+    /**
+     * Creates a new WebClient with the specified configuration.
+     *
+     * @param config the WebClient configuration
+     * @return a new WebClient instance
+     */
     static WebClient newWebClient(WebClientConfig config) {
         return WebProvider.provider().createWebClient(config);
     }
 
     /**
-     * Send response.
+     * Sends a request and receives a response.
      *
-     * @param request the request
-     * @return the response
+     * @param request the request to be sent
+     * @return the response received
      */
     Response<Void> send(Request request);
+
     /**
-     * Send response.
+     * Sends a request and receives a response with a body handler.
      *
-     * @param <T> the type parameter
-     * @param request the request
-     * @param bodyHandler the body handler
-     * @return the response
+     * @param <T> the type of the response body
+     * @param request the request to be sent
+     * @param bodyHandler the body handler to handle the response body
+     * @return the response received
      */
     <T> Response<T> send(Request request, Response.BodyHandler<T> bodyHandler);
+
     /**
-     * Send async completable future.
+     * Sends a request asynchronously and receives a response.
      *
-     * @param request the request
-     * @return the completable future
+     * @param request the request to be sent
+     * @return a CompletableFuture that will complete with the response
      */
     CompletableFuture<Response<Void>> sendAsync(Request request);
+
     /**
-     * Send async completable future.
+     * Sends a request asynchronously and receives a response with a body handler.
      *
-     * @param <T> the type parameter
-     * @param request the request
-     * @param bodyHandler the body handler
-     * @return the completable future
+     * @param <T> the type of the response body
+     * @param request the request to be sent
+     * @param bodyHandler the body handler to handle the response body
+     * @return a CompletableFuture that will complete with the response
      */
     <T> CompletableFuture<Response<T>> sendAsync(Request request, Response.BodyHandler<T> bodyHandler);
-
 }

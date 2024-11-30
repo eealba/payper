@@ -20,6 +20,7 @@ public interface PayperAuthenticator {
         private static final Supplier<String> BASE_URL = baseUrlSupplier();
         private static final Supplier<char[]> CLIENT_ID = systemSupplier(PAYPAL_CLIENT_ID);
         private static final Supplier<char[]> CLIENT_SECRET = systemSupplier(PAYPAL_CLIENT_SECRET);
+        private static PayperAuthenticator DEFAULT;
 
 
         private static Supplier<char[]> systemSupplier(String key) {
@@ -66,8 +67,12 @@ public interface PayperAuthenticator {
         public static PayperAuthenticator ofLive() {
             return ofLive(CLIENT_ID,CLIENT_SECRET);
         }
+        public static void setDefault(PayperAuthenticator authenticator) {
+            DEFAULT = authenticator;
+
+        }
         public static PayperAuthenticator getDefault() {
-            return of(BASE_URL, CLIENT_ID, CLIENT_SECRET);
+            return DEFAULT != null ? DEFAULT : of(BASE_URL, CLIENT_ID, CLIENT_SECRET);
         }
     }
 }

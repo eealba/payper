@@ -13,72 +13,95 @@
  */
 package io.github.eealba.payper.core.web;
 
-import io.github.eealba.payper.core.Credential;
-
+import java.net.ProxySelector;
 import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.Executor;
 
 /**
- * The type Payper config.
- * This class is used to store the configuration of the Payper client.
+ * The type WebClientConfig.
+ * This class is used to store the configuration of the WebClient.
+ *
+ * <p>Example usage:</p>
+ * <pre>{@code
+ * WebClientConfig config = WebClientConfig.builder()
+ *     .executor(Executors.newFixedThreadPool(10))
+ *     .connectTimeout(Duration.ofSeconds(10))
+ *     .proxySelector(ProxySelector.getDefault())
+ *     .build();
+ * }</pre>
  *
  * @since 1.0
  * @version 1.0
  *
  * @see Object
- * @see Credential
  * @see Executor
  * @see Duration
- *
- * @author Edgar Alba
+ * @see ProxySelector
  */
 public class WebClientConfig {
     public static final WebClientConfig DEFAULT = new WebClientConfig.Builder().build();
     private final Executor executor;
     private final Duration connectTimeout;
+    private final ProxySelector proxySelector;
+
     /**
-     * Instantiates a new Payper config with a builder.
+     * Instantiates a new WebClientConfig with a builder.
      *
      * @param builder the builder
      */
     private WebClientConfig(Builder builder) {
         this.executor = builder.executor;
         this.connectTimeout = builder.connectTimeout;
+        this.proxySelector = builder.proxySelector;
     }
+
     /**
-     * Executor.
+     * Gets the executor.
      *
-     * @return the optional
+     * @return the optional executor
      */
     public Optional<Executor> executor() {
         return Optional.ofNullable(executor);
     }
+
     /**
-     * Connect timeout.
+     * Gets the connect timeout.
      *
-     * @return the optional
+     * @return the optional connect timeout
      */
     public Optional<Duration> connectTimeout() {
         return Optional.ofNullable(connectTimeout);
     }
+
     /**
-     * Builder builder.
+     * Gets the proxy selector.
+     *
+     * @return the optional proxy selector
+     */
+    public Optional<ProxySelector> proxySelector() {
+        return Optional.ofNullable(proxySelector);
+    }
+
+    /**
+     * Creates a new builder.
      *
      * @return the builder
      */
     public static Builder builder() {
         return new Builder();
     }
+
     /**
      * The type Builder.
      */
     public static class Builder {
         private Executor executor;
         private Duration connectTimeout;
+        public ProxySelector proxySelector;
 
         /**
-         * Executor builder.
+         * Sets the executor.
          *
          * @param executor the executor
          * @return the builder
@@ -87,8 +110,9 @@ public class WebClientConfig {
             this.executor = executor;
             return this;
         }
+
         /**
-         * Connect timeout builder.
+         * Sets the connect timeout.
          *
          * @param connectTimeout the connect timeout
          * @return the builder
@@ -97,10 +121,22 @@ public class WebClientConfig {
             this.connectTimeout = connectTimeout;
             return this;
         }
+
         /**
-         * Build payper config.
+         * Sets the proxy selector.
          *
-         * @return the payper config
+         * @param proxySelector the proxy selector
+         * @return the builder
+         */
+        public Builder proxySelector(ProxySelector proxySelector) {
+            this.proxySelector = proxySelector;
+            return this;
+        }
+
+        /**
+         * Builds the WebClientConfig.
+         *
+         * @return the WebClientConfig
          */
         public WebClientConfig build() {
             return new WebClientConfig(this);

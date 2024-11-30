@@ -1,7 +1,5 @@
 package io.github.eealba.payper.subscriptions.v1.api;
 
-import io.github.eealba.payper.core.Credential;
-import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.subscriptions.v1.model.Patch;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
 import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
@@ -14,9 +12,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Credential credential = new Credential("clientId", "secret".toCharArray());
-        PayperConfig config = PayperConfig.builder(credential, true).build();
-        Subscriptions subscriptions = Subscriptions.create(config);
+        Subscriptions subscriptions = Subscriptions.create();
 
         // Create plan
         var plan = subscriptions
