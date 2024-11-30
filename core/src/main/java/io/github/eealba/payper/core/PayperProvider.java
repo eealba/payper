@@ -16,18 +16,22 @@ package io.github.eealba.payper.core;
 import io.github.eealba.payper.core.util.Providers;
 
 /**
- * The type Payper provider.
- * This class is used to create Payper objects.
+ * The type PayperProvider.
+ * This class is used to create Payper objects and provides utility methods to manage them.
+ *
+ * <p>Example usage:</p>
+ * <pre>{@code
+ * PayperProvider provider = PayperProvider.provider();
+ * PayperConfig config = new PayperConfig();
+ * Payper payper = provider.createPayper(config);
+ * }</pre>
  *
  * @since 1.0
  * @version 1.0
- *
  * @see Payper
  * @see PayperConfig
  * @see PayperException
  * @see PayperProvider
- * @see PayperBuilder
- *
  * @author Edgar Alba
  */
 public abstract class PayperProvider {
@@ -53,7 +57,6 @@ public abstract class PayperProvider {
         return Providers.getProvider(PayperProvider.class, DEFAULT_PROVIDER);
     }
 
-
     /**
      * Creates a Payper object.
      *
@@ -62,9 +65,27 @@ public abstract class PayperProvider {
      */
     public abstract Payper createPayper(PayperConfig config);
 
+    /**
+     * Creates a new builder for PayperRequest.
+     *
+     * @return the PayperRequest builder
+     */
     public abstract PayperRequest.Builder createPayperRequestBuilder();
 
+    /**
+     * Creates a BodyPublisher for the given object.
+     *
+     * @param obj the object
+     * @return the BodyPublisher
+     */
     public abstract PayperRequest.BodyPublisher bodyPublisherOf(Object obj);
 
+    /**
+     * Creates a BodyHandler for the given class type.
+     *
+     * @param <T>   the type of the entity
+     * @param clazz the class of the entity
+     * @return the BodyHandler
+     */
     public abstract <T> PayperResponse.BodyHandler<T> bodyHandlerOfString(Class<T> clazz);
 }

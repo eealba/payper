@@ -13,47 +13,66 @@
  */
 package io.github.eealba.payper.core;
 
-
 /**
- * The type Payper.
- * This class is used to handle requests in the Payper library.
+ * The interface Payper.
+ * This interface is used to handle requests in the Payper library.
+ *
+ * <p>Example usage:</p>
+ * <pre>{@code
+ * Payper payper = Payper.newPayper();
+ * PayperRequest request = PayperRequest.newBuilder()
+ *     .uri(new URI("http://example.com"))
+ *     .header("Content-Type", "application/json")
+ *     .GET()
+ *     .build();
+ * PayperResponse.PayperResponseSpec<String, String> responseSpec = payper.send(request,
+ *     PayperResponse.BodyHandlers.ofClass(String.class),
+ *     PayperResponse.BodyHandlers.ofClass(String.class));
+ * }</pre>
  *
  * @since 1.0
  * @version 1.0
- *
  * @see PayperProvider
  * @see PayperConfig
  * @see PayperRequest
  * @see PayperResponse
  * @see PayperResponse.PayperResponseSpec
- *
+ * @see PayperAuthenticator
+ * @see PayperException
  * @author Edgar Alba
  */
 public interface Payper {
+
+    /**
+     * Creates a new Payper instance with the default configuration.
+     *
+     * @return the Payper instance
+     */
     static Payper newPayper() {
         return newPayper(PayperConfig.builder().build());
     }
+
     /**
-     * New payper payper.
+     * Creates a new Payper instance with the specified configuration.
      *
-     * @return the payper
+     * @param config the Payper configuration
+     * @return the Payper instance
      */
     static Payper newPayper(PayperConfig config) {
         return PayperProvider.provider().createPayper(config);
     }
 
-
     /**
-     * Send response spec.
+     * Sends a request and returns a response specification.
      *
+     * @param <R1> the type of the entity in the response
+     * @param <R2> the type of the error entity in the response
      * @param request the request
-     * @param bodyHandler the body handler
-     * @return the response spec
+     * @param bodyHandler the body handler for the response entity
+     * @param bodyHandler2 the body handler for the error entity
+     * @return the response specification
      */
     <R1, R2> PayperResponse.PayperResponseSpec<R1, R2> send(PayperRequest request,
                                      PayperResponse.BodyHandler<R1> bodyHandler,
                                      PayperResponse.BodyHandler<R2> bodyHandler2);
-
-
-
 }
