@@ -29,7 +29,10 @@ abstract class RequestSpecImpl<T extends Subscriptions.RequestSpec<T,T2,T3>,T2, 
 
     @Override
     public Subscriptions.ResponseSpec<T2, T3> retrieve() {
-        return null;
+        requestBuilder.uri(getUri());
+        return new SubscriptionsResponseSpecImpl<>(payper, requestBuilder.build(), getEntityClass(),
+                getErrorEntityClass());
+
 
     }
     @SuppressWarnings("unchecked")

@@ -30,6 +30,9 @@ package io.github.eealba.payper.core;
  * @author Edgar Alba
  */
 public interface Payper {
+    static Payper newPayper() {
+        return newPayper(PayperConfig.builder().build());
+    }
     /**
      * New payper payper.
      *

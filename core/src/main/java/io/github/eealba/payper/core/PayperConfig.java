@@ -13,6 +13,7 @@
  */
 package io.github.eealba.payper.core;
 
+import java.net.ProxySelector;
 import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.Executor;
@@ -24,44 +25,37 @@ import java.util.concurrent.Executor;
  * @version 1.0
  *
  * @see Object
- * @see Credential
+ * @see PayperAuthenticator
  * @see Executor
  * @see Duration
  *
  * @author Edgar Alba
  */
 public class PayperConfig {
-    private final Credential credential;
-    private final boolean sandbox;
+    private final PayperAuthenticator authenticator;
     private final Executor executor;
     private final Duration connectTimeout;
+    private final ProxySelector proxySelector;
     /**
      * Instantiates a new Payper config with a builder.
      *
      * @param builder the builder
      */
     private PayperConfig(Builder builder) {
-        this.credential = builder.credential;
-        this.sandbox = builder.sandbox;
+        this.authenticator = builder.authenticator;
         this.executor = builder.executor;
         this.connectTimeout = builder.connectTimeout;
+        this.proxySelector = builder.proxySelector;
     }
     /**
-     * Credential.
+     * PayperAuthenticator.
      *
-     * @return the credential
+     * @return the authenticator
      */
-    public Credential credential() {
-        return credential;
+    public PayperAuthenticator authenticator() {
+        return authenticator;
     }
-    /**
-     * Sandbox.
-     *
-     * @return the boolean
-     */
-    public boolean sandbox() {
-        return sandbox;
-    }
+
     /**
      * Executor.
      *
@@ -79,32 +73,34 @@ public class PayperConfig {
         return Optional.ofNullable(connectTimeout);
     }
     /**
+     * Proxy selector.
+     *
+     * @return the optional
+     */
+    public Optional<ProxySelector> proxySelector() {
+        return Optional.ofNullable(proxySelector);
+    }
+    /**
      * Builder builder.
      *
-     * @param credential the credential
-     * @param sandbox the sandbox
      * @return the builder
      */
-    public static Builder builder(Credential credential, boolean sandbox) {
-        return new Builder(credential, sandbox);
+    public static Builder builder() {
+        return new Builder();
     }
     /**
      * The type Builder.
      */
     public static class Builder {
-        private final Credential credential;
-        private final boolean sandbox;
+        private PayperAuthenticator authenticator;
         private Executor executor;
         private Duration connectTimeout;
+        private ProxySelector proxySelector;
         /**
          * Instantiates a new Builder.
-         *
-         * @param credential the credential
-         * @param sandbox the sandbox
          */
-        Builder(Credential credential, boolean sandbox) {
-            this.credential = credential;
-            this.sandbox = sandbox;
+        Builder() {
+            this.authenticator = PayperAuthenticator.PayperAuthenticators.getDefault();
         }
         /**
          * Executor builder.
@@ -126,6 +122,15 @@ public class PayperConfig {
             this.connectTimeout = connectTimeout;
             return this;
         }
+        public Builder authenticator(PayperAuthenticator authenticator) {
+            this.authenticator = authenticator;
+            return this;
+        }
+        public Builder proxySelector(ProxySelector proxySelector) {
+            this.proxySelector = proxySelector;
+            return this;
+        }
+
         /**
          * Build payper config.
          *

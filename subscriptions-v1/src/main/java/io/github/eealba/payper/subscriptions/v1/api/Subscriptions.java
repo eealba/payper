@@ -13,6 +13,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public interface Subscriptions {
+    static Subscriptions create() {
+        return create(PayperConfig.builder().build());
+    }
     static Subscriptions create(PayperConfig config) {
         return SubscriptionsProvider.provider().createSubscriptions(config);
     }
@@ -77,15 +80,11 @@ public interface Subscriptions {
 
     interface RequestSpec<T, T2, T3> {
         T withPrefer(String prefer);
-
         T withPaypalRequestId(String paypalRequestId);
-
         ResponseSpec<T2, T3> retrieve();
-
         Method getMethod();
         Class<T2> getEntityClass();
         Class<T3> getErrorEntityClass();
-
     }
 
     interface BodyRequestSpec<T extends BodyRequestSpec<T, T2, T3, T4>, T2, T3, T4> extends RequestSpec<T, T3, T4> {

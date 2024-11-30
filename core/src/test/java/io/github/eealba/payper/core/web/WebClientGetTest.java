@@ -18,7 +18,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static io.github.eealba.payper.core.web.Util.readResource;
 
 @WireMockTest
-
 class WebClientGetTest {
     private static final String EXAMPLES = "/examples/";
     private static WebClient client;
