@@ -33,6 +33,7 @@ import java.util.concurrent.Executor;
  *
  * @since 1.0
  * @version 1.0
+ * @author Edgar Alba
  *
  * @see Object
  * @see Executor

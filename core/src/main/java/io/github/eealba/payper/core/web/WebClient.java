@@ -34,6 +34,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @since 1.0
  * @version 1.0
+ * @author Edgar Alba
  *
  * @see Request
  * @see Response

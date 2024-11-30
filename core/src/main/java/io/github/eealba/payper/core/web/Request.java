@@ -35,6 +35,7 @@ import java.util.Optional;
  *
  * @since 1.0
  * @version 1.0
+ * @author Edgar Alba
  *
  * @see URI
  * @see Duration
