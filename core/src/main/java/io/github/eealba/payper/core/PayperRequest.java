@@ -13,6 +13,9 @@
  */
 package io.github.eealba.payper.core;
 
+import io.github.eealba.payper.core.web.Request;
+
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Map;
 import java.util.Optional;
@@ -245,6 +248,10 @@ public interface PayperRequest {
          */
         public static BodyPublisher noBody() {
             return () -> new byte[0];
+        }
+
+        public static Request.BodyPublisher ofString(String body) {
+            return () -> body.getBytes(StandardCharsets.UTF_8);
         }
     }
 }

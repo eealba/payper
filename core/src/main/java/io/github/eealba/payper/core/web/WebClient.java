@@ -47,7 +47,7 @@ public interface WebClient {
      * @return a new WebClient instance
      */
     static WebClient newWebClient() {
-        return WebProvider.provider().createWebClient(WebClientConfig.DEFAULT);
+        return WebProvider.provider().createWebClient(WebClientConfig.builder().build());
     }
 
     /**

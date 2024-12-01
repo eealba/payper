@@ -230,8 +230,9 @@ public interface Request {
      * This class provides various authorizations for the request.
      */
     class Authorizations {
-        public static Authorization BASIC(String username, String password) {
-            return () -> "Basic " + java.util.Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
+        public static Authorization BASIC(char[] username,char[] password) {
+            return () -> "Basic " + java.util.Base64.getEncoder()
+                    .encodeToString((String.valueOf(username) + ':' + String.valueOf(password)).getBytes());
         }
 
         public static Authorization BEARER(String token) {

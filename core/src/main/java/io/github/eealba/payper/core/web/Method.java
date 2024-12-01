@@ -56,23 +56,6 @@ public enum Method {
      * The PATCH method.
      * Used to apply partial modifications to a resource.
      */
-    PATCH,
+    PATCH
 
-    /**
-     * The HEAD method.
-     * Used to request the headers that would be returned if the specified resource was requested with a GET method.
-     */
-    HEAD,
-
-    /**
-     * The OPTIONS method.
-     * Used to describe the communication options for the target resource.
-     */
-    OPTIONS,
-
-    /**
-     * The TRACE method.
-     * Used to perform a message loop-back test along the path to the target resource.
-     */
-    TRACE
 }

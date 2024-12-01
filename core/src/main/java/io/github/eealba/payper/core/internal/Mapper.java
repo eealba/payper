@@ -16,7 +16,7 @@ class Mapper {
         return builder.build();
     }
 
-    static Request mapRequest(PayperRequest request) {
+    static Request mapRequest(PayperRequest request, Token token) {
         var builder = Request.newBuilder();
         //builder.uri(request.uri()); //TODO: Fix this
         request.headers().forEach(builder::header);

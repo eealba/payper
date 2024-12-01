@@ -41,7 +41,6 @@ import java.util.concurrent.Executor;
  * @see ProxySelector
  */
 public class WebClientConfig {
-    public static final WebClientConfig DEFAULT = new WebClientConfig.Builder().build();
     private final Executor executor;
     private final Duration connectTimeout;
     private final ProxySelector proxySelector;
