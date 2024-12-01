@@ -15,6 +15,7 @@ package io.github.eealba.payper.core;
 
 import java.net.ProxySelector;
 import java.time.Duration;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.Executor;
 /**
@@ -42,7 +43,7 @@ public class PayperConfig {
      * @param builder the builder
      */
     private PayperConfig(Builder builder) {
-        this.authenticator = builder.authenticator;
+        this.authenticator = Objects.requireNonNull(builder.authenticator);
         this.executor = builder.executor;
         this.connectTimeout = builder.connectTimeout;
         this.proxySelector = builder.proxySelector;
@@ -122,10 +123,22 @@ public class PayperConfig {
             this.connectTimeout = connectTimeout;
             return this;
         }
+        /**
+         * Authenticator builder.
+         *
+         * @param authenticator the authenticator
+         * @return the builder
+         */
         public Builder authenticator(PayperAuthenticator authenticator) {
-            this.authenticator = authenticator;
+            this.authenticator = Objects.requireNonNull(authenticator);
             return this;
         }
+        /**
+         * Proxy selector builder.
+         *
+         * @param proxySelector the proxy selector
+         * @return the builder
+         */
         public Builder proxySelector(ProxySelector proxySelector) {
             this.proxySelector = proxySelector;
             return this;

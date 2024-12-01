@@ -2,7 +2,6 @@ package io.github.eealba.payper.core;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PayperConfigTest {
@@ -33,14 +32,13 @@ class PayperConfigTest {
     @org.junit.jupiter.api.Test
     void payperConfigWithNullValues() {
         var config = PayperConfig.builder()
-                .authenticator(null)
                 .executor(null)
                 .connectTimeout(null)
                 .proxySelector(null)
                 .build();
         assertFalse(config.connectTimeout().isPresent());
         assertFalse(config.executor().isPresent());
-        assertNull(config.authenticator());
+        assertNotNull(config.authenticator());
         assertFalse(config.proxySelector().isPresent());
     }
 

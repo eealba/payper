@@ -17,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
 class PayperImpl implements Payper {
     private final WebClient webClient;
     private final PayperConfig config;
-    private volatile Token token;
+    private volatile TokenImpl token;
     private final Json json = Json.newJson();
 
     PayperImpl(PayperConfig config) {
@@ -56,7 +56,7 @@ class PayperImpl implements Payper {
         @Override
         public CompletableFuture<PayperResponse<R1, R2>> toFuture() {
             return getToken().thenCompose(token ->
-                    webClient.sendAsync(Mapper.mapRequest(request, token), Response.BodyHandlers.ofBytes())
+                    webClient.sendAsync(Mapper.mapRequest(config, request, token), Response.BodyHandlers.ofBytes())
                             .thenApply(res -> new PayperResponseImpl(res.body(), res.statusCode(),
                                     res.charset())));
         }
@@ -79,11 +79,11 @@ class PayperImpl implements Payper {
             private void call(boolean discard) {
                 if (statusCode == 0) {
                     if (discard) {
-                        statusCode = webClient.send(Mapper.mapRequest(request, getToken().join()),
+                        statusCode = webClient.send(Mapper.mapRequest(config, request, getToken().join()),
                                         Response.BodyHandlers.discarding())
                                 .statusCode();
                     } else {
-                        var res = webClient.send(Mapper.mapRequest(request, getToken().join()),
+                        var res = webClient.send(Mapper.mapRequest(config, request, getToken().join()),
                                 Response.BodyHandlers.ofBytes());
                         statusCode = res.statusCode();
                         data = res.body();
@@ -123,7 +123,7 @@ class PayperImpl implements Payper {
         }
 
 
-        private CompletableFuture<Token> getToken() {
+        private CompletableFuture<TokenImpl> getToken() {
             if (token != null && token.isValid()) {
                 return CompletableFuture.completedFuture(token);
             }
@@ -133,7 +133,7 @@ class PayperImpl implements Payper {
             });
         }
 
-        private CompletableFuture<Token> createToken() {
+        private CompletableFuture<TokenImpl> createToken() {
             var authenticator = config.authenticator();
 
             var request = Request.newBuilder()
@@ -145,7 +145,7 @@ class PayperImpl implements Payper {
                     .build();
 
             return webClient.sendAsync(request, Response.BodyHandlers.ofString())
-                    .thenApply(s -> json.fromJson(s.body(), Token.class));
+                    .thenApply(s -> json.fromJson(s.body(), TokenImpl.class));
         }
     }
 }

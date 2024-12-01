@@ -39,7 +39,7 @@ public abstract class PayperProvider {
      * A constant representing the name of the default {@code PayperProvider}
      * implementation class.
      */
-    private static final String DEFAULT_PROVIDER = "io.github.eealba.payper.internal.PayperProviderImpl";
+    private static final String DEFAULT_PROVIDER = "io.github.eealba.payper.core.internal.PayperProviderImpl";
 
     /**
      * Instantiates a new Payper provider.
@@ -87,5 +87,5 @@ public abstract class PayperProvider {
      * @param clazz the class of the entity
      * @return the BodyHandler
      */
-    public abstract <T> PayperResponse.BodyHandler<T> bodyHandlerOfString(Class<T> clazz);
+    public abstract <T> PayperResponse.BodyHandler<T> bodyHandlerOf(Class<T> clazz);
 }

@@ -15,8 +15,8 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.notFound;
 import static com.github.tomakehurst.wiremock.client.WireMock.ok;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
-import static io.github.eealba.payper.core.web.Util.getUri;
-import static io.github.eealba.payper.core.web.Util.readResource;
+import static io.github.eealba.payper.core.Util.getUri;
+import static io.github.eealba.payper.core.Util.readResource;
 
 @WireMockTest
 class WebClientGetTest {

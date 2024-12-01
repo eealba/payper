@@ -14,7 +14,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.delete;
 import static com.github.tomakehurst.wiremock.client.WireMock.noContent;
 import static com.github.tomakehurst.wiremock.client.WireMock.notFound;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
-import static io.github.eealba.payper.core.web.Util.getUri;
+import static io.github.eealba.payper.core.Util.getUri;
 
 @WireMockTest
 class WebClientDeleteTest {

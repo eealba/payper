@@ -5,6 +5,7 @@ import io.github.eealba.payper.core.PayperRequest;
 import io.github.eealba.payper.core.web.Request;
 import io.github.eealba.payper.core.web.WebClientConfig;
 
+import java.net.URI;
 import java.time.Duration;
 
 class Mapper {
@@ -16,11 +17,13 @@ class Mapper {
         return builder.build();
     }
 
-    static Request mapRequest(PayperRequest request, Token token) {
+    static Request mapRequest(PayperConfig config, PayperRequest request, TokenImpl token) {
         var builder = Request.newBuilder();
-        //builder.uri(request.uri()); //TODO: Fix this
+        builder.uri(URI.create(config.authenticator().getBaseUrl() + request.path()));
         request.headers().forEach(builder::header);
+        builder.authorization(Request.Authorizations.BEARER(token.accessToken()));
         request.timeout().ifPresent(builder::timeout);
+
         switch (request.method()) {
             case GET -> builder.GET();
             case POST -> builder.POST(mapPublisher(request.bodyPublisher().orElse(null)));

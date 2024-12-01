@@ -155,7 +155,11 @@ public interface PayperResponse<T, T2> {
          * @return a BodyHandler that converts the response body to an entity of the specified class
          */
         public static <T> PayperResponse.BodyHandler<T> ofClass(Class<T> clazz) {
-            return PayperProvider.provider().bodyHandlerOfString(clazz);
+            return PayperProvider.provider().bodyHandlerOf(clazz);
+        }
+
+        public static PayperResponse.BodyHandler<String> ofString() {
+            return () -> (Charset cs, byte[] body) -> new String(body, cs);
         }
     }
 }

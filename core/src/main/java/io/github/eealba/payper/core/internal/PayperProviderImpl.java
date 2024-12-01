@@ -33,7 +33,7 @@ public class PayperProviderImpl extends PayperProvider {
     }
 
     @Override
-    public <T> PayperResponse.BodyHandler<T> bodyHandlerOfString(Class<T> clazz) {
+    public <T> PayperResponse.BodyHandler<T> bodyHandlerOf(Class<T> clazz) {
         return () -> (Charset cs, byte[] body) ->  json.fromJson(new String(body, cs), clazz);
     }
 }
