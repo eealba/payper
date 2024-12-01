@@ -106,6 +106,21 @@ public interface Request {
          * @return the builder
          */
         Request.Builder headers(String... headers);
+        /**
+         * Adds a content type header to the request.
+         *
+         * @param contentType the content type
+         * @return the builder
+         */
+        default Request.Builder contentType(ContentType contentType) {
+            header("Content-Type", contentType.value());
+            return this;
+        }
+
+        default Request.Builder authorization(Authorization authorization) {
+            header("Authorization", authorization.value());
+            return this;
+        }
 
         /**
          * Sets the timeout duration of the request.
@@ -182,6 +197,46 @@ public interface Request {
          * @return the body bytes
          */
         byte[] get();
+    }
+    /**
+     * The interface ContentType.
+     * This interface is used to define the content type of the request.
+     */
+    @FunctionalInterface
+    interface ContentType {
+        String value();
+    }
+    /**
+     * The class ContentTypes.
+     * This class provides various content types for the request.
+     */
+    class ContentTypes {
+        public static ContentType APPLICATION_JSON = () -> "application/json";
+        public static ContentType APPLICATION_XML = () -> "application/xml";
+        public static ContentType APPLICATION_FORM_URLENCODED = () -> "application/x-www-form-urlencoded";
+        public static ContentType TEXT_PLAIN = () -> "text/plain";
+        public static ContentType TEXT_HTML = () -> "text/html";
+    }
+    /**
+     * The interface Authorization.
+     * This interface is used to define the authorization of the request.
+     */
+    @FunctionalInterface
+    interface Authorization {
+        String value();
+    }
+    /**
+     * The class Authorizations.
+     * This class provides various authorizations for the request.
+     */
+    class Authorizations {
+        public static Authorization BASIC(String username, String password) {
+            return () -> "Basic " + java.util.Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
+        }
+
+        public static Authorization BEARER(String token) {
+            return () -> "Bearer " + token;
+        }
     }
 
     /**

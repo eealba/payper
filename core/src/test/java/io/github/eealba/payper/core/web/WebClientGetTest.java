@@ -15,11 +15,13 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.notFound;
 import static com.github.tomakehurst.wiremock.client.WireMock.ok;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static io.github.eealba.payper.core.web.Util.getUri;
 import static io.github.eealba.payper.core.web.Util.readResource;
 
 @WireMockTest
 class WebClientGetTest {
     private static final String EXAMPLES = "/examples/";
+    private static final String V_1_BILLING_PLANS_1 = "/v1/billing/plans/1";
     private static WebClient client;
 
     @BeforeAll
@@ -28,30 +30,29 @@ class WebClientGetTest {
     }
 
     @Test
-    void test_get_ok_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, JSONException {
+    void test_ok_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, JSONException {
         var jsonResponse = readResource(EXAMPLES + "plan.json");
-        stubFor(get("/v1/billing/plans/1").willReturn(ok(jsonResponse)));
-        var port = wmRuntimeInfo.getHttpPort();
-        var uri = URI.create("http://localhost:" + port + "/v1/billing/plans/1");
+        stubFor(get(V_1_BILLING_PLANS_1).willReturn(ok(jsonResponse)));
+        var uri = getUri(wmRuntimeInfo, V_1_BILLING_PLANS_1);
 
         getAndCompare(uri, 200, jsonResponse, false);
         getAndCompare(uri, 200, jsonResponse, true);
     }
     @Test
-    void test_get_not_found_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws  JSONException {
-        stubFor(get("/v1/billing/plans/1").willReturn(notFound()));
-        var port = wmRuntimeInfo.getHttpPort();
-        var uri = URI.create("http://localhost:" + port + "/v1/billing/plans/1");
-        var request = Request.newBuilder().uri(uri).GET().build();
+    void test_not_found_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws  JSONException {
+        stubFor(get(V_1_BILLING_PLANS_1).willReturn(notFound()));
+        var uri = getUri(wmRuntimeInfo, V_1_BILLING_PLANS_1);
 
         getAndCompare(uri, 404, null, false);
         getAndCompare(uri, 404, null, true);
 
     }
+
+
     private static void getAndCompare(URI uri, int expected, String jsonResponse, boolean async) throws JSONException {
         var request = Request.newBuilder().uri(uri).GET().build();
         var bodyHandler = Response.BodyHandlers.ofString();
-        var response = async ? client.sendAsync(request, bodyHandler).join() :client.send(request, bodyHandler);
+        var response = async ? client.sendAsync(request, bodyHandler).join() : client.send(request, bodyHandler);
         Assertions.assertEquals(expected, response.statusCode());
 
         if (jsonResponse != null) {

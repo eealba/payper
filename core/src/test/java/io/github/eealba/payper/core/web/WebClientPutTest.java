@@ -12,19 +12,15 @@ import java.io.IOException;
 import java.net.URI;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.badRequest;
-import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.ok;
-import static com.github.tomakehurst.wiremock.client.WireMock.post;
-import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.put;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 import static io.github.eealba.payper.core.web.Util.getUri;
 import static io.github.eealba.payper.core.web.Util.readResource;
 
 @WireMockTest
 
-class WebClientPostTest {
+class WebClientPutTest {
     private static final String EXAMPLES = "/examples/";
     private static WebClient client;
 
@@ -39,30 +35,27 @@ class WebClientPostTest {
             JSONException {
         var jsonRequest = readResource(EXAMPLES + "plan_request_POST.json");
         var jsonResponse = readResource(EXAMPLES + "plan.json");
-        stubFor(post("/v1/billing/plans").willReturn(ok(jsonResponse)));
+        stubFor(put("/v1/billing/plans").willReturn(ok(jsonResponse)));
         var uri = getUri(wmRuntimeInfo, "/v1/billing/plans");
 
-        postAndCompare(uri, jsonRequest, 200, jsonResponse, false);
-        postAndCompare(uri, jsonRequest, 200, jsonResponse, true);
+        putAndCompare(uri, jsonRequest, 200, jsonResponse, false);
+        putAndCompare(uri, jsonRequest, 200, jsonResponse, true);
     }
     @Test
     void test_400_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) throws IOException, JSONException {
         var jsonRequest = readResource(EXAMPLES + "plan_request_POST.json");
         var jsonResponse = readResource(EXAMPLES + "error_plan_request.json");
-        stubFor(post("/v1/billing/plans").willReturn(badRequest().withBody(jsonResponse)));
+        stubFor(put("/v1/billing/plans").willReturn(badRequest().withBody(jsonResponse)));
         var uri = getUri(wmRuntimeInfo, "/v1/billing/plans");
 
-        postAndCompare(uri, jsonRequest, 400, jsonResponse, false);
-        postAndCompare(uri, jsonRequest, 400, jsonResponse, true);
+        putAndCompare(uri, jsonRequest, 400, jsonResponse, false);
+        putAndCompare(uri, jsonRequest, 400, jsonResponse, true);
     }
 
-    private static void postAndCompare(URI uri, String jsonRequest, int expected, String jsonResponse, boolean async)
+    private static void putAndCompare(URI uri, String jsonRequest, int expected, String jsonResponse, boolean async)
             throws JSONException {
         var request = Request.newBuilder().uri(uri)
-                .POST(Request.BodyPublishers.ofString(jsonRequest))
-                .authorization(Request.Authorizations.BEARER("ax123"))
-                .contentType(Request.ContentTypes.APPLICATION_JSON)
-                .build();
+                .PUT(Request.BodyPublishers.ofString(jsonRequest)).build();
         var bodyHandler = Response.BodyHandlers.ofString();
 
         var response = async ? client.sendAsync(request, bodyHandler).join() : client.send(request, bodyHandler);
@@ -73,10 +66,6 @@ class WebClientPostTest {
             return;
         }
         JSONAssert.assertEquals(jsonResponse, response.body(), true);
-
-        verify(postRequestedFor(urlEqualTo("/v1/billing/plans"))
-                .withHeader("Authorization" , equalTo("Bearer ax123"))
-                .withHeader("Content-Type", equalTo("application/json")));
     }
 
 }

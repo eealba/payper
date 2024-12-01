@@ -18,7 +18,7 @@ class Mapper {
 
     static Request mapRequest(PayperRequest request) {
         var builder = Request.newBuilder();
-        builder.uri(request.uri());
+        //builder.uri(request.uri()); //TODO: Fix this
         request.headers().forEach(builder::header);
         request.timeout().ifPresent(builder::timeout);
         switch (request.method()) {

@@ -13,7 +13,6 @@
  */
 package io.github.eealba.payper.core;
 
-import java.net.URI;
 import java.time.Duration;
 import java.util.Map;
 import java.util.Optional;
@@ -42,7 +41,7 @@ public interface PayperRequest {
      *
      * @return the relative path
      */
-    String relativePath();
+    String path();
 
     /**
      * Gets the HTTP method of the request.
@@ -81,10 +80,10 @@ public interface PayperRequest {
         /**
          * Sets the URI of the request.
          *
-         * @param uri the URI
+         * @param path the URI
          * @return the builder
          */
-        Builder uri(URI uri);
+        Builder path(String path);
 
         /**
          * Adds a header to the request.
