@@ -5,13 +5,13 @@ import io.github.eealba.payper.core.PayperRequest;
 import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
 
 
-abstract class BodyRequestSpecImpl<T extends Subscriptions.BodyRequestSpec<T, T2, T3, T4>, T2, T3, T4>
-        extends RequestSpecImpl<T, T3, T4>
-        implements Subscriptions.BodyRequestSpec<T, T2, T3, T4> {
+abstract class BodyRequestSpecImpl<T extends Subscriptions.BodyRequestSpec<T, T2, R1, R2>, T2, R1, R2>
+        extends RequestSpecImpl<T, R1, R2>
+        implements Subscriptions.BodyRequestSpec<T, T2, R1, R2> {
 
 
-    public BodyRequestSpecImpl(Payper payper, String path) {
-        super(payper, path);
+    public BodyRequestSpecImpl(Payper payper, String path, Class<R1> clazz1, Class<R2> clazz2) {
+        super(payper, path, clazz1, clazz2);
     }
 
     @Override

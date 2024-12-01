@@ -5,14 +5,18 @@ import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
 import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
 
-abstract class RequestSpecImpl<T extends Subscriptions.RequestSpec<T,T2,T3>,T2, T3>
-        implements Subscriptions.RequestSpec<T, T2, T3> {
+abstract class RequestSpecImpl<T extends Subscriptions.RequestSpec<T,R1, R2>, R1, R2>
+        implements Subscriptions.RequestSpec<T, R1, R2> {
     final PayperRequest.Builder requestBuilder = PayperRequest.newBuilder();
     private final Payper payper;
+    private final Class<R1> clazz1;
+    private final Class<R2> clazz2;
 
 
-    public RequestSpecImpl(Payper payper, String path) {
+    public RequestSpecImpl(Payper payper, String path, Class<R1> clazz1, Class<R2> clazz2) {
         this.payper = payper;
+        this.clazz1 = clazz1;
+        this.clazz2 = clazz2;
         requestBuilder.path(path);
         var method = getMethod();
         switch (method) {
@@ -34,7 +38,7 @@ abstract class RequestSpecImpl<T extends Subscriptions.RequestSpec<T,T2,T3>,T2, 
     }
 
     @Override
-    public Subscriptions.ResponseSpec<T2, T3> retrieve() {
+    public Subscriptions.ResponseSpec<R1, R2> retrieve() {
         // TODO: Implement this method
         //requestBuilder.uri(getUri());
         return new SubscriptionsResponseSpecImpl<>(payper, requestBuilder.build(), getEntityClass(),
@@ -45,5 +49,16 @@ abstract class RequestSpecImpl<T extends Subscriptions.RequestSpec<T,T2,T3>,T2, 
     @SuppressWarnings("unchecked")
     T self() {
         return (T) this;
+    }
+
+
+    @Override
+    public Class<R1> getEntityClass() {
+        return clazz1;
+    }
+
+    @Override
+    public Class<R2> getErrorEntityClass() {
+        return clazz2;
     }
 }

@@ -79,13 +79,15 @@ public interface Subscriptions {
         UpdatePricingSchemes withId(String id);
     }
 
-    interface RequestSpec<T, T2, T3> {
+    interface RequestSpec<T, R1, R2> {
         T withPrefer(String prefer);
         T withPaypalRequestId(String paypalRequestId);
-        ResponseSpec<T2, T3> retrieve();
-        Method getMethod();
-        Class<T2> getEntityClass();
-        Class<T3> getErrorEntityClass();
+        ResponseSpec<R1, R2> retrieve();
+        default Method getMethod() {
+            return Method.GET;
+        };
+        Class<R1> getEntityClass();
+        Class<R2> getErrorEntityClass();
     }
 
     interface BodyRequestSpec<T extends BodyRequestSpec<T, T2, T3, T4>, T2, T3, T4> extends RequestSpec<T, T3, T4> {
