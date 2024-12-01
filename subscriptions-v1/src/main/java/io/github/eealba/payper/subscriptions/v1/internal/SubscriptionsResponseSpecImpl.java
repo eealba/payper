@@ -5,6 +5,7 @@ import io.github.eealba.payper.core.PayperRequest;
 import io.github.eealba.payper.core.PayperResponse;
 import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
 
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 class SubscriptionsResponseSpecImpl<R1, R2> implements Subscriptions.ResponseSpec<R1, R2> {
@@ -72,7 +73,18 @@ class SubscriptionsResponseSpecImpl<R1, R2> implements Subscriptions.ResponseSpe
         public void toVoid() {
             call();
             payperResponse.toVoid();
+        }
 
+        @Override
+        public Optional<R1> toOptionalEntity() {
+            call();
+            return payperResponse.toOptionalEntity();
+        }
+
+        @Override
+        public Optional<R2> toOptionalErrorEntity() {
+            call();
+            return payperResponse.toOptionalErrorEntity();
         }
 
     }

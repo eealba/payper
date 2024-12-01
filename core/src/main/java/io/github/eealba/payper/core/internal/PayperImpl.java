@@ -12,6 +12,7 @@ import io.github.eealba.payper.core.web.WebClient;
 
 import java.net.URI;
 import java.nio.charset.Charset;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 class PayperImpl implements Payper {
@@ -106,6 +107,14 @@ class PayperImpl implements Payper {
                 }
                 return bodyHandler.apply().apply(charset, data);
             }
+            @Override
+            public Optional<R1> toOptionalEntity() {
+                call(false);
+                if (statusCode >= 400) {
+                    return Optional.empty();
+                }
+                return Optional.ofNullable(bodyHandler.apply().apply(charset, data));
+            }
 
             @Override
             public R2 toErrorEntity() {
@@ -114,6 +123,13 @@ class PayperImpl implements Payper {
                     return null;
                 }
                 return bodyHandler2.apply().apply(charset, data);
+            }
+            public Optional<R2> toOptionalErrorEntity() {
+                call(false);
+                if (statusCode < 400) {
+                    return Optional.empty();
+                }
+                return Optional.ofNullable(bodyHandler2.apply().apply(charset, data));
             }
 
             @Override
@@ -145,7 +161,13 @@ class PayperImpl implements Payper {
                     .build();
 
             return webClient.sendAsync(request, Response.BodyHandlers.ofString())
-                    .thenApply(s -> json.fromJson(s.body(), TokenImpl.class));
+                    .thenCompose(s -> {
+                        if (s.statusCode() >= 400) {
+                            throw new PayperException("Error " + s.statusCode() + " " +  s.body());
+                        }
+                        return CompletableFuture.completedFuture(s.body());
+                    })
+                    .thenApply(s -> json.fromJson(s, TokenImpl.class));
         }
     }
 }

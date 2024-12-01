@@ -51,7 +51,6 @@ class PayperGetTest {
         System.clearProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_ID);
         System.clearProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_SECRET);
         removeStub(post("/v1/oauth2/token"));
-
     }
 
 

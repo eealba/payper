@@ -9,6 +9,7 @@ import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
 import io.github.eealba.payper.subscriptions.v1.model.UpdatePricingSchemesListRequest;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
@@ -116,6 +117,9 @@ public interface Subscriptions {
         default T toEntity() {
             return toResponse().toEntity();
         }
+        default Optional<T> toOptionalEntity() {
+            return toResponse().toOptionalEntity();
+        }
 
         default void toVoid() {
             toResponse().toVoid();
@@ -138,5 +142,7 @@ public interface Subscriptions {
         T toEntity();
         T2 toErrorEntity();
         void toVoid();
+        Optional<T> toOptionalEntity();
+        Optional<T2> toOptionalErrorEntity();
     }
 }

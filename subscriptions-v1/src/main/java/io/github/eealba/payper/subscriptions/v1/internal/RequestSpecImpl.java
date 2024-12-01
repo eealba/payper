@@ -11,8 +11,14 @@ abstract class RequestSpecImpl<T extends Subscriptions.RequestSpec<T,T2,T3>,T2, 
     private final Payper payper;
 
 
-    public RequestSpecImpl(Payper payper) {
+    public RequestSpecImpl(Payper payper, String path) {
         this.payper = payper;
+        requestBuilder.path(path);
+        var method = getMethod();
+        switch (method) {
+            case GET -> requestBuilder.GET();
+            case DELETE -> requestBuilder.DELETE();
+        }
     }
 
     @Override

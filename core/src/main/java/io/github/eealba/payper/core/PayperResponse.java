@@ -14,6 +14,7 @@
 package io.github.eealba.payper.core;
 
 import java.nio.charset.Charset;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -56,6 +57,18 @@ public interface PayperResponse<T, T2> {
      * Consumes the response without returning any entity.
      */
     void toVoid();
+    /**
+     * Converts the response to an Optional of type T.
+     *
+     * @return the Optional entity
+     */
+    Optional<T> toOptionalEntity();
+    /**
+     * Converts the response to an Optional of type T2.
+     *
+     * @return the Optional error entity
+     */
+    Optional<T2> toOptionalErrorEntity();
 
     /**
      * The interface PayperResponseSpec.
@@ -159,7 +172,7 @@ public interface PayperResponse<T, T2> {
         }
 
         public static PayperResponse.BodyHandler<String> ofString() {
-            return () -> (Charset cs, byte[] body) -> new String(body, cs);
+            return () -> (Charset cs, byte[] body) -> body == null ? null : new String(body, cs);
         }
     }
 }

@@ -10,13 +10,18 @@ abstract class BodyRequestSpecImpl<T extends Subscriptions.BodyRequestSpec<T, T2
         implements Subscriptions.BodyRequestSpec<T, T2, T3, T4> {
 
 
-    public BodyRequestSpecImpl(Payper payper) {
-        super(payper);
+    public BodyRequestSpecImpl(Payper payper, String path) {
+        super(payper, path);
     }
 
     @Override
     public T withBody(T2 body) {
-        requestBuilder.POST(PayperRequest.BodyPublishers.of(body));
+        var method = getMethod();
+        switch (method) {
+            case POST -> requestBuilder.POST(PayperRequest.BodyPublishers.of(body));
+            case PUT -> requestBuilder.PUT(PayperRequest.BodyPublishers.of(body));
+            case PATCH -> requestBuilder.PATCH(PayperRequest.BodyPublishers.of(body));
+        }
         return self();
     }
 

@@ -29,7 +29,7 @@ public class SubscriptionsImpl implements Subscriptions {
 
         @Override
         public GetPlan get() {
-            return null;
+            return new GetPlanImpl(payper);
         }
 
         @Override
