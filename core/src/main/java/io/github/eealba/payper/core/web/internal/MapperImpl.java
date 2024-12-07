@@ -24,13 +24,13 @@ import java.util.Map;
 /**
  * Author: Edgar Alba
  */
-public class MapperImpl implements Mapper {
+class MapperImpl implements Mapper {
     private static final Mapper INSTANCE = new MapperImpl();
 
     private MapperImpl() {
     }
 
-    public static Mapper getInstance() {
+    static Mapper getInstance() {
         return INSTANCE;
     }
 

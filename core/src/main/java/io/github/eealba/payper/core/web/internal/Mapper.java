@@ -22,7 +22,7 @@ import java.net.http.HttpRequest;
  * Author: Edgar Alba
  */
 
-public interface Mapper {
+interface Mapper {
 
     HttpRequest mapRequest(Request request);
 

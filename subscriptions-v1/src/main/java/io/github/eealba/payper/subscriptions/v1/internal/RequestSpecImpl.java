@@ -2,10 +2,11 @@ package io.github.eealba.payper.subscriptions.v1.internal;
 
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
-import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
+import io.github.eealba.payper.subscriptions.v1.api.RequestSpec;
+import io.github.eealba.payper.subscriptions.v1.api.ResponseSpec;
 
-abstract class RequestSpecImpl<T extends Subscriptions.RequestSpec<T,R1, R2>, R1, R2>
-        implements Subscriptions.RequestSpec<T, R1, R2> {
+abstract class RequestSpecImpl<T extends RequestSpec<T,R1, R2>, R1, R2>
+        implements RequestSpec<T, R1, R2> {
     final PayperRequest.Builder requestBuilder = PayperRequest.newBuilder();
     private final Payper payper;
     private final Class<R1> clazz1;
@@ -37,7 +38,7 @@ abstract class RequestSpecImpl<T extends Subscriptions.RequestSpec<T,R1, R2>, R1
     }
 
     @Override
-    public Subscriptions.ResponseSpec<R1, R2> retrieve() {
+    public ResponseSpec<R1, R2> retrieve() {
         return new SubscriptionsResponseSpecImpl<>(payper, requestBuilder.build(), getEntityClass(),
                 getErrorEntityClass());
 

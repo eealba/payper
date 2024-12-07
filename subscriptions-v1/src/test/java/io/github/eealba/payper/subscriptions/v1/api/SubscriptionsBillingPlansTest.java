@@ -2,6 +2,9 @@ package io.github.eealba.payper.subscriptions.v1.api;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.eealba.payper.core.PayperAuthenticator;
+import io.github.eealba.payper.core.json.Json;
+import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
+import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,9 +14,12 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.time.Instant;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.noContent;
 import static com.github.tomakehurst.wiremock.client.WireMock.notFound;
 import static com.github.tomakehurst.wiremock.client.WireMock.okJson;
+import static com.github.tomakehurst.wiremock.client.WireMock.patch;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.removeStub;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
@@ -79,6 +85,56 @@ class SubscriptionsBillingPlansTest {
         // Get plan
         var plan2 = subscriptions.billingPlans().get().withId("1").retrieve().toOptionalEntity();
         assertFalse(plan2.isPresent());
+    }
+
+    @Test
+    void test_create_plan() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "plan_request_POST.json");
+        var jsonResponse = readResource(EXAMPLES + "plan.json");
+        var body = Json.newJson().fromJson(jsonRequest, PlanRequestPOST.class);
+        stubFor(post("/v1/billing/plans").willReturn(okJson(jsonResponse)));
+
+        var plan = subscriptions.billingPlans().create().withBody(body).retrieve().toFuture().join();
+
+        assertNotNull(plan);
+        assertEquals("P-5ML4271244454362WXNWU5NQ", plan.toEntity().id());
+    }
+
+    @Test
+    void test_list_plan() throws IOException {
+        var jsonResponse = readResource(EXAMPLES + "planCollection.json");
+        stubFor(get("/v1/billing/plans").willReturn(okJson(jsonResponse)));
+
+        var planCollection = subscriptions.billingPlans().list().retrieve().toEntity();
+
+        assertNotNull(planCollection);
+        assertEquals(1, planCollection.plans().size());
+    }
+    @Test
+    void update_plan_204() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "patch_request.json");
+        var request = Json.newJson().fromJson(jsonRequest, PatchRequest.class);
+        stubFor(patch("/v1/billing/plans/1").willReturn(noContent()));
+
+        var response = subscriptions.billingPlans().update().withId("1").withBody(request).retrieve().toFuture().join();
+
+        assertEquals(204, response.statusCode());
+
+    }
+    @Test
+    void update_plan_400() throws IOException {
+        var jsonResponse = readResource(EXAMPLES + "bad_request.json");
+        var jsonRequest = readResource(EXAMPLES + "patch_request.json");
+        var request = Json.newJson().fromJson(jsonRequest, PatchRequest.class);
+        stubFor(patch("/v1/billing/plans/4").willReturn(aResponse().withStatus(400).withBody(jsonResponse)));
+
+        var response = subscriptions.billingPlans().update().withId("4").withBody(request).retrieve().toFuture().join();
+
+        assertEquals(400, response.statusCode());
+        assertEquals("INVALID_REQUEST", response.toErrorEntity().name());
+        assertEquals("Request is not well-formed, syntactically incorrect, or violates schema.",
+                response.toErrorEntity().message());
+
     }
 
 }

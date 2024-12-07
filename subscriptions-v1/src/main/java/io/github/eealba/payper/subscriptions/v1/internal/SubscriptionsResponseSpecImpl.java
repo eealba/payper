@@ -3,12 +3,12 @@ package io.github.eealba.payper.subscriptions.v1.internal;
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
 import io.github.eealba.payper.core.PayperResponse;
-import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
+import io.github.eealba.payper.subscriptions.v1.api.ResponseSpec;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
-class SubscriptionsResponseSpecImpl<R1, R2> implements Subscriptions.ResponseSpec<R1, R2> {
+class SubscriptionsResponseSpecImpl<R1, R2> implements ResponseSpec<R1, R2> {
     private final Payper payper;
     private final Class<R1> entityClass;
     private final Class<R2> errorEntityClass;
@@ -25,19 +25,19 @@ class SubscriptionsResponseSpecImpl<R1, R2> implements Subscriptions.ResponseSpe
 
     }
     @Override
-    public Subscriptions.Response<R1,R2> toResponse() {
+    public Response<R1,R2> toResponse() {
         return new SubscriptionsResponseImpl();
     }
 
     @Override
-    public CompletableFuture<Subscriptions.Response<R1,R2>> toFuture() {
+    public CompletableFuture<Response<R1,R2>> toFuture() {
         return payper.send(request,
                 PayperResponse.BodyHandlers.ofClass(entityClass),
                 PayperResponse.BodyHandlers.ofClass(errorEntityClass)).toFuture()
                 .thenApply(SubscriptionsResponseImpl::new);
     }
 
-    class SubscriptionsResponseImpl implements Subscriptions.Response<R1, R2> {
+    class SubscriptionsResponseImpl implements Response<R1, R2> {
         PayperResponse<R1, R2> payperResponse;
         SubscriptionsResponseImpl() {
         }

@@ -2,18 +2,21 @@ package io.github.eealba.payper.subscriptions.v1.internal;
 
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.subscriptions.v1.api.BillingPlans;
 import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
 
-class SubscriptionsImpl implements Subscriptions {
+class SubscriptionsImpl extends Subscriptions {
     private final Payper payper;
+    private final BillingPlans billingPlans;
 
     SubscriptionsImpl(PayperConfig config) {
         this.payper = Payper.newPayper(config);
+        this.billingPlans = new BillingPlansImpl();
     }
 
     @Override
     public BillingPlans billingPlans() {
-        return new BillingPlansImpl();
+        return billingPlans;
     }
 
     private class BillingPlansImpl implements BillingPlans {
@@ -34,7 +37,7 @@ class SubscriptionsImpl implements Subscriptions {
 
         @Override
         public UpdatePlan update() {
-            return null;
+            return new UpdatePlanImpl(payper);
         }
 
         @Override
@@ -48,12 +51,8 @@ class SubscriptionsImpl implements Subscriptions {
         }
 
         @Override
-        public Subscriptions.UpdatePricingSchemes updatePricingSchemes() {
+        public UpdatePricingSchemes updatePricingSchemes() {
             return null;
         }
     }
-
-
-
-    // Implement other inner classes (ListPlansImpl, GetPlanImpl, UpdatePlanImpl, ActivatePlanImpl, DeactivatePlanImpl, UpdatePricingSchemesImpl) similarly
 }

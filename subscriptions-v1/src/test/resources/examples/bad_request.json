@@ -1,0 +1,56 @@
+{
+  "name": "INVALID_REQUEST",
+  "message": "Request is not well-formed, syntactically incorrect, or violates schema.",
+  "details": [
+    {
+      "issue": "UNSUPPORTED_PATCH_OPERATION",
+      "description": "The specified patch operation not supported for this field.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_PATCH_PATH",
+      "description": "The specified field cannot be patched.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_PATCH_PATH",
+      "description": "Multiple operations on the same field are not allowed.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_PARAMETER_SYNTAX",
+      "description": "The value of a field does not conform to the expected format.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_PARAMETER_VALUE",
+      "description": "The value of a field is invalid.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_PARAMETER_VALUE",
+      "description": "The field is not eligible for '$value' patch operation.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    }
+  ],
+  "debug_id": "string",
+  "links": [
+    {
+      "href": "}BhmQ0Spf-/c.-2eJ+HeJk5)\"Q]A[~cGR=x#Fx^axB:r",
+      "rel": "4`-*h=e_F_ :VOXqpJyujR6:48)zX$9L>pME D$s%Wkwwkjl,J7* qx`R<kPg\"y>)Lk *pqB2GT&MmIn<I4M2X",
+      "method": "GET"
+    }
+  ]
+}
