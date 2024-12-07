@@ -11,11 +11,6 @@ class GetPlanImpl extends RequestSpecImpl<BillingPlans.GetPlan, Plan, ErrorDefau
         super(payper,"/v1/billing/plans/{id}", Plan.class, ErrorDefault.class);
     }
 
-    @Override
-    public BillingPlans.GetPlan withFields(String fields) {
-        requestBuilder.query("fields", fields);
-        return this;
-    }
 
     @Override
     public BillingPlans.GetPlan withId(String id) {

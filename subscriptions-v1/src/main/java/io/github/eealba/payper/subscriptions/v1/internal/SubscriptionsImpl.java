@@ -42,17 +42,17 @@ class SubscriptionsImpl extends Subscriptions {
 
         @Override
         public ActivatePlan activate() {
-            return null;
+            return new ActivatePlanImpl(payper);
         }
 
         @Override
         public DeactivatePlan deactivate() {
-            return null;
+            return new DeactivatePlanImpl(payper);
         }
 
         @Override
         public UpdatePricingSchemes updatePricingSchemes() {
-            return null;
+            return new UpdatePricingSchemesImpl(payper);
         }
     }
 }

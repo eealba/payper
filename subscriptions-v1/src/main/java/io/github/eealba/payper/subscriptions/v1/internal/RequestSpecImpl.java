@@ -22,6 +22,7 @@ abstract class RequestSpecImpl<T extends RequestSpec<T,R1, R2>, R1, R2>
         switch (method) {
             case GET -> requestBuilder.GET();
             case DELETE -> requestBuilder.DELETE();
+            case POST -> requestBuilder.POST(PayperRequest.BodyPublishers.noBody());
         }
     }
 
@@ -39,7 +40,7 @@ abstract class RequestSpecImpl<T extends RequestSpec<T,R1, R2>, R1, R2>
 
     @Override
     public ResponseSpec<R1, R2> retrieve() {
-        return new SubscriptionsResponseSpecImpl<>(payper, requestBuilder.build(), getEntityClass(),
+        return new ResponseSpecImpl<>(payper, requestBuilder.build(), getEntityClass(),
                 getErrorEntityClass());
 
 

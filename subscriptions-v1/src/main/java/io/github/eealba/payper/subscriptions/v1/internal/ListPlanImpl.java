@@ -14,19 +14,19 @@ class ListPlanImpl extends RequestSpecImpl<BillingPlans.ListPlans, PlanCollectio
 
     @Override
     public BillingPlans.ListPlans withProductId(String productId) {
-        requestBuilder.query("productId", productId);
+        requestBuilder.query("product_id", productId);
         return this;
     }
 
     @Override
     public BillingPlans.ListPlans withPlanIds(String planIds) {
-        requestBuilder.query("planIds", planIds);
+        requestBuilder.query("plan_ids", planIds);
         return this;
     }
 
     @Override
     public BillingPlans.ListPlans withPageSize(int pageSize) {
-        requestBuilder.query("pageSize", String.valueOf(pageSize));
+        requestBuilder.query("page_size", String.valueOf(pageSize));
         return this;
     }
 
@@ -38,7 +38,7 @@ class ListPlanImpl extends RequestSpecImpl<BillingPlans.ListPlans, PlanCollectio
 
     @Override
     public BillingPlans.ListPlans withTotalRequired(boolean totalRequired) {
-        requestBuilder.query("totalRequired", String.valueOf(totalRequired));
+        requestBuilder.query("total_required", String.valueOf(totalRequired));
         return this;
     }
 

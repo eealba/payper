@@ -8,16 +8,16 @@ import io.github.eealba.payper.subscriptions.v1.api.ResponseSpec;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
-class SubscriptionsResponseSpecImpl<R1, R2> implements ResponseSpec<R1, R2> {
+class ResponseSpecImpl<R1, R2> implements ResponseSpec<R1, R2> {
     private final Payper payper;
     private final Class<R1> entityClass;
     private final Class<R2> errorEntityClass;
     private final PayperRequest request;
 
-    SubscriptionsResponseSpecImpl(Payper payper,
-                                         PayperRequest request,
-                                         Class<R1> entityClass,
-                                         Class<R2> errorEntityClass) {
+    ResponseSpecImpl(Payper payper,
+                     PayperRequest request,
+                     Class<R1> entityClass,
+                     Class<R2> errorEntityClass) {
         this.payper = payper;
         this.request = request;
         this.entityClass = entityClass;

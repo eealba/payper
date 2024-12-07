@@ -3,8 +3,14 @@ package io.github.eealba.payper.subscriptions.v1.api;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.eealba.payper.core.PayperAuthenticator;
 import io.github.eealba.payper.core.json.Json;
+import io.github.eealba.payper.subscriptions.v1.model.BillingCycle;
+import io.github.eealba.payper.subscriptions.v1.model.CurrencyCode;
+import io.github.eealba.payper.subscriptions.v1.model.Frequency;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
+import io.github.eealba.payper.subscriptions.v1.model.Plan;
 import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
+import io.github.eealba.payper.subscriptions.v1.model.UpdatePricingSchemesListRequest;
+import org.json.JSONException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,6 +21,8 @@ import java.io.IOException;
 import java.time.Instant;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.noContent;
 import static com.github.tomakehurst.wiremock.client.WireMock.notFound;
@@ -23,6 +31,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.patch;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.removeStub;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 import static io.github.eealba.payper.subscriptions.v1.api.Util.readResource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -74,9 +83,28 @@ class SubscriptionsBillingPlansTest {
         stubFor(get("/v1/billing/plans/1").willReturn(okJson(jsonResponse)));
 
         // Get plan
-        var plan2 = subscriptions.billingPlans().get().withId("1").retrieve().toEntity();
-        assertNotNull(plan2);
-        assertEquals("P-5ML4271244454362WXNWU5NQ", plan2.id());
+        var plan = subscriptions.billingPlans().get()
+                .withId("1")
+                .retrieve().toEntity();
+        assertNotNull(plan);
+        assertEquals("P-5ML4271244454362WXNWU5NQ", plan.id());
+        assertEquals("PROD-XXCD1234QWER65782", plan.productId());
+        assertEquals("Video Streaming Service Plan", plan.name());
+        assertEquals("Video Streaming Service basic plan", plan.description());
+        assertEquals(Plan.Status.ACTIVE, plan.status());
+        assertEquals(3, plan.billingCycles().size());
+        assertEquals(Frequency.IntervalUnit.MONTH, plan.billingCycles().get(0).frequency().intervalUnit());
+        assertEquals(1, plan.billingCycles().get(0).frequency().intervalCount());
+        assertEquals(BillingCycle.TenureType.TRIAL, plan.billingCycles().get(0).tenureType());
+
+
+        assertEquals("2020-05-27T12:13:51Z", plan.createTime().toString());
+        assertEquals("2020-05-27T12:13:51Z", plan.updateTime().toString());
+        assertEquals("10", plan.taxes().percentage().value());
+        assertEquals("10", plan.paymentPreferences().setupFee().value());
+        assertEquals(CurrencyCode.USD, plan.paymentPreferences().setupFee().currencyCode());
+
+        assertFalse(plan.taxes().inclusive());
     }
     @Test
     void test_nof_found_plan() throws IOException {
@@ -88,24 +116,55 @@ class SubscriptionsBillingPlansTest {
     }
 
     @Test
-    void test_create_plan() throws IOException {
+    void test_create_plan() throws IOException, JSONException {
         var jsonRequest = readResource(EXAMPLES + "plan_request_POST.json");
         var jsonResponse = readResource(EXAMPLES + "plan.json");
         var body = Json.newJson().fromJson(jsonRequest, PlanRequestPOST.class);
-        stubFor(post("/v1/billing/plans").willReturn(okJson(jsonResponse)));
+        stubFor(post("/v1/billing/plans")
+                .withRequestBody(equalToJson(jsonRequest))
+                .withHeader("Prefer", equalTo("return=representation"))
+                .withHeader("Paypal-Request-Id", equalTo("request-id"))
+                .willReturn(okJson(jsonResponse)));
 
-        var plan = subscriptions.billingPlans().create().withBody(body).retrieve().toFuture().join();
+        var plan = subscriptions.billingPlans().create()
+                .withPrefer("return=representation")
+                .withPaypalRequestId("request-id")
+                .withBody(body)
+                .retrieve().toFuture().join();
 
         assertNotNull(plan);
         assertEquals("P-5ML4271244454362WXNWU5NQ", plan.toEntity().id());
+        /*
+        // Verify the request body
+        verify(postRequestedFor(urlEqualTo("/v1/billing/plans")));
+
+        // Retrieve the actual request body
+        String actualRequestBody = getAllServeEvents().get(0).getRequest().getBodyAsString();
+
+        // Compare the expected and actual JSON
+        JSONAssert.assertEquals(jsonRequest, actualRequestBody, JSONCompareMode.STRICT);
+
+         */
     }
 
     @Test
     void test_list_plan() throws IOException {
         var jsonResponse = readResource(EXAMPLES + "planCollection.json");
-        stubFor(get("/v1/billing/plans").willReturn(okJson(jsonResponse)));
+        stubFor(get(urlPathEqualTo("/v1/billing/plans"))
+                .withQueryParam("plan_ids", equalTo("1"))
+                .withQueryParam("page_size", equalTo("10"))
+                .withQueryParam("page", equalTo("1"))
+                .withQueryParam("product_id", equalTo("1"))
+                .withQueryParam("total_required", equalTo("true"))
+                .willReturn(okJson(jsonResponse)));
 
-        var planCollection = subscriptions.billingPlans().list().retrieve().toEntity();
+        var planCollection = subscriptions.billingPlans().list()
+                .withPlanIds("1")
+                .withPageSize(10)
+                .withPage(1)
+                .withProductId("1")
+                .withTotalRequired(true)
+                .retrieve().toEntity();
 
         assertNotNull(planCollection);
         assertEquals(1, planCollection.plans().size());
@@ -135,6 +194,35 @@ class SubscriptionsBillingPlansTest {
         assertEquals("Request is not well-formed, syntactically incorrect, or violates schema.",
                 response.toErrorEntity().message());
 
+    }
+    @Test
+    void activate_plan(){
+        stubFor(post("/v1/billing/plans/1/activate").willReturn(noContent()));
+
+        var response = subscriptions.billingPlans().activate().withId("1").retrieve().toFuture().join();
+
+        assertEquals(204, response.statusCode());
+    }
+    @Test
+    void deactivate_plan(){
+        stubFor(post("/v1/billing/plans/1/deactivate").willReturn(noContent()));
+
+        var response = subscriptions.billingPlans().deactivate().withId("1").retrieve().toFuture().join();
+
+        assertEquals(204, response.statusCode());
+    }
+    @Test
+    void update_pricing_schemes() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "update_pricing_schemes_list_request.json");
+        var body = Json.newJson().fromJson(jsonRequest, UpdatePricingSchemesListRequest.class);
+        stubFor(post("/v1/billing/plans/18/update-pricing-schemes")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(noContent()));
+
+        var response = subscriptions.billingPlans().updatePricingSchemes().withId("18")
+                .withBody(body).retrieve().toFuture().join();
+
+        assertEquals(204, response.statusCode());
     }
 
 }

@@ -40,19 +40,18 @@ public interface BillingPlans {
     }
 
     interface GetPlan extends RequestSpec.GetByIdRequestSpec<GetPlan, Plan, ErrorDefault> {
-        GetPlan withFields(String fields);
     }
 
     interface UpdatePlan extends RequestSpec.PatchRequestSpec<UpdatePlan, PatchRequest, Void, ErrorDefault> {
         UpdatePlan withId(String id);
     }
 
-    interface ActivatePlan extends RequestSpec.PostRequestSpec<ActivatePlan, Void, Void, ErrorDefault> {
-        ActivatePlan withId(String id);
+    interface ActivatePlan extends RequestSpec.PostByIdNoBodyRequestSpec<ActivatePlan, Void, ErrorDefault> {
+
     }
 
-    interface DeactivatePlan extends RequestSpec.PostRequestSpec<DeactivatePlan, Void, Void, ErrorDefault> {
-        DeactivatePlan withId(String id);
+    interface DeactivatePlan extends RequestSpec.PostByIdNoBodyRequestSpec<DeactivatePlan, Void, ErrorDefault> {
+
     }
 
     interface UpdatePricingSchemes extends RequestSpec.PostRequestSpec<UpdatePricingSchemes, UpdatePricingSchemesListRequest,
