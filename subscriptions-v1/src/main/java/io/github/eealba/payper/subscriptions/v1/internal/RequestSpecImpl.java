@@ -1,6 +1,5 @@
 package io.github.eealba.payper.subscriptions.v1.internal;
 
-
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
 import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
@@ -39,8 +38,6 @@ abstract class RequestSpecImpl<T extends Subscriptions.RequestSpec<T,R1, R2>, R1
 
     @Override
     public Subscriptions.ResponseSpec<R1, R2> retrieve() {
-        // TODO: Implement this method
-        //requestBuilder.uri(getUri());
         return new SubscriptionsResponseSpecImpl<>(payper, requestBuilder.build(), getEntityClass(),
                 getErrorEntityClass());
 

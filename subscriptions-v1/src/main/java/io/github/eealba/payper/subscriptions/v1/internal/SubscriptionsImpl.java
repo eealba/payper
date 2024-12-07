@@ -24,7 +24,7 @@ public class SubscriptionsImpl implements Subscriptions {
 
         @Override
         public ListPlans list() {
-            return null;
+            return new ListPlanImpl(payper);
         }
 
         @Override

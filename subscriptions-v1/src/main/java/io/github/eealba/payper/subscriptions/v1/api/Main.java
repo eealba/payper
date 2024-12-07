@@ -31,10 +31,9 @@ public class Main {
                 .list()
                 .withProductId("product_id")
                 .withPlanIds("plan_id")
-                .withStatuses("status")
                 .retrieve()
                 .toEntity();
-        System.out.println(plans.size());
+        System.out.println(plans.totalItems());
 
         // Get plan
         var plan2 = subscriptions

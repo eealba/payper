@@ -5,10 +5,10 @@ import io.github.eealba.payper.core.web.Method;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
 import io.github.eealba.payper.subscriptions.v1.model.Plan;
+import io.github.eealba.payper.subscriptions.v1.model.PlanCollection;
 import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
 import io.github.eealba.payper.subscriptions.v1.model.UpdatePricingSchemesListRequest;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
@@ -43,7 +43,7 @@ public interface Subscriptions {
 
     }
 
-    interface ListPlans extends RequestSpec<ListPlans, List<Plan>, ErrorDefault> {
+    interface ListPlans extends RequestSpec<ListPlans, PlanCollection, ErrorDefault> {
         ListPlans withProductId(String productId);
 
         ListPlans withPlanIds(String planIds);
@@ -53,9 +53,6 @@ public interface Subscriptions {
         ListPlans withPage(int page);
 
         ListPlans withTotalRequired(boolean totalRequired);
-
-        //TODO create enum STATUSES
-        ListPlans withStatuses(String status);
     }
 
     interface GetPlan extends GetByIdRequestSpec<GetPlan, Plan, ErrorDefault> {

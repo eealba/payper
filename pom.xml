@@ -106,6 +106,7 @@
         <module>core</module>
         <module>subscriptions-v1</module>
         <module>api-builder</module>
+        <module>e2e-examples</module>
     </modules>
     <build>
         <pluginManagement>

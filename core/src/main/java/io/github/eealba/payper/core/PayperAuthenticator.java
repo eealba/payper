@@ -89,7 +89,9 @@ public interface PayperAuthenticator {
 
         private static Supplier<char[]> systemSupplier(String key) {
             return () -> Optional.ofNullable(System.getProperty(key))
-                    .or(() -> Optional.ofNullable(System.getenv(key))).orElseThrow().toCharArray();
+                    .or(() -> Optional.ofNullable(System.getenv(key)))
+                    .orElseThrow(() -> new PayperException("Not found environment variable or System property: " + key))
+                    .toCharArray();
         }
 
         private static Supplier<String> baseUrlSupplier() {
