@@ -1,4 +1,4 @@
-package subscriptions;
+package io.github.eealba.payper.e2e.examples.subscriptions;
 
 import io.github.eealba.payper.core.PayperAuthenticator;
 import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
@@ -7,7 +7,7 @@ import io.github.eealba.payper.subscriptions.v1.model.BillingCycle;
 import java.util.List;
 import java.util.Scanner;
 
-class Main {
+public class Main {
 
     public static void main(String[] args) {
         setPaypalProperties();
