@@ -12,7 +12,7 @@ abstract class RequestSpecImpl<T extends Subscriptions.RequestSpec<T,R1, R2>, R1
     private final Class<R2> clazz2;
 
 
-    public RequestSpecImpl(Payper payper, String path, Class<R1> clazz1, Class<R2> clazz2) {
+    RequestSpecImpl(Payper payper, String path, Class<R1> clazz1, Class<R2> clazz2) {
         this.payper = payper;
         this.clazz1 = clazz1;
         this.clazz2 = clazz2;

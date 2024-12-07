@@ -4,10 +4,10 @@ import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
 
-public class SubscriptionsImpl implements Subscriptions {
+class SubscriptionsImpl implements Subscriptions {
     private final Payper payper;
 
-    public SubscriptionsImpl(PayperConfig config) {
+    SubscriptionsImpl(PayperConfig config) {
         this.payper = Payper.newPayper(config);
     }
 

@@ -5,9 +5,9 @@ import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
 import io.github.eealba.payper.subscriptions.v1.model.PlanCollection;
 
-public class ListPlanImpl extends RequestSpecImpl<Subscriptions.ListPlans, PlanCollection, ErrorDefault>
+class ListPlanImpl extends RequestSpecImpl<Subscriptions.ListPlans, PlanCollection, ErrorDefault>
         implements Subscriptions.ListPlans {
-    public ListPlanImpl(Payper payper) {
+    ListPlanImpl(Payper payper) {
         super(payper,"/v1/billing/plans",  PlanCollection.class, ErrorDefault.class);
     }
 

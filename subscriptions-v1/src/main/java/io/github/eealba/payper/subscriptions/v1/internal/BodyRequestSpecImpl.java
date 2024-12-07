@@ -10,7 +10,7 @@ abstract class BodyRequestSpecImpl<T extends Subscriptions.BodyRequestSpec<T, T2
         implements Subscriptions.BodyRequestSpec<T, T2, R1, R2> {
 
 
-    public BodyRequestSpecImpl(Payper payper, String path, Class<R1> clazz1, Class<R2> clazz2) {
+    BodyRequestSpecImpl(Payper payper, String path, Class<R1> clazz1, Class<R2> clazz2) {
         super(payper, path, clazz1, clazz2);
     }
 
