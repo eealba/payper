@@ -26,86 +26,10 @@
             <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
-    <scm>
-        <url>https://github.com/eealba/payper</url>
-        <connection>scm:git:git@github.com:eealba/payper.git</connection>
-        <developerConnection>scm:git:git@github.com:eealba/payper.git</developerConnection>
-    </scm>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>17</maven.compiler.release>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.swagger.parser.v3</groupId>
-                <artifactId>swagger-parser</artifactId>
-                <version>2.0.26</version>
-            </dependency>
-            <dependency>
-                <groupId>io.github.eealba</groupId>
-                <artifactId>jasoner</artifactId>
-                <version>0.3.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.11.0</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>5.14.2</version>
-                <scope>test</scope>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/org.skyscreamer/jsonassert -->
-            <dependency>
-                <groupId>org.skyscreamer</groupId>
-                <artifactId>jsonassert</artifactId>
-                <version>1.5.3</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.tngtech.archunit</groupId>
-                <artifactId>archunit-junit5</artifactId>
-                <version>1.3.0</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.32</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.wiremock</groupId>
-                <artifactId>wiremock</artifactId>
-                <version>3.9.2</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.github.eealba.payper</groupId>
-                <artifactId>payper-core</artifactId>
-                <scope>compile</scope>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.github.eealba.payper</groupId>
-                <artifactId>payper-subscriptions-v1</artifactId>
-                <scope>compile</scope>
-                <version>${project.version}</version>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
 
     <modules>
         <module>core</module>
         <module>subscriptions-v1</module>
-        <module>api-builder</module>
         <module>e2e-examples</module>
     </modules>
     <build>
