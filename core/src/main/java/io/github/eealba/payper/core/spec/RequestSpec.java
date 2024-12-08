@@ -1,4 +1,4 @@
-package io.github.eealba.payper.subscriptions.v1.api;
+package io.github.eealba.payper.core.spec;
 
 import io.github.eealba.payper.core.web.Method;
 
@@ -13,26 +13,19 @@ public interface RequestSpec<T, R1, R2> {
         return Method.GET;
     }
 
-
     Class<R1> getEntityClass();
 
     Class<R2> getErrorEntityClass();
 
+    interface GetByIdRequestSpec<T, T2, T3> extends RequestSpec<T, T2, T3> {
+        T withId(String id);
+    }
 
     interface BodyRequestSpec<T extends BodyRequestSpec<T, T2, T3, T4>, T2, T3, T4> extends RequestSpec<T, T3, T4> {
         T withBody(T2 body);
 
     }
 
-    interface PostRequestSpec<T extends PostRequestSpec<T, T2, T3, T4>, T2, T3, T4> extends BodyRequestSpec<T, T2, T3, T4> {
-        default Method getMethod() {
-            return Method.POST;
-        }
-    }
-
-    interface GetByIdRequestSpec<T, T2, T3> extends RequestSpec<T, T2, T3> {
-        T withId(String id);
-    }
     interface PostByIdNoBodyRequestSpec<T, T2, T3> extends RequestSpec<T, T2, T3> {
         T withId(String id);
 
@@ -42,7 +35,16 @@ public interface RequestSpec<T, R1, R2> {
         }
     }
 
-    interface PatchRequestSpec<T extends PatchRequestSpec<T, T2, T3, T4>, T2, T3, T4> extends BodyRequestSpec<T, T2, T3, T4> {
+    interface PostRequestSpec<T extends PostRequestSpec<T, T2, T3, T4>, T2, T3, T4>
+            extends BodyRequestSpec<T, T2, T3, T4> {
+        default Method getMethod() {
+            return Method.POST;
+        }
+    }
+
+
+    interface PatchRequestSpec<T extends PatchRequestSpec<T, T2, T3, T4>, T2, T3, T4>
+            extends BodyRequestSpec<T, T2, T3, T4> {
         default Method getMethod() {
             return Method.PATCH;
         }

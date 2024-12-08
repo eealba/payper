@@ -42,7 +42,7 @@ class PayperGetTest {
                  }
                 """.replace("{now}", Instant.now().toString());
         stubFor(post("/v1/oauth2/token").willReturn(okJson(token)));
-        return Payper.newPayper();
+        return Payper.create();
     }
 
     @AfterEach

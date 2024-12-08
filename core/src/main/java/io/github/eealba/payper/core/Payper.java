@@ -41,15 +41,15 @@ package io.github.eealba.payper.core;
  * @see PayperException
  * @author Edgar Alba
  */
-public interface Payper {
+public abstract class Payper {
 
     /**
      * Creates a new Payper instance with the default configuration.
      *
      * @return the Payper instance
      */
-    static Payper newPayper() {
-        return newPayper(PayperConfig.builder().build());
+    public static Payper create() {
+        return create(PayperConfig.builder().build());
     }
 
     /**
@@ -58,7 +58,7 @@ public interface Payper {
      * @param config the Payper configuration
      * @return the Payper instance
      */
-    static Payper newPayper(PayperConfig config) {
+    public static Payper create(PayperConfig config) {
         return PayperProvider.provider().createPayper(config);
     }
 
@@ -72,7 +72,7 @@ public interface Payper {
      * @param bodyHandler2 the body handler for the error entity
      * @return the response specification
      */
-    <R1, R2> PayperResponse.PayperResponseSpec<R1, R2> send(PayperRequest request,
+    public abstract <R1, R2> PayperResponse.PayperResponseSpec<R1, R2> send(PayperRequest request,
                                      PayperResponse.BodyHandler<R1> bodyHandler,
                                      PayperResponse.BodyHandler<R2> bodyHandler2);
 }

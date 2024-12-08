@@ -3,7 +3,7 @@ package io.github.eealba.payper.subscriptions.v1.internal;
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
 import io.github.eealba.payper.core.PayperResponse;
-import io.github.eealba.payper.subscriptions.v1.api.ResponseSpec;
+import io.github.eealba.payper.core.spec.ResponseSpec;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;

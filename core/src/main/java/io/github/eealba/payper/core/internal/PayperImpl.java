@@ -15,7 +15,7 @@ import java.nio.charset.Charset;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
-class PayperImpl implements Payper {
+class PayperImpl extends Payper {
     private final WebClient webClient;
     private final PayperConfig config;
     private volatile TokenImpl token;

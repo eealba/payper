@@ -10,7 +10,7 @@ class SubscriptionsImpl extends Subscriptions {
     private final BillingPlans billingPlans;
 
     SubscriptionsImpl(PayperConfig config) {
-        this.payper = Payper.newPayper(config);
+        this.payper = Payper.create(config);
         this.billingPlans = new BillingPlansImpl();
     }
 
