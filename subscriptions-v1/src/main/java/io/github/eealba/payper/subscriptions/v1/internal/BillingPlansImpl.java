@@ -22,7 +22,14 @@ import io.github.eealba.payper.subscriptions.v1.model.Plan;
 import io.github.eealba.payper.subscriptions.v1.model.PlanCollection;
 import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
 import io.github.eealba.payper.subscriptions.v1.model.UpdatePricingSchemesListRequest;
-
+/**
+ * Implementation of the BillingPlans API
+ * @see BillingPlans
+ *
+ * @since 1.0.0
+ * @version 1.0.0
+ * @author Edgar Alba
+ */
 class BillingPlansImpl implements BillingPlans {
 
     private final Payper payper;

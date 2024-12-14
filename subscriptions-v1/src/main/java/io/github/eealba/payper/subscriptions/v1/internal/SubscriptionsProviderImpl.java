@@ -16,7 +16,14 @@ package io.github.eealba.payper.subscriptions.v1.internal;
 import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
 import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsProvider;
-
+/**
+ * Implementation of the SubscriptionsProvider API
+ * @see SubscriptionsProvider
+ *
+ * @since 1.0.0
+ * @version 1.0.0
+ * @author Edgar Alba
+ */
 public class SubscriptionsProviderImpl extends  SubscriptionsProvider {
     @Override
     public Subscriptions createSubscriptions(PayperConfig config) {

@@ -20,7 +20,16 @@ import io.github.eealba.payper.subscriptions.v1.spec.ResponseSpec;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-
+/**
+ * Implementation of the ResponseSpec interface.
+ * This class represents a response specification with various configurations.
+ *
+ * @param <R1> the type of the response entity
+ * @param <R2> the type of the error entity
+ * @since 1.0
+ * @version 1.0
+ * author Edgar Alba
+ */
 class ResponseSpecImpl<R1, R2> implements ResponseSpec<R1, R2> {
     private final Payper payper;
     private final Class<R1> entityClass;

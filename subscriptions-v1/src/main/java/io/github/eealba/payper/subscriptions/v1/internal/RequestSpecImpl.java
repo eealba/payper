@@ -18,7 +18,17 @@ import io.github.eealba.payper.core.PayperRequest;
 import io.github.eealba.payper.subscriptions.v1.spec.RequestSpec;
 import io.github.eealba.payper.subscriptions.v1.spec.ResponseSpec;
 
-
+/**
+ * Abstract class representing a request specification.
+ *
+ * @param <T> the type of the request specification
+ * @param <T2> the type of the request body
+ * @param <R1> the type of the response entity
+ * @param <R2> the type of the error entity
+ * @since 1.0
+ * @version 1.0
+ * author Edgar Alba
+ */
 abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1, R2>, RequestSpec.PreferSpec<T>,
         RequestSpec.PaypalRequestIdSpec<T>, RequestSpec.BodySpec<T, T2>, RequestSpec.IdSpec<T>{
     private final PayperRequest.Builder requestBuilder = PayperRequest.newBuilder();

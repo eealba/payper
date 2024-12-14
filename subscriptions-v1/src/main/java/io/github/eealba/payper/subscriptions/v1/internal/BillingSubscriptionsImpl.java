@@ -27,7 +27,14 @@ import io.github.eealba.payper.subscriptions.v1.model.Transaction;
 import io.github.eealba.payper.subscriptions.v1.model.TransactionsList;
 
 import java.time.Instant;
-
+/**
+ * Implementation of the BillingSubscriptions API
+ * @see BillingSubscriptions
+ *
+ * @since 1.0.0
+ * @version 1.0.0
+ * @author Edgar Alba
+ */
 class BillingSubscriptionsImpl implements BillingSubscriptions {
 
 

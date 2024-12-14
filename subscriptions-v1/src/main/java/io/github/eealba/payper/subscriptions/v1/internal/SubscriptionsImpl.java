@@ -18,7 +18,14 @@ import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.subscriptions.v1.api.BillingPlans;
 import io.github.eealba.payper.subscriptions.v1.api.BillingSubscriptions;
 import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
-
+/**
+ * Implementation of the Subscriptions API
+ * @see Subscriptions
+ *
+ * @since 1.0.0
+ * @version 1.0.0
+ * @author Edgar Alba
+ */
 class SubscriptionsImpl extends Subscriptions {
     private final BillingPlans billingPlans;
     private final BillingSubscriptions billingSubscriptions;
