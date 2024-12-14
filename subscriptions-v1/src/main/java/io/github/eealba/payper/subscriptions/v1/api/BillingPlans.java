@@ -24,11 +24,14 @@ public interface BillingPlans {
     UpdatePricingSchemes updatePricingSchemes();
 
 
-    interface CreatePlan extends RequestSpec.PostRequestSpec<CreatePlan, PlanRequestPOST, Plan, ErrorDefault> {
+    interface CreatePlan extends RequestSpec<Plan, ErrorDefault>,
+            RequestSpec.BodySpec<CreatePlan,PlanRequestPOST>,
+             RequestSpec.PreferSpec<CreatePlan>,
+            RequestSpec.PaypalRequestIdSpec<CreatePlan> {
 
     }
 
-    interface ListPlans extends RequestSpec<ListPlans, PlanCollection, ErrorDefault> {
+    interface ListPlans extends RequestSpec<PlanCollection, ErrorDefault>, RequestSpec.PreferSpec<ListPlans> {
         ListPlans withProductId(String productId);
 
         ListPlans withPlanIds(String planIds);
@@ -40,23 +43,22 @@ public interface BillingPlans {
         ListPlans withTotalRequired(boolean totalRequired);
     }
 
-    interface GetPlan extends RequestSpec.GetByIdRequestSpec<GetPlan, Plan, ErrorDefault> {
+    interface GetPlan extends RequestSpec<Plan, ErrorDefault>, RequestSpec.IdSpec<GetPlan> {
+        GetPlan withFields(String fields);
     }
 
-    interface UpdatePlan extends RequestSpec.PatchRequestSpec<UpdatePlan, PatchRequest, Void, ErrorDefault> {
-        UpdatePlan withId(String id);
+    interface UpdatePlan extends RequestSpec<Void, ErrorDefault>, RequestSpec.BodySpec<UpdatePlan, PatchRequest>,
+            RequestSpec.IdSpec<UpdatePlan> {
     }
 
-    interface ActivatePlan extends RequestSpec.PostByIdNoBodyRequestSpec<ActivatePlan, Void, ErrorDefault> {
-
+    interface ActivatePlan extends RequestSpec<Void, ErrorDefault>, RequestSpec.IdSpec<ActivatePlan> {
     }
 
-    interface DeactivatePlan extends RequestSpec.PostByIdNoBodyRequestSpec<DeactivatePlan, Void, ErrorDefault> {
-
+    interface DeactivatePlan extends RequestSpec<Void, ErrorDefault>, RequestSpec.IdSpec<DeactivatePlan> {
     }
 
-    interface UpdatePricingSchemes extends RequestSpec.PostRequestSpec<UpdatePricingSchemes, UpdatePricingSchemesListRequest,
-            Void, ErrorDefault> {
-        UpdatePricingSchemes withId(String id);
+    interface UpdatePricingSchemes  extends RequestSpec<Void, ErrorDefault>,
+            RequestSpec.BodySpec<UpdatePricingSchemes, UpdatePricingSchemesListRequest>,
+            RequestSpec.IdSpec<UpdatePricingSchemes> {
     }
 }

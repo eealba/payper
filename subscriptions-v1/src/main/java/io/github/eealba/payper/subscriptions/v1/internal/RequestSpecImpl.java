@@ -5,9 +5,10 @@ import io.github.eealba.payper.core.PayperRequest;
 import io.github.eealba.payper.core.spec.RequestSpec;
 import io.github.eealba.payper.core.spec.ResponseSpec;
 
-abstract class RequestSpecImpl<T extends RequestSpec<T,R1, R2>, R1, R2>
-        implements RequestSpec<T, R1, R2> {
-    final PayperRequest.Builder requestBuilder = PayperRequest.newBuilder();
+
+abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1, R2>, RequestSpec.PreferSpec<T>,
+        RequestSpec.PaypalRequestIdSpec<T>, RequestSpec.BodySpec<T, T2>, RequestSpec.IdSpec<T>{
+    private final PayperRequest.Builder requestBuilder = PayperRequest.newBuilder();
     private final Payper payper;
     private final Class<R1> clazz1;
     private final Class<R2> clazz2;
@@ -25,6 +26,7 @@ abstract class RequestSpecImpl<T extends RequestSpec<T,R1, R2>, R1, R2>
             case POST -> requestBuilder.POST(PayperRequest.BodyPublishers.noBody());
         }
     }
+    abstract PayperRequest.Method getMethod();
 
     @Override
     public T withPrefer(String prefer) {
@@ -40,24 +42,35 @@ abstract class RequestSpecImpl<T extends RequestSpec<T,R1, R2>, R1, R2>
 
     @Override
     public ResponseSpec<R1, R2> retrieve() {
-        return new ResponseSpecImpl<>(payper, requestBuilder.build(), getEntityClass(),
-                getErrorEntityClass());
+        return new ResponseSpecImpl<>(payper, requestBuilder.build(), clazz1, clazz2);
 
 
     }
+
+
+    @Override
+    public T withBody(T2 body) {
+        var method = getMethod();
+        switch (method) {
+            case POST -> requestBuilder.POST(PayperRequest.BodyPublishers.of(body));
+            case PUT -> requestBuilder.PUT(PayperRequest.BodyPublishers.of(body));
+            case PATCH -> requestBuilder.PATCH(PayperRequest.BodyPublishers.of(body));
+        }
+        return self();
+    }
+
+    @Override
+    public T withId(String id) {
+        requestBuilder.pathParameter("id", id);
+        return self();
+    }
+
     @SuppressWarnings("unchecked")
     T self() {
         return (T) this;
     }
 
-
-    @Override
-    public Class<R1> getEntityClass() {
-        return clazz1;
-    }
-
-    @Override
-    public Class<R2> getErrorEntityClass() {
-        return clazz2;
+    void query(String fields, String fields1) {
+        requestBuilder.query(fields, fields1);
     }
 }

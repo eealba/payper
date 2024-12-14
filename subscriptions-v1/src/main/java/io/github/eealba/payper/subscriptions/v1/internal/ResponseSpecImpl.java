@@ -37,11 +37,11 @@ class ResponseSpecImpl<R1, R2> implements ResponseSpec<R1, R2> {
                 .thenApply(SubscriptionsResponseImpl::new);
     }
 
-    class SubscriptionsResponseImpl implements Response<R1, R2> {
+    private class SubscriptionsResponseImpl implements Response<R1, R2> {
         PayperResponse<R1, R2> payperResponse;
-        SubscriptionsResponseImpl() {
+        private SubscriptionsResponseImpl() {
         }
-        SubscriptionsResponseImpl(PayperResponse<R1, R2> payperResponse) {
+        private SubscriptionsResponseImpl(PayperResponse<R1, R2> payperResponse) {
             this.payperResponse = payperResponse;
         }
         private void call(){
