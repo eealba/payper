@@ -15,7 +15,7 @@ class JsonTest {
     void toJson() {
         Person person = new Person("Luis", 25, true, List.of("coding", "reading"),
                 Map.of("twitter", "luis"));
-        String json = Json.newJson().toJson(person);
+        String json = Json.create().toJson(person);
         System.out.println(json);
 
     }
@@ -33,7 +33,7 @@ class JsonTest {
                     }
                 }
                 """;
-        Person person = Json.newJson().fromJson(json, Person.class);
+        Person person = Json.create().fromJson(json, Person.class);
         assertNotNull(person);
         assertEquals("Luis", person.getName());
         assertEquals(25, person.getAge());

@@ -1,3 +1,16 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.github.eealba.payper.core.internal;
 
 import io.github.eealba.payper.core.PayperToken;
@@ -6,6 +19,13 @@ import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 
+/**
+ * Implementation of the PayperToken interface.
+ * This class represents a token with various attributes.
+ *
+ * @author Edgar Alba
+ * @since 1.0
+ */
 public class TokenImpl implements PayperToken {
     final Instant created;
     final String scope;
@@ -60,8 +80,9 @@ public class TokenImpl implements PayperToken {
         return nonce;
     }
 
-
-    // generate Builder pattern
+    /**
+     * Builder class for creating TokenImpl instances.
+     */
     public static class Builder {
         private String accessToken;
         private String tokenType;
@@ -69,7 +90,6 @@ public class TokenImpl implements PayperToken {
         private String appId;
         private String nonce;
         private int expiresIn;
-
 
         public Builder accessToken(String accessToken) {
             this.accessToken = accessToken;
@@ -105,16 +125,17 @@ public class TokenImpl implements PayperToken {
             return new TokenImpl(this);
         }
     }
+
+    /**
+     * Parses the nonce to extract the creation time.
+     *
+     * @param nonce the nonce
+     * @return the creation time as an Instant
+     */
     public static Instant parseNonce(String nonce) {
-        // Extract the date-time part from the nonce
         String dateTimePart = nonce.substring(0, nonce.indexOf('Z') + 1);
-
-        // Define the formatter for the date-time part
         DateTimeFormatter formatter = DateTimeFormatter.ISO_INSTANT;
-
-        // Parse the date-time part to an Instant
         TemporalAccessor temporalAccessor = formatter.parse(dateTimePart);
         return Instant.from(temporalAccessor);
     }
-
 }

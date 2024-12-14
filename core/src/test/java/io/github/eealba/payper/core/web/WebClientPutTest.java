@@ -26,7 +26,7 @@ class WebClientPutTest {
 
     @BeforeAll
     static void setup() {
-        client = WebClient.newWebClient();
+        client = WebClient.create();
     }
 
 

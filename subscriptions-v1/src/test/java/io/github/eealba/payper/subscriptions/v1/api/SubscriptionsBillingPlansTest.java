@@ -119,7 +119,7 @@ class SubscriptionsBillingPlansTest {
     void test_create_plan() throws IOException, JSONException {
         var jsonRequest = readResource(EXAMPLES + "plan_request_POST.json");
         var jsonResponse = readResource(EXAMPLES + "plan.json");
-        var body = Json.newJson().fromJson(jsonRequest, PlanRequestPOST.class);
+        var body = Json.create().fromJson(jsonRequest, PlanRequestPOST.class);
         stubFor(post("/v1/billing/plans")
                 .withRequestBody(equalToJson(jsonRequest))
                 .withHeader("Prefer", equalTo("return=representation"))
@@ -172,7 +172,7 @@ class SubscriptionsBillingPlansTest {
     @Test
     void update_plan_204() throws IOException {
         var jsonRequest = readResource(EXAMPLES + "patch_request.json");
-        var request = Json.newJson().fromJson(jsonRequest, PatchRequest.class);
+        var request = Json.create().fromJson(jsonRequest, PatchRequest.class);
         stubFor(patch("/v1/billing/plans/1").willReturn(noContent()));
 
         var response = subscriptions.billingPlans().update().withId("1").withBody(request).retrieve().toFuture().join();
@@ -184,7 +184,7 @@ class SubscriptionsBillingPlansTest {
     void update_plan_400() throws IOException {
         var jsonResponse = readResource(EXAMPLES + "bad_request.json");
         var jsonRequest = readResource(EXAMPLES + "patch_request.json");
-        var request = Json.newJson().fromJson(jsonRequest, PatchRequest.class);
+        var request = Json.create().fromJson(jsonRequest, PatchRequest.class);
         stubFor(patch("/v1/billing/plans/4").willReturn(aResponse().withStatus(400).withBody(jsonResponse)));
 
         var response = subscriptions.billingPlans().update().withId("4").withBody(request).retrieve().toFuture().join();
@@ -214,7 +214,7 @@ class SubscriptionsBillingPlansTest {
     @Test
     void update_pricing_schemes() throws IOException {
         var jsonRequest = readResource(EXAMPLES + "update_pricing_schemes_list_request.json");
-        var body = Json.newJson().fromJson(jsonRequest, UpdatePricingSchemesListRequest.class);
+        var body = Json.create().fromJson(jsonRequest, UpdatePricingSchemesListRequest.class);
         stubFor(post("/v1/billing/plans/18/update-pricing-schemes")
                 .withRequestBody(equalToJson(jsonRequest))
                 .willReturn(noContent()));

@@ -14,6 +14,8 @@
 package io.github.eealba.payper.core.json.internal;
 
 import io.github.eealba.jasoner.JasonerBuilder;
+import io.github.eealba.jasoner.JasonerConfig;
+import io.github.eealba.jasoner.NamingStrategy;
 import io.github.eealba.payper.core.json.Json;
 import io.github.eealba.payper.core.json.JsonProvider;
 
@@ -35,7 +37,10 @@ import io.github.eealba.payper.core.json.JsonProvider;
  * @author Edgar Alba
  */
 public class JsonProviderImpl extends JsonProvider {
-    private static final Json json = new JsonImpl(JasonerBuilder.create());
+    private static final Json json = new JsonImpl(JasonerBuilder.create(JasonerConfig
+            .builder()
+            .namingStrategy(NamingStrategy.SNAKE_CASE)
+            .build()));
 
     /**
      * Instantiates a new JsonProviderImpl.

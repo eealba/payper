@@ -14,13 +14,19 @@
 package io.github.eealba.payper.core.json;
 
 /**
- * The interface Json.
- * This interface provides methods to convert objects to JSON and vice versa.
+ * The abstract Json.
+ * This abstract class provides methods to convert objects to JSON and vice versa.
  *
  * <p>Example usage:</p>
  * <pre>{@code
- * Json json = Json.newJson();
- * String jsonString = json.toJson(new MyObject());
+ * // Create a new Json instance
+ * Json json = Json.create();
+ *
+ * // Convert an object to JSON
+ * MyObject myObject = new MyObject();
+ * String jsonString = json.toJson(myObject);
+ *
+ * // Convert a JSON string to an object
  * MyObject obj = json.fromJson(jsonString, MyObject.class);
  * }</pre>
  *
@@ -28,14 +34,14 @@ package io.github.eealba.payper.core.json;
  * @version 1.0
  * @author Edgar Alba
  */
-public interface Json {
+public abstract class Json {
 
     /**
      * Creates a new Json instance using the default JsonProvider.
      *
      * @return a new Json instance
      */
-    static Json newJson() {
+    public static Json create() {
         return JsonProvider.provider().createJson();
     }
 
@@ -45,7 +51,7 @@ public interface Json {
      * @param object the object to be converted to JSON
      * @return the JSON representation of the object
      */
-    String toJson(Object object);
+    public abstract String toJson(Object object);
 
     /**
      * Converts a JSON string to an object of the specified class.
@@ -55,5 +61,5 @@ public interface Json {
      * @param clazz the class of the object
      * @return the object represented by the JSON string
      */
-    <T> T fromJson(String json, Class<T> clazz);
+    public abstract <T> T fromJson(String json, Class<T> clazz);
 }

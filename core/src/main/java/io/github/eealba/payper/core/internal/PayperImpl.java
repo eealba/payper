@@ -1,3 +1,16 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.github.eealba.payper.core.internal;
 
 import io.github.eealba.payper.core.Payper;
@@ -15,18 +28,23 @@ import java.nio.charset.Charset;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Implementation of the Payper class.
+ * This class handles sending requests and processing responses.
+ *
+ * @author Edgar Alba
+ * @since 1.0
+ */
 class PayperImpl extends Payper {
     private final WebClient webClient;
     private final PayperConfig config;
     private volatile TokenImpl token;
-    private final Json json = Json.newJson();
+    private final Json json = Json.create();
 
     PayperImpl(PayperConfig config) {
-        this.webClient = WebClient.newWebClient(Mapper.mapWebClientConfig(config));
+        this.webClient = WebClient.create(Mapper.mapWebClientConfig(config));
         this.config = config;
-
     }
-
 
     @Override
     public <R1, R2> PayperResponse.PayperResponseSpec<R1, R2> send(PayperRequest request,
@@ -35,6 +53,12 @@ class PayperImpl extends Payper {
         return new PayerResponseSpecImpl<>(request, bodyHandler, bodyHandler2);
     }
 
+    /**
+     * Implementation of the PayperResponseSpec interface.
+     *
+     * @param <R1> the type of the entity in the response
+     * @param <R2> the type of the error entity in the response
+     */
     class PayerResponseSpecImpl<R1, R2> implements PayperResponse.PayperResponseSpec<R1, R2> {
         private final PayperRequest request;
         private final PayperResponse.BodyHandler<R1> bodyHandler;
@@ -46,7 +70,6 @@ class PayperImpl extends Payper {
             this.request = request;
             this.bodyHandler = bodyHandler;
             this.bodyHandler2 = bodyHandler2;
-
         }
 
         @Override
@@ -62,7 +85,9 @@ class PayperImpl extends Payper {
                                     res.charset())));
         }
 
-
+        /**
+         * Implementation of the PayperResponse interface.
+         */
         class PayperResponseImpl implements PayperResponse<R1, R2> {
             private Charset charset;
             private byte[] data;
@@ -107,6 +132,7 @@ class PayperImpl extends Payper {
                 }
                 return bodyHandler.apply().apply(charset, data);
             }
+
             @Override
             public Optional<R1> toOptionalEntity() {
                 call(false);
@@ -124,6 +150,8 @@ class PayperImpl extends Payper {
                 }
                 return bodyHandler2.apply().apply(charset, data);
             }
+
+            @Override
             public Optional<R2> toOptionalErrorEntity() {
                 call(false);
                 if (statusCode < 400) {
@@ -137,7 +165,6 @@ class PayperImpl extends Payper {
                 call(true);
             }
         }
-
 
         private CompletableFuture<TokenImpl> getToken() {
             if (token != null && token.isValid()) {
@@ -163,7 +190,7 @@ class PayperImpl extends Payper {
             return webClient.sendAsync(request, Response.BodyHandlers.ofString())
                     .thenCompose(s -> {
                         if (s.statusCode() >= 400) {
-                            throw new PayperException("Error " + s.statusCode() + " " +  s.body());
+                            throw new PayperException("Error " + s.statusCode() + " " + s.body());
                         }
                         return CompletableFuture.completedFuture(s.body());
                     })

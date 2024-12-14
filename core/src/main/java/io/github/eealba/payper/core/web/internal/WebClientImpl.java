@@ -28,7 +28,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Author: Edgar Alba
  */
-class WebClientImpl implements WebClient {
+class WebClientImpl extends WebClient {
     private final HttpClient client;
     private final Mapper mapper = MapperImpl.getInstance();
 

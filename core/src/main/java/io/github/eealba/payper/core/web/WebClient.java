@@ -22,7 +22,7 @@ import java.util.concurrent.CompletableFuture;
  * <p>Example usage:</p>
  * <pre>{@code
  * // Synchronous request
- * WebClient client = WebClient.newWebClient();
+ * WebClient client = WebClient.create();
  * Request request = Request.newBuilder().uri("http://example.com").GET().build();
  * Response<String> response = client.send(request, Response.BodyHandlers.ofString());
  * System.out.println(response.body());
@@ -40,13 +40,13 @@ import java.util.concurrent.CompletableFuture;
  * @see Response
  * @see Response.BodyHandler
  */
-public interface WebClient {
+public abstract class WebClient {
     /**
      * Creates a new WebClient with the default configuration.
      *
      * @return a new WebClient instance
      */
-    static WebClient newWebClient() {
+    public static WebClient create() {
         return WebProvider.provider().createWebClient(WebClientConfig.builder().build());
     }
 
@@ -56,7 +56,7 @@ public interface WebClient {
      * @param config the WebClient configuration
      * @return a new WebClient instance
      */
-    static WebClient newWebClient(WebClientConfig config) {
+    public static WebClient create(WebClientConfig config) {
         return WebProvider.provider().createWebClient(config);
     }
 
@@ -66,7 +66,7 @@ public interface WebClient {
      * @param request the request to be sent
      * @return the response received
      */
-    Response<Void> send(Request request);
+    public abstract Response<Void> send(Request request);
 
     /**
      * Sends a request and receives a response with a body handler.
@@ -76,7 +76,7 @@ public interface WebClient {
      * @param bodyHandler the body handler to handle the response body
      * @return the response received
      */
-    <T> Response<T> send(Request request, Response.BodyHandler<T> bodyHandler);
+    public abstract  <T> Response<T> send(Request request, Response.BodyHandler<T> bodyHandler);
 
     /**
      * Sends a request asynchronously and receives a response.
@@ -84,7 +84,7 @@ public interface WebClient {
      * @param request the request to be sent
      * @return a CompletableFuture that will complete with the response
      */
-    CompletableFuture<Response<Void>> sendAsync(Request request);
+    public abstract CompletableFuture<Response<Void>> sendAsync(Request request);
 
     /**
      * Sends a request asynchronously and receives a response with a body handler.
@@ -94,5 +94,5 @@ public interface WebClient {
      * @param bodyHandler the body handler to handle the response body
      * @return a CompletableFuture that will complete with the response
      */
-    <T> CompletableFuture<Response<T>> sendAsync(Request request, Response.BodyHandler<T> bodyHandler);
+    public abstract <T> CompletableFuture<Response<T>> sendAsync(Request request, Response.BodyHandler<T> bodyHandler);
 }

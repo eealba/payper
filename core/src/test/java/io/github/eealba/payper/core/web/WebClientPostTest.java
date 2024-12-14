@@ -30,7 +30,7 @@ class WebClientPostTest {
 
     @BeforeAll
     static void setup() {
-        client = WebClient.newWebClient();
+        client = WebClient.create();
     }
 
 

@@ -1,3 +1,16 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.github.eealba.payper.core.internal;
 
 import io.github.eealba.payper.core.PayperRequest;
@@ -7,6 +20,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Implementation of the PayperRequest interface.
+ * This class represents a request with various configurations.
+ *
+ * @author Edgar Alba
+ * @since 1.0
+ */
 class PayperRequestImpl implements PayperRequest {
     private final String path;
     private final Method method;
@@ -46,6 +66,10 @@ class PayperRequestImpl implements PayperRequest {
     public Map<String, String> headers() {
         return headers;
     }
+
+    /**
+     * Builder class for creating PayperRequest instances.
+     */
     static class RequestBuilder implements Builder {
         private String path;
         private final Map<String, String> headers = new HashMap<>();
@@ -70,7 +94,7 @@ class PayperRequestImpl implements PayperRequest {
         @Override
         public Builder headers(String... headers) {
             for (int i = 0; i < headers.length; i += 2) {
-                this.headers.put(headers[i],headers[i + 1]);
+                this.headers.put(headers[i], headers[i + 1]);
             }
             return this;
         }
@@ -84,7 +108,7 @@ class PayperRequestImpl implements PayperRequest {
         @Override
         public Builder queries(String... queryParams) {
             for (int i = 0; i < queryParams.length; i += 2) {
-                this.queryParams.put(queryParams[i],queryParams[i + 1]);
+                this.queryParams.put(queryParams[i], queryParams[i + 1]);
             }
             return this;
         }

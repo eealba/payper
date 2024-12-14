@@ -17,9 +17,13 @@ import io.github.eealba.jasoner.Jasoner;
 import io.github.eealba.payper.core.json.Json;
 
 /**
- * Author: Edgar Alba
+ * Implementation of the Json interface.
+ * This class provides methods to convert objects to JSON and vice versa.
+ *
+ * @author Edgar Alba
+ * @since 1.0
  */
-class JsonImpl implements Json {
+class JsonImpl extends Json {
     private final Jasoner jasoner;
 
     JsonImpl(Jasoner jasoner) {
