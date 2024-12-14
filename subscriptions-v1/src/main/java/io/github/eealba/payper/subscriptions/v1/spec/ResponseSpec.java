@@ -1,4 +1,4 @@
-package io.github.eealba.payper.core.spec;
+package io.github.eealba.payper.subscriptions.v1.spec;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;

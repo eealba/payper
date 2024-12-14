@@ -2,8 +2,8 @@ package io.github.eealba.payper.subscriptions.v1.internal;
 
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
-import io.github.eealba.payper.core.spec.RequestSpec;
-import io.github.eealba.payper.core.spec.ResponseSpec;
+import io.github.eealba.payper.subscriptions.v1.spec.RequestSpec;
+import io.github.eealba.payper.subscriptions.v1.spec.ResponseSpec;
 
 
 abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1, R2>, RequestSpec.PreferSpec<T>,

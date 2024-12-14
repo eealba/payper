@@ -1,4 +1,4 @@
-package io.github.eealba.payper.core.spec;
+package io.github.eealba.payper.subscriptions.v1.spec;
 
 public interface RequestSpec<R1, R2> {
     ResponseSpec<R1, R2> retrieve();

@@ -1,12 +1,12 @@
 package io.github.eealba.payper.subscriptions.v1.api;
 
-import io.github.eealba.payper.core.spec.RequestSpec;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
 import io.github.eealba.payper.subscriptions.v1.model.Plan;
 import io.github.eealba.payper.subscriptions.v1.model.PlanCollection;
 import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
 import io.github.eealba.payper.subscriptions.v1.model.UpdatePricingSchemesListRequest;
+import io.github.eealba.payper.subscriptions.v1.spec.RequestSpec;
 
 public interface BillingPlans {
     CreatePlan create();
