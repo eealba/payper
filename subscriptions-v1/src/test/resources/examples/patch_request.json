@@ -1,1 +1,12 @@
-[{"op":"replace","path":"/payment_preferences/payment_failure_threshold","value":7},{"op":"replace","path":"/name","value":"Updated Video Streaming Service Plan"}]
+[
+  {
+    "op": "replace",
+    "path": "/payment_preferences/payment_failure_threshold",
+    "value": 7
+  },
+  {
+    "op": "replace",
+    "path": "/name",
+    "value": "Updated Video Streaming Service Plan"
+  }
+]

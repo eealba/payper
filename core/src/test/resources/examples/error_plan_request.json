@@ -1,0 +1,57 @@
+{
+  "name": "INVALID_REQUEST",
+  "message": "Request is not well-formed, syntactically incorrect, or violates schema.",
+  "issues": [
+    {
+      "issue": "INVALID_PARAMETER_SYNTAX",
+      "description": "The value of a field does not conform to the expected format.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_PARAMETER_VALUE",
+      "description": "The value of a field is invalid.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "MISSING_REQUIRED_PARAMETER",
+      "description": "A required field is missing.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_STRING_MIN_LENGTH",
+      "description": "The value of a field is too short.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_STRING_MAX_LENGTH",
+      "description": "The value of a field is too long.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_INTEGER_MIN_VALUE",
+      "description": "The integer value of a field is too small.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_INTEGER_MAX_VALUE",
+      "description": "The integer value of a field is too large.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    }
+  ],
+  "debug_id": "string",
+  "information_link": "string"
+}
