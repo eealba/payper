@@ -38,7 +38,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @WireMockTest(httpPort = 8080)
-class SubscriptionsBillingPlansTest {
+class BillingPlansTest {
     private static final String EXAMPLES = "/examples/";
     private static Subscriptions subscriptions;
 
@@ -107,7 +107,7 @@ class SubscriptionsBillingPlansTest {
         assertFalse(plan.taxes().inclusive());
     }
     @Test
-    void test_nof_found_plan() throws IOException {
+    void test_not_found_plan() throws IOException {
         stubFor(get("/v1/billing/plans/1").willReturn(notFound()));
 
         // Get plan
