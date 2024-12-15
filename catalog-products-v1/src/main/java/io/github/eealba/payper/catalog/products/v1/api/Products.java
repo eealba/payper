@@ -36,7 +36,7 @@ import io.github.eealba.payper.core.spec.RequestSpec;
  *            .withId("1")
  *            .withBody(patchRequest)
  *            .retrieve().toFuture().join();
- *
+ *}</pre>
  *
  * @since 1.0.0
  * @version 1.0.0
