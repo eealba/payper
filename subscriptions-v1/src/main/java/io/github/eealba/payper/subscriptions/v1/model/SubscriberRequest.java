@@ -3,7 +3,11 @@ package io.github.eealba.payper.subscriptions.v1.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
+/**
+ * The subscriber request information .
+ */
 public class SubscriberRequest {
+
 
     @JasonerProperty("email_address")
     private final Email emailAddress;
@@ -37,46 +41,73 @@ public class SubscriberRequest {
 
     }
 
+    /**
+     * emailAddress
+     */
     @JasonerProperty("email_address")
     public Email emailAddress() {
         return emailAddress;
     }
 
+    /**
+     * payerId
+     */
     @JasonerProperty("payer_id")
     public AccountId payerId() {
         return payerId;
     }
 
+    /**
+     * name
+     */
     
     public Name name() {
         return name;
     }
 
+    /**
+     * phone
+     */
     
     public PhoneWithType phone() {
         return phone;
     }
 
+    /**
+     * birthDate
+     */
     @JasonerProperty("birth_date")
     public DateNoTime birthDate() {
         return birthDate;
     }
 
+    /**
+     * taxInfo
+     */
     @JasonerProperty("tax_info")
     public TaxInfo taxInfo() {
         return taxInfo;
     }
 
+    /**
+     * address
+     */
     
     public AddressPortable address() {
         return address;
     }
 
+    /**
+     * shippingAddress
+     */
     @JasonerProperty("shipping_address")
     public ShippingDetail shippingAddress() {
         return shippingAddress;
     }
 
+    /**
+     * paymentSource
+     */
     @JasonerProperty("payment_source")
     public PaymentSource paymentSource() {
         return paymentSource;
@@ -98,54 +129,81 @@ public class SubscriberRequest {
         private ShippingDetail shippingAddress;
         private PaymentSource paymentSource;
 
+        /**
+         * emailAddress
+         */
         @JasonerProperty("email_address")
         public Builder emailAddress(Email value) {
             this.emailAddress = value;
             return this;
         }
 
+        /**
+         * payerId
+         */
         @JasonerProperty("payer_id")
         public Builder payerId(AccountId value) {
             this.payerId = value;
             return this;
         }
 
+        /**
+         * name
+         */
         
         public Builder name(Name value) {
             this.name = value;
             return this;
         }
 
+        /**
+         * phone
+         */
         
         public Builder phone(PhoneWithType value) {
             this.phone = value;
             return this;
         }
 
+        /**
+         * birthDate
+         */
         @JasonerProperty("birth_date")
         public Builder birthDate(DateNoTime value) {
             this.birthDate = value;
             return this;
         }
 
+        /**
+         * taxInfo
+         */
         @JasonerProperty("tax_info")
         public Builder taxInfo(TaxInfo value) {
             this.taxInfo = value;
             return this;
         }
 
+        /**
+         * address
+         */
         
         public Builder address(AddressPortable value) {
             this.address = value;
             return this;
         }
 
+        /**
+         * shippingAddress
+         */
         @JasonerProperty("shipping_address")
         public Builder shippingAddress(ShippingDetail value) {
             this.shippingAddress = value;
             return this;
         }
 
+        /**
+         * paymentSource
+         */
         @JasonerProperty("payment_source")
         public Builder paymentSource(PaymentSource value) {
             this.paymentSource = value;

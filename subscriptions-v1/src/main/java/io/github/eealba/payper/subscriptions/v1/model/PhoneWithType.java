@@ -1,10 +1,15 @@
 package io.github.eealba.payper.subscriptions.v1.model;
 
 
-import java.util.Objects;
 import io.github.eealba.jasoner.JasonerProperty;
 
+import java.util.Objects;
+
+/**
+ * The phone information.
+ */
 public class PhoneWithType {
+
 
     @JasonerProperty("phone_type")
     private final PhoneType phoneType;
@@ -16,11 +21,17 @@ public class PhoneWithType {
         phoneNumber = Objects.requireNonNull(builder.phoneNumber);
     }
 
+    /**
+     * phoneType
+     */
     @JasonerProperty("phone_type")
     public PhoneType phoneType() {
         return phoneType;
     }
 
+    /**
+     * phoneNumber
+     */
     @JasonerProperty("phone_number")
     public Phone phoneNumber() {
         return phoneNumber;
@@ -35,12 +46,18 @@ public class PhoneWithType {
         private PhoneType phoneType;
         private Phone phoneNumber;
 
+        /**
+         * phoneType
+         */
         @JasonerProperty("phone_type")
         public Builder phoneType(PhoneType value) {
             this.phoneType = value;
             return this;
         }
 
+        /**
+         * phoneNumber
+         */
         @JasonerProperty("phone_number")
         public Builder phoneNumber(Phone value) {
             this.phoneNumber = value;

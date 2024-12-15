@@ -2,7 +2,11 @@ package io.github.eealba.payper.subscriptions.v1.model;
 
 
 
+/**
+ * The payment source used to fund the payment.
+ */
 public class PaymentSourceResponse {
+
 
     
     private final CardResponseWithBillingAddress card;
@@ -12,6 +16,9 @@ public class PaymentSourceResponse {
 
     }
 
+    /**
+     * card
+     */
     
     public CardResponseWithBillingAddress card() {
         return card;
@@ -25,6 +32,9 @@ public class PaymentSourceResponse {
 
         private CardResponseWithBillingAddress card;
 
+        /**
+         * card
+         */
         
         public Builder card(CardResponseWithBillingAddress value) {
             this.card = value;

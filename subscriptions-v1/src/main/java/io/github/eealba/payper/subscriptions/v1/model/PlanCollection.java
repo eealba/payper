@@ -1,9 +1,14 @@
 package io.github.eealba.payper.subscriptions.v1.model;
 
-import java.util.List;
 import io.github.eealba.jasoner.JasonerProperty;
 
+import java.util.List;
+
+/**
+ * The list of plans with details.
+ */
 public class PlanCollection {
+
 
     
     private final List<Plan> plans;
@@ -22,21 +27,33 @@ public class PlanCollection {
 
     }
 
+    /**
+     * An array of plans.
+     */
     
     public List<Plan> plans() {
         return plans;
     }
 
+    /**
+     * The total number of items.
+     */
     @JasonerProperty("total_items")
     public Integer totalItems() {
         return totalItems;
     }
 
+    /**
+     * The total number of pages.
+     */
     @JasonerProperty("total_pages")
     public Integer totalPages() {
         return totalPages;
     }
 
+    /**
+     * An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+     */
     
     public List<LinkDescription> links() {
         return links;
@@ -53,24 +70,36 @@ public class PlanCollection {
         private Integer totalPages;
         private List<LinkDescription> links;
 
+        /**
+         * An array of plans.
+         */
         
         public Builder plans(List<Plan> value) {
             this.plans = value;
             return this;
         }
 
+        /**
+         * The total number of items.
+         */
         @JasonerProperty("total_items")
         public Builder totalItems(Integer value) {
             this.totalItems = value;
             return this;
         }
 
+        /**
+         * The total number of pages.
+         */
         @JasonerProperty("total_pages")
         public Builder totalPages(Integer value) {
             this.totalPages = value;
             return this;
         }
 
+        /**
+         * An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+         */
         
         public Builder links(List<LinkDescription> value) {
             this.links = value;

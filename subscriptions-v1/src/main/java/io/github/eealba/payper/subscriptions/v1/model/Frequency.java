@@ -1,10 +1,15 @@
 package io.github.eealba.payper.subscriptions.v1.model;
 
 
-import java.util.Objects;
 import io.github.eealba.jasoner.JasonerProperty;
 
+import java.util.Objects;
+
+/**
+ * The frequency of the billing cycle.
+ */
 public class Frequency {
+
 
     @JasonerProperty("interval_unit")
     private final IntervalUnit intervalUnit;
@@ -16,11 +21,23 @@ public class Frequency {
         intervalUnit = Objects.requireNonNull(builder.intervalUnit);
     }
 
+    /**
+     * The interval at which the subscription is charged or billed.
+     */
     @JasonerProperty("interval_unit")
     public IntervalUnit intervalUnit() {
         return intervalUnit;
     }
 
+    /**
+     * The number of intervals after which a subscriber is billed. For example, if the `interval_unit` is `DAY` with 
+an `interval_count` of `2`, the subscription is billed once every two days. The following table lists the 
+maximum allowed values for the `interval_count` for each `interval_unit`:<table><thead><tr><th><code>Interval 
+unit</code></th><th>Maximum interval count</th></tr></thead><tbody><tr><td><code>DAY</code></td><td 
+align="right">365</td></tr><tr><td><code>WEEK</code></td><td 
+align="right">52</td></tr><tr><td><code>MONTH</code></td><td 
+align="right">12</td></tr><tr><td><code>YEAR</code></td><td align="right">1</td></tr></tbody></table>
+     */
     @JasonerProperty("interval_count")
     public Integer intervalCount() {
         return intervalCount;
@@ -35,12 +52,24 @@ public class Frequency {
         private IntervalUnit intervalUnit;
         private Integer intervalCount;
 
+        /**
+         * The interval at which the subscription is charged or billed.
+         */
         @JasonerProperty("interval_unit")
         public Builder intervalUnit(IntervalUnit value) {
             this.intervalUnit = value;
             return this;
         }
 
+        /**
+         * The number of intervals after which a subscriber is billed. For example, if the `interval_unit` is `DAY` with 
+an `interval_count` of `2`, the subscription is billed once every two days. The following table lists the 
+maximum allowed values for the `interval_count` for each `interval_unit`:<table><thead><tr><th><code>Interval 
+unit</code></th><th>Maximum interval count</th></tr></thead><tbody><tr><td><code>DAY</code></td><td 
+align="right">365</td></tr><tr><td><code>WEEK</code></td><td 
+align="right">52</td></tr><tr><td><code>MONTH</code></td><td 
+align="right">12</td></tr><tr><td><code>YEAR</code></td><td align="right">1</td></tr></tbody></table>
+         */
         @JasonerProperty("interval_count")
         public Builder intervalCount(Integer value) {
             this.intervalCount = value;
