@@ -1,4 +1,10 @@
 # Payper - Unofficial Java Client for PayPal REST API
+[![Coverage](.github/badges/jacoco.svg)](https://github.com/eealba/payper/actions/workflows/github_action.yaml)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.eealba/payper.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.eealba/payper)
+[![Javadoc](https://javadoc.io/badge2/io.github.eealba/payper/javadoc.io.svg)](https://javadoc.io/doc/io.github.eealba/payper)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Java Version](https://img.shields.io/badge/Java-17%2B-brightgreen)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+[![Build Status](https://github.com/eealba/payper/actions/workflows/github_action.yaml/badge.svg)](https://github.com/eealba/payper/actions)
 
 
 Payper is an unofficial Java client for the PayPal REST API. It is designed to be used with Java 17 and is prepared 

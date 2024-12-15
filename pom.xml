@@ -4,7 +4,7 @@
     <artifactId>payper-parent</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <name>PayPer Parent</name>
-    <description>PayPer Parent</description>
+    <description>PayPer Parent - Unofficial Java Client for PayPal REST API</description>
     <packaging>pom</packaging>
     <url>https://github.com/eealba/payper</url>
     <organization>
@@ -227,7 +227,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
-                    <excludePackageNames>io.github.eealba.payper.http.internal:io.github.eealba.paypal.rest.internal</excludePackageNames>
+                    <excludePackageNames>io.github.eealba.payper.core.internal:io.github.eealba.payper.subscriptions.v1.internal:io.github.eealba.payper.catalog.products.v1.internal</excludePackageNames>
                 </configuration>
             </plugin>
             <plugin>
