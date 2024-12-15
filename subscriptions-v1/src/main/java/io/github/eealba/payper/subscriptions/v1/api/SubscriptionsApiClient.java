@@ -17,23 +17,23 @@ import io.github.eealba.payper.core.PayperConfig;
 
 /**
  * Abstract class representing Subscriptions.
- * This class provides methods to create and manage billing plans and subscriptions.
+ * This class provides methods to create and manage billing plans and subscriptionsApiClient.
  *
  * <p>Example usage:</p>
  * <pre>{@code
  * // Create a new Subscriptions instance with default configuration
- * Subscriptions subscriptions = Subscriptions.create();
+ * SubscriptionsApiClient subscriptionsApiClient = SubscriptionsApiClient.create();
  *
  * // Create a new Subscriptions instance with custom configuration
  * PayperConfig config = PayperConfig.builder().build();
- * Subscriptions subscriptionsWithConfig = Subscriptions.create(config);
+ * SubscriptionsApiClient subscriptionsApiClientWithConfig = SubscriptionsApiClient.create(config);
  *
  * // Get plan
- * var plan = subscriptions.billingPlans().get()
+ * var plan = subscriptionsApiClient.billingPlans().get()
  *                 .withId("1")
  *                 .retrieve().toEntity();
  * // Create plan
- * var plan = subscriptions.billingPlans().create()
+ * var plan = subscriptionsApiClient.billingPlans().create()
  *                 .withPrefer("return=representation")
  *                 .withPaypalRequestId("request-id")
  *                 .withBody(body)
@@ -41,7 +41,7 @@ import io.github.eealba.payper.core.PayperConfig;
  *
  * // List plans
  *
- * var planCollection = subscriptions.billingPlans().list()
+ * var planCollection = subscriptionsApiClient.billingPlans().list()
  *                 .withPageSize(10)
  *                 .withPage(1)
  *                 .withProductId("1")
@@ -49,7 +49,7 @@ import io.github.eealba.payper.core.PayperConfig;
  *                 .retrieve().toEntity();
  * // Update plan
  *
- * var response = subscriptions.billingPlans().update()
+ * var response = subscriptionsApiClient.billingPlans().update()
  *                  .withId("1")
  *                  .withBody(request)
  *                  .retrieve()
@@ -57,7 +57,7 @@ import io.github.eealba.payper.core.PayperConfig;
  *                  .join();
  * // Activate plan
  *
- * var response = subscriptions.billingPlans().activate()
+ * var response = subscriptionsApiClient.billingPlans().activate()
  *              .withId("1")
  *              .retrieve()
  *              .toFuture()
@@ -65,7 +65,7 @@ import io.github.eealba.payper.core.PayperConfig;
  *
  * // Deactivate plan
  *
- * var response = subscriptions.billingPlans().deactivate()
+ * var response = subscriptionsApiClient.billingPlans().deactivate()
  *             .withId("1")
  *             .retrieve()
  *             .toFuture()
@@ -73,7 +73,7 @@ import io.github.eealba.payper.core.PayperConfig;
  *
  * // Update pricing schemes
  *
- * var response = subscriptions.billingPlans().updatePricingSchemes()
+ * var response = subscriptionsApiClient.billingPlans().updatePricingSchemes()
  *                  .withId("18")
  *                  .withBody(body)
  *                  .retrieve()
@@ -81,21 +81,21 @@ import io.github.eealba.payper.core.PayperConfig;
  *                  .join();
  *
  * // Access billing subscriptions
- * BillingSubscriptions billingSubscriptions = subscriptions.billingSubscriptions();
+ * BillingSubscriptions billingSubscriptions = subscriptionsApiClient.billingSubscriptions();
  * }</pre>
  *
  * @since 1.0
  * @version 1.0
  * @author Edgar Alba
  */
-public abstract class Subscriptions {
+public abstract class SubscriptionsApiClient {
 
     /**
      * Creates a new Subscriptions instance using the default configuration.
      *
      * @return a new Subscriptions instance
      */
-    public static Subscriptions create() {
+    public static SubscriptionsApiClient create() {
         return create(PayperConfig.builder().build());
     }
 
@@ -105,7 +105,7 @@ public abstract class Subscriptions {
      * @param config the configuration to be used
      * @return a new Subscriptions instance
      */
-    public static Subscriptions create(PayperConfig config) {
+    public static SubscriptionsApiClient create(PayperConfig config) {
         return SubscriptionsProvider.provider().create(config);
     }
 
@@ -117,7 +117,7 @@ public abstract class Subscriptions {
     public abstract BillingPlans billingPlans();
 
     /**
-     * Provides access to billing subscriptions.
+     * Provides access to billing subscriptionsApiClient.
      *
      * @return the billing subscriptions
      */

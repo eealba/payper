@@ -13,22 +13,22 @@
  */
 package io.github.eealba.payper.catalog.products.v1.internal;
 
-import io.github.eealba.payper.catalog.products.v1.api.CatalogProducts;
+import io.github.eealba.payper.catalog.products.v1.api.CatalogProductsApiClient;
 import io.github.eealba.payper.catalog.products.v1.api.Products;
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperConfig;
 /**
  * Implementation of the CatalogProducts API
- * @see CatalogProducts
+ * @see CatalogProductsApiClient
  *
  * @since 1.0.0
  * @version 1.0.0
  * @author Edgar Alba
  */
-class CatalogProductsImpl extends CatalogProducts {
+class CatalogProductsApiClientImpl extends CatalogProductsApiClient {
     private final Products products;
 
-    CatalogProductsImpl(PayperConfig config) {
+    CatalogProductsApiClientImpl(PayperConfig config) {
         var payper = Payper.create(config);
         this.products = new ProductsImpl(payper);
     }

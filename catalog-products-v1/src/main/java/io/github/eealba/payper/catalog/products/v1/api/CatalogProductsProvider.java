@@ -57,5 +57,5 @@ public abstract class CatalogProductsProvider {
      * @param config the configuration to be used
      * @return a new CatalogProducts instance
      */
-    public abstract CatalogProducts create(PayperConfig config);
+    public abstract CatalogProductsApiClient create(PayperConfig config);
 }

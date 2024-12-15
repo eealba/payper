@@ -20,14 +20,14 @@ import io.github.eealba.payper.core.PayperConfig;
  * @version 1.0
  * @author Edgar Alba
  */
-public abstract class CatalogProducts {
+public abstract class CatalogProductsApiClient {
 
     /**
      * Creates a new CatalogProducts instance using the default configuration.
      *
      * @return a new CatalogProducts instance
      */
-    public static CatalogProducts create() {
+    public static CatalogProductsApiClient create() {
         return create(PayperConfig.builder().build());
     }
 
@@ -37,7 +37,7 @@ public abstract class CatalogProducts {
      * @param config the configuration to be used
      * @return a new CatalogProducts instance
      */
-    public static CatalogProducts create(PayperConfig config) {
+    public static CatalogProductsApiClient create(PayperConfig config) {
         return CatalogProductsProvider.provider().create(config);
     }
 

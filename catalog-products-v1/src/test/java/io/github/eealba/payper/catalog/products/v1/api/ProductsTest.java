@@ -37,7 +37,7 @@ class ProductsTest {
         System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_BASE_URL, "http://localhost:8080");
         System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_ID, "client-id");
         System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_SECRET, "client-secret");
-        products = CatalogProducts.create().products();
+        products = CatalogProductsApiClient.create().products();
     }
 
     @AfterAll
@@ -131,5 +131,6 @@ class ProductsTest {
 
         assertEquals(204, response.statusCode());
     }
+
 
 }

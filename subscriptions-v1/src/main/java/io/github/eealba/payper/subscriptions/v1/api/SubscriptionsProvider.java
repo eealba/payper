@@ -57,5 +57,5 @@ public abstract class SubscriptionsProvider {
      * @param config the configuration to be used
      * @return a new Subscriptions instance
      */
-    public abstract Subscriptions create(PayperConfig config);
+    public abstract SubscriptionsApiClient create(PayperConfig config);
 }

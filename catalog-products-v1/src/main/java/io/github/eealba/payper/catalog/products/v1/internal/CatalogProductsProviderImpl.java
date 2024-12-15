@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.catalog.products.v1.internal;
 
-import io.github.eealba.payper.catalog.products.v1.api.CatalogProducts;
+import io.github.eealba.payper.catalog.products.v1.api.CatalogProductsApiClient;
 import io.github.eealba.payper.catalog.products.v1.api.CatalogProductsProvider;
 import io.github.eealba.payper.core.PayperConfig;
 /**
@@ -26,7 +26,7 @@ import io.github.eealba.payper.core.PayperConfig;
  */
 public class CatalogProductsProviderImpl extends CatalogProductsProvider {
     @Override
-    public CatalogProducts create(PayperConfig config) {
-        return new CatalogProductsImpl(config);
+    public CatalogProductsApiClient create(PayperConfig config) {
+        return new CatalogProductsApiClientImpl(config);
     }
 }
