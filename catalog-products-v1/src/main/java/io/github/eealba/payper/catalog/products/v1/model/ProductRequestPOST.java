@@ -5,7 +5,11 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
+/**
+ * The create product request details.
+ */
 public class ProductRequestPOST {
+
 
     
     private final String id;

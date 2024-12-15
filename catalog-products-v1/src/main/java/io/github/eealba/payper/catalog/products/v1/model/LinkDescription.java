@@ -3,7 +3,11 @@ package io.github.eealba.payper.catalog.products.v1.model;
 
 import java.util.Objects;
 
+/**
+ * The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+ */
 public class LinkDescription {
+
 
     
     private final String href;

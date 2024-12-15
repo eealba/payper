@@ -13,6 +13,7 @@
  */
 package io.github.eealba.payper.subscriptions.v1.api;
 
+import io.github.eealba.payper.core.spec.RequestSpec;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
 import io.github.eealba.payper.subscriptions.v1.model.Subscription;
@@ -22,7 +23,6 @@ import io.github.eealba.payper.subscriptions.v1.model.SubscriptionReviseRequest;
 import io.github.eealba.payper.subscriptions.v1.model.SubscriptionReviseResponse;
 import io.github.eealba.payper.subscriptions.v1.model.Transaction;
 import io.github.eealba.payper.subscriptions.v1.model.TransactionsList;
-import io.github.eealba.payper.subscriptions.v1.spec.RequestSpec;
 
 import java.time.Instant;
 

@@ -4,7 +4,11 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.List;
 
+/**
+ * The default error response.
+ */
 public class ErrorDefault {
+
 
     
     private final String name;

@@ -3,7 +3,11 @@ package io.github.eealba.payper.catalog.products.v1.model;
 
 import java.util.Objects;
 
+/**
+ * The error details. Required for client-side `4XX` errors.
+ */
 public class ErrorDetails {
+
 
     
     private final String field;

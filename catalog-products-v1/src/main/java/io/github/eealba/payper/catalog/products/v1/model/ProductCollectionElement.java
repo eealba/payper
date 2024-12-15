@@ -5,7 +5,11 @@ import io.github.eealba.jasoner.JasonerProperty;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * The details for a product in the collection response.
+ */
 public class ProductCollectionElement {
+
 
     
     private final String id;

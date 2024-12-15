@@ -3,7 +3,11 @@ package io.github.eealba.payper.catalog.products.v1.model;
 
 import java.util.Objects;
 
+/**
+ * The JSON patch object to apply partial updates to resources.
+ */
 public class Patch {
+
 
     
     private final Op op;

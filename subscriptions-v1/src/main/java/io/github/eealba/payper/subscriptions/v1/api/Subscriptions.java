@@ -106,7 +106,7 @@ public abstract class Subscriptions {
      * @return a new Subscriptions instance
      */
     public static Subscriptions create(PayperConfig config) {
-        return SubscriptionsProvider.provider().createSubscriptions(config);
+        return SubscriptionsProvider.provider().create(config);
     }
 
     /**

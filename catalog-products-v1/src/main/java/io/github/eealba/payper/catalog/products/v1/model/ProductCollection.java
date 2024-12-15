@@ -4,7 +4,11 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.List;
 
+/**
+ * The list of products, with details.
+ */
 public class ProductCollection {
+
 
     
     private final List<ProductCollectionElement> products;
