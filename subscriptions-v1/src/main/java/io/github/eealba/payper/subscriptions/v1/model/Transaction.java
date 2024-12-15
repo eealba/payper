@@ -1,9 +1,14 @@
 package io.github.eealba.payper.subscriptions.v1.model;
 
-import java.time.Instant;
 import io.github.eealba.jasoner.JasonerProperty;
 
+import java.time.Instant;
+
+/**
+ * The transaction details.
+ */
 public class Transaction {
+
 
     
     private final Status status;
@@ -31,36 +36,57 @@ public class Transaction {
 
     }
 
+    /**
+     * The status of the captured payment.
+     */
     
     public Status status() {
         return status;
     }
 
+    /**
+     * statusDetails
+     */
     @JasonerProperty("status_details")
     public CaptureStatusDetails statusDetails() {
         return statusDetails;
     }
 
+    /**
+     * The PayPal-generated transaction ID.
+     */
     
     public String id() {
         return id;
     }
 
+    /**
+     * amountWithBreakdown
+     */
     @JasonerProperty("amount_with_breakdown")
     public AmountWithBreakdown amountWithBreakdown() {
         return amountWithBreakdown;
     }
 
+    /**
+     * payerName
+     */
     @JasonerProperty("payer_name")
     public Name payerName() {
         return payerName;
     }
 
+    /**
+     * payerEmail
+     */
     @JasonerProperty("payer_email")
     public EmailAddress payerEmail() {
         return payerEmail;
     }
 
+    /**
+     * time
+     */
     
     public Instant time() {
         return time;
@@ -80,42 +106,63 @@ public class Transaction {
         private EmailAddress payerEmail;
         private Instant time;
 
+        /**
+         * The status of the captured payment.
+         */
         
         public Builder status(Status value) {
             this.status = value;
             return this;
         }
 
+        /**
+         * statusDetails
+         */
         @JasonerProperty("status_details")
         public Builder statusDetails(CaptureStatusDetails value) {
             this.statusDetails = value;
             return this;
         }
 
+        /**
+         * The PayPal-generated transaction ID.
+         */
         
         public Builder id(String value) {
             this.id = value;
             return this;
         }
 
+        /**
+         * amountWithBreakdown
+         */
         @JasonerProperty("amount_with_breakdown")
         public Builder amountWithBreakdown(AmountWithBreakdown value) {
             this.amountWithBreakdown = value;
             return this;
         }
 
+        /**
+         * payerName
+         */
         @JasonerProperty("payer_name")
         public Builder payerName(Name value) {
             this.payerName = value;
             return this;
         }
 
+        /**
+         * payerEmail
+         */
         @JasonerProperty("payer_email")
         public Builder payerEmail(EmailAddress value) {
             this.payerEmail = value;
             return this;
         }
 
+        /**
+         * time
+         */
         
         public Builder time(Instant value) {
             this.time = value;

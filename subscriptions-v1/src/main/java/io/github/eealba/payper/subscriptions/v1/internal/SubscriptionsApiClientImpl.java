@@ -17,20 +17,21 @@ import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.subscriptions.v1.api.BillingPlans;
 import io.github.eealba.payper.subscriptions.v1.api.BillingSubscriptions;
-import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
+import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;
+
 /**
  * Implementation of the Subscriptions API
- * @see Subscriptions
+ * @see SubscriptionsApiClient
  *
  * @since 1.0.0
  * @version 1.0.0
  * @author Edgar Alba
  */
-class SubscriptionsImpl extends Subscriptions {
+class SubscriptionsApiClientImpl extends SubscriptionsApiClient {
     private final BillingPlans billingPlans;
     private final BillingSubscriptions billingSubscriptions;
 
-    SubscriptionsImpl(PayperConfig config) {
+    SubscriptionsApiClientImpl(PayperConfig config) {
         var payper = Payper.create(config);
         this.billingPlans = new BillingPlansImpl(payper);
         this.billingSubscriptions = new BillingSubscriptionsImpl(payper);

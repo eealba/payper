@@ -1,7 +1,7 @@
 package io.github.eealba.payper.e2e.examples.subscriptions;
 
 import io.github.eealba.payper.core.PayperAuthenticator;
-import io.github.eealba.payper.subscriptions.v1.api.Subscriptions;
+import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;
 import io.github.eealba.payper.subscriptions.v1.model.BillingCycle;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class Main {
 
 
     private static void listPlan() {
-        var planCollection = Subscriptions.create().billingPlans().list().retrieve().toEntity();
+        var planCollection = SubscriptionsApiClient.create().billingPlans().list().retrieve().toEntity();
         System.out.println(planCollection.totalItems());
 
         planCollection.plans().forEach(plan -> {

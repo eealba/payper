@@ -26,7 +26,7 @@ import io.github.eealba.payper.core.util.Providers;
  * SubscriptionsProvider provider = SubscriptionsProvider.provider();
  *
  * // Create a new Subscriptions instance with default configuration
- * Subscriptions subscriptions = provider.createSubscriptions(PayperConfig.builder().build());
+ * Subscriptions subscriptions = provider.create(PayperConfig.builder().build());
  * }</pre>
  *
  * @since 1.0
@@ -57,5 +57,5 @@ public abstract class SubscriptionsProvider {
      * @param config the configuration to be used
      * @return a new Subscriptions instance
      */
-    public abstract Subscriptions createSubscriptions(PayperConfig config);
+    public abstract SubscriptionsApiClient create(PayperConfig config);
 }

@@ -15,8 +15,8 @@ package io.github.eealba.payper.subscriptions.v1.internal;
 
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
-import io.github.eealba.payper.subscriptions.v1.spec.RequestSpec;
-import io.github.eealba.payper.subscriptions.v1.spec.ResponseSpec;
+import io.github.eealba.payper.core.spec.RequestSpec;
+import io.github.eealba.payper.core.spec.ResponseSpec;
 
 /**
  * Abstract class representing a request specification.

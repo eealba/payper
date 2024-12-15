@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.eealba.payper.subscriptions.v1.spec;
+package io.github.eealba.payper.core.spec;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;

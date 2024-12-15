@@ -1,10 +1,15 @@
 package io.github.eealba.payper.subscriptions.v1.model;
 
-import java.time.Instant;
-import java.util.Objects;
 import io.github.eealba.jasoner.JasonerProperty;
 
+import java.time.Instant;
+import java.util.Objects;
+
+/**
+ * The details for the failed payment of the subscription.
+ */
 public class FailedPaymentDetails {
+
 
     
     private final Money amount;
@@ -22,21 +27,33 @@ public class FailedPaymentDetails {
         time = Objects.requireNonNull(builder.time);
     }
 
+    /**
+     * amount
+     */
     
     public Money amount() {
         return amount;
     }
 
+    /**
+     * time
+     */
     
     public Instant time() {
         return time;
     }
 
+    /**
+     * The reason code for the payment failure.
+     */
     @JasonerProperty("reason_code")
     public ReasonCode reasonCode() {
         return reasonCode;
     }
 
+    /**
+     * nextPaymentRetryTime
+     */
     @JasonerProperty("next_payment_retry_time")
     public Instant nextPaymentRetryTime() {
         return nextPaymentRetryTime;
@@ -53,24 +70,36 @@ public class FailedPaymentDetails {
         private ReasonCode reasonCode;
         private Instant nextPaymentRetryTime;
 
+        /**
+         * amount
+         */
         
         public Builder amount(Money value) {
             this.amount = value;
             return this;
         }
 
+        /**
+         * time
+         */
         
         public Builder time(Instant value) {
             this.time = value;
             return this;
         }
 
+        /**
+         * The reason code for the payment failure.
+         */
         @JasonerProperty("reason_code")
         public Builder reasonCode(ReasonCode value) {
             this.reasonCode = value;
             return this;
         }
 
+        /**
+         * nextPaymentRetryTime
+         */
         @JasonerProperty("next_payment_retry_time")
         public Builder nextPaymentRetryTime(Instant value) {
             this.nextPaymentRetryTime = value;

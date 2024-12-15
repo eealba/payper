@@ -2,7 +2,11 @@ package io.github.eealba.payper.subscriptions.v1.model;
 
 import java.time.Instant;
 
+/**
+ * The details for the last payment.
+ */
 public class LastPaymentDetails {
+
 
     
     private final Money amount;
@@ -15,11 +19,17 @@ public class LastPaymentDetails {
 
     }
 
+    /**
+     * amount
+     */
     
     public Money amount() {
         return amount;
     }
 
+    /**
+     * time
+     */
     
     public Instant time() {
         return time;
@@ -34,12 +44,18 @@ public class LastPaymentDetails {
         private Money amount;
         private Instant time;
 
+        /**
+         * amount
+         */
         
         public Builder amount(Money value) {
             this.amount = value;
             return this;
         }
 
+        /**
+         * time
+         */
         
         public Builder time(Instant value) {
             this.time = value;

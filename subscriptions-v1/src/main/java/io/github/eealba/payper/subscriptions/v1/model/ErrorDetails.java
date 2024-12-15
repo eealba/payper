@@ -3,7 +3,11 @@ package io.github.eealba.payper.subscriptions.v1.model;
 
 import java.util.Objects;
 
+/**
+ * The error details. Required for client-side `4XX` errors.
+ */
 public class ErrorDetails {
+
 
     
     private final String field;
@@ -24,26 +28,43 @@ public class ErrorDetails {
         issue = Objects.requireNonNull(builder.issue);
     }
 
+    /**
+     * The field that caused the error. If this field is in the body, set this value to the field's JSON pointer 
+value. Required for client-side errors.
+     */
     
     public String field() {
         return field;
     }
 
+    /**
+     * The value of the field that caused the error.
+     */
     
     public String value() {
         return value;
     }
 
+    /**
+     * The location of the field that caused the error. Value is `body`, `path`, or `query`.
+     */
     
     public String location() {
         return location;
     }
 
+    /**
+     * The unique, fine-grained application-level error code.
+     */
     
     public String issue() {
         return issue;
     }
 
+    /**
+     * The human-readable description for an issue. The description can change over the lifetime of an API, so 
+clients must not depend on this value.
+     */
     
     public String description() {
         return description;
@@ -61,30 +82,47 @@ public class ErrorDetails {
         private String issue;
         private String description;
 
+        /**
+         * The field that caused the error. If this field is in the body, set this value to the field's JSON pointer 
+value. Required for client-side errors.
+         */
         
         public Builder field(String value) {
             this.field = value;
             return this;
         }
 
+        /**
+         * The value of the field that caused the error.
+         */
         
         public Builder value(String value) {
             this.value = value;
             return this;
         }
 
+        /**
+         * The location of the field that caused the error. Value is `body`, `path`, or `query`.
+         */
         
         public Builder location(String value) {
             this.location = value;
             return this;
         }
 
+        /**
+         * The unique, fine-grained application-level error code.
+         */
         
         public Builder issue(String value) {
             this.issue = value;
             return this;
         }
 
+        /**
+         * The human-readable description for an issue. The description can change over the lifetime of an API, so 
+clients must not depend on this value.
+         */
         
         public Builder description(String value) {
             this.description = value;

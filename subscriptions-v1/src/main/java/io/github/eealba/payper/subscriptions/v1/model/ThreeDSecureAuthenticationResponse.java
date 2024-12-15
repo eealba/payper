@@ -3,7 +3,11 @@ package io.github.eealba.payper.subscriptions.v1.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
+/**
+ * Results of 3D Secure Authentication.
+ */
 public class ThreeDSecureAuthenticationResponse {
+
 
     @JasonerProperty("authentication_status")
     private final ParesStatus authenticationStatus;
@@ -16,11 +20,17 @@ public class ThreeDSecureAuthenticationResponse {
 
     }
 
+    /**
+     * authenticationStatus
+     */
     @JasonerProperty("authentication_status")
     public ParesStatus authenticationStatus() {
         return authenticationStatus;
     }
 
+    /**
+     * enrollmentStatus
+     */
     @JasonerProperty("enrollment_status")
     public Enrolled enrollmentStatus() {
         return enrollmentStatus;
@@ -35,12 +45,18 @@ public class ThreeDSecureAuthenticationResponse {
         private ParesStatus authenticationStatus;
         private Enrolled enrollmentStatus;
 
+        /**
+         * authenticationStatus
+         */
         @JasonerProperty("authentication_status")
         public Builder authenticationStatus(ParesStatus value) {
             this.authenticationStatus = value;
             return this;
         }
 
+        /**
+         * enrollmentStatus
+         */
         @JasonerProperty("enrollment_status")
         public Builder enrollmentStatus(Enrolled value) {
             this.enrollmentStatus = value;

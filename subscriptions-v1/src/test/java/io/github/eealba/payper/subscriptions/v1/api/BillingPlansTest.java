@@ -40,21 +40,21 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @WireMockTest(httpPort = 8080)
 class BillingPlansTest {
     private static final String EXAMPLES = "/examples/";
-    private static Subscriptions subscriptions;
+    private static SubscriptionsApiClient subscriptionsApiClient;
 
     @BeforeAll
     static void setupAll() {
         System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_BASE_URL, "http://localhost:8080");
         System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_ID, "client-id");
         System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_SECRET, "client-secret");
-        subscriptions = Subscriptions.create();
+        subscriptionsApiClient = SubscriptionsApiClient.create();
     }
     @AfterAll
     static void tearDownAll() {
         System.clearProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_BASE_URL);
         System.clearProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_ID);
         System.clearProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_SECRET);
-        subscriptions = null;
+        subscriptionsApiClient = null;
     }
 
     @BeforeEach
@@ -83,7 +83,7 @@ class BillingPlansTest {
         stubFor(get("/v1/billing/plans/1").willReturn(okJson(jsonResponse)));
 
         // Get plan
-        var plan = subscriptions.billingPlans().get()
+        var plan = subscriptionsApiClient.billingPlans().get()
                 .withId("1")
                 .retrieve().toEntity();
         assertNotNull(plan);
@@ -111,7 +111,7 @@ class BillingPlansTest {
         stubFor(get("/v1/billing/plans/1").willReturn(notFound()));
 
         // Get plan
-        var plan2 = subscriptions.billingPlans().get().withId("1").retrieve().toOptionalEntity();
+        var plan2 = subscriptionsApiClient.billingPlans().get().withId("1").retrieve().toOptionalEntity();
         assertFalse(plan2.isPresent());
     }
 
@@ -126,7 +126,7 @@ class BillingPlansTest {
                 .withHeader("Paypal-Request-Id", equalTo("request-id"))
                 .willReturn(okJson(jsonResponse)));
 
-        var plan = subscriptions.billingPlans().create()
+        var plan = subscriptionsApiClient.billingPlans().create()
                 .withPrefer("return=representation")
                 .withPaypalRequestId("request-id")
                 .withBody(body)
@@ -158,7 +158,7 @@ class BillingPlansTest {
                 .withQueryParam("total_required", equalTo("true"))
                 .willReturn(okJson(jsonResponse)));
 
-        var planCollection = subscriptions.billingPlans().list()
+        var planCollection = subscriptionsApiClient.billingPlans().list()
                 .withPlanIds("1")
                 .withPageSize(10)
                 .withPage(1)
@@ -175,7 +175,7 @@ class BillingPlansTest {
         var request = Json.create().fromJson(jsonRequest, PatchRequest.class);
         stubFor(patch("/v1/billing/plans/1").willReturn(noContent()));
 
-        var response = subscriptions.billingPlans().update().withId("1").withBody(request).retrieve().toFuture().join();
+        var response = subscriptionsApiClient.billingPlans().update().withId("1").withBody(request).retrieve().toFuture().join();
 
         assertEquals(204, response.statusCode());
 
@@ -187,7 +187,7 @@ class BillingPlansTest {
         var request = Json.create().fromJson(jsonRequest, PatchRequest.class);
         stubFor(patch("/v1/billing/plans/4").willReturn(aResponse().withStatus(400).withBody(jsonResponse)));
 
-        var response = subscriptions.billingPlans().update().withId("4").withBody(request).retrieve().toFuture().join();
+        var response = subscriptionsApiClient.billingPlans().update().withId("4").withBody(request).retrieve().toFuture().join();
 
         assertEquals(400, response.statusCode());
         assertEquals("INVALID_REQUEST", response.toErrorEntity().name());
@@ -199,7 +199,7 @@ class BillingPlansTest {
     void activate_plan(){
         stubFor(post("/v1/billing/plans/1/activate").willReturn(noContent()));
 
-        var response = subscriptions.billingPlans().activate().withId("1").retrieve().toFuture().join();
+        var response = subscriptionsApiClient.billingPlans().activate().withId("1").retrieve().toFuture().join();
 
         assertEquals(204, response.statusCode());
     }
@@ -207,7 +207,7 @@ class BillingPlansTest {
     void deactivate_plan(){
         stubFor(post("/v1/billing/plans/1/deactivate").willReturn(noContent()));
 
-        var response = subscriptions.billingPlans().deactivate().withId("1").retrieve().toFuture().join();
+        var response = subscriptionsApiClient.billingPlans().deactivate().withId("1").retrieve().toFuture().join();
 
         assertEquals(204, response.statusCode());
     }
@@ -219,7 +219,7 @@ class BillingPlansTest {
                 .withRequestBody(equalToJson(jsonRequest))
                 .willReturn(noContent()));
 
-        var response = subscriptions.billingPlans().updatePricingSchemes().withId("18")
+        var response = subscriptionsApiClient.billingPlans().updatePricingSchemes().withId("18")
                 .withBody(body).retrieve().toFuture().join();
 
         assertEquals(204, response.statusCode());
