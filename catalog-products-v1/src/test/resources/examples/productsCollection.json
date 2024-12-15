@@ -1,0 +1,31 @@
+{
+  "products": [
+    {
+      "id": "123",
+      "name": "string",
+      "description": "string",
+      "type": "PHYSICAL",
+      "category": "AC_REFRIGERATION_REPAIR",
+      "image_url": "string",
+      "home_url": "string",
+      "create_time": "2020-05-27T12:13:51Z",
+      "update_time": "2020-05-27T12:13:51Z",
+      "links": [
+        {
+          "href": "string",
+          "rel": "string",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "total_items": 500000000,
+  "total_pages": 100000000,
+  "links": [
+    {
+      "href": "string",
+      "rel": "string",
+      "method": "GET"
+    }
+  ]
+}
