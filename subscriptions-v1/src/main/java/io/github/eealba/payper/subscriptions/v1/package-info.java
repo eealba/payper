@@ -12,8 +12,7 @@
  * <p>
  * Usage Examples:
  *
- * <pre>
- * {@code
+ * <pre>{@code
  * import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;
  * import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
  *
@@ -38,7 +37,7 @@
  *         System.out.println("Created plan ID: " + plan.id());
  *     }
  * }
- * </pre>
+ * }</pre>
  *
  * <pre>
  * {@code
@@ -52,7 +51,6 @@
  *         System.out.println("Retrieved plan ID: " + plan.id());
  *     }
  * }
- * }
- * </pre>
+ * }</pre>
  */
 package io.github.eealba.payper.subscriptions.v1;

@@ -12,8 +12,7 @@
  * <p>
  * Usage Examples:
  *
- * <pre>
- * {@code
+ * <pre>{@code
  * import io.github.eealba.payper.catalog.products.v1.api.CatalogProductsApiClient;
  * import io.github.eealba.payper.catalog.products.v1.model.ProductRequestPOST;
  *
@@ -35,7 +34,7 @@
  *     }
  *
  * }
- * </pre>
+ * }</pre>
  *
  * <pre>
  * {@code
