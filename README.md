@@ -48,7 +48,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 
 | API Name              | Version | Links                                                                                                                                                                                         | Maven Artifact                                           |
 |-----------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
-| Catalog Products      | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/catalogs_products_v1.json), [API Reference](https://developer.paypal.com/docs/api/catalog-products/v1/)  | `io.github.eealba.payper:catalog-products-v1:1.0.0`      |
+| Catalog Products      | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/catalogs_products_v1.json), [API Reference](https://developer.paypal.com/docs/api/catalog-products/v1/)  | `io.github.eealba.payper:payper-catalog-products-v1:1.0.0`      |
 | Subscriptions         | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/billing_subscriptions_v1.json), [API Reference](https://developer.paypal.com/docs/api/subscriptions/v1/) | `io.github.eealba.payper:payper-subscriptions-v1:1.0.0`  |
 
 ## Coming Soon
