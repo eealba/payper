@@ -330,6 +330,11 @@
                     </plugin>
                 </plugins>
             </build>
+            <modules>
+                <module>core</module>
+                <module>subscriptions-v1</module>
+                <module>catalog-products-v1</module>
+            </modules>
         </profile>
     </profiles>
 </project>
