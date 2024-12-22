@@ -32,7 +32,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-subscriptions-v1</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 ### Catalog Products API
@@ -40,33 +40,31 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-catalog-products-v1</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 
 ## Supported PayPal REST APIs
 
-| API Name              | Version | Links                                                                                                                                                                                         | Maven Artifact                                           |
-|-----------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
-| Catalog Products      | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/catalogs_products_v1.json), [API Reference](https://developer.paypal.com/docs/api/catalog-products/v1/)  | `io.github.eealba.payper:payper-catalog-products-v1:1.0.0`      |
-| Subscriptions         | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/billing_subscriptions_v1.json), [API Reference](https://developer.paypal.com/docs/api/subscriptions/v1/) | `io.github.eealba.payper:payper-subscriptions-v1:1.0.0`  |
+| API Name              | Version | Links                                                                       | Maven Artifact                                              |
+|-----------------------|---------|-----------------------------------------------------------------------------|-------------------------------------------------------------|
+| Catalog Products      | v1      | [API Reference](https://developer.paypal.com/docs/api/catalog-products/v1/) | `io.github.eealba.payper:payper-catalog-products-v1:1.0.0`  |
+| Subscriptions         | v1      | [API Reference](https://developer.paypal.com/docs/api/subscriptions/v1/)    | `io.github.eealba.payper:payper-subscriptions-v1:1.0.0`     |
 
 ## Coming Soon
-| API Name              | Version | Links                                                                                                                                                  |
-|-----------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add Tracking          | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/shipping_shipment_tracking_v1.json), [API Reference](https://developer.paypal.com/docs/api/tracking/v1/)                           |
-| Catalog Products      | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/catalogs_products_v1.json), [API Reference](https://developer.paypal.com/docs/api/catalog-products/v1/)                            |
-| Disputes              | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/customer_disputes_v1.json), [API Reference](https://developer.paypal.com/docs/api/customer-disputes/v1/)                           |
-| Invoices              | v2      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/invoicing_v2.json), [API Reference](https://developer.paypal.com/docs/api/invoicing/v2/)                                           |
-| Orders                | v2      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/checkout_orders_v2.json), [API Reference](https://developer.paypal.com/docs/api/orders/v2/)                                        |
-| Partner Referrals     | v2      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/customer_partner_referrals_v2.json), [API Reference](https://developer.paypal.com/docs/api/partner-referrals/v2/)                  |
-| Payment Experience    | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/payment-experience_web_experience_profiles_v1.json), [API Reference](https://developer.paypal.com/docs/api/payment-experience/v1/) |
-| Payment Method Tokens | v3      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/vault_payment_tokens_v3.json), [API Reference](https://developer.paypal.com/docs/api/payment-tokens/v3/)                           |
-| Payments              | v2      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/payments_payment_v2.json), [API Reference](https://developer.paypal.com/docs/api/payments/v2/)                                     |
-| Payouts               | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/payments_payouts_batch_v1.json), [API Reference](https://developer.paypal.com/docs/api/payments.payouts-batch/v1/)                 |
-| Subscriptions         | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/billing_subscriptions_v1.json), [API Reference](https://developer.paypal.com/docs/api/subscriptions/v1/)                           |
-| Transaction Search    | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/reporting_transactions_v1.json), [API Reference](https://developer.paypal.com/docs/api/transaction-search/v1/)                     |
-| Webhooks Management   | v1      | [OpenAPI](https://github.com/paypal/paypal-rest-api-specifications/blob/main/openapi/notifications_webhooks_v1.json), [API Reference](https://developer.paypal.com/docs/api/webhooks/v1/)                               |
+| API Name              | Version | Links                                                                                  |
+|-----------------------|---------|----------------------------------------------------------------------------------------|
+| Add Tracking          | v1      | [API Reference](https://developer.paypal.com/docs/api/tracking/v1/)                    |
+| Disputes              | v1      | [API Reference](https://developer.paypal.com/docs/api/customer-disputes/v1/)           |
+| Invoices              | v2      | [API Reference](https://developer.paypal.com/docs/api/invoicing/v2/)                   |
+| Orders                | v2      | [API Reference](https://developer.paypal.com/docs/api/orders/v2/)                      |
+| Partner Referrals     | v2      | [API Reference](https://developer.paypal.com/docs/api/partner-referrals/v2/)           |
+| Payment Experience    | v1      | [API Reference](https://developer.paypal.com/docs/api/payment-experience/v1/)          |
+| Payment Method Tokens | v3      | [API Reference](https://developer.paypal.com/docs/api/payment-tokens/v3/)              |
+| Payments              | v2      | [API Reference](https://developer.paypal.com/docs/api/payments/v2/)                    |
+| Payouts               | v1      | [API Reference](https://developer.paypal.com/docs/api/payments.payouts-batch/v1/)      |
+| Transaction Search    | v1      | [API Reference](https://developer.paypal.com/docs/api/transaction-search/v1/)          |
+| Webhooks Management   | v1      | [API Reference](https://developer.paypal.com/docs/api/webhooks/v1/)                    |
 
 ## Usage
 
@@ -74,6 +72,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 
 ```java
 import io.github.eealba.payper.catalog.products.v1.api.CatalogProductsApiClient;
+import io.github.eealba.payper.catalog.products.v1.model.ProductCategory;
 import io.github.eealba.payper.catalog.products.v1.model.ProductRequestPOST;
 
 public class PayperExample {

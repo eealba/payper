@@ -14,6 +14,7 @@
  *
  * <pre>{@code
  * import io.github.eealba.payper.catalog.products.v1.api.CatalogProductsApiClient;
+ * import io.github.eealba.payper.catalog.products.v1.model.ProductCategory;
  * import io.github.eealba.payper.catalog.products.v1.model.ProductRequestPOST;
  *
  * public class PayperExample {

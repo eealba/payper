@@ -17,9 +17,17 @@ import io.github.eealba.payper.core.PayperConfig;
 
 /**
  * Abstract class representing Subscriptions.
- * This class provides methods to create and manage billing plans and subscriptionsApiClient.
- *
- * <p>Example usage:</p>
+ * <p>
+ * This class provides methods to create and manage billing plans and subscriptions.
+ * It serves as the main entry point for creating and configuring instances of the Subscriptions API client.
+ * <p>
+ * The Subscriptions API client provides methods for accessing and managing billing plans and subscriptions,
+ * including creating, retrieving, updating, activating, deactivating, and listing plans, as well as managing subscriptions.
+ * <p>
+ * Usage of this client requires proper configuration, which can be provided through the {@link io.github.eealba.payper.core.PayperConfig} class.
+ * The configuration includes necessary credentials and settings for authenticating and communicating with the PayPal API.
+ * <p>
+ * Example usage:
  * <pre>{@code
  * // Create a new Subscriptions instance with default configuration
  * SubscriptionsApiClient subscriptionsApiClient = SubscriptionsApiClient.create();
@@ -40,7 +48,6 @@ import io.github.eealba.payper.core.PayperConfig;
  *                 .retrieve().toFuture().join();
  *
  * // List plans
- *
  * var planCollection = subscriptionsApiClient.billingPlans().list()
  *                 .withPageSize(10)
  *                 .withPage(1)
@@ -48,7 +55,6 @@ import io.github.eealba.payper.core.PayperConfig;
  *                 .withTotalRequired(true)
  *                 .retrieve().toEntity();
  * // Update plan
- *
  * var response = subscriptionsApiClient.billingPlans().update()
  *                  .withId("1")
  *                  .withBody(request)
@@ -56,7 +62,6 @@ import io.github.eealba.payper.core.PayperConfig;
  *                  .toFuture()
  *                  .join();
  * // Activate plan
- *
  * var response = subscriptionsApiClient.billingPlans().activate()
  *              .withId("1")
  *              .retrieve()
@@ -64,7 +69,6 @@ import io.github.eealba.payper.core.PayperConfig;
  *              .join();
  *
  * // Deactivate plan
- *
  * var response = subscriptionsApiClient.billingPlans().deactivate()
  *             .withId("1")
  *             .retrieve()
@@ -72,7 +76,6 @@ import io.github.eealba.payper.core.PayperConfig;
  *             .join();
  *
  * // Update pricing schemes
- *
  * var response = subscriptionsApiClient.billingPlans().updatePricingSchemes()
  *                  .withId("18")
  *                  .withBody(body)
@@ -86,12 +89,17 @@ import io.github.eealba.payper.core.PayperConfig;
  *
  * @since 1.0
  * @version 1.0
- * @author Edgar Alba
+ * @see io.github.eealba.payper.core.PayperConfig
+ * @see io.github.eealba.payper.subscriptions.v1.api.BillingPlans
+ * @see io.github.eealba.payper.subscriptions.v1.api.BillingSubscriptions
  */
 public abstract class SubscriptionsApiClient {
 
     /**
      * Creates a new Subscriptions instance using the default configuration.
+     * <p>
+     * This method initializes the client with the default settings and credentials
+     * required for communicating with the PayPal Subscriptions API.
      *
      * @return a new Subscriptions instance
      */
@@ -101,6 +109,10 @@ public abstract class SubscriptionsApiClient {
 
     /**
      * Creates a new Subscriptions instance using the specified configuration.
+     * <p>
+     * This method allows for custom configuration of the client, including setting
+     * specific credentials and other settings required for authenticating and
+     * communicating with the PayPal Subscriptions API.
      *
      * @param config the configuration to be used
      * @return a new Subscriptions instance
@@ -111,13 +123,22 @@ public abstract class SubscriptionsApiClient {
 
     /**
      * Provides access to billing plans.
+     * <p>
+     * The BillingPlans instance provides methods for creating, retrieving, updating,
+     * activating, deactivating, and listing billing plans. It serves as the main interface
+     * for interacting with the billing plan-related endpoints of the PayPal Subscriptions API.
      *
      * @return the billing plans
      */
     public abstract BillingPlans billingPlans();
 
     /**
-     * Provides access to billing subscriptionsApiClient.
+     * Provides access to billing subscriptions.
+     * <p>
+     * The BillingSubscriptions instance provides methods for creating, retrieving, updating,
+     * suspending, canceling, activating, capturing, and listing transactions for subscriptions.
+     * It serves as the main interface for interacting with the subscription-related endpoints
+     * of the PayPal Subscriptions API.
      *
      * @return the billing subscriptions
      */
