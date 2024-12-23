@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.github.eealba.payper</groupId>
         <artifactId>payper-parent</artifactId>
-        <version>0.1.1</version>
+        <version>0.1.2</version>
     </parent>
 
     <artifactId>payper-catalog-products-v1</artifactId>
@@ -12,6 +12,7 @@
     <description>Catalog Products API client for the Payper library, providing methods to interact with the
         PayPal Catalog Products API.</description>
     <name>catalog-products-v1</name>
+    <url>https://github.com/eealba/payper</url>
     <scm>
         <url>https://github.com/eealba/payper</url>
         <connection>scm:git:git@github.com:eealba/payper.git</connection>
