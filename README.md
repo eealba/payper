@@ -1,7 +1,5 @@
 # Payper - Unofficial Java Client for PayPal REST API
 [![Coverage](.github/badges/jacoco.svg)](https://github.com/eealba/payper/actions/workflows/github_action.yaml)
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.eealba/payper.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.eealba/payper)
-[![Javadoc](https://javadoc.io/badge2/io.github.eealba/payper/javadoc.io.svg)](https://javadoc.io/doc/io.github.eealba/payper)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Java Version](https://img.shields.io/badge/Java-17%2B-brightgreen)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 [![Build Status](https://github.com/eealba/payper/actions/workflows/github_action.yaml/badge.svg)](https://github.com/eealba/payper/actions)
@@ -22,34 +20,41 @@ for multithreading and high concurrency. Payper uses immutable objects and provi
 - **Automatic Token Refresh**: Automatically refreshes OAuth 2.0 access tokens.
 - **Asynchronous Support**: Supports asynchronous requests with completable futures.
 
+## Supported PayPal REST APIs
+
+| API Name              | Version | Links                                                                       |
+|-----------------------|---------|-----------------------------------------------------------------------------|
+| Catalog Products      | v1      | [API Reference](https://developer.paypal.com/docs/api/catalog-products/v1/) | 
+| Subscriptions         | v1      | [API Reference](https://developer.paypal.com/docs/api/subscriptions/v1/)    |
+
 ## Installation
 
-To use Payper in your project, add the appropriate dependency for the paypal service you want to consume 
+To use Payper in your project, add the appropriate dependency for the paypal service you want to consume
 in your `pom.xml`, in the table below the corresponding payper module appears for each service:
 
+
 ### Subscriptions API
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.eealba.payper/payper-subscriptions-v1.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.eealba.payper/payper-subscriptions-v1)
+[![Javadoc](https://javadoc.io/badge2/io.github.eealba.payper/payper-subscriptions-v1/javadoc.io.svg)](https://javadoc.io/doc/io.github.eealba.payper/payper-subscriptions-v1)
+
 ```xml
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-subscriptions-v1</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 ### Catalog Products API
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.eealba.payper/payper-catalog-products-v1.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.eealba.payper/payper-catalog-products-v1)
+[![Javadoc](https://javadoc.io/badge2/io.github.eealba.payper/payper-catalog-products-v1/javadoc.io.svg)](https://javadoc.io/doc/io.github.eealba.payper/payper-catalog-products-v1)
 ```xml
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-catalog-products-v1</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 
-## Supported PayPal REST APIs
-
-| API Name              | Version | Links                                                                       | Maven Artifact                                              |
-|-----------------------|---------|-----------------------------------------------------------------------------|-------------------------------------------------------------|
-| Catalog Products      | v1      | [API Reference](https://developer.paypal.com/docs/api/catalog-products/v1/) | `io.github.eealba.payper:payper-catalog-products-v1:1.0.0`  |
-| Subscriptions         | v1      | [API Reference](https://developer.paypal.com/docs/api/subscriptions/v1/)    | `io.github.eealba.payper:payper-subscriptions-v1:1.0.0`     |
 
 ## Coming Soon
 | API Name              | Version | Links                                                                                  |

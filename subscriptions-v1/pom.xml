@@ -6,10 +6,17 @@
     <parent>
         <groupId>io.github.eealba.payper</groupId>
         <artifactId>payper-parent</artifactId>
-        <version>0.1.0</version>
+        <version>0.1.1</version>
     </parent>
     <packaging>jar</packaging>
     <artifactId>payper-subscriptions-v1</artifactId>
+    <description>Subscriptions API client for the Payper library, providing methods to interact with the PayPal
+        Subscriptions API.</description>
+    <scm>
+        <url>https://github.com/eealba/payper</url>
+        <connection>scm:git:git@github.com:eealba/payper.git</connection>
+        <developerConnection>scm:git:git@github.com:eealba/payper.git</developerConnection>
+    </scm>
 
     <dependencies>
         <dependency>

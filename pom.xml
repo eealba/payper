@@ -2,9 +2,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-parent</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <name>PayPer Parent</name>
-    <description>PayPer Parent - Unofficial Java Client for PayPal REST API</description>
+    <description>PayPer Parent - Unofficial Java Client for PayPal REST API, providing core functionalities
+        and utilities for interacting with various PayPal APIs.</description>
     <packaging>pom</packaging>
     <url>https://github.com/eealba/payper</url>
     <organization>
