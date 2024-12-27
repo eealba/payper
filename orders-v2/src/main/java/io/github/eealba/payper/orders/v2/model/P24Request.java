@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Information needed to pay using P24 (Przelewy24).
  */
@@ -15,7 +14,7 @@ public class P24Request {
     
     private final FullName name;
     
-    private final EmailAddress email;
+    private final Email email;
     @JasonerProperty("country_code")
     private final CountryCode countryCode;
     @JasonerProperty("experience_context")
@@ -40,7 +39,7 @@ public class P24Request {
      * email
      */
     
-    public EmailAddress email() {
+    public Email email() {
         return email;
     }
 
@@ -67,7 +66,7 @@ public class P24Request {
     public static class Builder {
 
         private FullName name;
-        private EmailAddress email;
+        private Email email;
         private CountryCode countryCode;
         private ExperienceContextBase experienceContext;
 
@@ -84,7 +83,7 @@ public class P24Request {
          * email
          */
         
-        public Builder email(EmailAddress value) {
+        public Builder email(Email value) {
             this.email = value;
             return this;
         }
@@ -112,7 +111,6 @@ public class P24Request {
         }
 
     }
-
 
 }
 

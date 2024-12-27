@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * The details for the items to be purchased.
  */
@@ -183,6 +182,5 @@ public class Item {
         PHYSICAL_GOODS,
         DONATION
     }
-
 }
 

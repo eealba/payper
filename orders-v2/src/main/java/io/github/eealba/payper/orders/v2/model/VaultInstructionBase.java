@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Basic vault instruction specification that can be extended by specific payment sources that supports vaulting.
  */
@@ -48,7 +47,6 @@ public class VaultInstructionBase {
         }
 
     }
-
 
 }
 

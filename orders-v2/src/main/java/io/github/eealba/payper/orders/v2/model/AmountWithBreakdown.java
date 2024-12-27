@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * The total order amount with an optional breakdown that provides details, such as the total item amount, total tax 
 amount, shipping, handling, insurance, and discounts, if any.<br/>If you specify `amount.breakdown`, the amount equals 
@@ -101,7 +100,6 @@ Codes](/api/rest/reference/currency-codes/).
         }
 
     }
-
 
 }
 

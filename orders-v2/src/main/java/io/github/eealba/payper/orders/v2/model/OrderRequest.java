@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 import java.util.List;
 import java.util.Objects;
 
-
 /**
  * The order request details.
  */
@@ -135,7 +134,6 @@ purchase unit represents either a full or partial order that the payer intends t
         }
 
     }
-
 
 }
 

@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 import java.util.List;
 import java.util.Objects;
 
-
 /**
  * The detailed breakdown of the capture activity. This is not available for transactions that are in pending state.
  */
@@ -177,7 +176,6 @@ payment.
         }
 
     }
-
 
 }
 

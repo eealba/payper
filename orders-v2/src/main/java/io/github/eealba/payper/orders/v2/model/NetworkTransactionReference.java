@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Reference values used by the card network to identify a transaction.
  */
@@ -122,7 +121,6 @@ card brands and issuing banks.
         }
 
     }
-
 
 }
 

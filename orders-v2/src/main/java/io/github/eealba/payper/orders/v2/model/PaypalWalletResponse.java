@@ -1,8 +1,8 @@
 package io.github.eealba.payper.orders.v2.model;
 
-
 import io.github.eealba.jasoner.JasonerProperty;
 
+import java.time.LocalDate;
 
 /**
  * The PayPal Wallet response.
@@ -23,7 +23,7 @@ public class PaypalWalletResponse {
     @JasonerProperty("phone_number")
     private final Phone2 phoneNumber;
     @JasonerProperty("birth_date")
-    private final DateNoTime birthDate;
+    private final LocalDate birthDate;
     @JasonerProperty("tax_info")
     private final TaxInfo taxInfo;
     
@@ -98,7 +98,7 @@ account.
      * birthDate
      */
     @JasonerProperty("birth_date")
-    public DateNoTime birthDate() {
+    public LocalDate birthDate() {
         return birthDate;
     }
 
@@ -138,7 +138,7 @@ account.
         private Name2 name;
         private PhoneType2 phoneType;
         private Phone2 phoneNumber;
-        private DateNoTime birthDate;
+        private LocalDate birthDate;
         private TaxInfo taxInfo;
         private AddressPortable address;
         private PaypalWalletAttributesResponse attributes;
@@ -202,7 +202,7 @@ account.
          * birthDate
          */
         @JasonerProperty("birth_date")
-        public Builder birthDate(DateNoTime value) {
+        public Builder birthDate(LocalDate value) {
             this.birthDate = value;
             return this;
         }
@@ -246,6 +246,5 @@ account.
         VERIFIED,
         UNVERIFIED
     }
-
 }
 

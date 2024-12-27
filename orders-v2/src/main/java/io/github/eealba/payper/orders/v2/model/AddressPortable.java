@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * The portable international postal address. Maps to 
 [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 
@@ -418,7 +417,6 @@ building within a collection of buildings with a common name. Can be a flat, sto
         }
 
     }
-
 
 }
 

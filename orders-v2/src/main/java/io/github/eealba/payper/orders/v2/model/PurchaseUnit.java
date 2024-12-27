@@ -4,7 +4,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.List;
 
-
 /**
  * The purchase unit details. Used to capture required information for the payment contract.
  */
@@ -333,7 +332,6 @@ Card) marketplace integrations, use a combination of the seller name and phone n
         }
 
     }
-
 
 }
 

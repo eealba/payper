@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Information about the decrypted apple pay payment data for the token like cryptogram, eci indicator.
  */
@@ -115,7 +114,6 @@ party and supports Unicode.
         }
 
     }
-
 
 }
 

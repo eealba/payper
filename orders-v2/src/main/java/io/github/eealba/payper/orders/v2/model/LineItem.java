@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * The line items for this purchase. If your merchant account has been configured for Level 3 processing this field will be 
 passed to the processor on your behalf.
@@ -278,6 +277,5 @@ Kilometre (KMT), Kilowatt (KWT), Liquid gallon (GLL), Liter (LTR), Pounds (LBS),
         PHYSICAL_GOODS,
         DONATION
     }
-
 }
 

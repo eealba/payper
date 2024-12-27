@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Information used to pay using BLIK one-click flow.
  */
@@ -50,7 +49,6 @@ and a merchant.
         }
 
     }
-
 
 }
 

@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Information needed to pay using ApplePay.
  */
@@ -15,7 +14,7 @@ public class ApplePayRequest {
     
     private final FullName name;
     @JasonerProperty("email_address")
-    private final EmailAddress emailAddress;
+    private final Email emailAddress;
     @JasonerProperty("phone_number")
     private final Phone phoneNumber;
     @JasonerProperty("decrypted_token")
@@ -60,7 +59,7 @@ The pattern is defined by an external party and supports Unicode.
      * emailAddress
      */
     @JasonerProperty("email_address")
-    public EmailAddress emailAddress() {
+    public Email emailAddress() {
         return emailAddress;
     }
 
@@ -112,7 +111,7 @@ The pattern is defined by an external party and supports Unicode.
 
         private String id;
         private FullName name;
-        private EmailAddress emailAddress;
+        private Email emailAddress;
         private Phone phoneNumber;
         private ApplePayDecryptedTokenData decryptedToken;
         private CardStoredCredential storedCredential;
@@ -142,7 +141,7 @@ The pattern is defined by an external party and supports Unicode.
          * emailAddress
          */
         @JasonerProperty("email_address")
-        public Builder emailAddress(EmailAddress value) {
+        public Builder emailAddress(Email value) {
             this.emailAddress = value;
             return this;
         }
@@ -197,7 +196,6 @@ The pattern is defined by an external party and supports Unicode.
         }
 
     }
-
 
 }
 

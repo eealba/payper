@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * The merchant who receives the funds and fulfills the order. The merchant is also known as the payee.
  */
@@ -69,7 +68,6 @@ public class Payee {
         }
 
     }
-
 
 }
 

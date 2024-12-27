@@ -117,6 +117,5 @@ public class VaultResponse {
         CREATED,
         APPROVED
     }
-
 }
 

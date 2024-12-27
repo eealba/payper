@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * The payment card to use to fund a payment. Can be a credit or debit card.<blockquote><strong>Note:</strong> Passing card 
 number, cvv and expiry directly via the API requires <a 
@@ -349,7 +348,6 @@ parameter cannot be present in the request when `payment_initiator=MERCHANT`.
         }
 
     }
-
 
 }
 

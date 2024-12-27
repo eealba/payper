@@ -141,6 +141,5 @@ public class ShippingWithTrackingDetails {
         PICKUP_IN_STORE,
         PICKUP_FROM_PERSON
     }
-
 }
 

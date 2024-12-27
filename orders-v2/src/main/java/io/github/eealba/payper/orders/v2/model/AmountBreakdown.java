@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * The breakdown of the amount. Breakdown provides details such as total item amount, total tax amount, shipping, handling, 
 insurance, and discounts, if any.
@@ -175,7 +174,6 @@ public class AmountBreakdown {
         }
 
     }
-
 
 }
 

@@ -4,7 +4,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.List;
 
-
 /**
  * Additional attributes associated with the use of a PayPal Wallet.
  */
@@ -72,7 +71,6 @@ merchant has onboarded their cobranded card with PayPal and provided correspondi
         }
 
     }
-
 
 }
 

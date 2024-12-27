@@ -1,10 +1,12 @@
 package io.github.eealba.payper.orders.v2.model;
 
 
+import io.github.eealba.jasoner.JasonerSingleVO;
 
 /**
  * 
  */
+@JasonerSingleVO
 public record TrackerStatus(Object value) {
 
     public TrackerStatus(Object value) {

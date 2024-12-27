@@ -109,6 +109,5 @@ Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml)
         OPTIONS,
         PATCH
     }
-
 }
 

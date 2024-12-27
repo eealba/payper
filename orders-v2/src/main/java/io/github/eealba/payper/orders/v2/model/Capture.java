@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 import java.time.Instant;
 import java.util.List;
 
-
 /**
  * A captured payment.
  */
@@ -363,6 +362,5 @@ additional payments against the authorization.
         REFUNDED,
         FAILED
     }
-
 }
 

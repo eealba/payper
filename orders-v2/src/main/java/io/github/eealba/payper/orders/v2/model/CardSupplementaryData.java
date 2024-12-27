@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Merchants and partners can add Level 2 and 3 data to payments to reduce risk and payment processing costs. For more 
 information about processing payments, see <a 
@@ -72,7 +71,6 @@ public class CardSupplementaryData {
         }
 
     }
-
 
 }
 

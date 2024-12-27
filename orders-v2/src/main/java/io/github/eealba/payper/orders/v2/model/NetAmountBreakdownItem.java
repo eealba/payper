@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * The net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the 
 merchant holds their funds.
@@ -91,7 +90,6 @@ public class NetAmountBreakdownItem {
         }
 
     }
-
 
 }
 

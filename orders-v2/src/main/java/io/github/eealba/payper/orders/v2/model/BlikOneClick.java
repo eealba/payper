@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Information used to pay using BLIK one-click flow.
  */
@@ -118,7 +117,6 @@ Used only in conjunction with a Consumer Reference.
         }
 
     }
-
 
 }
 

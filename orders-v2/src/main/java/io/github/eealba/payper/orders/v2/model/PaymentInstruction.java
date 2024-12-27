@@ -4,7 +4,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.List;
 
-
 /**
  * Any additional payment instructions to be consider during payment processing. This processing instruction is applicable 
 for Capturing an order or Authorizing an Order.
@@ -123,7 +122,6 @@ eligible integrations) to be used when amount is settled/received into the payee
         }
 
     }
-
 
 }
 

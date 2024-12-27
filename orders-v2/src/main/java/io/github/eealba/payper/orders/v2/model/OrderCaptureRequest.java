@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Completes an capture payment for an order.
  */
@@ -48,7 +47,6 @@ public class OrderCaptureRequest {
         }
 
     }
-
 
 }
 

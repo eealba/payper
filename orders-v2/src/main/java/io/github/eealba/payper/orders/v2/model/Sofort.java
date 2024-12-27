@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Information used to pay using Sofort.
  */
@@ -111,7 +110,6 @@ public class Sofort {
         }
 
     }
-
 
 }
 

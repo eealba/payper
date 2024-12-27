@@ -4,7 +4,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.List;
 
-
 /**
  * The details about a saved PayPal Wallet payment source.
  */
@@ -141,6 +140,5 @@ public class PaypalWalletVaultResponse {
         CREATED,
         APPROVED
     }
-
 }
 

@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Provides additional details to process a payment using a `payment_source` that has been stored or is intended to be 
 stored (also referred to as stored_credential or card-on-file).<br/>Parameter 
@@ -118,7 +117,6 @@ public class StoredPaymentSource {
         }
 
     }
-
 
 }
 

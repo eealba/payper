@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Customizes the payer experience during the approval process for the payment with 
 PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code> and 
@@ -281,6 +280,5 @@ supports them (eg. `payment_source.paypal.experience_context.cancel_url`). Pleas
         CONTINUE,
         PAY_NOW
     }
-
 }
 

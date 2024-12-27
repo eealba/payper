@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Results of 3D Secure Authentication.
  */
@@ -69,7 +68,6 @@ public class ThreeDSecureAuthenticationResponse {
         }
 
     }
-
 
 }
 

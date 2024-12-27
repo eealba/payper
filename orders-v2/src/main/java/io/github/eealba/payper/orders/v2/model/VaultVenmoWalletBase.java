@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Resource consolidating common request and response attirbutes for vaulting Venmo Wallet.
  */
@@ -191,6 +190,5 @@ may share the same Venmo account.
         CONSUMER,
         BUSINESS
     }
-
 }
 

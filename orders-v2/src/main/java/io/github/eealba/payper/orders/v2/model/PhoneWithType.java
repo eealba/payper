@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * The phone information.
  */
@@ -70,7 +69,6 @@ public class PhoneWithType {
         }
 
     }
-
 
 }
 

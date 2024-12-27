@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Information needed to pay using MyBank.
  */
@@ -91,7 +90,6 @@ public class MybankRequest {
         }
 
     }
-
 
 }
 

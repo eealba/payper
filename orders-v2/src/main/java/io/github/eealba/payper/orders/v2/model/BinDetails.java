@@ -4,7 +4,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.List;
 
-
 /**
  * Bank Identification Number (BIN) details used to fund a payment.
  */
@@ -116,7 +115,6 @@ change over time. Some examples include: PREPAID_GIFT, CONSUMER, CORPORATE.
         }
 
     }
-
 
 }
 

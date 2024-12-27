@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * The name of the party.
  */
@@ -157,7 +156,6 @@ patronymic, or father's, middle name.
         }
 
     }
-
 
 }
 

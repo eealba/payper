@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Information needed to pay using BLIK.
  */
@@ -17,7 +16,7 @@ public class BlikRequest {
     @JasonerProperty("country_code")
     private final CountryCode countryCode;
     
-    private final EmailAddress email;
+    private final Email email;
     @JasonerProperty("experience_context")
     private final BlikExperienceContext experienceContext;
     @JasonerProperty("level_0")
@@ -54,7 +53,7 @@ public class BlikRequest {
      * email
      */
     
-    public EmailAddress email() {
+    public Email email() {
         return email;
     }
 
@@ -90,7 +89,7 @@ public class BlikRequest {
 
         private FullName name;
         private CountryCode countryCode;
-        private EmailAddress email;
+        private Email email;
         private BlikExperienceContext experienceContext;
         private BlikSeamless level0;
         private BlikOneClick oneClick;
@@ -117,7 +116,7 @@ public class BlikRequest {
          * email
          */
         
-        public Builder email(EmailAddress value) {
+        public Builder email(Email value) {
             this.email = value;
             return this;
         }
@@ -154,7 +153,6 @@ public class BlikRequest {
         }
 
     }
-
 
 }
 

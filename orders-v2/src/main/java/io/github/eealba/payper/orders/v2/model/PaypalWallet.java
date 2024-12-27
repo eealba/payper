@@ -1,8 +1,8 @@
 package io.github.eealba.payper.orders.v2.model;
 
-
 import io.github.eealba.jasoner.JasonerProperty;
 
+import java.time.LocalDate;
 
 /**
  * A resource that identifies a PayPal Wallet is used for payment.
@@ -19,7 +19,7 @@ public class PaypalWallet {
     
     private final PhoneWithType phone;
     @JasonerProperty("birth_date")
-    private final DateNoTime birthDate;
+    private final LocalDate birthDate;
     @JasonerProperty("tax_info")
     private final TaxInfo taxInfo;
     
@@ -81,7 +81,7 @@ public class PaypalWallet {
      * birthDate
      */
     @JasonerProperty("birth_date")
-    public DateNoTime birthDate() {
+    public LocalDate birthDate() {
         return birthDate;
     }
 
@@ -135,7 +135,7 @@ public class PaypalWallet {
         private Email emailAddress;
         private Name2 name;
         private PhoneWithType phone;
-        private DateNoTime birthDate;
+        private LocalDate birthDate;
         private TaxInfo taxInfo;
         private AddressPortable address;
         private PaypalWalletAttributes attributes;
@@ -182,7 +182,7 @@ public class PaypalWallet {
          * birthDate
          */
         @JasonerProperty("birth_date")
-        public Builder birthDate(DateNoTime value) {
+        public Builder birthDate(LocalDate value) {
             this.birthDate = value;
             return this;
         }
@@ -237,7 +237,6 @@ public class PaypalWallet {
         }
 
     }
-
 
 }
 

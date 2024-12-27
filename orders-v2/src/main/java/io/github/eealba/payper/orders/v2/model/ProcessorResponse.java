@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * The processor response information for payment requests, such as direct credit card transactions.
  */
@@ -419,6 +418,5 @@ Mastercard, return payment advice codes.
         @JasonerProperty("21")
     NUM_21
     }
-
 }
 

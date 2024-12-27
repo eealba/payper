@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * The exchange rate that determines the amount to convert from one currency to another currency.
  */
@@ -92,7 +91,6 @@ value with one to 15 digits to the right of the decimal point.
         }
 
     }
-
 
 }
 

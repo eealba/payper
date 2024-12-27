@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Customizes the payer experience during the 3DS Approval for payment.
  */
@@ -69,7 +68,6 @@ public class CardExperienceContext {
         }
 
     }
-
 
 }
 

@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Payer confirms the intent to pay for the Order using the provided payment source.
  */
@@ -91,7 +90,6 @@ public class ConfirmOrderRequest {
         }
 
     }
-
 
 }
 

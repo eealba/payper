@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Information about the Payment data obtained by decrypting Apple Pay token.
  */
@@ -145,6 +144,5 @@ is EMV.
     NUM_3DSECURE,
         EMV
     }
-
 }
 

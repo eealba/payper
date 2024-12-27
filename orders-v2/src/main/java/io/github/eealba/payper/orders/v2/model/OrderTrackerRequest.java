@@ -3,9 +3,9 @@ package io.github.eealba.payper.orders.v2.model;
 import io.github.eealba.jasoner.JasonerProperty;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-
 
 /**
  * The tracking details of an order.
@@ -22,7 +22,7 @@ public class OrderTrackerRequest {
     
     private final ShipmentTrackingStatus status;
     @JasonerProperty("shipment_date")
-    private final DateNoTime shipmentDate;
+    private final LocalDate shipmentDate;
     
     private final ShipmentCarrier carrier;
     @JasonerProperty("carrier_name_other")
@@ -104,7 +104,7 @@ public class OrderTrackerRequest {
      * shipmentDate
      */
     @JasonerProperty("shipment_date")
-    public DateNoTime shipmentDate() {
+    public LocalDate shipmentDate() {
         return shipmentDate;
     }
 
@@ -217,7 +217,7 @@ information that was uploaded through the API.
         private String trackingNumber;
         private ShipmentTrackingNumberType trackingNumberType;
         private ShipmentTrackingStatus status;
-        private DateNoTime shipmentDate;
+        private LocalDate shipmentDate;
         private ShipmentCarrier carrier;
         private String carrierNameOther;
         private String postagePaymentId;
@@ -271,7 +271,7 @@ information that was uploaded through the API.
          * shipmentDate
          */
         @JasonerProperty("shipment_date")
-        public Builder shipmentDate(DateNoTime value) {
+        public Builder shipmentDate(LocalDate value) {
             this.shipmentDate = value;
             return this;
         }
@@ -407,6 +407,5 @@ information that was uploaded through the API.
         CONSUMER,
         PARTNER
     }
-
 }
 

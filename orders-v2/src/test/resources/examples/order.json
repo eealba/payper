@@ -1,0 +1,751 @@
+{
+  "create_time": "2023-08-17T22:18:48.740Z",
+  "update_time": "2023-10-02T18:47:00Z",
+  "id": "string",
+  "payment_source": {
+    "card": {
+      "name": "string",
+      "last_digits": "1704850886525013663366008240061578736700",
+      "brand": "VISA",
+      "available_networks": [
+        "VISA"
+      ],
+      "type": "CREDIT",
+      "authentication_result": {
+        "liability_shift": "NO",
+        "three_d_secure": {
+          "authentication_status": "Y",
+          "enrollment_status": "Y"
+        },
+        "authentication_flow": "string",
+        "exemption_details": "string"
+      },
+      "attributes": {
+        "vault": {
+          "id": "string",
+          "customer": {
+            "id": "S5QqBUDBMT",
+            "email_address": "joe@soe.com",
+            "phone": {
+              "phone_type": "FAX",
+              "phone_number": {
+                "country_code": "PT",
+                "national_number": "611200300",
+                "extension_number": "629241722898817"
+              }
+            }
+          },
+          "links": [
+            {
+              "href": "string",
+              "rel": "string",
+              "method": "GET"
+            }
+          ]
+        }
+      },
+      "from_request": {
+        "expiry": "2023-08",
+        "last_digits": "1297"
+      },
+      "expiry": "2024-11",
+      "bin_details": {
+        "bin": "2236748521094105018200775",
+        "issuing_bank": "string",
+        "bin_country_code": "C2",
+        "products": [
+          "string"
+        ]
+      }
+    },
+    "paypal": {
+      "email_address": "joe@doe.com",
+      "account_id": "HXM67ETBGXL9Q",
+      "account_status": "VERIFIED",
+      "name": {
+        "prefix": "string",
+        "given_name": "string",
+        "surname": "string",
+        "middle_name": "string",
+        "suffix": "string",
+        "full_name": "string"
+      },
+      "phone_type": "FAX",
+      "phone_number": {
+        "national_number": "611200300"
+      },
+      "birth_date": "1990-12-31",
+      "tax_info": {
+        "tax_id": "r",
+        "tax_id_type": "BR_CPF"
+      },
+      "address": {
+        "address_line_1": "string",
+        "address_line_2": "string",
+        "address_line_3": "string",
+        "admin_area_4": "string",
+        "admin_area_3": "string",
+        "admin_area_2": "string",
+        "admin_area_1": "string",
+        "postal_code": "string",
+        "country_code": "C2",
+        "address_details": {
+          "street_number": "string",
+          "street_name": "string",
+          "street_type": "string",
+          "delivery_service": "string",
+          "building_name": "string",
+          "sub_building": "string"
+        }
+      },
+      "attributes": {
+        "vault": {
+          "id": "string",
+          "customer": {
+            "id": "_qUv66JHvNaySF-p1KWnEg",
+            "email_address": "joe@doe.com",
+            "phone": {
+              "phone_type": "FAX",
+              "phone_number": {
+                "country_code": "7",
+                "national_number": "611200300",
+                "extension_number": "3"
+              }
+            }
+          },
+          "links": [
+            {
+              "href": "string",
+              "rel": "string",
+              "method": "GET"
+            }
+          ],
+          "owner_id": "string"
+        },
+        "cobranded_cards": [
+          {
+            "labels": [
+              "string"
+            ],
+            "payee": {
+              "email_address": "joe@doe.com",
+              "merchant_id": "DMT8DEWY4EBHA"
+            },
+            "amount": {
+              "currency_code": "EUR",
+              "value": "-9354305503790845909421155376823"
+            }
+          }
+        ]
+      }
+    },
+    "bancontact": {
+      "name": "string",
+      "country_code": "GI",
+      "bic": "ShoqKNuT",
+      "iban_last_chars": "Ju6D",
+      "card_last_digits": "6085",
+      "attributes": "string"
+    },
+    "blik": {
+      "name": "string",
+      "country_code": "ZO",
+      "email": "joe@doe.com",
+      "one_click": {
+        "consumer_reference": "ax123"
+      }
+    },
+    "eps": {
+      "name": "string",
+      "country_code": "FY",
+      "bic": "xxuIEF8Our5"
+    },
+    "giropay": {
+      "name": "string",
+      "country_code": "OZ",
+      "bic": "LO4gixTS"
+    },
+    "ideal": {
+      "name": "string",
+      "country_code": "C2",
+      "bic": "5L9rQErx",
+      "iban_last_chars": "pbPK",
+      "attributes": "string"
+    },
+    "mybank": {
+      "name": "string",
+      "country_code": "FS",
+      "bic": "-x3DoYzkaSh",
+      "iban_last_chars": "vIO9"
+    },
+    "p24": {
+      "name": "string",
+      "email": "email@mail.com",
+      "country_code": "C2",
+      "payment_descriptor": "string",
+      "method_id": "string",
+      "method_description": "string"
+    },
+    "sofort": {
+      "name": "string",
+      "country_code": "EN",
+      "bic": "Nw8EVQxt",
+      "iban_last_chars": "S3JN"
+    },
+    "trustly": {
+      "name": "string",
+      "country_code": "HU",
+      "bic": "uwF1Cq6mR0a",
+      "iban_last_chars": "7kwH"
+    },
+    "venmo": {
+      "email_address": "email@email.com",
+      "account_id": "KZW2DSRFQQF3R",
+      "user_name": "vzS41HkjzP89vkmV5-zV2Y",
+      "name": {
+        "prefix": "string",
+        "given_name": "string",
+        "surname": "string",
+        "middle_name": "string",
+        "suffix": "string",
+        "full_name": "string"
+      },
+      "phone_number": {
+        "national_number": "8091339342538"
+      },
+      "address": {
+        "address_line_1": "string",
+        "address_line_2": "string",
+        "address_line_3": "string",
+        "admin_area_4": "string",
+        "admin_area_3": "string",
+        "admin_area_2": "string",
+        "admin_area_1": "string",
+        "postal_code": "string",
+        "country_code": "C2",
+        "address_details": {
+          "street_number": "string",
+          "street_name": "string",
+          "street_type": "string",
+          "delivery_service": "string",
+          "building_name": "string",
+          "sub_building": "string"
+        }
+      },
+      "attributes": {
+        "vault": {
+          "id": "string",
+          "customer": {
+            "id": "ksUFKW6o0XQ6vt7838vlgt",
+            "email_address": "email2@email.com",
+            "phone": {
+              "phone_type": "FAX",
+              "phone_number": {
+                "country_code": "917",
+                "national_number": "611200300",
+                "extension_number": "729"
+              }
+            }
+          },
+          "links": [
+            {
+              "href": "string",
+              "rel": "string",
+              "method": "GET"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "intent": "CAPTURE",
+  "processing_instruction": "NO_INSTRUCTION",
+  "payer": {
+    "email_address": "joe@doe.com",
+    "payer_id": "HA4BALK9HHUNT",
+    "name": {
+      "prefix": "string",
+      "given_name": "string",
+      "surname": "string",
+      "middle_name": "string",
+      "suffix": "string",
+      "alternate_full_name": "string",
+      "full_name": "string"
+    },
+    "phone": {
+      "phone_type": "FAX",
+      "phone_number": {
+        "country_code": "535",
+        "national_number": "611200300",
+        "extension_number": "19344"
+      }
+    },
+    "birth_date": "2012-10-29",
+    "tax_info": {
+      "tax_id": "G",
+      "tax_id_type": "BR_CPF"
+    },
+    "address": {
+      "address_line_1": "string",
+      "address_line_2": "string",
+      "address_line_3": "string",
+      "admin_area_4": "string",
+      "admin_area_3": "string",
+      "admin_area_2": "string",
+      "admin_area_1": "string",
+      "postal_code": "string",
+      "country_code": "C2",
+      "address_details": {
+        "street_number": "string",
+        "street_name": "string",
+        "street_type": "string",
+        "delivery_service": "string",
+        "building_name": "string",
+        "sub_building": "string"
+      }
+    }
+  },
+  "purchase_units": [
+    {
+      "reference_id": "string",
+      "amount": {
+        "currency_code": "EUR",
+        "value": "10.00",
+        "breakdown": {
+          "item_total": {
+            "currency_code": "USD",
+            "value": "20.00"
+          },
+          "shipping": {
+            "currency_code": "USD",
+            "value": "12.23"
+          },
+          "handling": {
+            "currency_code": "EUR",
+            "value": "12.00"
+          },
+          "tax_total": {
+            "currency_code": "EUR",
+            "value": "10"
+          },
+          "insurance": {
+            "currency_code": "USD",
+            "value": "1"
+          },
+          "shipping_discount": {
+            "currency_code": "EUR",
+            "value": "12"
+          },
+          "discount": {
+            "currency_code": "USD",
+            "value": "12.23"
+          }
+        }
+      },
+      "payee": {
+        "email_address": "email@email.com",
+        "merchant_id": "LWGYDQPXQ5TYE"
+      },
+      "payment_instruction": {
+        "platform_fees": [
+          {
+            "amount": {
+              "currency_code": "USD",
+              "value": "1.21927314329"
+            },
+            "payee": {
+              "email_address": "email@email.com",
+              "merchant_id": "EGGGRNF9EBNWF"
+            }
+          }
+        ],
+        "disbursement_mode": "INSTANT",
+        "payee_pricing_tier_id": "1234",
+        "payee_receivable_fx_rate_id": "H?F2%Ex^6/?aq.]& Nuj}B3k5-[p2\""
+      },
+      "description": "string",
+      "custom_id": "string",
+      "invoice_id": "string",
+      "id": "string",
+      "soft_descriptor": "string",
+      "items": [
+        {
+          "name": "string",
+          "unit_amount": {
+            "currency_code": "USD",
+            "value": "100.23"
+          },
+          "tax": {
+            "currency_code": "USD",
+            "value": "-1.23"
+          },
+          "quantity": "63110645",
+          "description": "string",
+          "sku": "string",
+          "category": "DIGITAL_GOODS"
+        }
+      ],
+      "shipping": {
+        "name": {
+          "prefix": "string",
+          "given_name": "string",
+          "surname": "string",
+          "middle_name": "string",
+          "suffix": "string",
+          "alternate_full_name": "string",
+          "full_name": "string"
+        },
+        "type": "SHIPPING",
+        "options": [
+          {
+            "id": "string",
+            "label": "string",
+            "type": "SHIPPING",
+            "amount": {
+              "currency_code": "USD",
+              "value": "-.756551142602476741736936980473"
+            },
+            "selected": true
+          }
+        ],
+        "address": {
+          "address_line_1": "string",
+          "address_line_2": "string",
+          "address_line_3": "string",
+          "admin_area_4": "string",
+          "admin_area_3": "string",
+          "admin_area_2": "string",
+          "admin_area_1": "string",
+          "postal_code": "string",
+          "country_code": "C2",
+          "address_details": {
+            "street_number": "string",
+            "street_name": "string",
+            "street_type": "string",
+            "delivery_service": "string",
+            "building_name": "string",
+            "sub_building": "string"
+          }
+        },
+        "trackers": [
+          {
+            "id": "string",
+            "status": "string",
+            "items": [
+              {
+                "name": "string",
+                "quantity": "90",
+                "sku": "string",
+                "url": "string",
+                "image_url": "https:mjMkny.RgFin9|tg17vAj3sMt0BQrY6cWN0EqY6A4mxV0Fofv_|tmcAaFn|PoQdls|zwllQ_lj-c.JPG",
+                "upc": "string"
+              }
+            ],
+            "links": [
+              {
+                "href": "string",
+                "rel": "string",
+                "method": "GET"
+              }
+            ],
+            "create_time": "2023-10-20T08:05:00Z",
+            "update_time": "2023-10-20T08:05:00Z"
+          }
+        ]
+      },
+      "supplementary_data": {
+        "card": {
+          "level_2": {
+            "invoice_id": "peQvuoElNrakVi,Vz",
+            "tax_total": {
+              "currency_code": "EUR",
+              "value": "-7418167686589741393681369284031"
+            }
+          },
+          "level_3": {
+            "shipping_amount": {
+              "currency_code": "EUR",
+              "value": "-9075035826346273458084246384162"
+            },
+            "duty_amount": {
+              "currency_code": "EUR",
+              "value": "53940116387485271909291506950.72"
+            },
+            "discount_amount": {
+              "currency_code": "EUR",
+              "value": "-4424114978635415"
+            },
+            "shipping_address": {
+              "address_line_1": "string",
+              "address_line_2": "string",
+              "address_line_3": "string",
+              "admin_area_4": "string",
+              "admin_area_3": "string",
+              "admin_area_2": "string",
+              "admin_area_1": "string",
+              "postal_code": "string",
+              "country_code": "OD",
+              "address_details": {
+                "street_number": "string",
+                "street_name": "string",
+                "street_type": "string",
+                "delivery_service": "string",
+                "building_name": "string",
+                "sub_building": "string"
+              }
+            },
+            "ships_from_postal_code": "hARo7tJ4",
+            "line_items": [
+              {
+                "name": "string",
+                "unit_amount": {
+                  "currency_code": "EUR",
+                  "value": "-9125270830335149026688526708567"
+                },
+                "tax": {
+                  "currency_code": "USD",
+                  "value": "-8480427831455325891393133777409"
+                },
+                "quantity": "393698916",
+                "description": "string",
+                "sku": "string",
+                "category": "DIGITAL_GOODS",
+                "commodity_code": "5iZ'Ue98ukcS",
+                "discount_amount": {
+                  "currency_code": "EUR",
+                  "value": "-.500515376728287225871"
+                },
+                "total_amount": {
+                  "currency_code": "EUR",
+                  "value": "23908025060723109538426809503145"
+                },
+                "unit_of_measure": "Uum19I9JKXSM"
+              }
+            ]
+          }
+        }
+      },
+      "payments": {
+        "authorizations": [
+          {
+            "status": "CREATED",
+            "status_details": {
+              "reason": "PENDING_REVIEW"
+            },
+            "id": "string",
+            "amount": {
+              "currency_code": "EUR",
+              "value": "-6300452087696444064089332505356"
+            },
+            "invoice_id": "string",
+            "custom_id": "string",
+            "network_transaction_reference": {
+              "id": "9UG&J_V!eqc.e3pRW'=Asvrk3Rc(&dHZw~uH",
+              "date": "8179",
+              "network": "VISA",
+              "acquirer_reference_number": "m7vWf"
+            },
+            "seller_protection": {
+              "status": "ELIGIBLE",
+              "dispute_categories": [
+                "ITEM_NOT_RECEIVED"
+              ]
+            },
+            "expiration_time": "2023-10-20T08:05:00Z",
+            "links": [
+              {
+                "href": "string",
+                "rel": "string",
+                "method": "GET"
+              }
+            ],
+            "create_time": "2023-10-20T08:05:00Z",
+            "update_time": "2023-10-20T08:05:00Z",
+            "processor_response": {
+              "avs_code": "A",
+              "cvv_code": "E",
+              "response_code": "0000",
+              "payment_advice_code": "01"
+            }
+          }
+        ],
+        "captures": [
+          {
+            "status": "COMPLETED",
+            "status_details": {
+              "reason": "BUYER_COMPLAINT"
+            },
+            "id": "string",
+            "amount": {
+              "currency_code": "USD",
+              "value": "-3289648553"
+            },
+            "invoice_id": "string",
+            "custom_id": "string",
+            "network_transaction_reference": {
+              "id": "c*#Ni!&Gw#do$5F~nazjy=rbsc_b-u:c7W*:",
+              "date": "5557",
+              "network": "VISA",
+              "acquirer_reference_number": "BVleKKJSpXpZ1EIHz3dGj9MOmWZ0pYd7oG0E"
+            },
+            "seller_protection": {
+              "status": "ELIGIBLE",
+              "dispute_categories": [
+                "ITEM_NOT_RECEIVED"
+              ]
+            },
+            "final_capture": false,
+            "seller_receivable_breakdown": {
+              "gross_amount": {
+                "currency_code": "EUR",
+                "value": ".47023887"
+              },
+              "paypal_fee": {
+                "currency_code": "EUR",
+                "value": "-6712129043727398162914421794217"
+              },
+              "paypal_fee_in_receivable_currency": {
+                "currency_code": "EUR",
+                "value": "-.850119143727457512274571292449"
+              },
+              "net_amount": {
+                "currency_code": "EUR",
+                "value": ".3100009996183161371992928081078"
+              },
+              "receivable_amount": {
+                "currency_code": "EUR",
+                "value": "36371225928739321966046385653729"
+              },
+              "exchange_rate": {
+                "source_currency": "str",
+                "target_currency": "str",
+                "value": "string"
+              },
+              "platform_fees": [
+                {
+                  "amount": {
+                    "currency_code": "EUR",
+                    "value": "-0802490379605911557272950259573"
+                  },
+                  "payee": {
+                    "email_address": "joe@doe.com",
+                    "merchant_id": "CKVJ2XGW43L4V"
+                  }
+                }
+              ]
+            },
+            "disbursement_mode": "INSTANT",
+            "links": [
+              {
+                "href": "string",
+                "rel": "string",
+                "method": "GET"
+              }
+            ],
+            "processor_response": {
+              "avs_code": "A",
+              "cvv_code": "E",
+              "response_code": "0000",
+              "payment_advice_code": "01"
+            },
+            "create_time": "2023-10-20T08:05:00Z",
+            "update_time": "2023-10-20T08:05:00Z"
+          }
+        ],
+        "refunds": [
+          {
+            "status": "CANCELLED",
+            "status_details": {
+              "reason": "ECHECK"
+            },
+            "id": "string",
+            "amount": {
+              "currency_code": "EUR",
+              "value": "10726528103043611159388139440994"
+            },
+            "invoice_id": "string",
+            "custom_id": "o98n9eSfFMgzmppCwwwwYMNy3AJ9wK.UiGNwEWRXHrfS3km4Gox3b.EzXK9Y1Mo7Qub8ZaKRn-",
+            "acquirer_reference_number": "QkEM0",
+            "note_to_payer": "string",
+            "seller_payable_breakdown": {
+              "gross_amount": {
+                "currency_code": "EUR",
+                "value": ".2199940340922968388616373826177"
+              },
+              "paypal_fee": {
+                "currency_code": "EUR",
+                "value": "56601188194327237337277278001920"
+              },
+              "paypal_fee_in_receivable_currency": {
+                "currency_code": "EUR",
+                "value": "-0751761101385413228350140462526"
+              },
+              "net_amount": {
+                "currency_code": "EUR",
+                "value": "34013817512080026251776997840923"
+              },
+              "net_amount_in_receivable_currency": {
+                "currency_code": "EUR",
+                "value": ".616508902073625300878"
+              },
+              "platform_fees": [
+                {
+                  "amount": {
+                    "currency_code": "EUR",
+                    "value": "12678342106232510486722819010313"
+                  },
+                  "payee": {
+                    "email_address": "joe@doe.com",
+                    "merchant_id": "KHYMQJFL2GRXJ"
+                  }
+                }
+              ],
+              "net_amount_breakdown": [
+                {
+                  "payable_amount": {
+                    "currency_code": "EUR",
+                    "value": "-3773941248992113972966775129760"
+                  },
+                  "converted_amount": {
+                    "currency_code": "EUR",
+                    "value": "-.01"
+                  },
+                  "exchange_rate": {
+                    "source_currency": "str",
+                    "target_currency": "str",
+                    "value": "string"
+                  }
+                }
+              ],
+              "total_refunded_amount": {
+                "currency_code": "EUR",
+                "value": "-9025499669955657992985941616.00"
+              }
+            },
+            "payer": {
+              "email_address": "email@email.com",
+              "merchant_id": "N3XBA28BH5PZR"
+            },
+            "links": [
+              {
+                "href": "string",
+                "rel": "string",
+                "method": "GET"
+              }
+            ],
+            "create_time": "2023-10-20T08:05:00Z",
+            "update_time": "2023-10-20T08:05:00Z"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "CREATED",
+  "links": [
+    {
+      "href": "string",
+      "rel": "string",
+      "method": "GET"
+    }
+  ]
+}

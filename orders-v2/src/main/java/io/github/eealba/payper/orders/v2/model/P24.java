@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Information used to pay using P24(Przelewy24).
  */
@@ -13,7 +12,7 @@ public class P24 {
     
     private final FullName name;
     
-    private final EmailAddress email;
+    private final Email email;
     @JasonerProperty("country_code")
     private final CountryCode countryCode;
     @JasonerProperty("payment_descriptor")
@@ -45,7 +44,7 @@ public class P24 {
      * email
      */
     
-    public EmailAddress email() {
+    public Email email() {
         return email;
     }
 
@@ -88,7 +87,7 @@ public class P24 {
     public static class Builder {
 
         private FullName name;
-        private EmailAddress email;
+        private Email email;
         private CountryCode countryCode;
         private String paymentDescriptor;
         private String methodId;
@@ -107,7 +106,7 @@ public class P24 {
          * email
          */
         
-        public Builder email(EmailAddress value) {
+        public Builder email(Email value) {
             this.email = value;
             return this;
         }
@@ -153,7 +152,6 @@ public class P24 {
         }
 
     }
-
 
 }
 

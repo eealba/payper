@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Customizes the buyer experience during the approval process for payment with Venmo.<blockquote><strong>Note:</strong> 
 Partners and Marketplaces might configure <code>shipping_preference</code> during partner account setup, which overrides 
@@ -79,6 +78,5 @@ public class VenmoWalletExperienceContext {
         NO_SHIPPING,
         SET_PROVIDED_ADDRESS
     }
-
 }
 

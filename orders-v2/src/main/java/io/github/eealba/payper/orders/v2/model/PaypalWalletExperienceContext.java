@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Customizes the payer experience during the approval process for payment with PayPal.<blockquote><strong>Note:</strong> 
 Partners and Marketplaces might configure <code>brand_name</code> and <code>shipping_preference</code> during partner 
@@ -229,6 +228,5 @@ an external party and supports Unicode.
         UNRESTRICTED,
         IMMEDIATE_PAYMENT_REQUIRED
     }
-
 }
 

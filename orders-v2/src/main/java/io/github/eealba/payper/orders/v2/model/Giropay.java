@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Information needed to pay using giropay.
  */
@@ -90,7 +89,6 @@ public class Giropay {
         }
 
     }
-
 
 }
 

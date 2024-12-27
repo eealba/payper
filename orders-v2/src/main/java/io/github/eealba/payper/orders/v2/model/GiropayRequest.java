@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Information needed to pay using giropay.
  */
@@ -91,7 +90,6 @@ public class GiropayRequest {
         }
 
     }
-
 
 }
 

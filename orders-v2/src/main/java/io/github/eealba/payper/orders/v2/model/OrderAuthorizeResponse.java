@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 import java.time.Instant;
 import java.util.List;
 
-
 /**
  * The order authorize response.
  */
@@ -255,7 +254,6 @@ working at the moment" after the payer approves the payment.
         }
 
     }
-
 
 }
 

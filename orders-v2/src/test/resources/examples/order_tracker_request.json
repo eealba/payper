@@ -1,0 +1,24 @@
+{
+  "transaction_id": "hf2",
+  "tracking_number": "string",
+  "tracking_number_type": "CARRIER_PROVIDED",
+  "status": "CANCELLED",
+  "shipment_date": "2024-12-08",
+  "carrier": "DPD_RU",
+  "carrier_name_other": "string",
+  "notify_buyer": false,
+  "last_updated_time": "2023-08-17T22:18:48.740Z",
+  "shipment_direction": "FORWARD",
+  "capture_id": "hhHb2xjsiPv1f",
+  "notify_payer": false,
+  "items": [
+    {
+      "name": "string",
+      "quantity": "59082035",
+      "sku": "string",
+      "url": "string",
+      "image_url": "https://GFFjktQerD5.gif",
+      "upc": "string"
+    }
+  ]
+}

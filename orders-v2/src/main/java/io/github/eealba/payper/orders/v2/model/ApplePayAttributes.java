@@ -1,10 +1,12 @@
 package io.github.eealba.payper.orders.v2.model;
 
 
+import io.github.eealba.jasoner.JasonerSingleVO;
 
 /**
  * 
  */
+@JasonerSingleVO
 public record ApplePayAttributes(Object value) {
 
     public ApplePayAttributes(Object value) {

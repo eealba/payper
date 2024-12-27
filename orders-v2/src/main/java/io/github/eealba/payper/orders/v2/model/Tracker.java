@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 import java.time.Instant;
 import java.util.List;
 
-
 /**
  * The tracking response on creation of tracker.
  */
@@ -155,7 +154,6 @@ public class Tracker {
         }
 
     }
-
 
 }
 

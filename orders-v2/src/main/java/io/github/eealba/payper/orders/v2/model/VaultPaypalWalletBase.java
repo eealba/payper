@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Resource consolidating common request and response attributes for vaulting PayPal Wallet.
  */
@@ -232,6 +231,5 @@ may share the same PayPal account. This only applies to PayPal payment source.
         CONSUMER,
         BUSINESS
     }
-
 }
 

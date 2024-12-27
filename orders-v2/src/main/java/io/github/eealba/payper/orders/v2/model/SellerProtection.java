@@ -4,7 +4,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.List;
 
-
 /**
  * The level of protection offered as defined by [PayPal Seller Protection for 
 Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection).
@@ -81,6 +80,5 @@ Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-
         PARTIALLY_ELIGIBLE,
         NOT_ELIGIBLE
     }
-
 }
 

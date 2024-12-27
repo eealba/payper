@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Representation of card details as received in the request.
  */
@@ -69,7 +68,6 @@ public class CardFromRequest {
         }
 
     }
-
 
 }
 

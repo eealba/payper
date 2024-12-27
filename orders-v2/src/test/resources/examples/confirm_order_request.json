@@ -1,0 +1,21 @@
+{
+  "payment_source": {
+    "paypal": {
+      "name": {
+        "given_name": "John",
+        "surname": "Doe"
+      },
+      "email_address": "customer@example.com",
+      "experience_context": {
+        "payment_method_preference": "IMMEDIATE_PAYMENT_REQUIRED",
+        "brand_name": "EXAMPLE INC",
+        "locale": "en-US",
+        "landing_page": "LOGIN",
+        "shipping_preference": "SET_PROVIDED_ADDRESS",
+        "user_action": "PAY_NOW",
+        "return_url": "https://example.com/returnUrl",
+        "cancel_url": "https://example.com/cancelUrl"
+      }
+    }
+  }
+}

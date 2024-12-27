@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Information needed to pay using iDEAL.
  */
@@ -133,7 +132,6 @@ public class IdealRequest {
         }
 
     }
-
 
 }
 

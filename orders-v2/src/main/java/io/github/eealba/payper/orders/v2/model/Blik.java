@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Information used to pay using BLIK.
  */
@@ -15,7 +14,7 @@ public class Blik {
     @JasonerProperty("country_code")
     private final CountryCode countryCode;
     
-    private final EmailAddress email;
+    private final Email email;
     @JasonerProperty("one_click")
     private final BlikOneClickResponse oneClick;
 
@@ -47,7 +46,7 @@ public class Blik {
      * email
      */
     
-    public EmailAddress email() {
+    public Email email() {
         return email;
     }
 
@@ -67,7 +66,7 @@ public class Blik {
 
         private FullName name;
         private CountryCode countryCode;
-        private EmailAddress email;
+        private Email email;
         private BlikOneClickResponse oneClick;
 
         /**
@@ -92,7 +91,7 @@ public class Blik {
          * email
          */
         
-        public Builder email(EmailAddress value) {
+        public Builder email(Email value) {
             this.email = value;
             return this;
         }
@@ -111,7 +110,6 @@ public class Blik {
         }
 
     }
-
 
 }
 

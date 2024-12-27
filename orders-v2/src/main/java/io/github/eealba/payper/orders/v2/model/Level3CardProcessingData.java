@@ -4,7 +4,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.List;
 
-
 /**
  * The level 3 card processing data collections, If your merchant account has been configured for Level 3 processing this 
 field will be passed to the processor on your behalf. Please contact your PayPal Technical Account Manager to define 
@@ -158,7 +157,6 @@ Level 3 processing this field will be passed to the processor on your behalf.
         }
 
     }
-
 
 }
 

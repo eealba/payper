@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en).
  */
@@ -103,7 +102,6 @@ code (NDC) and subscriber number (SN).
         }
 
     }
-
 
 }
 

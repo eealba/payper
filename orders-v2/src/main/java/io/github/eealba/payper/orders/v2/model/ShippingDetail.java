@@ -120,6 +120,5 @@ public class ShippingDetail {
         PICKUP_IN_STORE,
         PICKUP_FROM_PERSON
     }
-
 }
 

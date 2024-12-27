@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * The Third Party Network token used to fund a payment.
  */
@@ -139,7 +138,6 @@ and will aid in enabling secure card on file (COF) payments and reducing fraud.
         }
 
     }
-
 
 }
 

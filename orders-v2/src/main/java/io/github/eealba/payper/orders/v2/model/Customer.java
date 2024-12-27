@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * The details about a customer in PayPal's system of record.
  */
@@ -90,7 +89,6 @@ public class Customer {
         }
 
     }
-
 
 }
 

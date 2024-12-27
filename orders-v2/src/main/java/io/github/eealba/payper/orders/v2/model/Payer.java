@@ -1,8 +1,8 @@
 package io.github.eealba.payper.orders.v2.model;
 
-
 import io.github.eealba.jasoner.JasonerProperty;
 
+import java.time.LocalDate;
 
 /**
  * The customer who approves and pays for the order. The customer is also known as the payer.
@@ -19,7 +19,7 @@ public class Payer {
     
     private final PhoneWithType phone;
     @JasonerProperty("birth_date")
-    private final DateNoTime birthDate;
+    private final LocalDate birthDate;
     @JasonerProperty("tax_info")
     private final TaxInfo taxInfo;
     
@@ -72,7 +72,7 @@ public class Payer {
      * birthDate
      */
     @JasonerProperty("birth_date")
-    public DateNoTime birthDate() {
+    public LocalDate birthDate() {
         return birthDate;
     }
 
@@ -102,7 +102,7 @@ public class Payer {
         private AccountId payerId;
         private Name name;
         private PhoneWithType phone;
-        private DateNoTime birthDate;
+        private LocalDate birthDate;
         private TaxInfo taxInfo;
         private AddressPortable address;
 
@@ -146,7 +146,7 @@ public class Payer {
          * birthDate
          */
         @JasonerProperty("birth_date")
-        public Builder birthDate(DateNoTime value) {
+        public Builder birthDate(LocalDate value) {
             this.birthDate = value;
             return this;
         }
@@ -174,7 +174,6 @@ public class Payer {
         }
 
     }
-
 
 }
 

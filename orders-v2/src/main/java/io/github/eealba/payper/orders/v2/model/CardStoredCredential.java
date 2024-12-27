@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.Objects;
 
-
 /**
  * Provides additional details to process a payment using a `card` that has been stored or is intended to be stored (also 
 referred to as stored_credential or card-on-file).<br/>Parameter compatibility:<br/><ul><li>`payment_type=ONE_TIME` is 
@@ -117,7 +116,6 @@ public class CardStoredCredential {
         }
 
     }
-
 
 }
 

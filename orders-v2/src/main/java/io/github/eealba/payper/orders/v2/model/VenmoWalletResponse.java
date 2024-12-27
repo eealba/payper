@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Venmo wallet response.
  */
@@ -174,7 +173,6 @@ public class VenmoWalletResponse {
         }
 
     }
-
 
 }
 

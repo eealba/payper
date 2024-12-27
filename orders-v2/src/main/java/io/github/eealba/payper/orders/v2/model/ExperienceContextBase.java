@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * Customizes the payer experience during the approval process for the payment.
  */
@@ -142,6 +141,5 @@ an external party and supports Unicode.
         NO_SHIPPING,
         SET_PROVIDED_ADDRESS
     }
-
 }
 

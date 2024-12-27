@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 import java.time.Instant;
 import java.util.List;
 
-
 /**
  * The refund information.
  */
@@ -509,7 +508,6 @@ the currency of the PayPal account where the payee holds their funds.
         }
 
     }
-
 
 }
 

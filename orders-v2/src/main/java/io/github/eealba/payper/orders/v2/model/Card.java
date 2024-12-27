@@ -3,7 +3,6 @@ package io.github.eealba.payper.orders.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-
 /**
  * The payment card to use to fund a payment. Can be a credit or debit card.
  */
@@ -260,7 +259,6 @@ parameter cannot be present in the request when `payment_initiator=MERCHANT`.
         }
 
     }
-
 
 }
 

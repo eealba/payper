@@ -5,7 +5,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 import java.util.List;
 import java.util.Objects;
 
-
 /**
  * The purchase unit request. Includes required information for the payment contract.
  */
@@ -293,7 +292,6 @@ statement descriptor on the card is <code>PAYPAL * Janes Gift 80</code>.
         }
 
     }
-
 
 }
 
