@@ -16,7 +16,7 @@ public record Money(@JasonerProperty("currency_code") CurrencyCode currencyCode,
             throw new IllegalArgumentException("Field value can`t be null");
         }
         if (!value.matches("^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$")) {
-            throw new IllegalArgumentException("Invalid pattern for field value");
+            throw new IllegalArgumentException("The value: " + value + " does not match the required pattern");
         }
         this.currencyCode = currencyCode;
         this.value = value;

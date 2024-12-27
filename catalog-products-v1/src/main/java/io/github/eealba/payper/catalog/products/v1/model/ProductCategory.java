@@ -1,4 +1,6 @@
 package io.github.eealba.payper.catalog.products.v1.model;
+
+import io.github.eealba.jasoner.JasonerProperty;
 /**
  * The product category.
  */
@@ -275,7 +277,9 @@ public enum ProductCategory {
     METAPHYSICAL,
     MILITARIA,
     MILITARY_AND_CIVIL_SERVICE_UNIFORMS,
+    @JasonerProperty("MISC._AUTOMOTIVE_AIRCRAFT_AND_FARM_EQUIPMENT_DEALERS")
     MISC__AUTOMOTIVE_AIRCRAFT_AND_FARM_EQUIPMENT_DEALERS,
+    @JasonerProperty("MISC._GENERAL_MERCHANDISE")
     MISC__GENERAL_MERCHANDISE,
     MISCELLANEOUS_GENERAL_SERVICES,
     MISCELLANEOUS_REPAIR_SHOPS_AND_RELATED_SERVICES,
@@ -381,6 +385,7 @@ public enum ProductCategory {
     SHOES,
     SNOWMOBILE_DEALERS,
     SOFTWARE,
+    @JasonerProperty("SPECIALTY_AND_MISC._FOOD_STORES")
     SPECIALTY_AND_MISC__FOOD_STORES,
     SPECIALTY_CLEANING_POLISHING_AND_SANITATION_PREPARATIONS,
     SPECIALTY_OR_RARE_PETS,

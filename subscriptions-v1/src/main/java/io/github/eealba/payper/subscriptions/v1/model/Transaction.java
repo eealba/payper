@@ -21,7 +21,7 @@ public class Transaction {
     @JasonerProperty("payer_name")
     private final Name payerName;
     @JasonerProperty("payer_email")
-    private final EmailAddress payerEmail;
+    private final Email payerEmail;
     
     private final Instant time;
 
@@ -80,7 +80,7 @@ public class Transaction {
      * payerEmail
      */
     @JasonerProperty("payer_email")
-    public EmailAddress payerEmail() {
+    public Email payerEmail() {
         return payerEmail;
     }
 
@@ -103,7 +103,7 @@ public class Transaction {
         private String id;
         private AmountWithBreakdown amountWithBreakdown;
         private Name payerName;
-        private EmailAddress payerEmail;
+        private Email payerEmail;
         private Instant time;
 
         /**
@@ -155,7 +155,7 @@ public class Transaction {
          * payerEmail
          */
         @JasonerProperty("payer_email")
-        public Builder payerEmail(EmailAddress value) {
+        public Builder payerEmail(Email value) {
             this.payerEmail = value;
             return this;
         }
