@@ -64,6 +64,55 @@ public interface RequestSpec<R1, R2> {
     }
 
     /**
+     * Interface for specifying the PayPal Partner Attribution ID.
+     *
+     * @param <T> the type of the request specification
+     */
+    interface PayPalPartnerAttributionIdSpec<T> {
+
+        /**
+         * Sets the PayPal Partner Attribution ID for the request.
+         *
+         * @param payPalPartnerAttributionId the PayPal Partner Attribution ID
+         * @return the request specification
+         */
+        T withPayPalPartnerAttributionId(String payPalPartnerAttributionId);
+    }
+    /**
+     * Interface for specifying the PayPal Client Metadata ID.
+     *
+     * @param <T> the type of the request specification
+     */
+    interface PayPalClientMetadataId<T> {
+
+        /**
+         * Sets the PayPal Client Metadata ID for the request.
+         *
+         * @param payPalClientMetadataId the PayPal Client Metadata ID
+         * @return the request specification
+         */
+        T withPayPalClientMetadataId(String payPalClientMetadataId);
+    }
+
+    /**
+     * Interface for specifying the PayPal Auth Assertion.
+     *
+     * @param <T> the type of the request specification
+     */
+    interface PayPalAuthAssertion<T> {
+
+        /**
+         * Sets the PayPal Auth Assertion for the request.
+         *
+         * @param payPalAuthAssertion the PayPal Auth Assertion
+         * @return the request specification
+         */
+        T withPayPalAuthAssertion(String payPalAuthAssertion);
+    }
+
+
+
+    /**
      * Interface for specifying the ID.
      *
      * @param <T> the type of the request specification
