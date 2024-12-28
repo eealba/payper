@@ -19,7 +19,7 @@ public record SubscriptionCaptureRequest(String note, @JasonerProperty("capture_
             throw new IllegalArgumentException("Field amount can`t be null");
         }
         if (!captureType.matches("^[A-Z_]+$")) {
-            throw new IllegalArgumentException("Invalid pattern for field captureType");
+            throw new IllegalArgumentException("The value: " + captureType + " does not match the required pattern");
         }
         this.note = note;
         this.captureType = captureType;

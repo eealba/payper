@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.eealba.payper</groupId>
         <artifactId>payper-parent</artifactId>
-        <version>0.1.2</version>
+        <version>0.2.0</version>
     </parent>
     <packaging>jar</packaging>
     <artifactId>payper-subscriptions-v1</artifactId>
@@ -36,6 +36,10 @@
         <dependency>
             <groupId>org.wiremock</groupId>
             <artifactId>wiremock</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5</artifactId>
         </dependency>
 
     </dependencies>

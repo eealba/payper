@@ -1,6 +1,8 @@
 package io.github.eealba.payper.catalog.products.v1.model;
 
 
+import io.github.eealba.jasoner.JasonerProperty;
+
 import java.util.Objects;
 
 /**
@@ -117,12 +119,18 @@ to move the value. Required for the <code>move</code> operation.
      * The operation.
      */
     public enum Op {
-        add,
-        remove,
-        replace,
-        move,
-        copy,
-        test
+        @JasonerProperty("add")
+    ADD,
+        @JasonerProperty("remove")
+    REMOVE,
+        @JasonerProperty("replace")
+    REPLACE,
+        @JasonerProperty("move")
+    MOVE,
+        @JasonerProperty("copy")
+    COPY,
+        @JasonerProperty("test")
+    TEST
     }
 }
 

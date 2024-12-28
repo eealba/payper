@@ -266,6 +266,7 @@ Redundant with core fields.<br/>For example, `address_portable.address_line_1` i
         }
 
     }
+
 public static class AddressDetails {
 
 

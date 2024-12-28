@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-parent</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
     <name>PayPer Parent</name>
     <description>PayPer Parent - Unofficial Java Client for PayPal REST API, providing core functionalities
         and utilities for interacting with various PayPal APIs.</description>
@@ -48,7 +48,7 @@
             <dependency>
                 <groupId>io.github.eealba</groupId>
                 <artifactId>jasoner</artifactId>
-                <version>0.4.1</version>
+                <version>0.6.1</version>
             </dependency>
             <dependency>
                 <groupId>org.junit</groupId>
@@ -106,6 +106,12 @@
                 <scope>compile</scope>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.github.eealba.payper</groupId>
+                <artifactId>payper-orders-v2</artifactId>
+                <scope>compile</scope>
+                <version>${project.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -116,6 +122,7 @@
         <module>e2e-examples</module>
         <module>catalog-products-v1</module>
         <module>report-aggregate</module>
+        <module>orders-v2</module>
     </modules>
     <build>
         <pluginManagement>

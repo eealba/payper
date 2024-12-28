@@ -24,8 +24,9 @@ for multithreading and high concurrency. Payper uses immutable objects and provi
 
 | API Name              | Version | Links                                                                       |
 |-----------------------|---------|-----------------------------------------------------------------------------|
-| Catalog Products      | v1      | [API Reference](https://developer.paypal.com/docs/api/catalog-products/v1/) | 
+| Catalog Products      | v1      | [API Reference](https://developer.paypal.com/docs/api/catalog-products/v1/) |  
 | Subscriptions         | v1      | [API Reference](https://developer.paypal.com/docs/api/subscriptions/v1/)    |
+| Orders                | v2      | [API Reference](https://developer.paypal.com/docs/api/orders/v2/)           |
 
 ## Installation
 
@@ -41,7 +42,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-subscriptions-v1</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 ### Catalog Products API
@@ -51,9 +52,22 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-catalog-products-v1</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
 </dependency>
 ```
+
+### Orders API
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.eealba.payper/payper-orders-v2.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.eealba.payper/payper-orders-v2)
+[![Javadoc](https://javadoc.io/badge2/io.github.eealba.payper/payper-orders-v2/javadoc.io.svg)](https://javadoc.io/doc/io.github.eealba.payper/payper-orders-v2)
+```xml
+<dependency>
+    <groupId>io.github.eealba.payper</groupId>
+    <artifactId>payper-orders-v2</artifactId>
+    <version>0.2.0</version>
+</dependency>
+```
+
+
 
 
 ## Coming Soon
@@ -62,7 +76,6 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 | Add Tracking          | v1      | [API Reference](https://developer.paypal.com/docs/api/tracking/v1/)                    |
 | Disputes              | v1      | [API Reference](https://developer.paypal.com/docs/api/customer-disputes/v1/)           |
 | Invoices              | v2      | [API Reference](https://developer.paypal.com/docs/api/invoicing/v2/)                   |
-| Orders                | v2      | [API Reference](https://developer.paypal.com/docs/api/orders/v2/)                      |
 | Partner Referrals     | v2      | [API Reference](https://developer.paypal.com/docs/api/partner-referrals/v2/)           |
 | Payment Experience    | v1      | [API Reference](https://developer.paypal.com/docs/api/payment-experience/v1/)          |
 | Payment Method Tokens | v3      | [API Reference](https://developer.paypal.com/docs/api/payment-tokens/v3/)              |

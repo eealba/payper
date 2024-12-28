@@ -1,0 +1,56 @@
+{
+  "name": "INVALID_REQUEST",
+  "message": "Request is not well-formed, syntactically incorrect, or violates schema.",
+  "details": [
+    {
+      "issue": "FIELD_NOT_PATCHABLE",
+      "description": "Field cannot be patched.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_PARAMETER_VALUE",
+      "description": "The value of a field is invalid.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "MISSING_REQUIRED_PARAMETER",
+      "description": "A required field or parameter is missing.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_STRING_LENGTH",
+      "description": "The value of a field is either too short or too long.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "INVALID_PATCH_OPERATION",
+      "description": "The operation cannot be honored. Cannot add a property that's already present, use replace. Cannot remove a property thats not present, use add. Cannot replace a property thats not present, use add.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    },
+    {
+      "issue": "MALFORMED_REQUEST_JSON",
+      "description": "The request JSON is not well formed.",
+      "field": "string",
+      "value": "string",
+      "location": "body"
+    }
+  ],
+  "debug_id": "string",
+  "links": [
+    {
+      "href": "LMtMoVJuD%C,G&.q%_Y~8)vZv",
+      "rel": "relO",
+      "method": "GET"
+    }
+  ]
+}

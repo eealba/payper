@@ -1,0 +1,427 @@
+{
+  "payment_source": {
+    "card": {
+      "id": "a",
+      "name": "a",
+      "number": "5891338793396995519",
+      "expiry": "2024-02",
+      "security_code": "9272",
+      "card_type": "VISA",
+      "type": "CREDIT",
+      "brand": "VISA",
+      "billing_address": {
+        "address_line_1": "string",
+        "address_line_2": "string",
+        "address_line_3": "string",
+        "admin_area_4": "string",
+        "admin_area_3": "string",
+        "admin_area_2": "string",
+        "admin_area_1": "string",
+        "postal_code": "string",
+        "country_code": "GC",
+        "address_details": {
+          "street_number": "string",
+          "street_name": "string",
+          "street_type": "string",
+          "delivery_service": "string",
+          "building_name": "string",
+          "sub_building": "string"
+        }
+      },
+      "attributes": {
+        "customer": {
+          "id": "Zz8Ed8vV0u-sa9MSQUYAUp",
+          "email_address": "email@email.com",
+          "phone": {
+            "phone_type": "FAX",
+            "phone_number": {
+              "country_code": "40",
+              "national_number": "01410492",
+              "extension_number": "6052296848445"
+            }
+          }
+        },
+        "vault": {
+          "store_in_vault": "ON_SUCCESS"
+        }
+      },
+      "vault_id": "QNvR4jm6iLTZCdZ8Rkwts5oEQA9fev-GIyHb-PJw6vXfPgJNqpkj9T0SZcFyXlfasm0ZA",
+      "stored_credential": {
+        "payment_initiator": "CUSTOMER",
+        "payment_type": "ONE_TIME",
+        "usage": "DERIVED",
+        "previous_network_transaction_reference": {
+          "id": "VK3tBR#rMPUaD1Tv~hjFAFD^!$PmfbeW!+qW",
+          "date": "2877",
+          "network": "VISA",
+          "acquirer_reference_number": "i4gmmSYfbdj4A4mTR"
+        }
+      },
+      "network_token": {
+        "number": "63768188015959967",
+        "expiry": "7729-01",
+        "cryptogram": "a",
+        "eci_flag": "MASTERCARD_NON_3D_SECURE_TRANSACTION",
+        "token_requestor_id": "W1_MHNY1S7S"
+      },
+      "experience_context": {
+        "return_url": "string",
+        "cancel_url": "string"
+      }
+    },
+    "token": {
+      "id": "RNVkf_N3ypMhmU79q9w2",
+      "type": "BILLING_AGREEMENT"
+    },
+    "paypal": {
+      "vault_id": "c22KHhH13AIbSTkjS1hs6zPnNtUc8bIgBHFWXyQy74CFIUoZnyyD96apPtqYoml8eJi76_vpW3tgGaxhrgWw",
+      "email_address": "email@email.com",
+      "name": {
+        "prefix": "string",
+        "given_name": "string",
+        "surname": "string",
+        "middle_name": "string",
+        "suffix": "string",
+        "full_name": "string"
+      },
+      "phone": {
+        "phone_type": "FAX",
+        "phone_number": {
+          "country_code": "734",
+          "national_number": "271",
+          "extension_number": "9907199119790"
+        }
+      },
+      "birth_date": "0403-12-04",
+      "tax_info": {
+        "tax_id": "2",
+        "tax_id_type": "BR_CPF"
+      },
+      "address": {
+        "address_line_1": "string",
+        "address_line_2": "string",
+        "address_line_3": "string",
+        "admin_area_4": "string",
+        "admin_area_3": "string",
+        "admin_area_2": "string",
+        "admin_area_1": "string",
+        "postal_code": "string",
+        "country_code": "FD",
+        "address_details": {
+          "street_number": "string",
+          "street_name": "string",
+          "street_type": "string",
+          "delivery_service": "string",
+          "building_name": "string",
+          "sub_building": "string"
+        }
+      },
+      "attributes": {
+        "customer": {
+          "id": "JaSvlqrFk1uDd3DYY9ueVh",
+          "email_address": "email@email.com",
+          "phone": {
+            "phone_type": "FAX",
+            "phone_number": {
+              "country_code": "undefined",
+              "national_number": "undefined",
+              "extension_number": "720016425"
+            }
+          }
+        },
+        "vault": {
+          "store_in_vault": "ON_SUCCESS",
+          "description": "string",
+          "usage_pattern": "IMMEDIATE",
+          "shipping": {
+            "name": {
+              "prefix": "string",
+              "given_name": "string",
+              "surname": "string",
+              "middle_name": "string",
+              "suffix": "string",
+              "alternate_full_name": "string",
+              "full_name": "string"
+            },
+            "type": "SHIPPING",
+            "options": [
+              {
+                "id": "string",
+                "label": "string",
+                "type": "SHIPPING",
+                "amount": {
+                  "currency_code": "str",
+                  "value": "746309297980231086778627"
+                },
+                "selected": true
+              }
+            ],
+            "address": {
+              "address_line_1": "string",
+              "address_line_2": "string",
+              "address_line_3": "string",
+              "admin_area_4": "string",
+              "admin_area_3": "string",
+              "admin_area_2": "string",
+              "admin_area_1": "string",
+              "postal_code": "string",
+              "country_code": "C2",
+              "address_details": {
+                "street_number": "string",
+                "street_name": "string",
+                "street_type": "string",
+                "delivery_service": "string",
+                "building_name": "string",
+                "sub_building": "string"
+              }
+            }
+          },
+          "usage_type": "MERCHANT",
+          "owner_id": "string",
+          "customer_type": "CONSUMER",
+          "permit_multiple_payment_tokens": false
+        }
+      },
+      "experience_context": {
+        "brand_name": "H/xioC^;/f'Ese5fcZ0IA]F5,yy)<@t;8vozD}L C}*B]e^|?,<#yV,f)ZsQ_SbOt8Py|+<`pb^M<~",
+        "locale": "nv-232",
+        "shipping_preference": "GET_FROM_FILE",
+        "return_url": "string",
+        "cancel_url": "string",
+        "landing_page": "NO_PREFERENCE",
+        "user_action": "CONTINUE",
+        "payment_method_preference": "UNRESTRICTED"
+      },
+      "billing_agreement_id": "uNAtrw"
+    },
+    "bancontact": {
+      "name": "string",
+      "country_code": "FS",
+      "experience_context": {
+        "brand_name": "name",
+        "locale": "mp",
+        "shipping_preference": "GET_FROM_FILE",
+        "return_url": "string",
+        "cancel_url": "string"
+      },
+      "attributes": "string"
+    },
+    "blik": {
+      "name": "string",
+      "country_code": "HI",
+      "email": "email@email.com",
+      "experience_context": {
+        "brand_name": "name",
+        "locale": "ip-Ssdh",
+        "shipping_preference": "GET_FROM_FILE",
+        "return_url": "string",
+        "cancel_url": "string",
+        "consumer_ip": "123.123.123.123",
+        "consumer_user_agent": "agent"
+      },
+      "level_0": {
+        "auth_code": "885199"
+      },
+      "one_click": {
+        "auth_code": "310882",
+        "consumer_reference": "a",
+        "alias_label": "b",
+        "alias_key": "8809368969293745412"
+      }
+    },
+    "eps": {
+      "name": "string",
+      "country_code": "YP",
+      "experience_context": {
+        "brand_name": "name",
+        "locale": "pq-Izrx",
+        "shipping_preference": "GET_FROM_FILE",
+        "return_url": "string",
+        "cancel_url": "string"
+      }
+    },
+    "giropay": {
+      "name": "string",
+      "country_code": "YR",
+      "experience_context": {
+        "brand_name": "c",
+        "locale": "kg",
+        "shipping_preference": "GET_FROM_FILE",
+        "return_url": "string",
+        "cancel_url": "string"
+      }
+    },
+    "ideal": {
+      "name": "string",
+      "country_code": "QO",
+      "bic": "k5DhllFTEai",
+      "experience_context": {
+        "brand_name": "d",
+        "locale": "es-ES",
+        "shipping_preference": "GET_FROM_FILE",
+        "return_url": "string",
+        "cancel_url": "string"
+      },
+      "attributes": "string"
+    },
+    "mybank": {
+      "name": "string",
+      "country_code": "PJ",
+      "experience_context": {
+        "brand_name": "e",
+        "locale": "gx-Lwvw",
+        "shipping_preference": "GET_FROM_FILE",
+        "return_url": "string",
+        "cancel_url": "string"
+      }
+    },
+    "p24": {
+      "name": "string",
+      "email": "email@email.com",
+      "country_code": "AB",
+      "experience_context": {
+        "brand_name": "f",
+        "locale": "pl-Ymmg",
+        "shipping_preference": "GET_FROM_FILE",
+        "return_url": "string",
+        "cancel_url": "string"
+      }
+    },
+    "sofort": {
+      "name": "string",
+      "country_code": "EV",
+      "experience_context": {
+        "brand_name": "f",
+        "locale": "bh",
+        "shipping_preference": "GET_FROM_FILE",
+        "return_url": "string",
+        "cancel_url": "string"
+      }
+    },
+    "trustly": {
+      "name": "string",
+      "country_code": "GC",
+      "experience_context": {
+        "brand_name": "ge",
+        "locale": "zs",
+        "shipping_preference": "GET_FROM_FILE",
+        "return_url": "string",
+        "cancel_url": "string"
+      }
+    },
+    "apple_pay": {
+      "id": "idhh",
+      "name": "string",
+      "email_address": "email@email.com",
+      "phone_number": {
+        "country_code": "undefined",
+        "national_number": "98170778219722",
+        "extension_number": "675304088294386"
+      },
+      "decrypted_token": {
+        "transaction_amount": {
+          "currency_code": "USD",
+          "value": "-.755594474545977334774555205002"
+        },
+        "tokenized_card": {
+          "id": "o3Wuou7W",
+          "name": "name",
+          "number": "031499402359472",
+          "expiry": "2024-06",
+          "security_code": "252",
+          "card_type": "VISA",
+          "type": "CREDIT",
+          "brand": "VISA",
+          "billing_address": {
+            "address_line_1": "string",
+            "address_line_2": "string",
+            "address_line_3": "string",
+            "admin_area_4": "string",
+            "admin_area_3": "string",
+            "admin_area_2": "string",
+            "admin_area_1": "string",
+            "postal_code": "string",
+            "country_code": "C2",
+            "address_details": {
+              "street_number": "string",
+              "street_name": "string",
+              "street_type": "string",
+              "delivery_service": "string",
+              "building_name": "string",
+              "sub_building": "string"
+            }
+          },
+          "attributes": {
+            "customer": {
+              "id": "vy3B9sBW2vLYgbrNe1A1wb",
+              "email_address": "email@email.com",
+              "phone": {
+                "phone_type": "FAX",
+                "phone_number": {
+                  "country_code": "77",
+                  "national_number": "37",
+                  "extension_number": "undefined"
+                }
+              }
+            },
+            "vault": {
+              "store_in_vault": "ON_SUCCESS"
+            }
+          }
+        },
+        "device_manufacturer_id": "ide",
+        "payment_data_type": "3DSECURE",
+        "payment_data": {
+          "cryptogram": "avc",
+          "eci_indicator": "azs",
+          "emv_data": "qwqweq",
+          "pin": "fgngf"
+        }
+      },
+      "stored_credential": {
+        "payment_initiator": "CUSTOMER",
+        "payment_type": "ONE_TIME",
+        "usage": "DERIVED",
+        "previous_network_transaction_reference": {
+          "id": "fgnfgh",
+          "date": "2751",
+          "network": "VISA",
+          "acquirer_reference_number": "zr2zQFRlT4lHieybLSnHESbDIZy2rqzx0F"
+        }
+      },
+      "vault_id": "iHSoUj3XNCEV6rRD58OV59ADvgulH4nE",
+      "attributes": "string"
+    },
+    "google_pay": "string",
+    "venmo": {
+      "vault_id": "VfxxrcJhGqZvEaO6S15OS42DrweqpG3J-J6jXKPlq9402xpYYfwtzcQ6xTZ66CTqFZwgFdiMpCkGsnTr",
+      "email_address": "email@email.com",
+      "experience_context": {
+        "brand_name": "yr5wu>$",
+        "shipping_preference": "GET_FROM_FILE"
+      },
+      "attributes": {
+        "customer": {
+          "id": "_G4NZuJPCDHWu_pK2WmbzT",
+          "email_address": "email@email.com",
+          "phone": {
+            "phone_type": "FAX",
+            "phone_number": {
+              "country_code": "undefined",
+              "national_number": "31738301490571",
+              "extension_number": "46585548042"
+            }
+          }
+        },
+        "vault": {
+          "store_in_vault": "ON_SUCCESS",
+          "description": "bkMYv0n,AQ!J",
+          "usage_pattern": "IMMEDIATE",
+          "usage_type": "MERCHANT",
+          "customer_type": "CONSUMER",
+          "permit_multiple_payment_tokens": false
+        }
+      }
+    }
+  }
+}

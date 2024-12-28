@@ -39,11 +39,12 @@ class PayperImpl extends Payper {
     private final WebClient webClient;
     private final PayperConfig config;
     private volatile TokenImpl token;
-    private final Json json = Json.create();
+    private final Json json;
 
     PayperImpl(PayperConfig config) {
         this.webClient = WebClient.create(Mapper.mapWebClientConfig(config));
         this.config = config;
+        json = Json.create();
     }
 
     @Override

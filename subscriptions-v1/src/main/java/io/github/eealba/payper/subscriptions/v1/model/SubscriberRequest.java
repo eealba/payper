@@ -1,7 +1,8 @@
 package io.github.eealba.payper.subscriptions.v1.model;
 
-
 import io.github.eealba.jasoner.JasonerProperty;
+
+import java.time.LocalDate;
 
 /**
  * The subscriber request information .
@@ -18,7 +19,7 @@ public class SubscriberRequest {
     
     private final PhoneWithType phone;
     @JasonerProperty("birth_date")
-    private final DateNoTime birthDate;
+    private final LocalDate birthDate;
     @JasonerProperty("tax_info")
     private final TaxInfo taxInfo;
     
@@ -77,7 +78,7 @@ public class SubscriberRequest {
      * birthDate
      */
     @JasonerProperty("birth_date")
-    public DateNoTime birthDate() {
+    public LocalDate birthDate() {
         return birthDate;
     }
 
@@ -123,7 +124,7 @@ public class SubscriberRequest {
         private AccountId payerId;
         private Name name;
         private PhoneWithType phone;
-        private DateNoTime birthDate;
+        private LocalDate birthDate;
         private TaxInfo taxInfo;
         private AddressPortable address;
         private ShippingDetail shippingAddress;
@@ -169,7 +170,7 @@ public class SubscriberRequest {
          * birthDate
          */
         @JasonerProperty("birth_date")
-        public Builder birthDate(DateNoTime value) {
+        public Builder birthDate(LocalDate value) {
             this.birthDate = value;
             return this;
         }
