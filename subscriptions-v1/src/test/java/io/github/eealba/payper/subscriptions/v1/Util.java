@@ -1,4 +1,4 @@
-package io.github.eealba.payper.subscriptions.v1.api;
+package io.github.eealba.payper.subscriptions.v1;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

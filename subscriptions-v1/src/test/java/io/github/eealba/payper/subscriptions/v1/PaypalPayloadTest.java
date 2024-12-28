@@ -1,9 +1,21 @@
-package io.github.eealba.payper.subscriptions.v1.model;
+package io.github.eealba.payper.subscriptions.v1;
 
 import io.github.eealba.jasoner.Jasoner;
 import io.github.eealba.jasoner.JasonerBuilder;
 import io.github.eealba.jasoner.JasonerConfig;
 import io.github.eealba.jasoner.NamingStrategy;
+import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
+import io.github.eealba.payper.subscriptions.v1.model.Plan;
+import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
+import io.github.eealba.payper.subscriptions.v1.model.Subscription;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionActivateRequest;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionCancelRequest;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionCaptureRequest;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionRequestPost;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionReviseRequest;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionReviseResponse;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionSuspendRequest;
+import io.github.eealba.payper.subscriptions.v1.model.UpdatePricingSchemesListRequest;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;

@@ -1,8 +1,9 @@
-package io.github.eealba.payper.subscriptions.v1.api;
+package io.github.eealba.payper.subscriptions.v1;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.eealba.payper.core.PayperAuthenticator;
 import io.github.eealba.payper.core.json.Json;
+import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;
 import io.github.eealba.payper.subscriptions.v1.model.BillingCycle;
 import io.github.eealba.payper.subscriptions.v1.model.CurrencyCode;
 import io.github.eealba.payper.subscriptions.v1.model.Frequency;
@@ -32,7 +33,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.removeStub;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
-import static io.github.eealba.payper.subscriptions.v1.api.Util.readResource;
+import static io.github.eealba.payper.subscriptions.v1.Util.readResource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
