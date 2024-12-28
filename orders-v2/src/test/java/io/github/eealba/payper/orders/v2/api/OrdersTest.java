@@ -3,7 +3,11 @@ package io.github.eealba.payper.orders.v2.api;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.eealba.payper.core.PayperAuthenticator;
 import io.github.eealba.payper.core.json.Json;
+import io.github.eealba.payper.orders.v2.model.ConfirmOrderRequest;
+import io.github.eealba.payper.orders.v2.model.OrderAuthorizeRequest;
+import io.github.eealba.payper.orders.v2.model.OrderCaptureRequest;
 import io.github.eealba.payper.orders.v2.model.OrderRequest;
+import io.github.eealba.payper.orders.v2.model.OrderTrackerRequest;
 import io.github.eealba.payper.orders.v2.model.PatchRequest;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -16,6 +20,7 @@ import java.time.Instant;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.jsonResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.noContent;
 import static com.github.tomakehurst.wiremock.client.WireMock.notFound;
 import static com.github.tomakehurst.wiremock.client.WireMock.okJson;
@@ -117,6 +122,149 @@ class OrdersTest {
                 .willReturn(noContent()));
 
         var response = orders.update().withId("1").withBody(request).retrieve().toResponse();
+
+        assertEquals(204, response.statusCode());
+    }
+    @Test
+    void confirm_payment_source_200() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "confirm_order_request.json");
+        var jsonResponse = readResource(EXAMPLES + "order.json");
+
+        var request = Json.create().fromJson(jsonRequest, ConfirmOrderRequest.class);
+        stubFor(post("/v2/checkout/orders/1/confirm-payment-source")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(okJson(jsonResponse)));
+
+        var response = orders.confirmPaymentSource().withId("1").withBody(request).retrieve().toEntity();
+
+        assertNotNull(response);
+        assertEquals("123", response.id());
+    }
+
+    @Test
+    void confirm_payment_source_400() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "confirm_order_request.json");
+        var jsonResponseData = readResource(EXAMPLES + "error.json");
+
+        var request = Json.create().fromJson(jsonRequest, ConfirmOrderRequest.class);
+        stubFor(post("/v2/checkout/orders/1/confirm-payment-source")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(jsonResponse(jsonResponseData, 400)));
+
+        var response = orders.confirmPaymentSource().withId("1").withBody(request).retrieve().toResponse();
+
+        assertNotNull(response);
+        assertEquals(400, response.statusCode());
+
+        assertEquals("INVALID_REQUEST", response.toErrorEntity().name());
+    }
+
+    @Test
+    void test_authorize_200() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "order_authorize_request.json");
+        var jsonResponse = readResource(EXAMPLES + "order_authorize_response.json");
+        var request = Json.create().fromJson(jsonRequest, OrderAuthorizeRequest.class);
+        stubFor(post("/v2/checkout/orders/1/authorize")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(okJson(jsonResponse)));
+
+        var response = orders.authorize().withId("1").withBody(request).retrieve().toEntity();
+
+        assertNotNull(response);
+        assertEquals("123", response.id());
+    }
+
+    @Test
+    void test_authorize_400() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "order_authorize_request.json");
+        var jsonResponseData = readResource(EXAMPLES + "error.json");
+        var request = Json.create().fromJson(jsonRequest, OrderAuthorizeRequest.class);
+        stubFor(post("/v2/checkout/orders/1/authorize")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(jsonResponse(jsonResponseData, 400)));
+
+        var response = orders.authorize().withId("1").withBody(request).retrieve().toResponse();
+
+        assertNotNull(response);
+        assertEquals(400, response.statusCode());
+
+        assertEquals("INVALID_REQUEST", response.toErrorEntity().name());
+    }
+
+    @Test
+    void test_capture_200() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "order_capture_request.json");
+        var jsonResponse = readResource(EXAMPLES + "order.json");
+        var request = Json.create().fromJson(jsonRequest, OrderCaptureRequest.class);
+        stubFor(post("/v2/checkout/orders/1/capture")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(okJson(jsonResponse)));
+
+        var response = orders.capture().withId("1").withBody(request).retrieve().toEntity();
+
+        assertNotNull(response);
+        assertEquals("123", response.id());
+    }
+
+    @Test
+    void test_capture_400() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "order_capture_request.json");
+        var jsonResponseData = readResource(EXAMPLES + "error.json");
+        var request = Json.create().fromJson(jsonRequest, OrderCaptureRequest.class);
+        stubFor(post("/v2/checkout/orders/1/capture")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(jsonResponse(jsonResponseData, 400)));
+
+        var response = orders.capture().withId("1").withBody(request).retrieve().toResponse();
+
+        assertNotNull(response);
+        assertEquals(400, response.statusCode());
+
+        assertEquals("INVALID_REQUEST", response.toErrorEntity().name());
+    }
+
+    @Test
+    void test_tracker_200() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "order_tracker_request.json");
+        var jsonResponse = readResource(EXAMPLES + "order.json");
+        var request = Json.create().fromJson(jsonRequest, OrderTrackerRequest.class);
+        stubFor(post("/v2/checkout/orders/1/track")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(okJson(jsonResponse)));
+
+        var response = orders.track().withId("1").withBody(request).retrieve().toEntity();
+
+        assertNotNull(response);
+        assertEquals("123", response.id());
+    }
+
+    @Test
+    void test_tracker_400() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "order_tracker_request.json");
+        var jsonResponseData = readResource(EXAMPLES + "error.json");
+        var request = Json.create().fromJson(jsonRequest, OrderTrackerRequest.class);
+        stubFor(post("/v2/checkout/orders/1/track")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(jsonResponse(jsonResponseData, 400)));
+
+        var response = orders.track().withId("1").withBody(request).retrieve().toResponse();
+
+        assertNotNull(response);
+        assertEquals(400, response.statusCode());
+
+        assertEquals("INVALID_REQUEST", response.toErrorEntity().name());
+    }
+
+    @Test
+    void test_update_tracking_200() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "patch_request.json");
+        var request = Json.create().fromJson(jsonRequest, PatchRequest.class);
+        stubFor(patch("/v2/checkout/orders/1/trackers/234")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(noContent()));
+
+        var response = orders.updateTracking().withId("1").withTrackingId("234")
+                .withBody(request).retrieve().toResponse();
 
         assertEquals(204, response.statusCode());
     }

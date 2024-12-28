@@ -210,6 +210,6 @@ public interface Orders {
     interface UpdateTrackingOrder extends RequestSpec<Void, ErrorDefault>,
             RequestSpec.BodySpec<UpdateTrackingOrder, PatchRequest>,
             RequestSpec.IdSpec<UpdateTrackingOrder> {
-        void withTrackingId(String trackingId);
+        UpdateTrackingOrder withTrackingId(String trackingId);
     }
 }

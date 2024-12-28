@@ -229,8 +229,9 @@ class OrdersImpl implements Orders {
         }
 
         @Override
-        public void withTrackingId(String trackingId) {
-            pathParameter("track_id", trackingId);
+        public UpdateTrackingOrder withTrackingId(String trackingId) {
+            pathParameter("tracker_id", trackingId);
+            return this;
         }
     }
 }
