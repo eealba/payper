@@ -22,7 +22,7 @@ import io.github.eealba.payper.core.util.Providers;
  * @author Edgar Alba
  */
 public abstract class CheckoutOrdersProvider {
-    private static final String DEFAULT = "io.github.eealba.payper.orders.v2.internal.OrdersProviderImpl";
+    private static final String DEFAULT = "io.github.eealba.payper.orders.v2.internal.CheckoutOrdersProviderImpl";
 
     /**
      * Constructs a new OrdersProvider.
