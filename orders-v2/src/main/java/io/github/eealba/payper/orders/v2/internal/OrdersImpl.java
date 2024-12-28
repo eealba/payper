@@ -16,7 +16,7 @@ import io.github.eealba.payper.orders.v2.model.PatchRequest;
 class OrdersImpl implements Orders {
     private final Payper payer;
 
-    public OrdersImpl(Payper payper) {
+    OrdersImpl(Payper payper) {
         this.payer = payper;
     }
 

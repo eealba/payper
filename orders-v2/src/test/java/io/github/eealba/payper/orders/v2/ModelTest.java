@@ -1,7 +1,15 @@
-package io.github.eealba.payper.orders.v2.model;
+package io.github.eealba.payper.orders.v2;
 
 import io.github.eealba.jasoner.Jasoner;
 import io.github.eealba.jasoner.JasonerBuilder;
+import io.github.eealba.payper.orders.v2.model.ConfirmOrderRequest;
+import io.github.eealba.payper.orders.v2.model.Order;
+import io.github.eealba.payper.orders.v2.model.OrderAuthorizeRequest;
+import io.github.eealba.payper.orders.v2.model.OrderAuthorizeResponse;
+import io.github.eealba.payper.orders.v2.model.OrderCaptureRequest;
+import io.github.eealba.payper.orders.v2.model.OrderRequest;
+import io.github.eealba.payper.orders.v2.model.OrderTrackerRequest;
+import io.github.eealba.payper.orders.v2.model.PatchRequest;
 import org.json.JSONException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,10 @@
-package io.github.eealba.payper.orders.v2.api;
+package io.github.eealba.payper.orders.v2;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.eealba.payper.core.PayperAuthenticator;
 import io.github.eealba.payper.core.json.Json;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.Orders;
 import io.github.eealba.payper.orders.v2.model.ConfirmOrderRequest;
 import io.github.eealba.payper.orders.v2.model.OrderAuthorizeRequest;
 import io.github.eealba.payper.orders.v2.model.OrderCaptureRequest;
@@ -28,7 +30,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.patch;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.removeStub;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
-import static io.github.eealba.payper.orders.v2.api.Util.readResource;
+import static io.github.eealba.payper.orders.v2.Util.readResource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 @WireMockTest(httpPort = 8080)

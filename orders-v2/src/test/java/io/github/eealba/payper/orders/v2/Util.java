@@ -1,4 +1,4 @@
-package io.github.eealba.payper.orders.v2.api;
+package io.github.eealba.payper.orders.v2;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
