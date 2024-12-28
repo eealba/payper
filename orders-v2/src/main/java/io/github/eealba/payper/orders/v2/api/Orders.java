@@ -1,3 +1,16 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.github.eealba.payper.orders.v2.api;
 
 import io.github.eealba.payper.core.spec.RequestSpec;
@@ -10,7 +23,12 @@ import io.github.eealba.payper.orders.v2.model.OrderCaptureRequest;
 import io.github.eealba.payper.orders.v2.model.OrderRequest;
 import io.github.eealba.payper.orders.v2.model.OrderTrackerRequest;
 import io.github.eealba.payper.orders.v2.model.PatchRequest;
-
+/**
+ * Interface representing the Orders API.
+ *
+ * @since 1.0
+ * @version 1.0
+ */
 public interface Orders {
 
     /**
@@ -22,11 +40,11 @@ public interface Orders {
      *
      * @return the create order request specification
      */
-    Create create();
+    CreateOrder create();
 
 
     /**
-     * Gets a order.
+     * Gets an order.
      * <p>
      * This method initializes a request to retrieve a specific order from the PayPal Orders API
      * by its ID.
@@ -103,12 +121,12 @@ public interface Orders {
      * This interface defines the specifications for creating a order, including setting the request body,
      * specifying the preferred return representation, and setting a PayPal request ID.
      */
-    interface Create extends RequestSpec<Order, ErrorDefault>,
-            RequestSpec.BodySpec<Create, OrderRequest>,
-            RequestSpec.PreferSpec<Create>,
-            RequestSpec.PaypalRequestIdSpec<Create>,
-            RequestSpec.PayPalPartnerAttributionIdSpec<Create>,
-            RequestSpec.PayPalClientMetadataId<Create> {
+    interface CreateOrder extends RequestSpec<Order, ErrorDefault>,
+            RequestSpec.BodySpec<CreateOrder, OrderRequest>,
+            RequestSpec.PreferSpec<CreateOrder>,
+            RequestSpec.PaypalRequestIdSpec<CreateOrder>,
+            RequestSpec.PayPalPartnerAttributionIdSpec<CreateOrder>,
+            RequestSpec.PayPalClientMetadataIdSpec<CreateOrder> {
     }
 
 
@@ -141,7 +159,7 @@ public interface Orders {
     interface ConfirmPaymentSourceOrder extends RequestSpec<Order, ErrorDefault>,
             RequestSpec.BodySpec<ConfirmPaymentSourceOrder, ConfirmOrderRequest>,
             RequestSpec.PreferSpec<ConfirmPaymentSourceOrder>,
-            RequestSpec.PayPalClientMetadataId<ConfirmPaymentSourceOrder>,
+            RequestSpec.PayPalClientMetadataIdSpec<ConfirmPaymentSourceOrder>,
             RequestSpec.IdSpec<ConfirmPaymentSourceOrder> {
     }
 
@@ -151,11 +169,11 @@ public interface Orders {
      * This interface defines the specifications for authorizing an order.
      */
     interface AuthorizeOrder extends RequestSpec<OrderAuthorizeResponse, ErrorDefault>,
-            RequestSpec.BodySpec<OrderAuthorizeRequest, OrderAuthorizeRequest>,
+            RequestSpec.BodySpec<AuthorizeOrder, OrderAuthorizeRequest>,
             RequestSpec.PaypalRequestIdSpec<AuthorizeOrder>,
             RequestSpec.PreferSpec<AuthorizeOrder>,
-            RequestSpec.PayPalClientMetadataId<AuthorizeOrder>,
-            RequestSpec.PayPalAuthAssertion<AuthorizeOrder>,
+            RequestSpec.PayPalClientMetadataIdSpec<AuthorizeOrder>,
+            RequestSpec.PayPalAuthAssertionSpec<AuthorizeOrder>,
             RequestSpec.IdSpec<AuthorizeOrder> {
     }
 
@@ -168,8 +186,8 @@ public interface Orders {
             RequestSpec.BodySpec<CaptureOrder, OrderCaptureRequest>,
             RequestSpec.PaypalRequestIdSpec<CaptureOrder>,
             RequestSpec.PreferSpec<CaptureOrder>,
-            RequestSpec.PayPalClientMetadataId<CaptureOrder>,
-            RequestSpec.PayPalAuthAssertion<CaptureOrder>,
+            RequestSpec.PayPalClientMetadataIdSpec<CaptureOrder>,
+            RequestSpec.PayPalAuthAssertionSpec<CaptureOrder>,
             RequestSpec.IdSpec<CaptureOrder> {
     }
 
@@ -180,7 +198,7 @@ public interface Orders {
      */
     interface TrackOrder extends RequestSpec<Order, ErrorDefault>,
             RequestSpec.BodySpec<TrackOrder, OrderTrackerRequest>,
-            RequestSpec.PayPalAuthAssertion<TrackOrder>,
+            RequestSpec.PayPalAuthAssertionSpec<TrackOrder>,
             RequestSpec.IdSpec<TrackOrder> {
     }
 

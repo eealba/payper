@@ -83,7 +83,7 @@ public interface RequestSpec<R1, R2> {
      *
      * @param <T> the type of the request specification
      */
-    interface PayPalClientMetadataId<T> {
+    interface PayPalClientMetadataIdSpec<T> {
 
         /**
          * Sets the PayPal Client Metadata ID for the request.
@@ -99,7 +99,7 @@ public interface RequestSpec<R1, R2> {
      *
      * @param <T> the type of the request specification
      */
-    interface PayPalAuthAssertion<T> {
+    interface PayPalAuthAssertionSpec<T> {
 
         /**
          * Sets the PayPal Auth Assertion for the request.

@@ -11,40 +11,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.eealba.payper.orders.v2.api;
+package io.github.eealba.payper.orders.v2.internal;
 
 import io.github.eealba.payper.core.PayperConfig;
-import io.github.eealba.payper.core.util.Providers;
-/**
- *
- * @since 1.0
- * @version 1.0
- * @author Edgar Alba
- */
-public abstract class CheckoutOrdersProvider {
-    private static final String DEFAULT = "io.github.eealba.payper.orders.v2.internal.OrdersProviderImpl";
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersProvider;
 
-    /**
-     * Constructs a new OrdersProvider.
-     */
-    public CheckoutOrdersProvider() {
-    }
 
-    /**
-     * Returns the default OrdersProvider instance.
-     *
-     * @return the default OrdersProvider instance
-     */
-    public static CheckoutOrdersProvider provider() {
-        return Providers.getProvider(CheckoutOrdersProvider.class, DEFAULT);
-    }
-
+public class CheckoutOrdersProviderImpl extends CheckoutOrdersProvider {
     /**
      * Creates a new OrdersApiClient instance using the specified configuration.
      *
      * @param config the configuration to be used
      * @return a new OrdersApiClient instance
      */
-    public abstract CheckoutOrdersApiClient create(PayperConfig config);
-
+    @Override
+    public CheckoutOrdersApiClient create(PayperConfig config) {
+        return new CheckoutOrdersApiClientImpl(config);
+    }
 }
