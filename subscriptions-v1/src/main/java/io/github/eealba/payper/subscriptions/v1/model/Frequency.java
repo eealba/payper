@@ -32,11 +32,7 @@ public class Frequency {
     /**
      * The number of intervals after which a subscriber is billed. For example, if the `interval_unit` is `DAY` with 
 an `interval_count` of `2`, the subscription is billed once every two days. The following table lists the 
-maximum allowed values for the `interval_count` for each `interval_unit`:<table><thead><tr><th><code>Interval 
-unit</code></th><th>Maximum interval count</th></tr></thead><tbody><tr><td><code>DAY</code></td><td 
-align="right">365</td></tr><tr><td><code>WEEK</code></td><td 
-align="right">52</td></tr><tr><td><code>MONTH</code></td><td 
-align="right">12</td></tr><tr><td><code>YEAR</code></td><td align="right">1</td></tr></tbody></table>
+maximum allowed values for the `interval_count` for each `interval_unit`
      */
     @JasonerProperty("interval_count")
     public Integer intervalCount() {
@@ -64,11 +60,7 @@ align="right">12</td></tr><tr><td><code>YEAR</code></td><td align="right">1</td>
         /**
          * The number of intervals after which a subscriber is billed. For example, if the `interval_unit` is `DAY` with 
 an `interval_count` of `2`, the subscription is billed once every two days. The following table lists the 
-maximum allowed values for the `interval_count` for each `interval_unit`:<table><thead><tr><th><code>Interval 
-unit</code></th><th>Maximum interval count</th></tr></thead><tbody><tr><td><code>DAY</code></td><td 
-align="right">365</td></tr><tr><td><code>WEEK</code></td><td 
-align="right">52</td></tr><tr><td><code>MONTH</code></td><td 
-align="right">12</td></tr><tr><td><code>YEAR</code></td><td align="right">1</td></tr></tbody></table>
+maximum allowed values for the `interval_count` for each `interval_unit`
          */
         @JasonerProperty("interval_count")
         public Builder intervalCount(Integer value) {
