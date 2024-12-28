@@ -37,10 +37,6 @@ import io.github.eealba.payper.core.json.JsonProvider;
  * @author Edgar Alba
  */
 public class JsonProviderImpl extends JsonProvider {
-    private static final Json json = new JsonImpl(JasonerBuilder.create(JasonerConfig
-            .builder()
-            .namingStrategy(NamingStrategy.SNAKE_CASE)
-            .build()));
 
     /**
      * Instantiates a new JsonProviderImpl.
@@ -55,6 +51,9 @@ public class JsonProviderImpl extends JsonProvider {
      */
     @Override
     public Json createJson() {
-        return json;
+        return new JsonImpl(JasonerBuilder.create(JasonerConfig
+                .builder()
+                .namingStrategy(NamingStrategy.SNAKE_CASE)
+                .build()));
     }
 }
