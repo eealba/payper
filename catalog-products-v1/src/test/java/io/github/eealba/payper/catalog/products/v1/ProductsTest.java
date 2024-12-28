@@ -1,6 +1,8 @@
-package io.github.eealba.payper.catalog.products.v1.api;
+package io.github.eealba.payper.catalog.products.v1;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
+import io.github.eealba.payper.catalog.products.v1.api.CatalogProductsApiClient;
+import io.github.eealba.payper.catalog.products.v1.api.Products;
 import io.github.eealba.payper.catalog.products.v1.model.PatchRequest;
 import io.github.eealba.payper.catalog.products.v1.model.ProductRequestPOST;
 import io.github.eealba.payper.core.PayperAuthenticator;
@@ -23,7 +25,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.patch;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.removeStub;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
-import static io.github.eealba.payper.catalog.products.v1.api.Util.readResource;
+import static io.github.eealba.payper.catalog.products.v1.Util.readResource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 @WireMockTest(httpPort = 8080)
