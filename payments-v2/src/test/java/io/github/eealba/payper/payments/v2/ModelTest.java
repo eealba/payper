@@ -69,7 +69,7 @@ public class ModelTest {
         JSONAssert.assertEquals(control, json, true);
     }
 
-    public static String readResource(String path) throws IOException {
+    private static String readResource(String path) throws IOException {
         try (var inputStream = ModelTest.class.getResourceAsStream(path)) {
             return new String(Objects.requireNonNull(inputStream).readAllBytes(), StandardCharsets.UTF_8);
         }

@@ -96,6 +96,7 @@ abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1, R2>,
 
     @Override
     public T withBody(T2 body) {
+        requestBuilder.header("Content-Type", "application/json");
         var method = getMethod();
         switch (method) {
             case POST -> requestBuilder.POST(PayperRequest.BodyPublishers.of(body));

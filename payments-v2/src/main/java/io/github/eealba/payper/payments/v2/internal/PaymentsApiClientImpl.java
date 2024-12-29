@@ -57,7 +57,7 @@ class PaymentsApiClientImpl extends PaymentsApiClient {
      */
     @Override
     public Captures captures() {
-        return null;
+        return captures;
     }
 
     /**
@@ -67,6 +67,6 @@ class PaymentsApiClientImpl extends PaymentsApiClient {
      */
     @Override
     public Refunds refunds() {
-        return null;
+        return refunds;
     }
 }

@@ -82,7 +82,7 @@ class AuthorizationsImpl implements Authorizations {
      */
     @Override
     public VoidAuthorization voidAuthorization() {
-        return null;
+        return new VoidAuthorizationImpl(payer);
     }
 
     private static class GetAuthorizationImpl extends RequestSpecImpl<GetAuthorization, Void, Authorization2, ErrorDefault>

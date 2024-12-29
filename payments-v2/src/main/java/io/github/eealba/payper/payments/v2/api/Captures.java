@@ -65,6 +65,7 @@ public interface Captures {
         RequestSpec.IdSpec<RefundCapture>,
         RequestSpec.PreferSpec<RefundCapture>,
         RequestSpec.PaypalRequestIdSpec<RefundCapture>,
+        RequestSpec.PayPalAuthAssertionSpec<RefundCapture>,
         RequestSpec.BodySpec<RefundCapture, RefundRequest>{
 
     }

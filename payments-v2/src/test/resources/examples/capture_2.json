@@ -3,7 +3,7 @@
   "status_details": {
     "reason": "BUYER_COMPLAINT"
   },
-  "id": "string",
+  "id": "1",
   "amount": {
     "currency_code": "USD",
     "value": "-.047555993524438506597407856300"

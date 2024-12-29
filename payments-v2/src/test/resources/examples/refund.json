@@ -3,7 +3,7 @@
   "status_details": {
     "reason": "ECHECK"
   },
-  "id": "string",
+  "id": "1",
   "amount": {
     "currency_code": "USD",
     "value": "-12"
