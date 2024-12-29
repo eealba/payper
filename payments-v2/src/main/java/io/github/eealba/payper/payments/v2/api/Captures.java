@@ -16,6 +16,7 @@ package io.github.eealba.payper.payments.v2.api;
 import io.github.eealba.payper.core.spec.RequestSpec;
 import io.github.eealba.payper.payments.v2.model.Capture2;
 import io.github.eealba.payper.payments.v2.model.ErrorDefault;
+import io.github.eealba.payper.payments.v2.model.Refund;
 import io.github.eealba.payper.payments.v2.model.RefundRequest;
 
 /**
@@ -60,7 +61,7 @@ public interface Captures {
      * <p>
      * This interface allows for specifying the capture ID.
      */
-    interface RefundCapture extends RequestSpec<Capture2, ErrorDefault>,
+    interface RefundCapture extends RequestSpec<Refund, ErrorDefault>,
         RequestSpec.IdSpec<RefundCapture>,
         RequestSpec.PreferSpec<RefundCapture>,
         RequestSpec.PaypalRequestIdSpec<RefundCapture>,
