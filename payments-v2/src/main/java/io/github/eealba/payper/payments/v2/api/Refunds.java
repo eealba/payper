@@ -13,6 +13,10 @@
  */
 package io.github.eealba.payper.payments.v2.api;
 
+import io.github.eealba.payper.core.spec.RequestSpec;
+import io.github.eealba.payper.payments.v2.model.ErrorDefault;
+import io.github.eealba.payper.payments.v2.model.Refund;
+
 /**
  * Interface for refunds.
  *
@@ -21,4 +25,23 @@ package io.github.eealba.payper.payments.v2.api;
  * @author Edgar Alba
  */
 public interface Refunds {
+
+    /**
+     * Gets a refund.
+     * <p>
+     * This method initializes a request to retrieve a specific refund from the PayPal Payments API
+     * by its ID.
+     *
+     * @return the get refund request specification
+     */
+    GetRefund get();
+
+    /**
+     * Interface representing the get refund request specification.
+     * <p>
+     * This interface allows for specifying the refund ID.
+     */
+    interface GetRefund extends RequestSpec<Refund, ErrorDefault>,
+        RequestSpec.IdSpec<GetRefund>{
+    }
 }

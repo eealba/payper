@@ -13,6 +13,11 @@
  */
 package io.github.eealba.payper.payments.v2.api;
 
+import io.github.eealba.payper.core.spec.RequestSpec;
+import io.github.eealba.payper.payments.v2.model.Capture2;
+import io.github.eealba.payper.payments.v2.model.ErrorDefault;
+import io.github.eealba.payper.payments.v2.model.RefundRequest;
+
 /**
  * Interface for captures.
  *
@@ -21,4 +26,45 @@ package io.github.eealba.payper.payments.v2.api;
  * @author Edgar Alba
  */
 public interface Captures {
+
+    /**
+     * Gets a capture.
+     * <p>
+     * This method initializes a request to retrieve a specific capture from the PayPal Payments API
+     * by its ID.
+     *
+     * @return the get capture request specification
+     */
+    GetCapture get();
+
+    /**
+     * Refunds a capture.
+     * <p>
+     * This method initializes a request to refund an existing capture in the PayPal Payments API.
+     *
+     * @return the refund capture request specification
+     */
+    RefundCapture refund();
+
+    /**
+     * Interface representing the get capture request specification.
+     * <p>
+     * This interface allows for specifying the capture ID.
+     */
+    interface GetCapture extends RequestSpec<Capture2, ErrorDefault>,
+        RequestSpec.IdSpec<GetCapture>{
+    }
+
+    /**
+     * Interface representing the refund capture request specification.
+     * <p>
+     * This interface allows for specifying the capture ID.
+     */
+    interface RefundCapture extends RequestSpec<Capture2, ErrorDefault>,
+        RequestSpec.IdSpec<RefundCapture>,
+        RequestSpec.PreferSpec<RefundCapture>,
+        RequestSpec.PaypalRequestIdSpec<RefundCapture>,
+        RequestSpec.BodySpec<RefundCapture, RefundRequest>{
+
+    }
 }
