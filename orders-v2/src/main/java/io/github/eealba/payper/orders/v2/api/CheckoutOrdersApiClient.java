@@ -15,7 +15,8 @@ package io.github.eealba.payper.orders.v2.api;
 
 import io.github.eealba.payper.core.PayperConfig;
 /**
- *
+ * Abstract class for checkout orders API client.
+ * <p>
  * @since 1.0
  * @version 1.0
  * @author Edgar Alba
@@ -48,6 +49,11 @@ public abstract class CheckoutOrdersApiClient {
         return CheckoutOrdersProvider.provider().create(config);
     }
 
+    /**
+     * Returns the Orders API client.
+     *
+     * @return the Orders API client
+     */
     public abstract Orders orders();
 
 }

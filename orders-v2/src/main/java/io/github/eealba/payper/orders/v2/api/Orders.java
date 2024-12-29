@@ -28,6 +28,7 @@ import io.github.eealba.payper.orders.v2.model.PatchRequest;
  *
  * @since 1.0
  * @version 1.0
+ * @author Edgar Alba
  */
 public interface Orders {
 
