@@ -48,6 +48,7 @@ class AuthorizationsTest {
         System.clearProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_ID);
         System.clearProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_SECRET);
         authorizations = null;
+
     }
 
     @BeforeEach
@@ -179,5 +180,6 @@ class AuthorizationsTest {
             return new String(Objects.requireNonNull(inputStream).readAllBytes(), StandardCharsets.UTF_8);
         }
     }
+
 
 }
