@@ -33,8 +33,8 @@ import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static io.github.eealba.payper.orders.v2.Util.readResource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-@WireMockTest(httpPort = 8080)
 
+@WireMockTest(httpPort = 8080)
 class OrdersTest {
     private static final String EXAMPLES = "/examples/";
     private static Orders orders;

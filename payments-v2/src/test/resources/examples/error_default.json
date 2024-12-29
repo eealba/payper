@@ -1,0 +1,21 @@
+{
+  "name": "AUTHENTICATION_FAILURE",
+  "message": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+  "details": [
+    {
+      "field": "string",
+      "value": "string",
+      "location": "body",
+      "issue": "string",
+      "description": "string"
+    }
+  ],
+  "debug_id": "string",
+  "links": [
+    {
+      "href": "http://www.example.com",
+      "rel": "string",
+      "method": "GET"
+    }
+  ]
+}

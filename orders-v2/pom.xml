@@ -4,13 +4,13 @@
     <parent>
         <groupId>io.github.eealba.payper</groupId>
         <artifactId>payper-parent</artifactId>
-        <version>0.2.0</version>
+        <version>0.3.0</version>
     </parent>
 
     <artifactId>payper-orders-v2</artifactId>
     <packaging>jar</packaging>
 
-    <name>payper-orders-v2</name>
+    <name>Payper Orders V2</name>
     <description>Orders API client for the Payper library,
         providing methods to interact with the PayPal Orders API.</description>
     <url>https://github.com/eealba/payper</url>

@@ -1,0 +1,46 @@
+{
+  "status": "CREATED",
+  "status_details": {
+    "reason": "PENDING_REVIEW"
+  },
+  "id": "1",
+  "amount": {
+    "currency_code": "USD",
+    "value": "-66164027459123"
+  },
+  "invoice_id": "string",
+  "custom_id": "string",
+  "network_transaction_reference": {
+    "id": "bLrBXKJyCCQzfdcbKe8vui0FOEZ6c-m0knPC",
+    "date": "1952",
+    "network": "VISA",
+    "acquirer_reference_number": "XDMuNpZZETCGwIm3n1Ix5rOMKXQn297nMIt0"
+  },
+  "seller_protection": {
+    "status": "ELIGIBLE",
+    "dispute_categories": [
+      "ITEM_NOT_RECEIVED"
+    ]
+  },
+  "expiration_time": "2023-08-17T22:18:48.740Z",
+  "links": [
+    {
+      "href": "string",
+      "rel": "string",
+      "method": "GET"
+    }
+  ],
+  "create_time": "2023-08-17T22:18:48.740Z",
+  "update_time": "2023-08-17T22:18:48.740Z",
+  "supplementary_data": {
+    "related_ids": {
+      "order_id": "JWDJ3N35Q6Y3892FOMVP",
+      "authorization_id": "82UE2HFX21WSMI0T7KY",
+      "capture_id": "TEQOK9EP6QIX"
+    }
+  },
+  "payee": {
+    "email_address": "email@email.com",
+    "merchant_id": "GC7HH3LBP82VR"
+  }
+}

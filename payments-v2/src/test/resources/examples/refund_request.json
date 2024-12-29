@@ -1,0 +1,18 @@
+{
+  "amount": {
+    "value": "10.00",
+    "currency_code": "USD"
+  },
+  "invoice_id": "INVOICE-123",
+  "note_to_payer": "DefectiveProduct",
+  "payment_instruction": {
+    "platform_fees": [
+      {
+        "amount": {
+          "currency_code": "USD",
+          "value": "1.00"
+        }
+      }
+    ]
+  }
+}

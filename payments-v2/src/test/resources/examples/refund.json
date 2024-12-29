@@ -1,0 +1,83 @@
+{
+  "status": "CANCELLED",
+  "status_details": {
+    "reason": "ECHECK"
+  },
+  "id": "1",
+  "amount": {
+    "currency_code": "USD",
+    "value": "-12"
+  },
+  "invoice_id": "string",
+  "custom_id": "J71VHj7Uc89F.sfqx6NUor7cqRXRyKvczzuNT3,UVaqse_Gau,EJFYp-iaG4",
+  "acquirer_reference_number": "kKyxwq65q9VbsdBtpNxX0IDV9UyJ",
+  "note_to_payer": "string",
+  "seller_payable_breakdown": {
+    "gross_amount": {
+      "currency_code": "USD",
+      "value": "-14.56"
+    },
+    "paypal_fee": {
+      "currency_code": "USD",
+      "value": "-12.23"
+    },
+    "paypal_fee_in_receivable_currency": {
+      "currency_code": "USD",
+      "value": "9080589"
+    },
+    "net_amount": {
+      "currency_code": "USD",
+      "value": "1233"
+    },
+    "net_amount_in_receivable_currency": {
+      "currency_code": "USD",
+      "value": "-.0"
+    },
+    "platform_fees": [
+      {
+        "amount": {
+          "currency_code": "USD",
+          "value": "23456"
+        },
+        "payee": {
+          "email_address": "email@email.com",
+          "merchant_id": "3D8HZ4H4DP2WR"
+        }
+      }
+    ],
+    "net_amount_breakdown": [
+      {
+        "payable_amount": {
+          "currency_code": "USD",
+          "value": "1.98727"
+        },
+        "converted_amount": {
+          "currency_code": "USD",
+          "value": "-1212"
+        },
+        "exchange_rate": {
+          "source_currency": "USD",
+          "target_currency": "USD",
+          "value": "string"
+        }
+      }
+    ],
+    "total_refunded_amount": {
+      "currency_code": "USD",
+      "value": "222"
+    }
+  },
+  "payer": {
+    "email_address": "email@email.com",
+    "merchant_id": "LKUHZCPRKU5GM"
+  },
+  "links": [
+    {
+      "href": "string",
+      "rel": "string",
+      "method": "GET"
+    }
+  ],
+  "create_time": "2023-08-17T22:18:48.740Z",
+  "update_time": "2023-08-17T22:18:48.740Z"
+}

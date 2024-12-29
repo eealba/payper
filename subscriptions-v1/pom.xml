@@ -6,9 +6,11 @@
     <parent>
         <groupId>io.github.eealba.payper</groupId>
         <artifactId>payper-parent</artifactId>
-        <version>0.2.0</version>
+        <version>0.3.0</version>
     </parent>
     <packaging>jar</packaging>
+
+    <name>Payper Subscriptions V1</name>
     <artifactId>payper-subscriptions-v1</artifactId>
     <description>Subscriptions API client for the Payper library, providing methods to interact with the PayPal
         Subscriptions API.</description>

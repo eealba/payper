@@ -27,6 +27,7 @@ for multithreading and high concurrency. Payper uses immutable objects and provi
 | Catalog Products      | v1      | [API Reference](https://developer.paypal.com/docs/api/catalog-products/v1/) |  
 | Subscriptions         | v1      | [API Reference](https://developer.paypal.com/docs/api/subscriptions/v1/)    |
 | Orders                | v2      | [API Reference](https://developer.paypal.com/docs/api/orders/v2/)           |
+| Payments              | v2      | [API Reference](https://developer.paypal.com/docs/api/payments/v2/)         |
 
 ## Installation
 
@@ -42,7 +43,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-subscriptions-v1</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
 </dependency>
 ```
 ### Catalog Products API
@@ -52,7 +53,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-catalog-products-v1</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
 </dependency>
 ```
 
@@ -63,10 +64,20 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-orders-v2</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
 </dependency>
 ```
 
+### Payments API
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.eealba.payper/payper-payments-v2.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.eealba.payper/payper-payments-v2)
+[![Javadoc](https://javadoc.io/badge2/io.github.eealba.payper/payper-payments-v2/javadoc.io.svg)](https://javadoc.io/doc/io.github.eealba.payper/payper-payments-v2)
+```xml
+<dependency>
+    <groupId>io.github.eealba.payper</groupId>
+    <artifactId>payper-payments-v2</artifactId>
+    <version>0.3.0</version>
+</dependency>
+```
 
 
 
@@ -79,7 +90,6 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 | Partner Referrals     | v2      | [API Reference](https://developer.paypal.com/docs/api/partner-referrals/v2/)           |
 | Payment Experience    | v1      | [API Reference](https://developer.paypal.com/docs/api/payment-experience/v1/)          |
 | Payment Method Tokens | v3      | [API Reference](https://developer.paypal.com/docs/api/payment-tokens/v3/)              |
-| Payments              | v2      | [API Reference](https://developer.paypal.com/docs/api/payments/v2/)                    |
 | Payouts               | v1      | [API Reference](https://developer.paypal.com/docs/api/payments.payouts-batch/v1/)      |
 | Transaction Search    | v1      | [API Reference](https://developer.paypal.com/docs/api/transaction-search/v1/)          |
 | Webhooks Management   | v1      | [API Reference](https://developer.paypal.com/docs/api/webhooks/v1/)                    |

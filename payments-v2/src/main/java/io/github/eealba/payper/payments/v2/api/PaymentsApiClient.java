@@ -11,49 +11,62 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.eealba.payper.orders.v2.api;
+package io.github.eealba.payper.payments.v2.api;
 
 import io.github.eealba.payper.core.PayperConfig;
+
 /**
- * Abstract class for checkout orders API client.
- * <p>
+ * Abstract class for payments API client.
+ *
  * @since 1.0
  * @version 1.0
  * @author Edgar Alba
  */
-public abstract class CheckoutOrdersApiClient {
+public abstract class PaymentsApiClient {
 
     /**
-     * Creates a new OrdersApiClient instance using the default configuration.
+     * Creates a new PaymentsApiClient instance using the default configuration.
      * <p>
      * This method initializes the client with the default settings and credentials
-     * required for communicating with the PayPal Orders API.
+     * required for communicating with the PayPal Payments API.
      *
-     * @return a new OrdersApiClient instance
+     * @return a new PaymentsApiClient instance
      */
-    public static CheckoutOrdersApiClient create() {
+    public static PaymentsApiClient create() {
         return create(PayperConfig.builder().build());
     }
 
     /**
-     * Creates a new OrdersApiClient instance using the specified configuration.
+     * Creates a new PaymentsApiClient instance using the specified configuration.
      * <p>
      * This method allows for custom configuration of the client, including setting
      * specific credentials and other settings required for authenticating and
-     * communicating with the PayPal Orders API.
+     * communicating with the PayPal Payments API.
      *
      * @param config the configuration to be used
-     * @return a new OrdersApiClient instance
+     * @return a new PaymentsApiClient instance
      */
-    public static CheckoutOrdersApiClient create(PayperConfig config) {
-        return CheckoutOrdersProvider.provider().create(config);
+    public static PaymentsApiClient create(PayperConfig config) {
+        return PaymentsProvider.provider().create(config);
     }
+    /**
+     * Returns the Authorizations API interface.
+     *
+     * @return the Authorizations API interface
+     */
+    public abstract Authorizations authorizations();
 
     /**
-     * Returns the Orders API client.
+     * Returns the Captures API interface.
      *
-     * @return the Orders API client
+     * @return the Captures API interface
      */
-    public abstract Orders orders();
+    public abstract Captures captures();
 
+    /**
+     * Returns the Refunds API interface.
+     *
+     * @return the Refunds API interface
+     */
+    public abstract Refunds refunds();
 }

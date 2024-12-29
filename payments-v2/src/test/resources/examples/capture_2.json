@@ -1,0 +1,92 @@
+{
+  "status": "COMPLETED",
+  "status_details": {
+    "reason": "BUYER_COMPLAINT"
+  },
+  "id": "1",
+  "amount": {
+    "currency_code": "USD",
+    "value": "-.047555993524438506597407856300"
+  },
+  "invoice_id": "string",
+  "custom_id": "string",
+  "network_transaction_reference": {
+    "id": "6tPCn2a6bUu",
+    "date": "2758",
+    "network": "VISA",
+    "acquirer_reference_number": "X"
+  },
+  "seller_protection": {
+    "status": "ELIGIBLE",
+    "dispute_categories": [
+      "ITEM_NOT_RECEIVED"
+    ]
+  },
+  "final_capture": false,
+  "seller_receivable_breakdown": {
+    "gross_amount": {
+      "currency_code": "USD",
+      "value": "-6405436243213922067960098881971"
+    },
+    "paypal_fee": {
+      "currency_code": "USD",
+      "value": "-3405699413302712339787619034198"
+    },
+    "paypal_fee_in_receivable_currency": {
+      "currency_code": "USD",
+      "value": "00199064846700683489725413440753"
+    },
+    "net_amount": {
+      "currency_code": "USD",
+      "value": ".5890228749333837600460796553937"
+    },
+    "receivable_amount": {
+      "currency_code": "USD",
+      "value": ".7650622919206787906450805679470"
+    },
+    "exchange_rate": {
+      "source_currency": "USD",
+      "target_currency": "USD",
+      "value": "string"
+    },
+    "platform_fees": [
+      {
+        "amount": {
+          "currency_code": "USD",
+          "value": "5447455787"
+        },
+        "payee": {
+          "email_address": "email@email.com",
+          "merchant_id": "FG6MYMMW8PUC6"
+        }
+      }
+    ]
+  },
+  "disbursement_mode": "INSTANT",
+  "links": [
+    {
+      "href": "string",
+      "rel": "string",
+      "method": "GET"
+    }
+  ],
+  "processor_response": {
+    "avs_code": "A",
+    "cvv_code": "E",
+    "response_code": "0000",
+    "payment_advice_code": "01"
+  },
+  "create_time": "2023-08-17T22:18:48.740Z",
+  "update_time": "2023-08-17T22:18:48.740Z",
+  "supplementary_data": {
+    "related_ids": {
+      "order_id": "L95BE4W7CNX5AZY1O0WR",
+      "authorization_id": "6LWMY05JTY2VOVWK9ZCW",
+      "capture_id": "GDO0XC3KP9S6RXPC3XPU"
+    }
+  },
+  "payee": {
+    "email_address": "email@email.com",
+    "merchant_id": "SC8UNG8SZEF3J"
+  }
+}
