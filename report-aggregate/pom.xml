@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.github.eealba.payper</groupId>
         <artifactId>payper-parent</artifactId>
-        <version>0.3.0</version>
+        <version>0.4.0</version>
     </parent>
 
     <artifactId>report-aggregate</artifactId>
@@ -34,6 +34,11 @@
             <groupId>io.github.eealba.payper</groupId>
             <artifactId>payper-payments-v2</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.github.eealba.payper</groupId>
+            <artifactId>payper-invoices-v2</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
