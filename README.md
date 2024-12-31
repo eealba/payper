@@ -116,7 +116,11 @@ public class PayperExample {
                 .imageUrl("https://example.com/image.jpg")
                 .build();
 
-        var product = catalogProductsApiClient.products().create().withBody(productRequest).retrieve().toEntity();
+        var product = catalogProductsApiClient.products()
+                .create()
+                .withBody(productRequest)
+                .retrieve()
+                .toEntity();
 
         System.out.println("Created product ID: " + product.id());
     }
@@ -132,7 +136,11 @@ public class PayperExample {
     public static void main(String[] args) {
         var catalogProductsApiClient = CatalogProductsApiClient.create();
         
-        var product = catalogProductsApiClient.products().get().withId("1").retrieve().toEntity();
+        var product = catalogProductsApiClient.products()
+                .get()
+                .withId("1")
+                .retrieve()
+                .toEntity();
 
         System.out.println("Retrieved product ID: " + product.id());
     }
@@ -148,7 +156,11 @@ import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;
 public class PayperExample {
     public static void main(String[] args) {
         var subscriptionsApiClient = SubscriptionsApiClient.create();
-        var plan = subscriptionsApiClient.billingPlans().get().withId("1").retrieve().toEntity();
+        var plan = subscriptionsApiClient.billingPlans()
+                .get()
+                .withId("1")
+                .retrieve()
+                .toEntity();
 
         System.out.println("Retrieved plan ID: " + plan.id());
     }
@@ -162,7 +174,12 @@ public class PayperExample {
     public static void main(String[] args) {
         var subscriptionsApiClient = SubscriptionsApiClient.create();
         
-        var futurePlan = subscriptionsApiClient.billingPlans().get().withId("1").retrieve().toFuture();
+        var futurePlan = subscriptionsApiClient.billingPlans()
+                .get()
+                .withId("1")
+                .retrieve()
+                .toFuture();
+        
         futurePlan.thenAccept( response  -> {
             if (response.statusCode() == 200) {
                 System.out.println("Plan retrieved successfully");
@@ -208,12 +225,17 @@ Otherwise, you can pass the credentials directly to the Payper client using supp
     public static void main(String[] args) {
         PayperConfig config = PayperConfig.builder()
                 .authenticator(PayperAuthenticator.PayperAuthenticators
-                        .ofSandBox(() -> "CLIENT_ID".toCharArray(), () -> "CLIENT_SECRET".toCharArray()))
+                        .ofSandBox(() -> "CLIENT_ID".toCharArray(),
+                                () -> "CLIENT_SECRET".toCharArray()))
                 .build();
         
         var subscriptionsApiClient = SubscriptionsApiClient.create(config);
 
-        var plan = subscriptionsApiClient.billingPlans().get().withId("1").retrieve().toEntity();
+        var plan = subscriptionsApiClient.billingPlans()
+                .get()
+                .withId("1")
+                .retrieve()
+                .toEntity();
 
         System.out.println("Retrieved plan ID: " + plan.id());
 
