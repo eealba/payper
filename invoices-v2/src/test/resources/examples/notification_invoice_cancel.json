@@ -1,0 +1,1 @@
+{"subject":"Invoice Cancelled","note":"Cancelling the invoice","send_to_invoicer":true,"send_to_recipient":true,"additional_recipients":["user@example.com"]}
