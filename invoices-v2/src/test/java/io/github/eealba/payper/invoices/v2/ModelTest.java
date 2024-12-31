@@ -13,6 +13,7 @@ import io.github.eealba.payper.invoices.v2.model.RefundDetail;
 import io.github.eealba.payper.invoices.v2.model.RefundReference;
 import io.github.eealba.payper.invoices.v2.model.SearchData;
 import io.github.eealba.payper.invoices.v2.model.Template;
+import io.github.eealba.payper.invoices.v2.model.Templates;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 
@@ -75,5 +76,9 @@ public class ModelTest {
     @Test
     void template_serialize_deserialize() throws IOException, JSONException {
         execute("/examples/template.json", Template.class);
+    }
+    @Test
+    void template2_serialize_deserialize() throws IOException, JSONException {
+        execute("/examples/templates.json", Templates.class);
     }
 }
