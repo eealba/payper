@@ -5,14 +5,16 @@
       "address_line_2": "",
       "admin_area_2": "San Jose",
       "admin_area_1": "CA",
-      "postal_code": "95131"
+      "postal_code": "95131",
+      "country_code": "US"
     },
     {
       "address_line_1": "1 Main St",
       "address_line_2": "",
       "admin_area_2": "San Jose",
       "admin_area_1": "CA",
-      "postal_code": "95131"
+      "postal_code": "95131",
+      "country_code": "US"
     }
   ],
   "emails": "etondoze-facilitator@gmail.com",
@@ -35,7 +37,8 @@
             "address_line_2": "",
             "admin_area_2": "San Jose",
             "admin_area_1": "CA",
-            "postal_code": "95131"
+            "postal_code": "95131",
+            "country_code": "US"
           },
           "email_address": "etondoze-facilitator@gmail.com"
         }
@@ -43,31 +46,31 @@
       "settings": {
         "template_item_settings": [
           {
-            "field_name": "items.date",
+            "field_name": "ITEMS_DATE",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "items.discount",
+            "field_name": "ITEMS_DISCOUNT",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "items.tax",
+            "field_name": "ITEMS_TAX",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "items.description",
+            "field_name": "ITEMS_DESCRIPTION",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "items.quantity",
+            "field_name": "ITEMS_QUANTITY",
             "display_preference": {
               "hidden": true
             }
@@ -75,19 +78,19 @@
         ],
         "template_subtotal_settings": [
           {
-            "field_name": "custom",
+            "field_name": "CUSTOM",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "discount",
+            "field_name": "DISCOUNT",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "shipping",
+            "field_name": "SHIPPING",
             "display_preference": {
               "hidden": true
             }
@@ -122,7 +125,8 @@
             "address_line_2": "",
             "admin_area_2": "San Jose",
             "admin_area_1": "CA",
-            "postal_code": "95131"
+            "postal_code": "95131",
+            "country_code": "US"
           },
           "email_address": "etondoze-facilitator@gmail.com"
         }
@@ -130,19 +134,19 @@
       "settings": {
         "template_item_settings": [
           {
-            "field_name": "items.date",
+            "field_name": "ITEMS_DATE",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "items.discount",
+            "field_name": "ITEMS_DISCOUNT",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "items.tax",
+            "field_name": "ITEMS_TAX",
             "display_preference": {
               "hidden": true
             }
@@ -150,13 +154,13 @@
         ],
         "template_subtotal_settings": [
           {
-            "field_name": "custom",
+            "field_name": "CUSTOM",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "shipping",
+            "field_name": "SHIPPING",
             "display_preference": {
               "hidden": true
             }
@@ -191,7 +195,8 @@
             "address_line_2": "",
             "admin_area_2": "San Jose",
             "admin_area_1": "CA",
-            "postal_code": "95131"
+            "postal_code": "95131",
+            "country_code": "US"
           },
           "email_address": "etondoze-facilitator@gmail.com"
         }
@@ -199,25 +204,25 @@
       "settings": {
         "template_item_settings": [
           {
-            "field_name": "items.date",
+            "field_name": "ITEMS_DATE",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "items.discount",
+            "field_name": "ITEMS_DISCOUNT",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "items.tax",
+            "field_name": "ITEMS_TAX",
             "display_preference": {
               "hidden": false
             }
           },
           {
-            "field_name": "items.description",
+            "field_name": "ITEMS_DESCRIPTION",
             "display_preference": {
               "hidden": false
             }
@@ -225,19 +230,19 @@
         ],
         "template_subtotal_settings": [
           {
-            "field_name": "custom",
+            "field_name": "CUSTOM",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "discount",
+            "field_name": "DISCOUNT",
             "display_preference": {
               "hidden": false
             }
           },
           {
-            "field_name": "shipping",
+            "field_name": "SHIPPING",
             "display_preference": {
               "hidden": false
             }
