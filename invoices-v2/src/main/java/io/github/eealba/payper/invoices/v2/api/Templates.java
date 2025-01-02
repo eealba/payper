@@ -13,5 +13,122 @@
  */
 package io.github.eealba.payper.invoices.v2.api;
 
+import io.github.eealba.payper.core.spec.RequestSpec;
+import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
+import io.github.eealba.payper.invoices.v2.model.Template;
+
+/**
+ * Interface representing a template.
+ *
+ * @since 1.0
+ * @version 1.0
+ * @author Edgar Alba
+ */
 public interface Templates {
+    /**
+     * Returns the list of templates.
+     *
+     * @return the list of templates
+     */
+    ListTemplates list();
+    /**
+     * Creates a new template.
+     *
+     * @return the create template
+     */
+    CreateTemplate create();
+
+    /**
+     * Updates a template.
+     *
+     * @return the update template
+     */
+    UpdateTemplate update();
+
+    /**
+     * Deletes a template.
+     *
+     * @return the delete template
+     */
+    DeleteTemplate delete();
+
+    /**
+     * Gets a template.
+     *
+     * @return the get template
+     */
+    GetTemplate get();
+
+    /**
+     * Interface representing a list of templates.
+     *
+     * @since 1.0
+     * @version 1.0
+     */
+    interface ListTemplates extends RequestSpec<Templates, ErrorDefault> {
+        /**
+         * Sets the page size.
+         *
+         * @param pageSize the page size
+         * @return the list of templates
+         */
+        ListTemplates withPageSize(int pageSize);
+
+        /**
+         * Sets the page.
+         *
+         * @param page the page
+         * @return the list of templates
+         */
+        ListTemplates withPage(int page);
+
+        /**
+         * Sets the fields.
+         *
+         * @param fields the fields
+         * @return the list of templates
+         */
+        ListTemplates withFields(String fields);
+    }
+
+    /**
+     * Interface representing a create template.
+     *
+     * @since 1.0
+     * @version 1.0
+     */
+    interface CreateTemplate extends RequestSpec<Template, ErrorDefault>,
+            RequestSpec.BodySpec<CreateTemplate, Template> {
+    }
+
+    /**
+     * Interface representing an update template.
+     *
+     * @since 1.0
+     * @version 1.0
+     */
+    interface UpdateTemplate extends RequestSpec<Template, ErrorDefault>,
+            RequestSpec.IdSpec<UpdateTemplate>,
+            RequestSpec.BodySpec<UpdateTemplate, Template> {
+    }
+
+    /**
+     * Interface representing a delete template.
+     *
+     * @since 1.0
+     * @version 1.0
+     */
+    interface DeleteTemplate extends RequestSpec<Void, ErrorDefault>,
+            RequestSpec.IdSpec<DeleteTemplate> {
+    }
+
+    /**
+     * Interface representing a get template.
+     *
+     * @since 1.0
+     * @version 1.0
+     */
+    interface GetTemplate extends RequestSpec<Template, ErrorDefault>,
+            RequestSpec.IdSpec<GetTemplate> {
+    }
 }

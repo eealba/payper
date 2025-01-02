@@ -13,5 +13,10 @@
  */
 package io.github.eealba.payper.invoices.v2.api;
 
-public interface GenerateNextInvoiceNumber {
+import io.github.eealba.payper.core.spec.RequestSpec;
+import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
+import io.github.eealba.payper.invoices.v2.model.InvoiceNumber;
+
+public interface GenerateNextInvoiceNumber extends RequestSpec<InvoiceNumber, ErrorDefault> {
+
 }
