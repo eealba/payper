@@ -3,7 +3,7 @@ package io.github.eealba.payper.invoices.v2;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
-import io.github.eealba.payper.invoices.v2.api.InvoicesProvider;
+import io.github.eealba.payper.invoices.v2.api.InvoicingProvider;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
@@ -35,7 +35,7 @@ public class MyArchitectureTest {
     @ArchTest
     static ArchRule all_classes_that_reside_in_package_internal_should_be_package_private =
             classes().that().resideInAPackage("..internal..")
-                    .and().areNotAssignableTo(InvoicesProvider.class)
+                    .and().areNotAssignableTo(InvoicingProvider.class)
                     .should().bePrivate().orShould().bePackagePrivate();
 
 }
