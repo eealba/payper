@@ -15,6 +15,7 @@ package io.github.eealba.payper.payments.v2.internal;
 
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
+import io.github.eealba.payper.core.spec.RequestSpecImpl;
 import io.github.eealba.payper.payments.v2.api.Captures;
 import io.github.eealba.payper.payments.v2.model.Capture2;
 import io.github.eealba.payper.payments.v2.model.ErrorDefault;
@@ -67,7 +68,7 @@ class CapturesImpl implements Captures {
             super(payper, "/v2/payments/captures/{id}", Capture2.class, ErrorDefault.class);
         }
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.GET;
         }
     }
@@ -78,7 +79,7 @@ class CapturesImpl implements Captures {
             super(payper, "/v2/payments/captures/{id}/refund", Refund.class, ErrorDefault.class);
         }
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }

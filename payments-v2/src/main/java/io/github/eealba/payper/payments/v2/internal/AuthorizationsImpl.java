@@ -16,6 +16,7 @@ package io.github.eealba.payper.payments.v2.internal;
 
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
+import io.github.eealba.payper.core.spec.RequestSpecImpl;
 import io.github.eealba.payper.payments.v2.api.Authorizations;
 import io.github.eealba.payper.payments.v2.model.Authorization2;
 import io.github.eealba.payper.payments.v2.model.Capture2;
@@ -91,7 +92,7 @@ class AuthorizationsImpl implements Authorizations {
             super(payper, "/v2/payments/authorizations/{id}", Authorization2.class, ErrorDefault.class);
         }
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.GET;
         }
     }
@@ -102,7 +103,7 @@ class AuthorizationsImpl implements Authorizations {
             super(payper, "/v2/payments/authorizations/{id}/capture", Capture2.class, ErrorDefault.class);
         }
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -113,7 +114,7 @@ class AuthorizationsImpl implements Authorizations {
             super(payper, "/v2/payments/authorizations/{id}/reauthorize", Authorization2.class, ErrorDefault.class);
         }
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -124,7 +125,7 @@ class AuthorizationsImpl implements Authorizations {
             super(payper, "/v2/payments/authorizations/{id}/void", Authorization2.class, ErrorDefault.class);
         }
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }

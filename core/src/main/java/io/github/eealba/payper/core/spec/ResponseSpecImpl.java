@@ -11,12 +11,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.eealba.payper.catalog.products.v1.internal;
+package io.github.eealba.payper.core.spec;
 
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
 import io.github.eealba.payper.core.PayperResponse;
-import io.github.eealba.payper.core.spec.ResponseSpec;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -48,7 +47,7 @@ class ResponseSpecImpl<R1, R2> implements ResponseSpec<R1, R2> {
     }
     @Override
     public Response<R1,R2> toResponse() {
-        return new SubscriptionsResponseImpl();
+        return new ResponseImpl();
     }
 
     @Override
@@ -56,14 +55,14 @@ class ResponseSpecImpl<R1, R2> implements ResponseSpec<R1, R2> {
         return payper.send(request,
                 PayperResponse.BodyHandlers.ofClass(entityClass),
                 PayperResponse.BodyHandlers.ofClass(errorEntityClass)).toFuture()
-                .thenApply(SubscriptionsResponseImpl::new);
+                .thenApply(ResponseImpl::new);
     }
 
-    private class SubscriptionsResponseImpl implements Response<R1, R2> {
+    private class ResponseImpl implements Response<R1, R2> {
         PayperResponse<R1, R2> payperResponse;
-        private SubscriptionsResponseImpl() {
+        private ResponseImpl() {
         }
-        private SubscriptionsResponseImpl(PayperResponse<R1, R2> payperResponse) {
+        private ResponseImpl(PayperResponse<R1, R2> payperResponse) {
             this.payperResponse = payperResponse;
         }
         private void call(){

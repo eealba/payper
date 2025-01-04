@@ -17,7 +17,7 @@ import io.github.eealba.payper.core.spec.RequestSpec;
 import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
 import io.github.eealba.payper.invoices.v2.model.SearchData;
 
-public interface SearchInvoices extends RequestSpec<Invoices, ErrorDefault>,
+public interface SearchInvoices extends RequestSpec<InvoicesApi, ErrorDefault>,
     RequestSpec.BodySpec<SearchInvoices, SearchData> {
     SearchInvoices withPageSize(int pageSize);
     SearchInvoices withPage(int page);

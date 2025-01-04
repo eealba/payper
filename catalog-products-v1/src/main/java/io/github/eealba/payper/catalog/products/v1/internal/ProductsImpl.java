@@ -8,11 +8,12 @@ import io.github.eealba.payper.catalog.products.v1.model.ProductCollection;
 import io.github.eealba.payper.catalog.products.v1.model.ProductRequestPOST;
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
+import io.github.eealba.payper.core.spec.RequestSpecImpl;
 
 class ProductsImpl implements Products {
     private final Payper payper;
 
-    public ProductsImpl(Payper payper) {
+    ProductsImpl(Payper payper) {
         this.payper = payper;
     }
 
@@ -62,7 +63,7 @@ class ProductsImpl implements Products {
             super(payper, "/v1/catalogs/products", Product.class, ErrorDefault.class);
         }
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -92,7 +93,7 @@ class ProductsImpl implements Products {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.GET;
         }
     }
@@ -104,7 +105,7 @@ class ProductsImpl implements Products {
 
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.GET;
         }
     }
@@ -116,7 +117,7 @@ class ProductsImpl implements Products {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.PATCH;
         }
     }

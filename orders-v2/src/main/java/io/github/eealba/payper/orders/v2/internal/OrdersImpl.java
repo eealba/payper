@@ -15,6 +15,7 @@ package io.github.eealba.payper.orders.v2.internal;
 
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
+import io.github.eealba.payper.core.spec.RequestSpecImpl;
 import io.github.eealba.payper.orders.v2.api.Orders;
 import io.github.eealba.payper.orders.v2.model.ConfirmOrderRequest;
 import io.github.eealba.payper.orders.v2.model.ErrorDefault;
@@ -145,7 +146,7 @@ class OrdersImpl implements Orders {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -157,7 +158,7 @@ class OrdersImpl implements Orders {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.GET;
         }
 
@@ -174,7 +175,7 @@ class OrdersImpl implements Orders {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.PATCH;
         }
     }
@@ -187,7 +188,7 @@ class OrdersImpl implements Orders {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -200,7 +201,7 @@ class OrdersImpl implements Orders {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -212,7 +213,7 @@ class OrdersImpl implements Orders {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -224,7 +225,7 @@ class OrdersImpl implements Orders {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -237,7 +238,7 @@ class OrdersImpl implements Orders {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.PATCH;
         }
 

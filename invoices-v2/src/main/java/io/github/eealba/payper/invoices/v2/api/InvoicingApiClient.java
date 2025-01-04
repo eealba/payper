@@ -13,6 +13,8 @@
  */
 package io.github.eealba.payper.invoices.v2.api;
 
+import io.github.eealba.payper.core.PayperConfig;
+
 /**
  * Interface representing the Invoicing API client.
  * <p>
@@ -26,9 +28,17 @@ package io.github.eealba.payper.invoices.v2.api;
  */
 public abstract class InvoicingApiClient {
 
-    public abstract Invoices invoices();
+    public abstract InvoicesApi invoices();
     public abstract Templates templates();
     public abstract GenerateNextInvoiceNumber generateNextInvoiceNumber();
     public abstract SearchInvoices searchInvoices();
+
+    public static InvoicingApiClient create() {
+        return create(PayperConfig.builder().build());
+    }
+
+    private static InvoicingApiClient create(PayperConfig build) {
+        return InvoicingProvider.provider().create(build);
+    }
 
 }

@@ -16,6 +16,7 @@ package io.github.eealba.payper.invoices.v2.api;
 import io.github.eealba.payper.core.spec.RequestSpec;
 import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
 import io.github.eealba.payper.invoices.v2.model.Invoice;
+import io.github.eealba.payper.invoices.v2.model.Invoices;
 import io.github.eealba.payper.invoices.v2.model.LinkDescription;
 import io.github.eealba.payper.invoices.v2.model.Notification;
 import io.github.eealba.payper.invoices.v2.model.PaymentDetail;
@@ -25,7 +26,7 @@ import io.github.eealba.payper.invoices.v2.model.QrConfig;
 import io.github.eealba.payper.invoices.v2.model.RefundDetail;
 import io.github.eealba.payper.invoices.v2.model.RefundReference;
 
-public interface Invoices {
+public interface InvoicesApi {
     CreateInvoice create();
     ListInvoices list();
     SendInvoice send();
