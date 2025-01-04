@@ -87,30 +87,6 @@ class InvoicesApiImpl implements InvoicesApi {
         }
 
         @Override
-        public ListInvoices withPageSize(int pageSize) {
-            query("page_size", String.valueOf(pageSize));
-            return this;
-        }
-
-        @Override
-        public ListInvoices withPage(int page) {
-            query("page", String.valueOf(page));
-            return this;
-        }
-
-        @Override
-        public ListInvoices withTotalRequired(boolean totalRequired) {
-            query("total_required", String.valueOf(totalRequired));
-            return this;
-        }
-
-        @Override
-        public ListInvoices withFields(String fields) {
-            query("fields", fields);
-            return this;
-        }
-
-        @Override
         protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.GET;
         }

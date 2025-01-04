@@ -15,6 +15,7 @@ package io.github.eealba.payper.subscriptions.v1.internal;
 
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
+import io.github.eealba.payper.core.spec.RequestSpecImpl;
 import io.github.eealba.payper.subscriptions.v1.api.BillingPlans;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
@@ -81,13 +82,13 @@ class BillingPlansImpl implements BillingPlans {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
 
     private static class ListPlanImpl extends
-            RequestSpecImpl<BillingPlans.ListPlans, Void, PlanCollection, ErrorDefault>
+            RequestSpecImpl<ListPlans, Void, PlanCollection, ErrorDefault>
             implements BillingPlans.ListPlans {
         private ListPlanImpl(Payper payper) {
             super(payper, "/v1/billing/plans", PlanCollection.class, ErrorDefault.class);
@@ -106,25 +107,7 @@ class BillingPlansImpl implements BillingPlans {
         }
 
         @Override
-        public BillingPlans.ListPlans withPageSize(int pageSize) {
-            query("page_size", String.valueOf(pageSize));
-            return this;
-        }
-
-        @Override
-        public BillingPlans.ListPlans withPage(int page) {
-            query("page", String.valueOf(page));
-            return this;
-        }
-
-        @Override
-        public BillingPlans.ListPlans withTotalRequired(boolean totalRequired) {
-            query("total_required", String.valueOf(totalRequired));
-            return this;
-        }
-
-        @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.GET;
         }
     }
@@ -136,15 +119,9 @@ class BillingPlansImpl implements BillingPlans {
         }
 
 
-        @Override
-        public BillingPlans.GetPlan withFields(String fields) {
-            query("fields", fields);
-            return this;
-        }
-
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.GET;
         }
     }
@@ -157,7 +134,7 @@ class BillingPlansImpl implements BillingPlans {
         }
 
         @Override
-        public PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.PATCH;
         }
     }
@@ -169,7 +146,7 @@ class BillingPlansImpl implements BillingPlans {
         }
 
         @Override
-        public PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -181,7 +158,7 @@ class BillingPlansImpl implements BillingPlans {
         }
 
         @Override
-        public PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -194,7 +171,7 @@ class BillingPlansImpl implements BillingPlans {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }

@@ -65,30 +65,10 @@ public interface Templates {
      * @since 1.0
      * @version 1.0
      */
-    interface ListTemplates extends RequestSpec<Templates, ErrorDefault> {
-        /**
-         * Sets the page size.
-         *
-         * @param pageSize the page size
-         * @return the list of templates
-         */
-        ListTemplates withPageSize(int pageSize);
+    interface ListTemplates extends RequestSpec<Templates, ErrorDefault>,
+            RequestSpec.PaginationSpec<ListTemplates>,
+            RequestSpec.FieldsSpec<ListTemplates>{
 
-        /**
-         * Sets the page.
-         *
-         * @param page the page
-         * @return the list of templates
-         */
-        ListTemplates withPage(int page);
-
-        /**
-         * Sets the fields.
-         *
-         * @param fields the fields
-         * @return the list of templates
-         */
-        ListTemplates withFields(String fields);
     }
 
     /**

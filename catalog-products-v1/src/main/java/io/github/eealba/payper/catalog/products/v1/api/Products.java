@@ -121,31 +121,7 @@ public interface Products {
      * This interface defines the specifications for listing products, including setting the page size,
      * specifying the page number, and indicating whether the total count is required.
      */
-    interface ListProducts extends RequestSpec<ProductCollection, ErrorDefault> {
-
-        /**
-         * Sets the page size for the request.
-         *
-         * @param pageSize the page size
-         * @return the list products request specification
-         */
-        ListProducts withPageSize(int pageSize);
-
-        /**
-         * Sets the page number for the request.
-         *
-         * @param page the page number
-         * @return the list products request specification
-         */
-        ListProducts withPage(int page);
-
-        /**
-         * Sets whether the total is required for the request.
-         *
-         * @param totalRequired whether the total is required
-         * @return the list products request specification
-         */
-        ListProducts withTotalRequired(boolean totalRequired);
+    interface ListProducts extends RequestSpec<ProductCollection, ErrorDefault>, RequestSpec.PaginationSpec<ListProducts> {
     }
 
     /**

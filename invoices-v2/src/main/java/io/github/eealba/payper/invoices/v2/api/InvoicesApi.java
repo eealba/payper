@@ -45,11 +45,9 @@ public interface InvoicesApi {
             RequestSpec.BodySpec<CreateInvoice, Invoice> {
     }
 
-    interface ListInvoices extends RequestSpec<Invoices, ErrorDefault> {
-        ListInvoices withPageSize(int pageSize);
-        ListInvoices withPage(int page);
-        ListInvoices withTotalRequired(boolean totalRequired);
-        ListInvoices withFields(String fields);
+    interface ListInvoices extends RequestSpec<Invoices, ErrorDefault>,
+        RequestSpec.FieldsSpec<ListInvoices>,
+        RequestSpec.PaginationSpec<ListInvoices>{
     }
 
     interface SendInvoice extends RequestSpec<LinkDescription, ErrorDefault>,

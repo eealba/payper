@@ -16,6 +16,8 @@ package io.github.eealba.payper.core.spec;
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
 
+import java.util.Objects;
+
 /**
  * Abstract class representing a request specification.
  *
@@ -34,7 +36,9 @@ public abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1,
         RequestSpec.IdSpec<T>,
         RequestSpec.PayPalClientMetadataIdSpec<T>,
         RequestSpec.PayPalPartnerAttributionIdSpec<T>,
-        RequestSpec.PayPalAuthAssertionSpec<T> {
+        RequestSpec.PayPalAuthAssertionSpec<T>,
+        RequestSpec.PaginationSpec<T>,
+        RequestSpec.FieldsSpec<T> {
 
     private final PayperRequest.Builder requestBuilder = PayperRequest.newBuilder();
     private final Payper payper;
@@ -50,9 +54,9 @@ public abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1,
      * @param clazz2 the class of the error entity
      */
     public RequestSpecImpl(Payper payper, String path, Class<R1> clazz1, Class<R2> clazz2) {
-        this.payper = payper;
-        this.clazz1 = clazz1;
-        this.clazz2 = clazz2;
+        this.payper = Objects.requireNonNull(payper);
+        this.clazz1 = Objects.requireNonNull(clazz1);
+        this.clazz2 = Objects.requireNonNull(clazz2);
         requestBuilder.path(path);
         var method = getMethod();
         switch (method) {
@@ -173,5 +177,28 @@ public abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1,
      */
     protected void header(String name, String value) {
         requestBuilder.header(name, value);
+    }
+
+    @Override
+    public T withPageSize(int pageSize) {
+        query("page_size", String.valueOf(pageSize));
+        return self();
+    }
+
+    @Override
+    public T withPage(int page) {
+        query("page", String.valueOf(page));
+        return self();
+    }
+
+    @Override
+    public T withTotalRequired(boolean totalRequired) {
+        query("total_required", String.valueOf(totalRequired));
+        return self();
+    }
+    @Override
+    public T withFields(String fields) {
+        query("fields", fields);
+        return self();
     }
 }

@@ -140,7 +140,8 @@ public interface BillingPlans {
     /**
      * Interface for listing plans.
      */
-    interface ListPlans extends RequestSpec<PlanCollection, ErrorDefault>, RequestSpec.PreferSpec<ListPlans> {
+    interface ListPlans extends RequestSpec<PlanCollection, ErrorDefault>, RequestSpec.PreferSpec<ListPlans>,
+    RequestSpec.PaginationSpec<ListPlans>{
         /**
          * Sets the product ID for the request.
          *
@@ -157,42 +158,15 @@ public interface BillingPlans {
          */
         ListPlans withPlanIds(String planIds);
 
-        /**
-         * Sets the page size for the request.
-         *
-         * @param pageSize the page size
-         * @return the list plans request specification
-         */
-        ListPlans withPageSize(int pageSize);
 
-        /**
-         * Sets the page number for the request.
-         *
-         * @param page the page number
-         * @return the list plans request specification
-         */
-        ListPlans withPage(int page);
 
-        /**
-         * Sets whether the total is required for the request.
-         *
-         * @param totalRequired whether the total is required
-         * @return the list plans request specification
-         */
-        ListPlans withTotalRequired(boolean totalRequired);
     }
 
     /**
      * Interface for getting a plan.
      */
-    interface GetPlan extends RequestSpec<Plan, ErrorDefault>, RequestSpec.IdSpec<GetPlan> {
-        /**
-         * Sets the fields to be retrieved for the request.
-         *
-         * @param fields the fields to be retrieved
-         * @return the get plan request specification
-         */
-        GetPlan withFields(String fields);
+    interface GetPlan extends RequestSpec<Plan, ErrorDefault>, RequestSpec.IdSpec<GetPlan>,
+    RequestSpec.FieldsSpec<GetPlan>{
     }
 
     /**

@@ -162,10 +162,6 @@ class OrdersImpl implements Orders {
             return PayperRequest.Method.GET;
         }
 
-        @Override
-        public void withFields(String fields) {
-            query("fields", fields);
-        }
     }
 
     private static class UpdateOrderImpl extends RequestSpecImpl<UpdateOrder, PatchRequest, Void, ErrorDefault>

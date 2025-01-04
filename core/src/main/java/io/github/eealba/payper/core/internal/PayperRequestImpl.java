@@ -18,6 +18,7 @@ import io.github.eealba.payper.core.PayperRequest;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -81,48 +82,48 @@ class PayperRequestImpl implements PayperRequest {
 
         @Override
         public Builder path(String path) {
-            this.path = path;
+            this.path = Objects.requireNonNull(path);
             return this;
         }
 
         @Override
         public Builder header(String name, String value) {
-            this.headers.put(name, value);
+            this.headers.put(Objects.requireNonNull(name), Objects.requireNonNull(value));
             return this;
         }
 
         @Override
         public Builder headers(String... headers) {
             for (int i = 0; i < headers.length; i += 2) {
-                this.headers.put(headers[i], headers[i + 1]);
+                header(headers[i], headers[i + 1]);
             }
             return this;
         }
 
         @Override
         public Builder query(String name, String value) {
-            this.queryParams.put(name, value);
+            this.queryParams.put(Objects.requireNonNull(name), Objects.requireNonNull(value));
             return this;
         }
 
         @Override
         public Builder queries(String... queryParams) {
             for (int i = 0; i < queryParams.length; i += 2) {
-                this.queryParams.put(queryParams[i], queryParams[i + 1]);
+                query(queryParams[i], queryParams[i + 1]);
             }
             return this;
         }
 
         @Override
         public Builder pathParameter(String name, String value) {
-            this.pathParams.put(name, value);
+            this.pathParams.put(Objects.requireNonNull(name), Objects.requireNonNull(value));
             return this;
         }
 
         @Override
         public Builder pathParameters(String... pathParams) {
             for (int i = 0; i < pathParams.length; i += 2) {
-                this.pathParams.put(pathParams[i], pathParams[i + 1]);
+                pathParameter(pathParams[i], pathParams[i + 1]);
             }
             return this;
         }

@@ -15,6 +15,7 @@ package io.github.eealba.payper.subscriptions.v1.internal;
 
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
+import io.github.eealba.payper.core.spec.RequestSpecImpl;
 import io.github.eealba.payper.subscriptions.v1.api.BillingSubscriptions;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
@@ -96,7 +97,7 @@ class BillingSubscriptionsImpl implements BillingSubscriptions {
         }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -106,14 +107,9 @@ class BillingSubscriptionsImpl implements BillingSubscriptions {
             super(payper, "/v1/billing/subscriptions/{id}", Subscription.class, ErrorDefault.class);
         }
 
-        @Override
-        public GetSubscriptionImpl withFields(String fields) {
-            query("fields", fields);
-            return this;
-        }
 
         @Override
-        PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.GET;
         }
     }
@@ -176,7 +172,7 @@ class BillingSubscriptionsImpl implements BillingSubscriptions {
         }
 
         @Override
-        public PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }
@@ -189,7 +185,7 @@ class BillingSubscriptionsImpl implements BillingSubscriptions {
         }
 
         @Override
-        public PayperRequest.Method getMethod() {
+        protected PayperRequest.Method getMethod() {
             return PayperRequest.Method.POST;
         }
     }

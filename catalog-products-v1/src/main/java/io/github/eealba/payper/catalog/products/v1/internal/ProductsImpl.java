@@ -74,23 +74,6 @@ class ProductsImpl implements Products {
             super(payper, "/v1/catalogs/products", ProductCollection.class, ErrorDefault.class);
         }
 
-        @Override
-        public ListProducts withPageSize(int pageSize) {
-            query("page_size", String.valueOf(pageSize));
-            return this;
-        }
-
-        @Override
-        public ListProducts withPage(int page) {
-            query("page", String.valueOf(page));
-            return this;
-        }
-
-        @Override
-        public ListProducts withTotalRequired(boolean totalRequired) {
-            query("total_required", String.valueOf(totalRequired));
-            return this;
-        }
 
         @Override
         protected PayperRequest.Method getMethod() {

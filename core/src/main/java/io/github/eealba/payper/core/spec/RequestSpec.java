@@ -19,8 +19,8 @@ package io.github.eealba.payper.core.spec;
  * @param <R1> the type of the response
  * @param <R2> the type of the error response
  * @author Edgar Alba
- * @since 1.0
  * @version 1.0
+ * @since 1.0
  */
 public interface RequestSpec<R1, R2> {
 
@@ -78,6 +78,7 @@ public interface RequestSpec<R1, R2> {
          */
         T withPayPalPartnerAttributionId(String payPalPartnerAttributionId);
     }
+
     /**
      * Interface for specifying the PayPal Client Metadata ID.
      *
@@ -111,7 +112,6 @@ public interface RequestSpec<R1, R2> {
     }
 
 
-
     /**
      * Interface for specifying the ID.
      *
@@ -131,7 +131,7 @@ public interface RequestSpec<R1, R2> {
     /**
      * Interface for specifying the body of the request.
      *
-     * @param <T> the type of the request specification
+     * @param <T>  the type of the request specification
      * @param <T2> the type of the body
      */
     interface BodySpec<T, T2> {
@@ -143,5 +143,44 @@ public interface RequestSpec<R1, R2> {
          * @return the request specification
          */
         T withBody(T2 body);
+    }
+    /**
+     * Interface for specifying the pagination of the request.
+     *
+     * @param <T> the type of the request specification
+     */
+    interface PaginationSpec<T> {
+        /**
+         * Sets the page size for the request.
+         *
+         * @param pageSize the page size
+         * @return the request specification
+         */
+        T withPageSize(int pageSize);
+
+        /**
+         * Sets the page number for the request.
+         *
+         * @param page the page number
+         * @return the request specification
+         */
+        T withPage(int page);
+        /**
+         * Sets the total count requirement for the request.
+         *
+         * @param totalRequired the total count requirement
+         * @return the request specification
+         */
+        T withTotalRequired(boolean totalRequired);
+
+    }
+    interface FieldsSpec<T> {
+        /**
+         * Sets the fields for the request.
+         *
+         * @param fields the fields
+         * @return the request specification
+         */
+        T withFields(String fields);
     }
 }
