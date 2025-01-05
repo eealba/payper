@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.eealba.payper.core.spec;
+package io.github.eealba.payper.core.client;
 
 /**
  * Interface representing a request specification.

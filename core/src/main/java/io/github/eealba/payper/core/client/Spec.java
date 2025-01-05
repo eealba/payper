@@ -1,6 +1,4 @@
-package io.github.eealba.payper.core.spec;
-
-import io.github.eealba.payper.core.client.Payper;
+package io.github.eealba.payper.core.client;
 
 public class Spec<T1> {
     private final Payper payper;

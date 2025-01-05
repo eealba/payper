@@ -13,6 +13,8 @@
  */
 package io.github.eealba.payper.core.client;
 
+import io.github.eealba.payper.core.exceptions.PayperException;
+
 /**
  * The interface Payper.
  * This interface is used to handle requests in the Payper library.

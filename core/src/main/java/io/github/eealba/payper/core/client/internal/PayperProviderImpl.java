@@ -18,6 +18,7 @@ import io.github.eealba.payper.core.client.PayperConfig;
 import io.github.eealba.payper.core.client.PayperProvider;
 import io.github.eealba.payper.core.client.PayperRequest;
 import io.github.eealba.payper.core.client.PayperResponse;
+import io.github.eealba.payper.core.client.RequestSpecsFactory;
 import io.github.eealba.payper.core.json.Json;
 
 import java.nio.charset.Charset;
@@ -74,6 +75,11 @@ public class PayperProviderImpl extends PayperProvider {
     @Override
     public <T> PayperResponse.BodyHandler<T> bodyHandlerOf(Class<T> clazz) {
         return () -> (Charset cs, byte[] body) -> body == null ? null : json.fromJson(new String(body, cs), clazz);
+    }
+
+    @Override
+    public RequestSpecsFactory createRequestSpecsFactory() {
+        return RequestSpecsFactoryImpl.INSTANCE;
     }
 
   }

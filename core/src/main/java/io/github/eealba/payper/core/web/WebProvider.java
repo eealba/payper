@@ -14,7 +14,7 @@
 package io.github.eealba.payper.core.web;
 
 import io.github.eealba.payper.core.client.PayperConfig;
-import io.github.eealba.payper.core.client.PayperException;
+import io.github.eealba.payper.core.exceptions.PayperException;
 import io.github.eealba.payper.core.util.Providers;
 
 /**

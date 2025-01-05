@@ -1,11 +1,10 @@
-package io.github.eealba.payper.core.spec;
-
+package io.github.eealba.payper.core.client;
 
 
 import java.util.Map;
 
 public abstract class RequestSpecsFactory {
-    private static final RequestSpecsFactory INSTANCE = SpecProvider.provider().createRequestSpecsFactory();
+    private static final RequestSpecsFactory INSTANCE = PayperProvider.provider().createRequestSpecsFactory();
 
     public abstract <T1> T1 post(Spec<T1> spec);
     public abstract <T1> T1 get(Spec<T1> spec);

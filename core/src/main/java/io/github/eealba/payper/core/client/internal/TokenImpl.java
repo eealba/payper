@@ -83,7 +83,7 @@ class TokenImpl implements PayperToken {
     /**
      * Builder class for creating TokenImpl instances.
      */
-    public static class Builder {
+    static class Builder {
         private String accessToken;
         private String tokenType;
         private String scope;
@@ -132,7 +132,7 @@ class TokenImpl implements PayperToken {
      * @param nonce the nonce
      * @return the creation time as an Instant
      */
-    public static Instant parseNonce(String nonce) {
+    static Instant parseNonce(String nonce) {
         String dateTimePart = nonce.substring(0, nonce.indexOf('Z') + 1);
         DateTimeFormatter formatter = DateTimeFormatter.ISO_INSTANT;
         TemporalAccessor temporalAccessor = formatter.parse(dateTimePart);

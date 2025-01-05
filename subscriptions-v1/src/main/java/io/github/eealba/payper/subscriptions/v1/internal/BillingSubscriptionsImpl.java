@@ -14,8 +14,8 @@
 package io.github.eealba.payper.subscriptions.v1.internal;
 
 import io.github.eealba.payper.core.client.Payper;
-import io.github.eealba.payper.core.spec.RequestSpecsFactory;
-import io.github.eealba.payper.core.spec.Spec;
+import io.github.eealba.payper.core.client.RequestSpecsFactory;
+import io.github.eealba.payper.core.client.Spec;
 import io.github.eealba.payper.subscriptions.v1.api.BillingSubscriptions;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
 import io.github.eealba.payper.subscriptions.v1.model.Subscription;

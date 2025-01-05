@@ -13,6 +13,7 @@
  */
 package io.github.eealba.payper.core.client;
 
+import io.github.eealba.payper.core.exceptions.PayperException;
 import io.github.eealba.payper.core.util.Providers;
 
 /**
@@ -88,4 +89,10 @@ public abstract class PayperProvider {
      * @return the BodyHandler
      */
     public abstract <T> PayperResponse.BodyHandler<T> bodyHandlerOf(Class<T> clazz);
+    /**
+     * Creates a RequestSpecsFactory object.
+     *
+     * @return a RequestSpecsFactory object
+     */
+    public abstract RequestSpecsFactory createRequestSpecsFactory();
 }

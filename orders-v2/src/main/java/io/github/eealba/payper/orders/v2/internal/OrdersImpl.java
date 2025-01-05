@@ -14,8 +14,8 @@
 package io.github.eealba.payper.orders.v2.internal;
 
 import io.github.eealba.payper.core.client.Payper;
-import io.github.eealba.payper.core.spec.RequestSpecsFactory;
-import io.github.eealba.payper.core.spec.Spec;
+import io.github.eealba.payper.core.client.RequestSpecsFactory;
+import io.github.eealba.payper.core.client.Spec;
 import io.github.eealba.payper.orders.v2.api.Orders;
 import io.github.eealba.payper.orders.v2.model.ErrorDefault;
 import io.github.eealba.payper.orders.v2.model.Order;

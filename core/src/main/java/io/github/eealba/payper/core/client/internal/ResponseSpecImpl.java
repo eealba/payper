@@ -11,12 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.eealba.payper.core.spec.internal;
+package io.github.eealba.payper.core.client.internal;
 
 import io.github.eealba.payper.core.client.Payper;
 import io.github.eealba.payper.core.client.PayperRequest;
 import io.github.eealba.payper.core.client.PayperResponse;
-import io.github.eealba.payper.core.spec.ResponseSpec;
+import io.github.eealba.payper.core.client.ResponseSpec;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;

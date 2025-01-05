@@ -13,6 +13,8 @@
  */
 package io.github.eealba.payper.core.client;
 
+import io.github.eealba.payper.core.exceptions.PayperException;
+
 import java.util.Optional;
 import java.util.function.Supplier;
 

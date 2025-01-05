@@ -1,9 +1,11 @@
-package io.github.eealba.payper.core.spec.internal;
+package io.github.eealba.payper.core.client.internal;
 
-import io.github.eealba.payper.core.spec.RequestSpecsFactory;
-import io.github.eealba.payper.core.spec.Spec;
+import io.github.eealba.payper.core.client.RequestSpecsFactory;
+import io.github.eealba.payper.core.client.Spec;
+import io.github.eealba.payper.core.exceptions.PayperException;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Collections;
 import java.util.Map;
@@ -89,43 +91,49 @@ class RequestSpecsFactoryImpl extends RequestSpecsFactory {
         @Override
         public Object invoke(Object proxy, java.lang.reflect.Method m, Object[] args)
                 throws Throwable {
-            Object result;
             try {
-                System.out.println("before method " + m.getName());
-                for (var entry : alias.entrySet()) {
-                    if (entry.getKey().equals(m.getName())) {
-                        String[] values = entry.getValue().split(",");
-                        if (values.length == 1) {
-                            m = obj.getClass().getMethod(values[0], m.getParameterTypes());
-                        } else {
-                            Object[] params = new Object[args.length + 1];
-                            //copy the args
-                            for (int i = 0; i < args.length; i++) {
-                                params[i+1] = args[i];
-                            }
-                            params[0] = values[1];
-                            args = params;
-                            Class<?>[] types = new Class[args.length];
-                            for (int i = 0; i < args.length; i++) {
-                                types[i] = args[i].getClass();
-                            }
-                            m = obj.getClass().getMethod(values[0],types);
-                        }
-                    }
-                }
-                result = m.invoke(obj, args);
+                return invoke2(proxy, m, args);
             } catch (InvocationTargetException e) {
                 throw e.getTargetException();
             } catch (Exception e) {
-                throw new RuntimeException("unexpected invocation exception: " +
-                        e.getMessage());
-            } finally {
-                System.out.println("after method " + m.getName());
+                throw new PayperException("unexpected invocation exception: " + e.getMessage(), e);
             }
+        }
+
+        private Object invoke2(Object proxy, Method m, Object[] args) throws NoSuchMethodException,
+                IllegalAccessException, InvocationTargetException {
+            Object result;
+            for (var entry : alias.entrySet()) {
+                if (entry.getKey().equals(m.getName())) {
+                    String[] values = entry.getValue().split(",");
+                    if (values.length == 1) {
+                        m = obj.getClass().getMethod(values[0], m.getParameterTypes());
+                    } else {
+                        args = getArguments(args, values);
+                        Class<?>[] types = new Class[args.length];
+                        for (int i = 0; i < args.length; i++) {
+                            types[i] = args[i].getClass();
+                        }
+                        m = obj.getClass().getMethod(values[0],types);
+                    }
+                }
+            }
+            result = m.invoke(obj, args);
             if (result == obj) {
                 return proxy;
             }
             return result;
+        }
+
+        private static Object[] getArguments(Object[] args, String[] values) {
+            Object[] params = new Object[args.length + 1];
+            //copy the args
+            for (int i = 0; i < args.length; i++) {
+                params[i+1] = args[i];
+            }
+            params[0] = values[1];
+            args = params;
+            return args;
         }
     }
 }
