@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.eealba.payper.core.spec;
+package io.github.eealba.payper.core;
 
 /**
  * Interface representing a request specification.
@@ -126,6 +126,16 @@ public interface RequestSpec<R1, R2> {
          * @return the request specification
          */
         T withId(String id);
+    }
+    interface Id2Spec<T> {
+
+        /**
+         * Sets the ID for the request.
+         *
+         * @param id the ID
+         * @return the request specification
+         */
+        T withId2(String id);
     }
 
     /**

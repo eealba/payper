@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.invoices.v2.api;
 
-import io.github.eealba.payper.core.spec.RequestSpec;
+import io.github.eealba.payper.core.RequestSpec;
 import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
 import io.github.eealba.payper.invoices.v2.model.Invoice;
 import io.github.eealba.payper.invoices.v2.model.Invoices;

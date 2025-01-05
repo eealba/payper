@@ -6,6 +6,7 @@ import io.github.eealba.payper.core.json.Json;
 import io.github.eealba.payper.invoices.v2.api.InvoicesApi;
 import io.github.eealba.payper.invoices.v2.api.InvoicingApiClient;
 import io.github.eealba.payper.invoices.v2.model.Invoice;
+import io.github.eealba.payper.invoices.v2.model.Notification;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.time.Instant;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
@@ -110,5 +112,55 @@ public class InvoicesApiTest {
         assertNotNull(result);
         assertEquals(1, result.totalItems());
         assertEquals("INV2-GWNR-QBAW-496B-4Y5P", result.items().get(0).id());
+    }
+
+    @Test
+    void test_send_invoice() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "notification_reminder.json");
+        var jsonResponse = readResource(EXAMPLES + "link_description.json");
+        stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/send")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(jsonResponse(jsonResponse, 200)));
+
+        var body = Json.create().fromJson(jsonRequest, Notification.class);
+        var result = invoicesApi.send()
+                .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .withBody(body)
+                .retrieve()
+                .toResponse();
+
+        assertNotNull(result);
+        assertEquals(200, result.statusCode());
+        assertEquals("string", result.toEntity().rel());
+    }
+
+    @Test
+    void test_remind_invoice() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "notification_reminder.json");
+        stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/remind")
+                .willReturn(aResponse().withStatus(204)));
+
+        var result = invoicesApi.remind()
+                .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .retrieve()
+                .toResponse();
+
+        assertNotNull(result);
+        assertEquals(204, result.statusCode());
+    }
+
+    @Test
+    void test_cancel_invoice() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "notification_invoice_cancel.json");
+        stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/cancel")
+                .willReturn(aResponse().withStatus(204)));
+
+        var result = invoicesApi.cancel()
+                .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .retrieve()
+                .toResponse();
+
+        assertNotNull(result);
+        assertEquals(204, result.statusCode());
     }
 }

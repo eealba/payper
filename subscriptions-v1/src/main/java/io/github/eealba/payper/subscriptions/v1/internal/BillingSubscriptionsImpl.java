@@ -14,20 +14,17 @@
 package io.github.eealba.payper.subscriptions.v1.internal;
 
 import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.PayperRequest;
-import io.github.eealba.payper.core.spec.RequestSpecImpl;
+import io.github.eealba.payper.core.RequestSpecsFactory;
+import io.github.eealba.payper.core.Spec;
 import io.github.eealba.payper.subscriptions.v1.api.BillingSubscriptions;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
-import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
 import io.github.eealba.payper.subscriptions.v1.model.Subscription;
-import io.github.eealba.payper.subscriptions.v1.model.SubscriptionCaptureRequest;
-import io.github.eealba.payper.subscriptions.v1.model.SubscriptionRequestPost;
-import io.github.eealba.payper.subscriptions.v1.model.SubscriptionReviseRequest;
 import io.github.eealba.payper.subscriptions.v1.model.SubscriptionReviseResponse;
 import io.github.eealba.payper.subscriptions.v1.model.Transaction;
 import io.github.eealba.payper.subscriptions.v1.model.TransactionsList;
 
-import java.time.Instant;
+import java.util.HashMap;
+
 /**
  * Implementation of the BillingSubscriptions API
  * @see BillingSubscriptions
@@ -47,171 +44,69 @@ class BillingSubscriptionsImpl implements BillingSubscriptions {
 
     @Override
     public CreateSubscription create() {
-        return new CreateSubscriptionImpl(payper);
+        var spec = new Spec<>(CreateSubscription.class, payper, "/v1/billing/subscriptions",
+                Subscription.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().post(spec);
+
     }
 
     @Override
     public GetSubscription get() {
-        return new GetSubscriptionImpl(payper);
+        var spec = new Spec<>(GetSubscription.class, payper, "/v1/billing/subscriptions/{id}",
+                Subscription.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().get(spec);
     }
 
     @Override
     public UpdateSubscription update() {
-        return new UpdateSubscriptionImpl(payper);
+        var spec = new Spec<>(UpdateSubscription.class, payper, "/v1/billing/subscriptions/{id}",
+                Void.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().patch(spec);
     }
 
     @Override
     public ReviseSubscription revise() {
-        return new ReviseSubscriptionImpl(payper);
+        var spec = new Spec<>(ReviseSubscription.class, payper, "/v1/billing/subscriptions/{id}/revise",
+                SubscriptionReviseResponse.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().post(spec);
     }
 
     @Override
     public SuspendSubscription suspend() {
-        return new SuspendSubscriptionImpl(payper);
+        var spec = new Spec<>(SuspendSubscription.class, payper, "/v1/billing/subscriptions/{id}/suspend",
+                Void.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().post(spec);
     }
 
     @Override
     public CancelSubscription cancel() {
-        return new CancelSubscriptionImpl(payper);
+        var spec = new Spec<>(CancelSubscription.class, payper, "/v1/billing/subscriptions/{id}/cancel",
+                Void.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().post(spec);
     }
 
     @Override
     public ActivateSubscription activate() {
-        return new ActivateSubscriptionImpl(payper);
+        var spec = new Spec<>(ActivateSubscription.class, payper, "/v1/billing/subscriptions/{id}/activate",
+                Void.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().post(spec);
     }
 
     @Override
     public CaptureSubscription capture() {
-        return new CaptureSubscriptionImpl(payper);
+        var spec = new Spec<>(CaptureSubscription.class, payper, "/v1/billing/subscriptions/{id}/capture",
+                Transaction.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().post(spec);
     }
 
     @Override
     public ListTransactions listTransactions() {
-        return new ListTransactionsImpl(payper);
-    }
-    private static class CreateSubscriptionImpl extends
-            RequestSpecImpl<CreateSubscription, SubscriptionRequestPost, Subscription, ErrorDefault> implements
-            CreateSubscription {
-        private CreateSubscriptionImpl(Payper payper) {
-            super(payper, "/v1/billing/subscriptions", Subscription.class, ErrorDefault.class);
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-    private static class GetSubscriptionImpl extends RequestSpecImpl<GetSubscription, Void, Subscription, ErrorDefault>
-            implements GetSubscription {
-        private GetSubscriptionImpl(Payper payper) {
-            super(payper, "/v1/billing/subscriptions/{id}", Subscription.class, ErrorDefault.class);
-        }
-
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.GET;
-        }
-    }
-
-    private static class UpdateSubscriptionImpl extends
-            RequestSpecImpl<UpdateSubscription, PatchRequest, Void, ErrorDefault> implements
-            UpdateSubscription {
-        private UpdateSubscriptionImpl(Payper payper) {
-            super(payper, "/v1/billing/subscriptions/{id}", Void.class, ErrorDefault.class);
-        }
-
-        @Override
-        public PayperRequest.Method getMethod() {
-            return PayperRequest.Method.PATCH;
-        }
-    }
-
-    private static class ReviseSubscriptionImpl extends
-            RequestSpecImpl<ReviseSubscription, SubscriptionReviseRequest, SubscriptionReviseResponse, ErrorDefault>
-            implements   ReviseSubscription {
-        private ReviseSubscriptionImpl(Payper payper) {
-            super(payper, "/v1/billing/subscriptions/{id}/revise", SubscriptionReviseResponse.class,
-                    ErrorDefault.class);
-        }
-
-        @Override
-        public PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class SuspendSubscriptionImpl extends RequestSpecImpl<SuspendSubscription, Void, Void, ErrorDefault>
-            implements SuspendSubscription {
-        private SuspendSubscriptionImpl(Payper payper) {
-            super(payper, "/v1/billing/subscriptions/{id}/suspend", Void.class, ErrorDefault.class);
-        }
-
-        @Override
-        public PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class CancelSubscriptionImpl extends RequestSpecImpl<CancelSubscription, Void, Void, ErrorDefault>
-            implements CancelSubscription {
-        private CancelSubscriptionImpl(Payper payper) {
-            super(payper, "/v1/billing/subscriptions/{id}/cancel", Void.class, ErrorDefault.class);
-        }
-
-        @Override
-        public PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class ActivateSubscriptionImpl extends RequestSpecImpl<ActivateSubscription, Void, Void, ErrorDefault>
-            implements ActivateSubscription {
-        private ActivateSubscriptionImpl(Payper payper) {
-            super(payper, "/v1/billing/subscriptions/{id}/activate", Void.class, ErrorDefault.class);
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class CaptureSubscriptionImpl extends RequestSpecImpl<CaptureSubscription,
-            SubscriptionCaptureRequest, Transaction, ErrorDefault>
-            implements CaptureSubscription {
-        private CaptureSubscriptionImpl(Payper payper) {
-            super(payper, "/v1/billing/subscriptions/{id}/capture", Transaction.class, ErrorDefault.class);
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class ListTransactionsImpl extends RequestSpecImpl<ListTransactions, Void, TransactionsList, ErrorDefault>
-            implements ListTransactions {
-        private ListTransactionsImpl(Payper payper) {
-            super(payper, "/v1/billing/subscriptions/{id}/transactions", TransactionsList.class, ErrorDefault.class);
-        }
-
-        @Override
-        public PayperRequest.Method getMethod() {
-            return PayperRequest.Method.GET;
-        }
-
-        @Override
-        public ListTransactions withStartTime(Instant startTime) {
-            query("start_time", startTime.toString());
-            return this;
-        }
-
-        @Override
-        public ListTransactions withEndTime(Instant endTime) {
-            query("end_time", endTime.toString());
-            return this;
-        }
+        var spec = new Spec<>(ListTransactions.class, payper, "/v1/billing/subscriptions/{id}/transactions",
+                TransactionsList.class, ErrorDefault.class);
+        var map = new HashMap<String, String>();
+        map.put("withStartTime", "query,start_time");
+        map.put("withEndTime", "query,end_time");
+        return RequestSpecsFactory.getInstance().get(spec, map);
     }
 
 }

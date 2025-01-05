@@ -12,8 +12,8 @@
  *     <li>{@link io.github.eealba.payper.core.PayperAuthenticator} - An authenticator for the Payper library.</li>
  *     <li>{@link io.github.eealba.payper.core.PayperException} - An exception class for the Payper library.</li>
  *     <li>{@link io.github.eealba.payper.core.PayperProvider} - A provider class for the Payper library.</li>
- *     <li>{@link io.github.eealba.payper.core.spec.ResponseSpec} - An interface for response specifications.</li>
- *     <li>{@link io.github.eealba.payper.core.spec.RequestSpec} - An interface for request specifications.</li>
+ *     <li>{@link io.github.eealba.payper.core.ResponseSpec} - An interface for response specifications.</li>
+ *     <li>{@link io.github.eealba.payper.core.RequestSpec} - An interface for request specifications.</li>
  *
  *</ul>
  *

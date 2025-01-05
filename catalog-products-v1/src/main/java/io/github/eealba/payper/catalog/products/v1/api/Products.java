@@ -18,7 +18,7 @@ import io.github.eealba.payper.catalog.products.v1.model.PatchRequest;
 import io.github.eealba.payper.catalog.products.v1.model.Product;
 import io.github.eealba.payper.catalog.products.v1.model.ProductCollection;
 import io.github.eealba.payper.catalog.products.v1.model.ProductRequestPOST;
-import io.github.eealba.payper.core.spec.RequestSpec;
+import io.github.eealba.payper.core.RequestSpec;
 
 /**
  * The Products API.

@@ -11,11 +11,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.eealba.payper.core.spec;
+package io.github.eealba.payper.core.internal;
 
 import io.github.eealba.payper.core.Payper;
 import io.github.eealba.payper.core.PayperRequest;
+import io.github.eealba.payper.core.RequestSpec;
+import io.github.eealba.payper.core.ResponseSpec;
+import io.github.eealba.payper.core.Spec;
 
+import java.time.Instant;
 import java.util.Objects;
 
 /**
@@ -29,11 +33,12 @@ import java.util.Objects;
  * @version 1.0
  * author Edgar Alba
  */
-public abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1, R2>,
+abstract class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
         RequestSpec.PreferSpec<T>,
         RequestSpec.PaypalRequestIdSpec<T>,
         RequestSpec.BodySpec<T, T2>,
         RequestSpec.IdSpec<T>,
+        RequestSpec.Id2Spec<T>,
         RequestSpec.PayPalClientMetadataIdSpec<T>,
         RequestSpec.PayPalPartnerAttributionIdSpec<T>,
         RequestSpec.PayPalAuthAssertionSpec<T>,
@@ -53,7 +58,7 @@ public abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1,
      * @param clazz1 the class of the response entity
      * @param clazz2 the class of the error entity
      */
-    public RequestSpecImpl(Payper payper, String path, Class<R1> clazz1, Class<R2> clazz2) {
+    RequestSpecImpl(Payper payper, String path, Class<R1> clazz1, Class<R2> clazz2) {
         this.payper = Objects.requireNonNull(payper);
         this.clazz1 = Objects.requireNonNull(clazz1);
         this.clazz2 = Objects.requireNonNull(clazz2);
@@ -129,6 +134,19 @@ public abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1,
         pathParameter("id", id);
         return self();
     }
+    /**
+     * Adds an id to the request.
+     *
+     * @param id the id of the request
+     * @return the request specification
+     */
+    @Override
+    public T withId2(String id) {
+        pathParameter("id2", id);
+        return self();
+    }
+
+
     @Override
     public T withPayPalClientMetadataId(String paypalClientMetadataId) {
         header("PayPal-Client-Metadata-Id", paypalClientMetadataId);
@@ -156,8 +174,13 @@ public abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1,
      * @param fields the name of the query parameter
      * @param fields1 the value of the query parameter
      */
-    protected void query(String fields, String fields1) {
+    public T query(String fields, String fields1) {
         requestBuilder.query(fields, fields1);
+        return self();
+    }
+    public T query(String fields, Instant fields1) {
+        requestBuilder.query(fields, fields1.toString());
+        return self();
     }
     /**
      * Adds a path parameter to the request.
@@ -165,8 +188,9 @@ public abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1,
      * @param name the name of the path parameter
      * @param value the value of the path parameter
      */
-    protected void pathParameter(String name, String value) {
+    public T pathParameter(String name, String value) {
         requestBuilder.pathParameter(name, value);
+        return self();
     }
 
     /**
@@ -175,8 +199,9 @@ public abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1,
      * @param name the name of the header
      * @param value the value of the header
      */
-    protected void header(String name, String value) {
+    public T header(String name, String value) {
         requestBuilder.header(name, value);
+        return self();
     }
 
     @Override
@@ -201,4 +226,67 @@ public abstract class RequestSpecImpl<T, T2, R1, R2> implements  RequestSpec<R1,
         query("fields", fields);
         return self();
     }
+    @SuppressWarnings("unchecked")
+    static class PostRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
+        PostRequestSpecImpl(Spec<T1> spec) {
+            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass(), (Class<Object>) spec.errorClass());
+        }
+
+        @Override
+        protected PayperRequest.Method getMethod() {
+            return PayperRequest.Method.POST;
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    static class GetRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
+        GetRequestSpecImpl(Spec<T1> spec) {
+            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass(), (Class<Object>) spec.errorClass());
+        }
+
+        @Override
+        protected PayperRequest.Method getMethod() {
+            return PayperRequest.Method.GET;
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    static class PutRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
+        PutRequestSpecImpl(Spec<T1> spec) {
+            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass(), (Class<Object>) spec.errorClass());
+        }
+
+        @Override
+        protected PayperRequest.Method getMethod() {
+            return PayperRequest.Method.PUT;
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    static class DeleteRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
+        DeleteRequestSpecImpl(Spec<T1> spec) {
+            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass(), (Class<Object>) spec.errorClass());
+        }
+
+        @Override
+        protected PayperRequest.Method getMethod() {
+            return PayperRequest.Method.DELETE;
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    static class PatchRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
+        PatchRequestSpecImpl(Spec<T1> spec) {
+            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass(), (Class<Object>) spec.errorClass());
+        }
+
+        @Override
+        protected PayperRequest.Method getMethod() {
+            return PayperRequest.Method.PATCH;
+        }
+    }
+
+
+
+
 }

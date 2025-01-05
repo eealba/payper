@@ -14,15 +14,15 @@
 package io.github.eealba.payper.subscriptions.v1.internal;
 
 import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.PayperRequest;
-import io.github.eealba.payper.core.spec.RequestSpecImpl;
+import io.github.eealba.payper.core.RequestSpecsFactory;
+import io.github.eealba.payper.core.Spec;
 import io.github.eealba.payper.subscriptions.v1.api.BillingPlans;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
-import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
 import io.github.eealba.payper.subscriptions.v1.model.Plan;
 import io.github.eealba.payper.subscriptions.v1.model.PlanCollection;
-import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
-import io.github.eealba.payper.subscriptions.v1.model.UpdatePricingSchemesListRequest;
+
+import java.util.HashMap;
+
 /**
  * Implementation of the BillingPlans API
  * @see BillingPlans
@@ -41,139 +41,56 @@ class BillingPlansImpl implements BillingPlans {
 
     @Override
     public CreatePlan create() {
-        return new CreatePlanImpl(payper);
+        var spec = new Spec<>(CreatePlan.class, payper, "/v1/billing/plans",
+                Plan.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().post(spec);
     }
 
     @Override
     public ListPlans list() {
-        return new ListPlanImpl(payper);
+      var spec = new Spec<>(ListPlans.class, payper, "/v1/billing/plans",
+              PlanCollection.class, ErrorDefault.class);
+      var map = new HashMap<String, String>();
+        map.put("withProductId", "query,product_id");
+        map.put("withPlanIds", "query,plan_ids");
+
+        return RequestSpecsFactory.getInstance().get(spec, map);
     }
 
     @Override
     public GetPlan get() {
-        return new GetPlanImpl(payper);
+        var spec = new Spec<>(GetPlan.class, payper, "/v1/billing/plans/{id}",
+                Plan.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().get(spec);
     }
 
     @Override
     public UpdatePlan update() {
-        return new UpdatePlanImpl(payper);
+        var spec = new Spec<>(UpdatePlan.class, payper, "/v1/billing/plans/{id}",
+                Void.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().patch(spec);
     }
 
     @Override
     public ActivatePlan activate() {
-        return new ActivatePlanImpl(payper);
+        var spec = new Spec<>(ActivatePlan.class, payper, "/v1/billing/plans/{id}/activate",
+                Void.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().post(spec);
     }
 
     @Override
     public DeactivatePlan deactivate() {
-        return new DeactivatePlanImpl(payper);
+        var spec = new Spec<>(DeactivatePlan.class, payper, "/v1/billing/plans/{id}/deactivate",
+                Void.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().post(spec);
     }
 
     @Override
     public UpdatePricingSchemes updatePricingSchemes() {
-        return new UpdatePricingSchemesImpl(payper);
+        var spec = new Spec<>(UpdatePricingSchemes.class, payper, "/v1/billing/plans/{id}/update-pricing-schemes",
+                Void.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().post(spec);
     }
 
-    private static class CreatePlanImpl extends
-            RequestSpecImpl<BillingPlans.CreatePlan, PlanRequestPOST, Plan, ErrorDefault> implements
-            BillingPlans.CreatePlan {
-        private CreatePlanImpl(Payper payper) {
-            super(payper, "/v1/billing/plans", Plan.class, ErrorDefault.class);
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class ListPlanImpl extends
-            RequestSpecImpl<ListPlans, Void, PlanCollection, ErrorDefault>
-            implements BillingPlans.ListPlans {
-        private ListPlanImpl(Payper payper) {
-            super(payper, "/v1/billing/plans", PlanCollection.class, ErrorDefault.class);
-        }
-
-        @Override
-        public BillingPlans.ListPlans withProductId(String productId) {
-            query("product_id", productId);
-            return this;
-        }
-
-        @Override
-        public BillingPlans.ListPlans withPlanIds(String planIds) {
-            query("plan_ids", planIds);
-            return this;
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.GET;
-        }
-    }
-
-    private static class GetPlanImpl extends RequestSpecImpl<BillingPlans.GetPlan, Void, Plan, ErrorDefault>
-            implements BillingPlans.GetPlan {
-        private GetPlanImpl(Payper payper) {
-            super(payper, "/v1/billing/plans/{id}", Plan.class, ErrorDefault.class);
-        }
-
-
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.GET;
-        }
-    }
-
-    private static class UpdatePlanImpl extends
-            RequestSpecImpl<BillingPlans.UpdatePlan, PatchRequest, Void, ErrorDefault>
-            implements BillingPlans.UpdatePlan {
-        private UpdatePlanImpl(Payper payper) {
-            super(payper, "/v1/billing/plans/{id}", Void.class, ErrorDefault.class);
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.PATCH;
-        }
-    }
-
-    private static class ActivatePlanImpl extends RequestSpecImpl<BillingPlans.ActivatePlan, Void, Void, ErrorDefault>
-            implements BillingPlans.ActivatePlan {
-        private ActivatePlanImpl(Payper payper) {
-            super(payper, "/v1/billing/plans/{id}/activate", Void.class, ErrorDefault.class);
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class DeactivatePlanImpl extends RequestSpecImpl<BillingPlans.DeactivatePlan, Void, Void, ErrorDefault>
-            implements BillingPlans.DeactivatePlan {
-        private DeactivatePlanImpl(Payper payper) {
-            super(payper, "/v1/billing/plans/{id}/deactivate", Void.class, ErrorDefault.class);
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class UpdatePricingSchemesImpl extends RequestSpecImpl<BillingPlans.UpdatePricingSchemes,
-            UpdatePricingSchemesListRequest, Void, ErrorDefault>
-            implements BillingPlans.UpdatePricingSchemes {
-        private UpdatePricingSchemesImpl(Payper payper) {
-            super(payper, "/v1/billing/plans/{id}/update-pricing-schemes", Void.class, ErrorDefault.class);
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
 
 }

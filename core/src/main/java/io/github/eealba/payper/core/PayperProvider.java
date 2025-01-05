@@ -88,4 +88,6 @@ public abstract class PayperProvider {
      * @return the BodyHandler
      */
     public abstract <T> PayperResponse.BodyHandler<T> bodyHandlerOf(Class<T> clazz);
+
+    public abstract RequestSpecsFactory createRequestSpecsFactory();
 }

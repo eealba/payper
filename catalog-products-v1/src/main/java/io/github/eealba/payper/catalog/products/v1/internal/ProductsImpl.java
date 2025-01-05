@@ -2,13 +2,11 @@ package io.github.eealba.payper.catalog.products.v1.internal;
 
 import io.github.eealba.payper.catalog.products.v1.api.Products;
 import io.github.eealba.payper.catalog.products.v1.model.ErrorDefault;
-import io.github.eealba.payper.catalog.products.v1.model.PatchRequest;
 import io.github.eealba.payper.catalog.products.v1.model.Product;
 import io.github.eealba.payper.catalog.products.v1.model.ProductCollection;
-import io.github.eealba.payper.catalog.products.v1.model.ProductRequestPOST;
 import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.PayperRequest;
-import io.github.eealba.payper.core.spec.RequestSpecImpl;
+import io.github.eealba.payper.core.RequestSpecsFactory;
+import io.github.eealba.payper.core.Spec;
 
 class ProductsImpl implements Products {
     private final Payper payper;
@@ -24,7 +22,10 @@ class ProductsImpl implements Products {
      */
     @Override
     public CreateProduct create() {
-        return new CreateProductImpl(payper);
+        var spec = new Spec<>(CreateProduct.class, payper, "/v1/catalogs/products",
+                Product.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().post(spec);
+
     }
 
     /**
@@ -34,7 +35,9 @@ class ProductsImpl implements Products {
      */
     @Override
     public ListProducts list() {
-        return new ListProductsImpl(payper);
+        var spec = new Spec<>(ListProducts.class, payper, "/v1/catalogs/products",
+                ProductCollection.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().get(spec);
     }
 
     /**
@@ -44,7 +47,9 @@ class ProductsImpl implements Products {
      */
     @Override
     public GetProduct get() {
-        return new GetProductImpl(payper);
+        var spec = new Spec<>(GetProduct.class, payper, "/v1/catalogs/products/{id}",
+                Product.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().get(spec);
     }
 
     /**
@@ -54,54 +59,9 @@ class ProductsImpl implements Products {
      */
     @Override
     public UpdateProduct update() {
-        return new UpdateProductImpl(payper);
+        var spec = new Spec<>(UpdateProduct.class, payper, "/v1/catalogs/products/{id}",
+                Void.class, ErrorDefault.class);
+        return RequestSpecsFactory.getInstance().patch(spec);
     }
 
-    private static class CreateProductImpl extends RequestSpecImpl<CreateProduct, ProductRequestPOST, Product, ErrorDefault>
-            implements CreateProduct {
-        public CreateProductImpl(Payper payper) {
-            super(payper, "/v1/catalogs/products", Product.class, ErrorDefault.class);
-        }
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-    private static class ListProductsImpl extends
-            RequestSpecImpl<ListProducts, Void, ProductCollection, ErrorDefault>
-            implements ListProducts {
-        private ListProductsImpl(Payper payper) {
-            super(payper, "/v1/catalogs/products", ProductCollection.class, ErrorDefault.class);
-        }
-
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.GET;
-        }
-    }
-    private static class GetProductImpl extends RequestSpecImpl<GetProduct, Void, Product, ErrorDefault>
-            implements GetProduct {
-        private GetProductImpl(Payper payper) {
-            super(payper, "/v1/catalogs/products/{id}", Product.class, ErrorDefault.class);
-        }
-
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.GET;
-        }
-    }
-
-    private static class UpdateProductImpl extends RequestSpecImpl<UpdateProduct, PatchRequest, Void, ErrorDefault>
-            implements UpdateProduct {
-        private UpdateProductImpl(Payper payper) {
-            super(payper, "/v1/catalogs/products/{id}", Void.class, ErrorDefault.class);
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.PATCH;
-        }
-    }
 }

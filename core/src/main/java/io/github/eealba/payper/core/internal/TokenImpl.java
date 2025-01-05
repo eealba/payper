@@ -26,7 +26,7 @@ import java.time.temporal.TemporalAccessor;
  * @author Edgar Alba
  * @since 1.0
  */
-public class TokenImpl implements PayperToken {
+class TokenImpl implements PayperToken {
     final Instant created;
     final String scope;
     final String accessToken;
