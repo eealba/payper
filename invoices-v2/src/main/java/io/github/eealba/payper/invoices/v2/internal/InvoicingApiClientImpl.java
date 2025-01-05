@@ -1,7 +1,7 @@
 package io.github.eealba.payper.invoices.v2.internal;
 
-import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.client.PayperConfig;
 import io.github.eealba.payper.invoices.v2.api.GenerateNextInvoiceNumber;
 import io.github.eealba.payper.invoices.v2.api.InvoicesApi;
 import io.github.eealba.payper.invoices.v2.api.InvoicingApiClient;

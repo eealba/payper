@@ -1,7 +1,7 @@
 package io.github.eealba.payper.invoices.v2;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
-import io.github.eealba.payper.core.PayperAuthenticator;
+import io.github.eealba.payper.core.client.PayperAuthenticator;
 import io.github.eealba.payper.core.json.Json;
 import io.github.eealba.payper.invoices.v2.api.InvoicesApi;
 import io.github.eealba.payper.invoices.v2.api.InvoicingApiClient;

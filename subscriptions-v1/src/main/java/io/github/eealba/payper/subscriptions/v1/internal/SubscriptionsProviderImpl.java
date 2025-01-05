@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.subscriptions.v1.internal;
 
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.PayperConfig;
 import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;
 import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsProvider;
 /**

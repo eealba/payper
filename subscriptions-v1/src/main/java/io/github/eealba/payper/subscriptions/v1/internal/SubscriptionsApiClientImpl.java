@@ -13,8 +13,8 @@
  */
 package io.github.eealba.payper.subscriptions.v1.internal;
 
-import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.client.PayperConfig;
 import io.github.eealba.payper.subscriptions.v1.api.BillingPlans;
 import io.github.eealba.payper.subscriptions.v1.api.BillingSubscriptions;
 import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;

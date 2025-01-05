@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.catalog.products.v1.api;
 
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.PayperConfig;
 
 /**
  * Provides an abstract client for interacting with the PayPal Catalog Products API.
@@ -27,7 +27,7 @@ import io.github.eealba.payper.core.PayperConfig;
  * product details.
  * <p>
  * Usage of this client requires proper configuration, which can be provided
- * through the {@link io.github.eealba.payper.core.PayperConfig} class. The configuration
+ * through the {@link PayperConfig} class. The configuration
  * includes necessary credentials and settings for authenticating and communicating
  * with the PayPal API.
  * <p>
@@ -43,7 +43,7 @@ import io.github.eealba.payper.core.PayperConfig;
  *
  * @since 1.0
  * @version 1.0
- * @see io.github.eealba.payper.core.PayperConfig
+ * @see PayperConfig
  * @see io.github.eealba.payper.catalog.products.v1.model.ProductRequestPOST
  * @see io.github.eealba.payper.catalog.products.v1.model.Product
  * @see io.github.eealba.payper.catalog.products.v1.api.CatalogProductsProvider

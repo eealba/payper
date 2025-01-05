@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.invoices.v2.api;
 
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.PayperConfig;
 
 /**
  * Interface representing the Invoicing API client.

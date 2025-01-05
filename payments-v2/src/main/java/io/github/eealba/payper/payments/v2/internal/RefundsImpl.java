@@ -13,9 +13,9 @@
  */
 package io.github.eealba.payper.payments.v2.internal;
 
-import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.RequestSpecsFactory;
-import io.github.eealba.payper.core.Spec;
+import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.spec.RequestSpecsFactory;
+import io.github.eealba.payper.core.spec.Spec;
 import io.github.eealba.payper.payments.v2.api.Refunds;
 import io.github.eealba.payper.payments.v2.model.ErrorDefault;
 import io.github.eealba.payper.payments.v2.model.Refund;

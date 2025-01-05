@@ -4,9 +4,9 @@ import io.github.eealba.payper.catalog.products.v1.api.Products;
 import io.github.eealba.payper.catalog.products.v1.model.ErrorDefault;
 import io.github.eealba.payper.catalog.products.v1.model.Product;
 import io.github.eealba.payper.catalog.products.v1.model.ProductCollection;
-import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.RequestSpecsFactory;
-import io.github.eealba.payper.core.Spec;
+import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.spec.RequestSpecsFactory;
+import io.github.eealba.payper.core.spec.Spec;
 
 class ProductsImpl implements Products {
     private final Payper payper;

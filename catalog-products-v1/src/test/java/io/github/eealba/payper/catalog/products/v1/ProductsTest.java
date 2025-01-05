@@ -5,7 +5,7 @@ import io.github.eealba.payper.catalog.products.v1.api.CatalogProductsApiClient;
 import io.github.eealba.payper.catalog.products.v1.api.Products;
 import io.github.eealba.payper.catalog.products.v1.model.PatchRequest;
 import io.github.eealba.payper.catalog.products.v1.model.ProductRequestPOST;
-import io.github.eealba.payper.core.PayperAuthenticator;
+import io.github.eealba.payper.core.client.PayperAuthenticator;
 import io.github.eealba.payper.core.json.Json;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;

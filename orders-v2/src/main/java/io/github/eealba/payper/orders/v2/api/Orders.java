@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.orders.v2.api;
 
-import io.github.eealba.payper.core.RequestSpec;
+import io.github.eealba.payper.core.spec.RequestSpec;
 import io.github.eealba.payper.orders.v2.model.ConfirmOrderRequest;
 import io.github.eealba.payper.orders.v2.model.ErrorDefault;
 import io.github.eealba.payper.orders.v2.model.Order;

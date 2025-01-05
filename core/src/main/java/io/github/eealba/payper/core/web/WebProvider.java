@@ -13,8 +13,8 @@
  */
 package io.github.eealba.payper.core.web;
 
-import io.github.eealba.payper.core.PayperConfig;
-import io.github.eealba.payper.core.PayperException;
+import io.github.eealba.payper.core.client.PayperConfig;
+import io.github.eealba.payper.core.client.PayperException;
 import io.github.eealba.payper.core.util.Providers;
 
 /**

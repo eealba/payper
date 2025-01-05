@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.invoices.v2.internal;
 
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.PayperConfig;
 import io.github.eealba.payper.invoices.v2.api.InvoicingApiClient;
 import io.github.eealba.payper.invoices.v2.api.InvoicingProvider;
 /**

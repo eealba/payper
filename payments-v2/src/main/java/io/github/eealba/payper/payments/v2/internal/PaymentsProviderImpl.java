@@ -1,6 +1,6 @@
 package io.github.eealba.payper.payments.v2.internal;
 
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.PayperConfig;
 import io.github.eealba.payper.payments.v2.api.PaymentsApiClient;
 import io.github.eealba.payper.payments.v2.api.PaymentsProvider;
 
