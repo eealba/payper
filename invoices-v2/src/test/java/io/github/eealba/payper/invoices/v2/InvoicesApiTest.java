@@ -7,6 +7,8 @@ import io.github.eealba.payper.invoices.v2.api.InvoicesApi;
 import io.github.eealba.payper.invoices.v2.api.InvoicingApiClient;
 import io.github.eealba.payper.invoices.v2.model.Invoice;
 import io.github.eealba.payper.invoices.v2.model.Notification;
+import io.github.eealba.payper.invoices.v2.model.PaymentDetail;
+import io.github.eealba.payper.invoices.v2.model.RefundDetail;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -138,10 +140,13 @@ public class InvoicesApiTest {
     void test_remind_invoice() throws IOException {
         var jsonRequest = readResource(EXAMPLES + "notification_reminder.json");
         stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/remind")
+                .withRequestBody(equalToJson(jsonRequest))
                 .willReturn(aResponse().withStatus(204)));
 
+        var body = Json.create().fromJson(jsonRequest, Notification.class);
         var result = invoicesApi.remind()
                 .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .withBody(body)
                 .retrieve()
                 .toResponse();
 
@@ -153,10 +158,85 @@ public class InvoicesApiTest {
     void test_cancel_invoice() throws IOException {
         var jsonRequest = readResource(EXAMPLES + "notification_invoice_cancel.json");
         stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/cancel")
+                .withRequestBody(equalToJson(jsonRequest))
                 .willReturn(aResponse().withStatus(204)));
+        var body = Json.create().fromJson(jsonRequest, Notification.class);
 
         var result = invoicesApi.cancel()
                 .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .withBody(body)
+                .retrieve()
+                .toResponse();
+
+        assertNotNull(result);
+        assertEquals(204, result.statusCode());
+    }
+
+    @Test
+    void test_create_payment() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "payment_detail.json");
+        var jsonResponse = readResource(EXAMPLES + "payment_reference.json");
+        var body = Json.create().fromJson(jsonRequest, PaymentDetail.class);
+
+        stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/payments")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(jsonResponse(jsonResponse, 200)));
+
+        var result = invoicesApi.payments().create()
+                .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .withBody(body)
+                .retrieve().toFuture().join();
+
+        assertNotNull(result);
+        assertEquals(200, result.statusCode());
+        assertEquals("123", result.toEntity().paymentId());
+    }
+
+    @Test
+    void test_delete_payment() {
+        stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/payments/123")
+                .willReturn(aResponse().withStatus(204)));
+
+        var result = invoicesApi.payments().delete()
+                .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .withTransactionId("123")
+                .retrieve()
+                .toResponse();
+
+        assertNotNull(result);
+        assertEquals(204, result.statusCode());
+    }
+
+    @Test
+    void test_create_refund() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "refund_detail.json");
+        var jsonResponse = readResource(EXAMPLES + "refund_reference.json");
+        var body = Json.create().fromJson(jsonRequest, RefundDetail.class);
+
+        stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/refunds")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(jsonResponse(jsonResponse, 200)));
+
+        var result = invoicesApi.refunds().create()
+                .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .withBody(body)
+                .retrieve()
+                .toFuture()
+                .join();
+
+        assertNotNull(result);
+        assertEquals(200, result.statusCode());
+        assertEquals("1234", result.toEntity().refundId());
+    }
+
+    @Test
+    void test_delete_refund() {
+        stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/refunds/1234")
+                .willReturn(aResponse().withStatus(204)));
+
+        var result = invoicesApi.refunds().delete()
+                .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .withTransactionId("1234")
                 .retrieve()
                 .toResponse();
 

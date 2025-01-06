@@ -29,7 +29,7 @@ import io.github.eealba.payper.core.client.PayperConfig;
 public abstract class InvoicingApiClient {
 
     public abstract InvoicesApi invoices();
-    public abstract Templates templates();
+    public abstract TemplatesApi templates();
     public abstract GenerateNextInvoiceNumber generateNextInvoiceNumber();
     public abstract SearchInvoices searchInvoices();
 

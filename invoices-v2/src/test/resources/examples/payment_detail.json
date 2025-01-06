@@ -1,1 +1,8 @@
-{"method":"BANK_TRANSFER","payment_date":"2018-05-01","amount":{"currency_code":"USD","value":"10.00"}}
+{
+  "method": "BANK_TRANSFER",
+  "payment_date": "2018-05-01",
+  "amount": {
+    "currency_code": "USD",
+    "value": "10.00"
+  }
+}

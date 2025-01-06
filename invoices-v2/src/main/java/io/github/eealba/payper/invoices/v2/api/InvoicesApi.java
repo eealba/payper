@@ -76,7 +76,7 @@ public interface InvoicesApi {
 
         interface DeletePayment extends RequestSpec<Void, ErrorDefault>,
                 RequestSpec.IdSpec<DeletePayment> {
-                DeletePayment witTransactionId(String transactionId);
+                DeletePayment withTransactionId(String transactionId);
         }
     }
 
@@ -91,7 +91,7 @@ public interface InvoicesApi {
 
         interface DeleteRefund extends RequestSpec<Void, ErrorDefault>,
                 RequestSpec.IdSpec<DeleteRefund> {
-                DeleteRefund witTransactionId(String transactionId);
+                DeleteRefund withTransactionId(String transactionId);
         }
     }
 

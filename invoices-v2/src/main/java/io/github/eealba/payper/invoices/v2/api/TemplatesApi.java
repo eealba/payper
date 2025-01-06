@@ -24,7 +24,7 @@ import io.github.eealba.payper.invoices.v2.model.Template;
  * @version 1.0
  * @author Edgar Alba
  */
-public interface Templates {
+public interface TemplatesApi {
     /**
      * Returns the list of templates.
      *
@@ -65,7 +65,7 @@ public interface Templates {
      * @since 1.0
      * @version 1.0
      */
-    interface ListTemplates extends RequestSpec<Templates, ErrorDefault>,
+    interface ListTemplates extends RequestSpec<TemplatesApi, ErrorDefault>,
             RequestSpec.PaginationSpec<ListTemplates>,
             RequestSpec.FieldsSpec<ListTemplates>{
 
