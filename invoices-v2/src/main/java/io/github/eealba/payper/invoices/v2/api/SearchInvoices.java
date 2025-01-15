@@ -18,7 +18,30 @@ import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
 import io.github.eealba.payper.invoices.v2.model.Invoices;
 import io.github.eealba.payper.invoices.v2.model.SearchData;
 
+/**
+ * Interface for searching invoices in the Payper Invoices API v2.
+ * <p>
+ * This interface provides methods for searching invoices based on various criteria.
+ * </p>
+ * @since 1.0
+ * @version 1.0
+ * @author Edgar Alba
+ */
 public interface SearchInvoices extends RequestSpec<Invoices, ErrorDefault>,
     RequestSpec.BodySpec<SearchInvoices, SearchData>, RequestSpec.PaginationSpec<SearchInvoices> {
 
+    /**
+     * Sets the search criteria for the invoices.
+     * @param searchData the search criteria
+     * @return the {@link SearchInvoices} instance
+     */
+    SearchInvoices withSearchData(SearchData searchData);
+
+    /**
+     * Sets the pagination parameters for the search results.
+     * @param page the page number
+     * @param size the page size
+     * @return the {@link SearchInvoices} instance
+     */
+    SearchInvoices withPagination(int page, int size);
 }

@@ -28,6 +28,7 @@ for multithreading and high concurrency. Payper uses immutable objects and provi
 | Subscriptions         | v1      | [API Reference](https://developer.paypal.com/docs/api/subscriptions/v1/)    |
 | Orders                | v2      | [API Reference](https://developer.paypal.com/docs/api/orders/v2/)           |
 | Payments              | v2      | [API Reference](https://developer.paypal.com/docs/api/payments/v2/)         |
+| Invoices              | v2      | [API Reference](https://developer.paypal.com/docs/api/invoicing/v2/)        |
 
 ## Installation
 
@@ -78,6 +79,16 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
     <version>0.4.0</version>
 </dependency>
 ```
+### Invoices API
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.eealba.payper/payper-invoices-v2.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.eealba.payper/payper-invoices-v2)
+[![Javadoc](https://javadoc.io/badge2/io.github.eealba.payper/payper-invoices-v2/javadoc.io.svg)](https://javadoc.io/doc/io.github.eealba.payper/payper-invoices-v2)
+```xml
+<dependency>
+    <groupId>io.github.eealba.payper</groupId>
+    <artifactId>payper-invoices-v2</artifactId>
+    <version>0.4.0</version>
+</dependency>
+```
 
 
 
@@ -86,7 +97,6 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 |-----------------------|---------|----------------------------------------------------------------------------------------|
 | Add Tracking          | v1      | [API Reference](https://developer.paypal.com/docs/api/tracking/v1/)                    |
 | Disputes              | v1      | [API Reference](https://developer.paypal.com/docs/api/customer-disputes/v1/)           |
-| Invoices              | v2      | [API Reference](https://developer.paypal.com/docs/api/invoicing/v2/)                   |
 | Partner Referrals     | v2      | [API Reference](https://developer.paypal.com/docs/api/partner-referrals/v2/)           |
 | Payment Experience    | v1      | [API Reference](https://developer.paypal.com/docs/api/payment-experience/v1/)          |
 | Payment Method Tokens | v3      | [API Reference](https://developer.paypal.com/docs/api/payment-tokens/v3/)              |
@@ -190,7 +200,45 @@ public class PayperExample {
     }
 }
 ```
+### Invoice API
 
+```java
+import io.github.eealba.payper.invoices.v2.api.InvoicesApi;
+import io.github.eealba.payper.invoices.v2.api.InvoicingApiClient;
+import io.github.eealba.payper.invoices.v2.model.Invoice;
+
+public class PayperExample {
+    public static void main(String[] args) {
+        InvoicesApi invoicesApi = InvoicingApiClient.create().invoices();
+
+        // Create an invoice
+        var invoice = invoicesApi.create()
+                .withBody(Invoice.builder().build())
+                .retrieve()
+                .toEntity();
+
+        // List invoices
+        var listInvoices = invoicesApi.list()
+                .withPage(1)
+                .withPageSize(10)
+                .withTotalRequired(true)
+                .retrieve()
+                .toEntity();
+
+        // Get an invoice
+        invoice = invoicesApi.get().withId("invoice-id").retrieve().toEntity();
+
+        // Update an invoice
+        var updateInvoice = invoicesApi.update().withId("invoice-id")
+                .withBody(Invoice.builder().build())
+                .retrieve()
+                .toEntity();
+
+        // Delete an invoice
+        invoicesApi.delete().withId("invoice-id").retrieve().toVoid();;
+    }
+}
+```
 
 
 ## Authentication

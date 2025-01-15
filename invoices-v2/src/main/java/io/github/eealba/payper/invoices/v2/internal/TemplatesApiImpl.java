@@ -21,7 +21,13 @@ import io.github.eealba.payper.invoices.v2.api.TemplatesApi;
 import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
 import io.github.eealba.payper.invoices.v2.model.Template;
 import io.github.eealba.payper.invoices.v2.model.Templates;
-
+/**
+ * Implementation of the Templates API.
+ *
+ * @since 1.0
+ * @version 1.0
+ * @author Edgar Alba
+ */
 class TemplatesApiImpl implements TemplatesApi {
     private final Payper payper;
 

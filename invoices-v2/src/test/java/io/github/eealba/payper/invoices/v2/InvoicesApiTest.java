@@ -96,6 +96,7 @@ public class InvoicesApiTest {
         assertEquals("INV2-GWNR-QBAW-496B-4Y5P", result.toEntity().id());
 
     }
+
     @Test
     void test_list_invoices() throws IOException {
         var jsonResponse = readResource(EXAMPLES + "invoices.json");
@@ -326,5 +327,36 @@ public class InvoicesApiTest {
 
         assertNotNull(result);
         assertEquals(204, result.statusCode());
+    }
+
+    void demo() {
+        InvoicesApi invoicesApi = InvoicingApiClient.create().invoices();
+
+        // Create an invoice
+        var invoice = invoicesApi.create()
+                .withBody(Invoice.builder().build())
+                .retrieve()
+                .toEntity();
+
+        // List invoices
+        var listInvoices = invoicesApi.list()
+                .withPage(1)
+                .withPageSize(10)
+                .withTotalRequired(true)
+                .retrieve()
+                .toEntity();
+
+        // Get an invoice
+        invoice = invoicesApi.get().withId("invoice-id").retrieve().toEntity();
+
+        // Update an invoice
+        var updateInvoice = invoicesApi.update().withId("invoice-id")
+                .withBody(Invoice.builder().build())
+                .retrieve()
+                .toEntity();
+
+        // Delete an invoice
+        invoicesApi.delete().retrieve().toVoid();
+
     }
 }

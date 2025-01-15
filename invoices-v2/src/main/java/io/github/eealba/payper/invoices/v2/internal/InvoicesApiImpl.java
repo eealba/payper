@@ -27,7 +27,15 @@ import io.github.eealba.payper.invoices.v2.model.PaymentReference;
 import io.github.eealba.payper.invoices.v2.model.QR;
 import io.github.eealba.payper.invoices.v2.model.RefundReference;
 
-
+/**
+ * Implementation of the Invoices API.
+ * <p>
+ * Provides access to the invoices, payments, and refunds endpoints.
+ * </p>
+ * @since 1.0
+ * @version 1.0
+ * @author Edgar Alba
+ */
 class InvoicesApiImpl implements InvoicesApi {
     private final Payper payper;
     private final RefundsInvoices refundsInvoices;
