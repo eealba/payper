@@ -156,15 +156,19 @@ final class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
     /**
      * Adds a query parameter to the request.
      *
-     * @param fields the name of the query parameter
-     * @param fields1 the value of the query parameter
+     * @param name the name of the query parameter
+     * @param value the value of the query parameter
      */
-    public T query(String fields, String fields1) {
-        requestBuilder.query(fields, fields1);
+    public T query(String name, String value) {
+        requestBuilder.query(name, value);
         return self();
     }
-    public T query(String fields, Instant fields1) {
-        requestBuilder.query(fields, fields1.toString());
+    public T query(String name, Instant value) {
+        requestBuilder.query(name, String.valueOf(value));
+        return self();
+    }
+    public T query(String name, Boolean value) {
+        requestBuilder.query(name, String.valueOf(value));
         return self();
     }
     /**

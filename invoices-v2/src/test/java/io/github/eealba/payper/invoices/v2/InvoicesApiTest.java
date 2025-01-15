@@ -27,6 +27,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.jsonResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.okJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.put;
 import static com.github.tomakehurst.wiremock.client.WireMock.removeStub;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
@@ -272,5 +273,58 @@ public class InvoicesApiTest {
         assertNotNull(result);
         assertEquals(200, result.statusCode());
         assertEquals(response, result.toEntity().value());
+    }
+
+    @Test
+    void test_show_invoice_detail() throws IOException {
+        var jsonResponse = readResource(EXAMPLES + "invoice.json");
+        stubFor(get(urlPathEqualTo("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P"))
+                .willReturn(okJson(jsonResponse)));
+
+        var result = invoicesApi.get()
+                .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .retrieve()
+                .toEntity();
+
+        assertNotNull(result);
+        assertEquals("INV2-GWNR-QBAW-496B-4Y5P", result.id());
+    }
+
+    @Test
+    void update_invoice() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "invoice.json");
+        var jsonResponse = readResource(EXAMPLES + "invoice.json");
+        var body = Json.create().fromJson(jsonRequest, Invoice.class);
+
+        stubFor(put(urlPathEqualTo("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P"))
+                .withRequestBody(equalToJson(jsonRequest))
+                .withQueryParam("send_to_recipient", equalTo("true"))
+                .withQueryParam("send_to_invoicer", equalTo("true"))
+                .willReturn(jsonResponse(jsonResponse, 200)));
+
+        var result = invoicesApi.update()
+                .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .withSendToInvoicer(true)
+                .withSendToRecipient(true)
+                .withBody(body)
+                .retrieve().toFuture().join();
+
+        assertNotNull(result);
+        assertEquals(200, result.statusCode());
+        assertEquals("INV2-GWNR-QBAW-496B-4Y5P", result.toEntity().id());
+    }
+
+    @Test
+    void test_delete_invoice() {
+        stubFor(delete("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P")
+                .willReturn(aResponse().withStatus(204)));
+
+        var result = invoicesApi.delete()
+                .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .retrieve()
+                .toResponse();
+
+        assertNotNull(result);
+        assertEquals(204, result.statusCode());
     }
 }

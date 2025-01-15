@@ -109,8 +109,8 @@ class InvoicesApiImpl implements InvoicesApi {
     public UpdateInvoice update() {
         var spec = PayperProvider.provider().createSpecBuilder(UpdateInvoice.class, payper,
                         "/v2/invoicing/invoices/{id}", Invoice.class, ErrorDefault.class)
-                .alias("send_to_recipient", "query,send_to_recipient")
-                .alias("send_to_invoicer", "query,send_to_invoicer")
+                .alias("withSendToInvoicer", "query,send_to_recipient")
+                .alias("withSendToRecipient", "query,send_to_invoicer")
                 .method(PayperRequest.Method.PUT)
                 .build();
         return RequestSpecsFactory.getInstance().requestSpec(spec);

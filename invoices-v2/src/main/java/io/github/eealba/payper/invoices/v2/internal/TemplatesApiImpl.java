@@ -64,7 +64,7 @@ class TemplatesApiImpl implements TemplatesApi {
     @Override
     public UpdateTemplate update() {
         var spec = PayperProvider.provider().createSpecBuilder(UpdateTemplate.class, payper,
-                        "/v2/invoicing/templates",Template.class, ErrorDefault.class)
+                        "/v2/invoicing/templates/{id}",Template.class, ErrorDefault.class)
                 .method(PayperRequest.Method.PUT)
                 .build();
         return RequestSpecsFactory.getInstance().requestSpec(spec);
@@ -78,7 +78,7 @@ class TemplatesApiImpl implements TemplatesApi {
     @Override
     public DeleteTemplate delete() {
         var spec = PayperProvider.provider().createSpecBuilder(DeleteTemplate.class, payper,
-                        "/v2/invoicing/templates", Void.class, ErrorDefault.class)
+                        "/v2/invoicing/templates/{id}", Void.class, ErrorDefault.class)
                 .method(PayperRequest.Method.DELETE)
                 .build();
         return RequestSpecsFactory.getInstance().requestSpec(spec);
@@ -91,6 +91,9 @@ class TemplatesApiImpl implements TemplatesApi {
      */
     @Override
     public GetTemplate get() {
-        return null;
+        var spec = PayperProvider.provider().createSpecBuilder(GetTemplate.class, payper,
+                        "/v2/invoicing/templates/{id}", Template.class, ErrorDefault.class)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 }

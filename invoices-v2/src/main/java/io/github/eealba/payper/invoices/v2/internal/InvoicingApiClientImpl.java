@@ -40,7 +40,7 @@ class InvoicingApiClientImpl extends InvoicingApiClient {
     @Override
     public GenerateNextInvoiceNumber generateNextInvoiceNumber() {
         var spec = PayperProvider.provider().createSpecBuilder(GenerateNextInvoiceNumber.class, payper,
-                        "/v2/invoicing/invoices/next", InvoiceNumber.class, ErrorDefault.class)
+                        "/v2/invoicing/generate-next-invoice-number", InvoiceNumber.class, ErrorDefault.class)
                 .method(PayperRequest.Method.POST)
                 .build();
         return RequestSpecsFactory.getInstance().requestSpec(spec);

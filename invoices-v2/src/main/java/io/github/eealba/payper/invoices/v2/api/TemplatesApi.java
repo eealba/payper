@@ -16,6 +16,7 @@ package io.github.eealba.payper.invoices.v2.api;
 import io.github.eealba.payper.core.client.RequestSpec;
 import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
 import io.github.eealba.payper.invoices.v2.model.Template;
+import io.github.eealba.payper.invoices.v2.model.Templates;
 
 /**
  * Interface representing a template.
@@ -65,7 +66,7 @@ public interface TemplatesApi {
      * @since 1.0
      * @version 1.0
      */
-    interface ListTemplates extends RequestSpec<TemplatesApi, ErrorDefault>,
+    interface ListTemplates extends RequestSpec<Templates, ErrorDefault>,
             RequestSpec.PaginationSpec<ListTemplates>,
             RequestSpec.FieldsSpec<ListTemplates>{
 
