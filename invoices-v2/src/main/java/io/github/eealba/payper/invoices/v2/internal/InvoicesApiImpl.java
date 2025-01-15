@@ -15,6 +15,8 @@ package io.github.eealba.payper.invoices.v2.internal;
 
 import io.github.eealba.payper.core.client.Payper;
 import io.github.eealba.payper.core.client.PayperProvider;
+import io.github.eealba.payper.core.client.PayperRequest;
+import io.github.eealba.payper.core.client.PayperResponse;
 import io.github.eealba.payper.core.client.RequestSpecsFactory;
 import io.github.eealba.payper.invoices.v2.api.InvoicesApi;
 import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
@@ -40,51 +42,45 @@ class InvoicesApiImpl implements InvoicesApi {
     @Override
     public CreateInvoice create() {
         var spec = PayperProvider.provider().createSpecBuilder(CreateInvoice.class, payper,
-                        "/v2/invoicing/invoices")
-                .entityClass(Invoice.class)
-                .errorClass(ErrorDefault.class)
-                .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+                        "/v2/invoicing/invoices", Invoice.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST).build();
+
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public ListInvoices list() {
         var spec = PayperProvider.provider().createSpecBuilder(ListInvoices.class, payper,
-                        "/v2/invoicing/invoices")
-                .entityClass(Invoices.class)
-                .errorClass(ErrorDefault.class)
+                        "/v2/invoicing/invoices", Invoices.class, ErrorDefault.class)
                 .build();
-        return RequestSpecsFactory.getInstance().get(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public SendInvoice send() {
         var spec = PayperProvider.provider().createSpecBuilder(SendInvoice.class, payper,
-                        "/v2/invoicing/invoices/{id}/send")
-                .entityClass(LinkDescription.class)
-                .errorClass(ErrorDefault.class)
+                        "/v2/invoicing/invoices/{id}/send", LinkDescription.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public RemindInvoice remind() {
         var spec = PayperProvider.provider().createSpecBuilder(RemindInvoice.class, payper,
-                        "/v2/invoicing/invoices/{id}/remind")
-                .entityClass(Void.class)
-                .errorClass(ErrorDefault.class)
+                        "/v2/invoicing/invoices/{id}/remind", Void.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public CancelInvoice cancel() {
         var spec = PayperProvider.provider().createSpecBuilder(CancelInvoice.class, payper,
-                        "/v2/invoicing/invoices/{id}/cancel")
-                .entityClass(Void.class)
-                .errorClass(ErrorDefault.class)
+                        "/v2/invoicing/invoices/{id}/cancel", Void.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
@@ -99,43 +95,42 @@ class InvoicesApiImpl implements InvoicesApi {
 
     @Override
     public GenerateQRCode generateQRCode() {
-        var spec = PayperProvider.provider().createSpecBuilder(GenerateQRCode.class, payper,
-                        "/v2/invoicing/invoices/{id}/generate-qr-code")
-                .entityClass(QR.class)
-                .errorClass(ErrorDefault.class)
+        var bodyHandler = PayperResponse.BodyHandlers.fromString(QR::new);
+
+                var spec = PayperProvider.provider().createSpecBuilder(GenerateQRCode.class, payper,
+                        "/v2/invoicing/invoices/{id}/generate-qr-code", QR.class, ErrorDefault.class)
+                .entityHandler(bodyHandler)
+                        .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public UpdateInvoice update() {
         var spec = PayperProvider.provider().createSpecBuilder(UpdateInvoice.class, payper,
-                        "/v2/invoicing/invoices/{id}")
-                .entityClass(Invoice.class)
-                .errorClass(ErrorDefault.class)
+                        "/v2/invoicing/invoices/{id}", Invoice.class, ErrorDefault.class)
                 .alias("send_to_recipient", "query,send_to_recipient")
                 .alias("send_to_invoicer", "query,send_to_invoicer")
+                .method(PayperRequest.Method.PUT)
                 .build();
-        return RequestSpecsFactory.getInstance().put(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public DeleteInvoice delete() {
         var spec = PayperProvider.provider().createSpecBuilder(DeleteInvoice.class, payper,
-                        "/v2/invoicing/invoices/{id}")
-                .entityClass(Void.class)
-                .errorClass(ErrorDefault.class)
+                        "/v2/invoicing/invoices/{id}", Void.class, ErrorDefault.class)
+                .method(PayperRequest.Method.DELETE)
                 .build();
-        return RequestSpecsFactory.getInstance().delete(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public GetInvoice get() {
-        var spec = PayperProvider.provider().createSpecBuilder(GetInvoice.class, payper, "/v2/invoicing/invoices/{id}")
-                .entityClass(Invoice.class)
-                .errorClass(ErrorDefault.class)
+        var spec = PayperProvider.provider().createSpecBuilder(GetInvoice.class, payper,
+                        "/v2/invoicing/invoices/{id}", Invoice.class, ErrorDefault.class)
                 .build();
-        return RequestSpecsFactory.getInstance().get(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     private record PaymentsInvoicesImpl(Payper payper) implements PaymentsInvoices {
@@ -143,22 +138,21 @@ class InvoicesApiImpl implements InvoicesApi {
         @Override
             public CreatePayment create() {
                 var spec = PayperProvider.provider().createSpecBuilder(CreatePayment.class, payper,
-                                "/v2/invoicing/invoices/{id}/payments")
-                        .entityClass(PaymentReference.class)
-                        .errorClass(ErrorDefault.class)
+                                "/v2/invoicing/invoices/{id}/payments", PaymentReference.class,
+                                ErrorDefault.class)
+                        .method(PayperRequest.Method.POST)
                         .build();
-                return RequestSpecsFactory.getInstance().post(spec);
+                return RequestSpecsFactory.getInstance().requestSpec(spec);
             }
 
             @Override
             public DeletePayment delete() {
                 var spec = PayperProvider.provider().createSpecBuilder(DeletePayment.class, payper,
-                                "/v2/invoicing/invoices/{id}/payments/{id2}")
-                        .entityClass(Void.class)
-                        .errorClass(ErrorDefault.class)
+                                "/v2/invoicing/invoices/{id}/payments/{id2}", Void.class, ErrorDefault.class)
                         .alias("withTransactionId", "withId2")
+                        .method(PayperRequest.Method.DELETE)
                         .build();
-                return RequestSpecsFactory.getInstance().delete(spec);
+                return RequestSpecsFactory.getInstance().requestSpec(spec);
             }
         }
 
@@ -167,22 +161,20 @@ class InvoicesApiImpl implements InvoicesApi {
         @Override
             public CreateRefund create() {
                 var spec = PayperProvider.provider().createSpecBuilder(CreateRefund.class, payper,
-                                "/v2/invoicing/invoices/{id}/refunds")
-                        .entityClass(RefundReference.class)
-                        .errorClass(ErrorDefault.class)
+                                "/v2/invoicing/invoices/{id}/refunds", RefundReference.class, ErrorDefault.class)
+                        .method(PayperRequest.Method.POST)
                         .build();
-                return RequestSpecsFactory.getInstance().post(spec);
+                return RequestSpecsFactory.getInstance().requestSpec(spec);
             }
 
             @Override
             public DeleteRefund delete() {
                 var spec = PayperProvider.provider().createSpecBuilder(DeleteRefund.class, payper,
-                                "/v2/invoicing/invoices/{id}/refunds/{id2}")
-                        .entityClass(Void.class)
-                        .errorClass(ErrorDefault.class)
+                                "/v2/invoicing/invoices/{id}/refunds/{id2}", Void.class, ErrorDefault.class)
                         .alias("withTransactionId", "withId2")
+                        .method(PayperRequest.Method.DELETE)
                         .build();
-                return RequestSpecsFactory.getInstance().delete(spec);
+                return RequestSpecsFactory.getInstance().requestSpec(spec);
             }
         }
 }

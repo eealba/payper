@@ -38,11 +38,9 @@ class RefundsImpl implements Refunds {
     @Override
     public GetRefund get() {
         var spec = PayperProvider.provider().createSpecBuilder(GetRefund.class, payer,
-                "/v2/payments/refunds/{id}")
-                .entityClass(Refund.class)
-                .errorClass(ErrorDefault.class)
+                "/v2/payments/refunds/{id}", Refund.class, ErrorDefault.class)
                 .build();
-        return RequestSpecsFactory.getInstance().get(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
 }

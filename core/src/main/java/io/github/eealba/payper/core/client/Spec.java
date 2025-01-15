@@ -6,15 +6,15 @@ import java.util.Optional;
 /**
  * Interface representing a specification for a request.
  *
- * @param <T> the type of the request specification
+ * @param <T1> the type of the request specification
  */
-public interface Spec<T> {
+public interface Spec<T1, R1, R2> {
     /**
      * Gets the class type of the request specification.
      *
      * @return the class type
      */
-    Class<T> clazz();
+    Class<T1> clazz();
 
     /**
      * Gets the Payper instance associated with the request.
@@ -30,19 +30,7 @@ public interface Spec<T> {
      */
     String path();
 
-    /**
-     * Gets the class type of the entity.
-     *
-     * @return the entity class type
-     */
-    Optional<Class<?>> entityClass();
 
-    /**
-     * Gets the class type of the error response.
-     *
-     * @return the error class type
-     */
-    Optional<Class<?>> errorClass();
 
     /**
      * Gets the alias mapping for the request.
@@ -56,39 +44,31 @@ public interface Spec<T> {
      *
      * @return the entity body handler
      */
-    Optional<PayperResponse.BodyHandler<?>> entityHandler();
+    PayperResponse.BodyHandler<R1> entityHandler();
 
     /**
      * Gets the body handler for the error response.
      *
      * @return the error body handler
      */
-    Optional<PayperResponse.BodyHandler<?>> errorHandler();
+    PayperResponse.BodyHandler<R2> errorHandler();
+
+
+    /**
+     * Gets the method of the request.
+     *
+     * @return the method of the request
+     */
+    PayperRequest.Method getMethod();
 
     /**
      * Builder interface for constructing instances of {@link Spec}.
      *
-     * @param <T> the type of the request specification
+     * @param <T1> the type of the request specification
      */
-    interface Builder<T> {
+    interface Builder<T1, R1, R2> {
 
 
-
-        /**
-         * Sets the class type of the entity in the response.
-         *
-         * @param entityClass the entity class type
-         * @return the builder
-         */
-        Builder<T> entityClass(Class<?> entityClass);
-
-        /**
-         * Sets the class type of the error response.
-         *
-         * @param errorClass the error class type
-         * @return the builder
-         */
-        Builder<T> errorClass(Class<?> errorClass);
         /**
          * Sets the alias mapping for the request.
          *
@@ -96,7 +76,7 @@ public interface Spec<T> {
          * @param target the target alias
          * @return the builder
          */
-        Builder<T> alias(String source, String target);
+        Builder<T1, R1, R2> alias(String source, String target);
 
         /**
          * Sets the body handler for the entity.
@@ -104,7 +84,7 @@ public interface Spec<T> {
          * @param entityHandler the entity body handler
          * @return the builder
          */
-        Builder<T> entityHandler(PayperResponse.BodyHandler<?> entityHandler);
+        Builder<T1, R1, R2> entityHandler(PayperResponse.BodyHandler<R1> entityHandler);
 
         /**
          * Sets the body handler for the error response.
@@ -112,13 +92,21 @@ public interface Spec<T> {
          * @param errorHandler the error body handler
          * @return the builder
          */
-        Builder<T> errorHandler(PayperResponse.BodyHandler<?> errorHandler);
+        Builder<T1, R1, R2> errorHandler(PayperResponse.BodyHandler<R2> errorHandler);
+
+        /**
+         * Sets the method of the request.
+         *
+         * @param method the method of the request
+         * @return the builder
+         */
+        Builder<T1, R1, R2> method(PayperRequest.Method method);
 
         /**
          * Builds and returns the {@link Spec} instance.
          *
          * @return the built {@link Spec} instance
          */
-        Spec<T> build();
+        Spec<T1, R1, R2> build();
     }
 }

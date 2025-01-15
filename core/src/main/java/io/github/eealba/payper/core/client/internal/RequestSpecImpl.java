@@ -13,14 +13,12 @@
  */
 package io.github.eealba.payper.core.client.internal;
 
-import io.github.eealba.payper.core.client.Payper;
 import io.github.eealba.payper.core.client.PayperRequest;
 import io.github.eealba.payper.core.client.RequestSpec;
 import io.github.eealba.payper.core.client.ResponseSpec;
 import io.github.eealba.payper.core.client.Spec;
 
 import java.time.Instant;
-import java.util.Objects;
 
 /**
  * Abstract class representing a request specification.
@@ -33,7 +31,7 @@ import java.util.Objects;
  * @version 1.0
  * author Edgar Alba
  */
-abstract class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
+final class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
         RequestSpec.PreferSpec<T>,
         RequestSpec.PaypalRequestIdSpec<T>,
         RequestSpec.BodySpec<T, T2>,
@@ -46,36 +44,23 @@ abstract class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
         RequestSpec.FieldsSpec<T> {
 
     private final PayperRequest.Builder requestBuilder = PayperRequest.newBuilder();
-    private final Payper payper;
-    private final Class<R1> clazz1;
-    private final Class<R2> clazz2;
+    private final Spec<T, R1, R2> spec;
 
     /**
      * Constructs a request specification.
      *
-     * @param payper the Payper instance
-     * @param path the path of the request
-     * @param clazz1 the class of the response entity
-     * @param clazz2 the class of the error entity
+        * @param spec the specification
      */
-    RequestSpecImpl(Payper payper, String path, Class<R1> clazz1, Class<R2> clazz2) {
-        this.payper = Objects.requireNonNull(payper);
-        this.clazz1 = Objects.requireNonNull(clazz1);
-        this.clazz2 = Objects.requireNonNull(clazz2);
-        requestBuilder.path(path);
-        var method = getMethod();
+    RequestSpecImpl(Spec<T, R1, R2> spec) {
+        this.spec = spec;
+        requestBuilder.path(spec.path());
+        var method = spec.getMethod();
         switch (method) {
             case GET -> requestBuilder.GET();
             case DELETE -> requestBuilder.DELETE();
             case POST -> requestBuilder.POST(PayperRequest.BodyPublishers.noBody());
         }
     }
-    /**
-     * Gets the method of the request.
-     *
-     * @return the method of the request
-     */
-    protected abstract PayperRequest.Method getMethod();
     /**
      * Adds a prefer header to the request.
      *
@@ -101,7 +86,7 @@ abstract class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
 
     @Override
     public ResponseSpec<R1, R2> retrieve() {
-        return new ResponseSpecImpl<>(payper, requestBuilder.build(), clazz1, clazz2);
+        return new ResponseSpecImpl<>(spec.payper(), spec.entityHandler(), spec.errorHandler(), requestBuilder.build());
 
 
     }
@@ -115,7 +100,7 @@ abstract class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
     @Override
     public T withBody(T2 body) {
         requestBuilder.header("Content-Type", "application/json");
-        var method = getMethod();
+        var method = spec.getMethod();
         switch (method) {
             case POST -> requestBuilder.POST(PayperRequest.BodyPublishers.of(body));
             case PUT -> requestBuilder.PUT(PayperRequest.BodyPublishers.of(body));
@@ -226,72 +211,4 @@ abstract class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
         query("fields", fields);
         return self();
     }
-    @SuppressWarnings("unchecked")
-    static class PostRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
-        PostRequestSpecImpl(Spec<T1> spec) {
-            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass().orElse(null),
-                    (Class<Object>) spec.errorClass().orElse(null));
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    static class GetRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
-        GetRequestSpecImpl(Spec<T1> spec) {
-            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass().orElse(null),
-                    (Class<Object>) spec.errorClass().orElse(null));
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.GET;
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    static class PutRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
-        PutRequestSpecImpl(Spec<T1> spec) {
-            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass().orElse(null),
-                    (Class<Object>) spec.errorClass().orElse(null));
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.PUT;
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    static class DeleteRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
-        DeleteRequestSpecImpl(Spec<T1> spec) {
-            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass().orElse(null),
-                    (Class<Object>) spec.errorClass().orElse(null));
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.DELETE;
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    static class PatchRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
-        PatchRequestSpecImpl(Spec<T1> spec) {
-            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass().orElse(null),
-                    (Class<Object>) spec.errorClass().orElse(null));
-        }
-
-        @Override
-        protected PayperRequest.Method getMethod() {
-            return PayperRequest.Method.PATCH;
-        }
-    }
-
-
-
-
 }

@@ -32,20 +32,19 @@ import java.util.concurrent.CompletableFuture;
  */
 class ResponseSpecImpl<R1, R2> implements ResponseSpec<R1, R2> {
     private final Payper payper;
-    private final Class<R1> entityClass;
-    private final Class<R2> errorEntityClass;
+    private final PayperResponse.BodyHandler<R1> entityHandler;
+    private final PayperResponse.BodyHandler<R2> errorHandler;
     private final PayperRequest request;
 
-    ResponseSpecImpl(Payper payper,
-                     PayperRequest request,
-                     Class<R1> entityClass,
-                     Class<R2> errorEntityClass) {
+    ResponseSpecImpl(Payper payper, PayperResponse.BodyHandler<R1> entityHandler,
+                     PayperResponse.BodyHandler<R2> errorHandler, PayperRequest request) {
         this.payper = payper;
+        this.entityHandler = entityHandler;
+        this.errorHandler = errorHandler;
         this.request = request;
-        this.entityClass = entityClass;
-        this.errorEntityClass = errorEntityClass;
-
     }
+
+
     @Override
     public Response<R1,R2> toResponse() {
         return new ResponseImpl();
@@ -53,9 +52,7 @@ class ResponseSpecImpl<R1, R2> implements ResponseSpec<R1, R2> {
 
     @Override
     public CompletableFuture<Response<R1,R2>> toFuture() {
-        return payper.send(request,
-                PayperResponse.BodyHandlers.ofClass(entityClass),
-                PayperResponse.BodyHandlers.ofClass(errorEntityClass)).toFuture()
+        return payper.send(request, entityHandler, errorHandler).toFuture()
                 .thenApply(ResponseImpl::new);
     }
 
@@ -68,9 +65,7 @@ class ResponseSpecImpl<R1, R2> implements ResponseSpec<R1, R2> {
         }
         private void call(){
             if(payperResponse == null) {
-                payperResponse = payper.send(request,
-                        PayperResponse.BodyHandlers.ofClass(entityClass),
-                        PayperResponse.BodyHandlers.ofClass(errorEntityClass)).toResponse();
+                payperResponse = payper.send(request,entityHandler, errorHandler).toResponse();
             }
         }
         @Override

@@ -18,6 +18,7 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  * The interface PayperResponse.
@@ -173,6 +174,9 @@ public interface PayperResponse<T, T2> {
 
         public static PayperResponse.BodyHandler<String> ofString() {
             return () -> (Charset cs, byte[] body) -> body == null ? null : new String(body, cs);
+        }
+        public static <T> PayperResponse.BodyHandler<T> fromString(Function<String, T> converter) {
+            return () -> (Charset cs, byte[] body) -> body == null ? null : converter.apply(new String(body, cs));
         }
     }
 }

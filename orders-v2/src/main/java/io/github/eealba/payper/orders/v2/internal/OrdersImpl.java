@@ -15,6 +15,7 @@ package io.github.eealba.payper.orders.v2.internal;
 
 import io.github.eealba.payper.core.client.Payper;
 import io.github.eealba.payper.core.client.PayperProvider;
+import io.github.eealba.payper.core.client.PayperRequest;
 import io.github.eealba.payper.core.client.RequestSpecsFactory;
 import io.github.eealba.payper.orders.v2.api.Orders;
 import io.github.eealba.payper.orders.v2.model.ErrorDefault;
@@ -40,10 +41,10 @@ class OrdersImpl implements Orders {
      */
     @Override
     public CreateOrder create() {
-        var spec = PayperProvider.provider().createSpecBuilder(CreateOrder.class, payper, "/v2/checkout/orders")
-                .entityClass(Order.class)
-                .errorClass(ErrorDefault.class).build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        var spec = PayperProvider.provider().createSpecBuilder(CreateOrder.class, payper,
+                        "/v2/checkout/orders", Order.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST).build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -56,10 +57,10 @@ class OrdersImpl implements Orders {
      */
     @Override
     public GetOrder get() {
-        var spec = PayperProvider.provider().createSpecBuilder(GetOrder.class, payper, "/v2/checkout/orders/{id}")
-                .entityClass(Order.class)
-                .errorClass(ErrorDefault.class).build();
-        return RequestSpecsFactory.getInstance().get(spec);
+        var spec = PayperProvider.provider().createSpecBuilder(GetOrder.class, payper, "/v2/checkout/orders/{id}",
+                        Order.class, ErrorDefault.class)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -73,10 +74,9 @@ class OrdersImpl implements Orders {
     @Override
     public UpdateOrder update() {
         var spec = PayperProvider.provider().createSpecBuilder(UpdateOrder.class, payper,
-                        "/v2/checkout/orders/{id}")
-                .entityClass(Void.class)
-                .errorClass(ErrorDefault.class).build();
-        return RequestSpecsFactory.getInstance().patch(spec);
+                        "/v2/checkout/orders/{id}", Void.class, ErrorDefault.class)
+                .method(PayperRequest.Method.PATCH).build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -90,9 +90,10 @@ class OrdersImpl implements Orders {
     @Override
     public ConfirmPaymentSourceOrder confirmPaymentSource() {
         var spec = PayperProvider.provider().createSpecBuilder(ConfirmPaymentSourceOrder.class, payper,
-                        "/v2/checkout/orders/{id}/confirm-payment-source")
-                .entityClass(Order.class).errorClass(ErrorDefault.class).build();
-        return RequestSpecsFactory.getInstance().post(spec);
+                        "/v2/checkout/orders/{id}/confirm-payment-source", Order.class,ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -106,10 +107,11 @@ class OrdersImpl implements Orders {
     @Override
     public AuthorizeOrder authorize() {
         var spec = PayperProvider.provider().createSpecBuilder(AuthorizeOrder.class, payper,
-                        "/v2/checkout/orders/{id}/authorize")
-                .entityClass(OrderAuthorizeResponse.class)
-                .errorClass(ErrorDefault.class).build();
-        return RequestSpecsFactory.getInstance().post(spec);
+                        "/v2/checkout/orders/{id}/authorize", OrderAuthorizeResponse.class,
+                ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -123,10 +125,10 @@ class OrdersImpl implements Orders {
     @Override
     public CaptureOrder capture() {
         var spec = PayperProvider.provider().createSpecBuilder(CaptureOrder.class, payper,
-                        "/v2/checkout/orders/{id}/capture")
-                .entityClass(Order.class)
-                .errorClass(ErrorDefault.class).build();
-        return RequestSpecsFactory.getInstance().post(spec);
+                        "/v2/checkout/orders/{id}/capture", Order.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -140,9 +142,10 @@ class OrdersImpl implements Orders {
     @Override
     public TrackOrder track() {
         var spec = PayperProvider.provider().createSpecBuilder(TrackOrder.class, payper,
-                        "/v2/checkout/orders/{id}/track")
-                .entityClass(Order.class).errorClass(ErrorDefault.class).build();
-        return RequestSpecsFactory.getInstance().post(spec);
+                        "/v2/checkout/orders/{id}/track", Order.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -156,12 +159,11 @@ class OrdersImpl implements Orders {
     @Override
     public UpdateTrackingOrder updateTracking() {
         var spec = PayperProvider.provider().createSpecBuilder(UpdateTrackingOrder.class, payper,
-                        "/v2/checkout/orders/{id}/trackers/{id2}")
-                .entityClass(Void.class)
-                .errorClass(ErrorDefault.class)
+                        "/v2/checkout/orders/{id}/trackers/{id2}",Void.class,ErrorDefault.class)
                 .alias("withTrackingId", "withId2")
+                .method(PayperRequest.Method.PATCH)
                 .build();
-        return RequestSpecsFactory.getInstance().patch(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
 

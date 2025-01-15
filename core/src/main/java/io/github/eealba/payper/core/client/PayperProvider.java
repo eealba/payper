@@ -96,6 +96,7 @@ public abstract class PayperProvider {
      */
     public abstract RequestSpecsFactory createRequestSpecsFactory();
 
-    public abstract <T> Spec.Builder<T> createSpecBuilder(Class<T> clazz, Payper payper, String path);
+    public abstract <T1, R1, R2> Spec.Builder<T1, R1, R2> createSpecBuilder(Class<T1> clazz, Payper payper, String path,
+                                                                    Class<R1> entityClass, Class<R2> errorClass);
 
 }

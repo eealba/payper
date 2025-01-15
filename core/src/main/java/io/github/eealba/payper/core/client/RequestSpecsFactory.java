@@ -34,36 +34,8 @@ public abstract class RequestSpecsFactory {
      * @param <T> the type of the request specification
      * @return the request specification
      */
-    public abstract <T> T post(Spec<T> spec);
-    /**
-     * Creates a new request specification.
-     *
-     * @param <T> the type of the request specification
-     * @return the request specification
-     */
-    public abstract <T> T get(Spec<T> spec);
-    /**
-     * Creates a new request specification.
-     *
-     * @param <T> the type of the request specification
-     * @return the request specification
-     */
-    public abstract <T> T put(Spec<T> spec);
-    /**
-     * Creates a new request specification.
-     *
-     * @param <T> the type of the request specification
-     * @return the request specification
-     */
-    public abstract <T> T delete(Spec<T> spec);
-    /**
-     * Creates a new request specification.
-     *
-     * @param <T> the type of the request specification
-     * @return the request specification
-     */
-    public abstract <T> T patch(Spec<T> spec);
-    
+    public abstract <T, R1, R2> T requestSpec(Spec<T, R1, R2> spec);
+
     public static RequestSpecsFactory getInstance() {
         return INSTANCE;
     }

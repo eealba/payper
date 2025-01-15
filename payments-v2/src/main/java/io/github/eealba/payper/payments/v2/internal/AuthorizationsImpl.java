@@ -16,6 +16,7 @@ package io.github.eealba.payper.payments.v2.internal;
 
 import io.github.eealba.payper.core.client.Payper;
 import io.github.eealba.payper.core.client.PayperProvider;
+import io.github.eealba.payper.core.client.PayperRequest;
 import io.github.eealba.payper.core.client.RequestSpecsFactory;
 import io.github.eealba.payper.payments.v2.api.Authorizations;
 import io.github.eealba.payper.payments.v2.model.Authorization2;
@@ -46,11 +47,9 @@ class AuthorizationsImpl implements Authorizations {
     @Override
     public GetAuthorization get() {
         var spec = PayperProvider.provider().createSpecBuilder(GetAuthorization.class, payper,
-                "/v2/payments/authorizations/{id}")
-                .entityClass(Authorization2.class)
-                .errorClass(ErrorDefault.class)
+                "/v2/payments/authorizations/{id}", Authorization2.class, ErrorDefault.class)
                 .build();
-        return RequestSpecsFactory.getInstance().get(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -63,11 +62,10 @@ class AuthorizationsImpl implements Authorizations {
     @Override
     public CaptureAuthorization capture() {
         var spec = PayperProvider.provider().createSpecBuilder(CaptureAuthorization.class, payper,
-                "/v2/payments/authorizations/{id}/capture")
-                .entityClass(Capture2.class)
-                .errorClass(ErrorDefault.class)
+                "/v2/payments/authorizations/{id}/capture", Capture2.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -80,11 +78,10 @@ class AuthorizationsImpl implements Authorizations {
     @Override
     public ReauthorizeAuthorization reauthorize() {
         var spec = PayperProvider.provider().createSpecBuilder(ReauthorizeAuthorization.class, payper,
-                "/v2/payments/authorizations/{id}/reauthorize")
-                .entityClass(Authorization2.class)
-                .errorClass(ErrorDefault.class)
+                "/v2/payments/authorizations/{id}/reauthorize", Authorization2.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -97,11 +94,10 @@ class AuthorizationsImpl implements Authorizations {
     @Override
     public VoidAuthorization voidAuthorization() {
         var spec = PayperProvider.provider().createSpecBuilder(VoidAuthorization.class, payper,
-                "/v2/payments/authorizations/{id}/void")
-                .entityClass(Authorization2.class)
-                .errorClass(ErrorDefault.class)
+                "/v2/payments/authorizations/{id}/void", Authorization2.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
 }

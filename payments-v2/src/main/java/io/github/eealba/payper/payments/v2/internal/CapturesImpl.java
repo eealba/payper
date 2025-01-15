@@ -15,6 +15,7 @@ package io.github.eealba.payper.payments.v2.internal;
 
 import io.github.eealba.payper.core.client.Payper;
 import io.github.eealba.payper.core.client.PayperProvider;
+import io.github.eealba.payper.core.client.PayperRequest;
 import io.github.eealba.payper.core.client.RequestSpecsFactory;
 import io.github.eealba.payper.payments.v2.api.Captures;
 import io.github.eealba.payper.payments.v2.model.Capture2;
@@ -46,11 +47,9 @@ class CapturesImpl implements Captures {
     @Override
     public GetCapture get() {
         var spec = PayperProvider.provider().createSpecBuilder(GetCapture.class, payer,
-                "/v2/payments/captures/{id}")
-                .entityClass(Capture2.class)
-                .errorClass(ErrorDefault.class)
+                "/v2/payments/captures/{id}", Capture2.class, ErrorDefault.class)
                 .build();
-        return RequestSpecsFactory.getInstance().get(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -63,12 +62,11 @@ class CapturesImpl implements Captures {
     @Override
     public RefundCapture refund() {
         var spec = PayperProvider.provider().createSpecBuilder(RefundCapture.class, payer,
-                "/v2/payments/captures/{id}/refund")
-                .entityClass(Refund.class)
-                .errorClass(ErrorDefault.class)
+                "/v2/payments/captures/{id}/refund", Refund.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
 
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
 }

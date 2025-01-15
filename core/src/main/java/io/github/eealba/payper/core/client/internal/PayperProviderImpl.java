@@ -69,7 +69,7 @@ public class PayperProviderImpl extends PayperProvider {
     /**
      * Creates a body handler for the given class.
      *
-     * @param <T> the type of the class
+     * @param <T>   the type of the class
      * @param clazz the class
      * @return a body handler
      */
@@ -77,6 +77,7 @@ public class PayperProviderImpl extends PayperProvider {
     public <T> PayperResponse.BodyHandler<T> bodyHandlerOf(Class<T> clazz) {
         return () -> (Charset cs, byte[] body) -> body == null ? null : json.fromJson(new String(body, cs), clazz);
     }
+
     /**
      * Creates a RequestSpecsFactory object.
      *
@@ -86,18 +87,22 @@ public class PayperProviderImpl extends PayperProvider {
     public RequestSpecsFactory createRequestSpecsFactory() {
         return RequestSpecsFactoryImpl.INSTANCE;
     }
+
     /**
      * Creates a Spec builder.
      *
-     * @param <T> the type of the class
-     * @param clazz the class
+     * @param <T1>   the type of the class
+     * @param <R1>   the type of the entity in the response
+     * @param <R2>   the type of the error entity in the response
+     * @param clazz  the class
      * @param payper the Payper object
-     * @param path the path
+     * @param path   the path
      * @return a Spec builder
      */
     @Override
-    public <T> Spec.Builder<T> createSpecBuilder(Class<T> clazz, Payper payper, String path) {
-        return new SpecImpl.SpecBuilder<>(clazz, payper, path);
+    public <T1, R1, R2> Spec.Builder<T1, R1, R2> createSpecBuilder(Class<T1> clazz, Payper payper, String path,
+                                                                   Class<R1> entityClass, Class<R2> errorClass) {
+        return new SpecImpl.SpecBuilder<>(clazz, payper, path, entityClass, errorClass);
     }
 
 }

@@ -3,6 +3,7 @@ package io.github.eealba.payper.invoices.v2.internal;
 import io.github.eealba.payper.core.client.Payper;
 import io.github.eealba.payper.core.client.PayperConfig;
 import io.github.eealba.payper.core.client.PayperProvider;
+import io.github.eealba.payper.core.client.PayperRequest;
 import io.github.eealba.payper.core.client.RequestSpecsFactory;
 import io.github.eealba.payper.invoices.v2.api.GenerateNextInvoiceNumber;
 import io.github.eealba.payper.invoices.v2.api.InvoicesApi;
@@ -39,20 +40,18 @@ class InvoicingApiClientImpl extends InvoicingApiClient {
     @Override
     public GenerateNextInvoiceNumber generateNextInvoiceNumber() {
         var spec = PayperProvider.provider().createSpecBuilder(GenerateNextInvoiceNumber.class, payper,
-                        "/v2/invoicing/invoices/next")
-                .entityClass(InvoiceNumber.class)
-                .errorClass(ErrorDefault.class)
+                        "/v2/invoicing/invoices/next", InvoiceNumber.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public SearchInvoices searchInvoices() {
         var spec = PayperProvider.provider().createSpecBuilder(SearchInvoices.class, payper,
-                        "/v2/invoicing/search-invoices")
-                .entityClass(Invoices.class)
-                .errorClass(ErrorDefault.class)
+                        "/v2/invoicing/search-invoices", Invoices.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 }

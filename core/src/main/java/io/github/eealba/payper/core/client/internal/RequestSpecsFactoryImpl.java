@@ -14,38 +14,8 @@ class RequestSpecsFactoryImpl extends RequestSpecsFactory {
     static final RequestSpecsFactory INSTANCE = new RequestSpecsFactoryImpl();
 
     @Override
-    public <T1> T1 post(Spec<T1> spec) {
-        var obj = new RequestSpecImpl.PostRequestSpecImpl<>(spec);
-        var proxyObj = newProxyInstance(obj, spec);
-        return castObject(proxyObj);
-    }
-
-    @Override
-    public <T1> T1 get(Spec<T1> spec) {
-        var obj = new RequestSpecImpl.GetRequestSpecImpl<>(spec);
-        var proxyObj = newProxyInstance(obj, spec);
-        return castObject(proxyObj);
-    }
-
-    @Override
-    public <T1> T1 put(Spec<T1> spec) {
-        var obj = new RequestSpecImpl.PutRequestSpecImpl<>(spec);
-        var proxyObj = newProxyInstance(obj, spec);
-        return castObject(proxyObj);
-    }
-
-
-    @Override
-    public <T1> T1 delete(Spec<T1> spec) {
-        var obj = new RequestSpecImpl.DeleteRequestSpecImpl<>(spec);
-        var proxyObj = newProxyInstance(obj, spec);
-        return castObject(proxyObj);
-    }
-
-
-    @Override
-    public <T1> T1 patch(Spec<T1> spec) {
-        var obj = new RequestSpecImpl.PatchRequestSpecImpl<>(spec);
+    public <T1, R1, R2> T1 requestSpec(Spec<T1, R1, R2> spec) {
+        var obj = new RequestSpecImpl<>(spec);
         var proxyObj = newProxyInstance(obj, spec);
         return castObject(proxyObj);
     }
@@ -55,7 +25,7 @@ class RequestSpecsFactoryImpl extends RequestSpecsFactory {
         return (T1) obj;
     }
 
-    private static Object newProxyInstance(Object obj, Spec<?> spec) {
+    private static Object newProxyInstance(Object obj, Spec<?, ?, ?> spec) {
         return Proxy.newProxyInstance(
                 spec.clazz().getClassLoader(),
                 new Class[]{spec.clazz()},

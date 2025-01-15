@@ -15,6 +15,7 @@ package io.github.eealba.payper.subscriptions.v1.internal;
 
 import io.github.eealba.payper.core.client.Payper;
 import io.github.eealba.payper.core.client.PayperProvider;
+import io.github.eealba.payper.core.client.PayperRequest;
 import io.github.eealba.payper.core.client.RequestSpecsFactory;
 import io.github.eealba.payper.subscriptions.v1.api.BillingPlans;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
@@ -41,73 +42,64 @@ class BillingPlansImpl implements BillingPlans {
     @Override
     public CreatePlan create() {
         var spec = PayperProvider.provider().createSpecBuilder(CreatePlan.class, payper,
-                        "/v1/billing/plans")
-                .entityClass(Plan.class)
-                .errorClass(ErrorDefault.class)
+                        "/v1/billing/plans", Plan.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public ListPlans list() {
         var spec = PayperProvider.provider().createSpecBuilder(ListPlans.class, payper,
-                        "/v1/billing/plans")
-                .entityClass(PlanCollection.class)
-                .errorClass(ErrorDefault.class)
+                        "/v1/billing/plans", PlanCollection.class, ErrorDefault.class)
                 .alias("withProductId", "query,product_id")
                 .alias("withPlanIds", "query,plan_ids")
                 .build();
-        return RequestSpecsFactory.getInstance().get(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public GetPlan get() {
         var spec = PayperProvider.provider().createSpecBuilder(GetPlan.class, payper,
-                        "/v1/billing/plans/{id}")
-                .entityClass(Plan.class)
-                .errorClass(ErrorDefault.class)
+                        "/v1/billing/plans/{id}", Plan.class, ErrorDefault.class)
                 .build();
-        return RequestSpecsFactory.getInstance().get(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public UpdatePlan update() {
         var spec = PayperProvider.provider().createSpecBuilder(UpdatePlan.class, payper,
-                        "/v1/billing/plans/{id}")
-                .entityClass(Plan.class)
-                .errorClass(ErrorDefault.class)
+                        "/v1/billing/plans/{id}", Plan.class, ErrorDefault.class)
+                .method(PayperRequest.Method.PATCH)
                 .build();
-        return RequestSpecsFactory.getInstance().patch(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public ActivatePlan activate() {
         var spec = PayperProvider.provider().createSpecBuilder(ActivatePlan.class, payper,
-                        "/v1/billing/plans/{id}/activate")
-                .entityClass(Void.class)
-                .errorClass(ErrorDefault.class)
+                        "/v1/billing/plans/{id}/activate", Void.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public DeactivatePlan deactivate() {
         var spec = PayperProvider.provider().createSpecBuilder(DeactivatePlan.class, payper,
-                        "/v1/billing/plans/{id}/deactivate")
-                .entityClass(Void.class)
-                .errorClass(ErrorDefault.class)
+                        "/v1/billing/plans/{id}/deactivate", Void.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public UpdatePricingSchemes updatePricingSchemes() {
         var spec = PayperProvider.provider().createSpecBuilder(UpdatePricingSchemes.class, payper,
-                        "/v1/billing/plans/{id}/update-pricing-schemes")
-                .entityClass(Void.class)
-                .errorClass(ErrorDefault.class)
+                        "/v1/billing/plans/{id}/update-pricing-schemes", Void.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
                 .build();
-        return RequestSpecsFactory.getInstance().post(spec);
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
 
