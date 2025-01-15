@@ -28,6 +28,7 @@ for multithreading and high concurrency. Payper uses immutable objects and provi
 | Subscriptions         | v1      | [API Reference](https://developer.paypal.com/docs/api/subscriptions/v1/)    |
 | Orders                | v2      | [API Reference](https://developer.paypal.com/docs/api/orders/v2/)           |
 | Payments              | v2      | [API Reference](https://developer.paypal.com/docs/api/payments/v2/)         |
+| Invoices              | v2      | [API Reference](https://developer.paypal.com/docs/api/invoicing/v2/)        |
 
 ## Installation
 
@@ -43,7 +44,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-subscriptions-v1</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
 </dependency>
 ```
 ### Catalog Products API
@@ -53,7 +54,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-catalog-products-v1</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
 </dependency>
 ```
 
@@ -64,7 +65,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-orders-v2</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
 </dependency>
 ```
 
@@ -75,7 +76,17 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-payments-v2</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
+</dependency>
+```
+### Invoices API
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.eealba.payper/payper-invoices-v2.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.eealba.payper/payper-invoices-v2)
+[![Javadoc](https://javadoc.io/badge2/io.github.eealba.payper/payper-invoices-v2/javadoc.io.svg)](https://javadoc.io/doc/io.github.eealba.payper/payper-invoices-v2)
+```xml
+<dependency>
+    <groupId>io.github.eealba.payper</groupId>
+    <artifactId>payper-invoices-v2</artifactId>
+    <version>0.4.0</version>
 </dependency>
 ```
 
@@ -86,7 +97,6 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 |-----------------------|---------|----------------------------------------------------------------------------------------|
 | Add Tracking          | v1      | [API Reference](https://developer.paypal.com/docs/api/tracking/v1/)                    |
 | Disputes              | v1      | [API Reference](https://developer.paypal.com/docs/api/customer-disputes/v1/)           |
-| Invoices              | v2      | [API Reference](https://developer.paypal.com/docs/api/invoicing/v2/)                   |
 | Partner Referrals     | v2      | [API Reference](https://developer.paypal.com/docs/api/partner-referrals/v2/)           |
 | Payment Experience    | v1      | [API Reference](https://developer.paypal.com/docs/api/payment-experience/v1/)          |
 | Payment Method Tokens | v3      | [API Reference](https://developer.paypal.com/docs/api/payment-tokens/v3/)              |
@@ -116,7 +126,11 @@ public class PayperExample {
                 .imageUrl("https://example.com/image.jpg")
                 .build();
 
-        var product = catalogProductsApiClient.products().create().withBody(productRequest).retrieve().toEntity();
+        var product = catalogProductsApiClient.products()
+                .create()
+                .withBody(productRequest)
+                .retrieve()
+                .toEntity();
 
         System.out.println("Created product ID: " + product.id());
     }
@@ -132,7 +146,11 @@ public class PayperExample {
     public static void main(String[] args) {
         var catalogProductsApiClient = CatalogProductsApiClient.create();
         
-        var product = catalogProductsApiClient.products().get().withId("1").retrieve().toEntity();
+        var product = catalogProductsApiClient.products()
+                .get()
+                .withId("1")
+                .retrieve()
+                .toEntity();
 
         System.out.println("Retrieved product ID: " + product.id());
     }
@@ -148,7 +166,11 @@ import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;
 public class PayperExample {
     public static void main(String[] args) {
         var subscriptionsApiClient = SubscriptionsApiClient.create();
-        var plan = subscriptionsApiClient.billingPlans().get().withId("1").retrieve().toEntity();
+        var plan = subscriptionsApiClient.billingPlans()
+                .get()
+                .withId("1")
+                .retrieve()
+                .toEntity();
 
         System.out.println("Retrieved plan ID: " + plan.id());
     }
@@ -162,7 +184,12 @@ public class PayperExample {
     public static void main(String[] args) {
         var subscriptionsApiClient = SubscriptionsApiClient.create();
         
-        var futurePlan = subscriptionsApiClient.billingPlans().get().withId("1").retrieve().toFuture();
+        var futurePlan = subscriptionsApiClient.billingPlans()
+                .get()
+                .withId("1")
+                .retrieve()
+                .toFuture();
+        
         futurePlan.thenAccept( response  -> {
             if (response.statusCode() == 200) {
                 System.out.println("Plan retrieved successfully");
@@ -173,7 +200,45 @@ public class PayperExample {
     }
 }
 ```
+### Invoice API
 
+```java
+import io.github.eealba.payper.invoices.v2.api.InvoicesApi;
+import io.github.eealba.payper.invoices.v2.api.InvoicingApiClient;
+import io.github.eealba.payper.invoices.v2.model.Invoice;
+
+public class PayperExample {
+    public static void main(String[] args) {
+        InvoicesApi invoicesApi = InvoicingApiClient.create().invoices();
+
+        // Create an invoice
+        var invoice = invoicesApi.create()
+                .withBody(Invoice.builder().build())
+                .retrieve()
+                .toEntity();
+
+        // List invoices
+        var listInvoices = invoicesApi.list()
+                .withPage(1)
+                .withPageSize(10)
+                .withTotalRequired(true)
+                .retrieve()
+                .toEntity();
+
+        // Get an invoice
+        invoice = invoicesApi.get().withId("invoice-id").retrieve().toEntity();
+
+        // Update an invoice
+        var updateInvoice = invoicesApi.update().withId("invoice-id")
+                .withBody(Invoice.builder().build())
+                .retrieve()
+                .toEntity();
+
+        // Delete an invoice
+        invoicesApi.delete().withId("invoice-id").retrieve().toVoid();;
+    }
+}
+```
 
 
 ## Authentication
@@ -208,12 +273,17 @@ Otherwise, you can pass the credentials directly to the Payper client using supp
     public static void main(String[] args) {
         PayperConfig config = PayperConfig.builder()
                 .authenticator(PayperAuthenticator.PayperAuthenticators
-                        .ofSandBox(() -> "CLIENT_ID".toCharArray(), () -> "CLIENT_SECRET".toCharArray()))
+                        .ofSandBox(() -> "CLIENT_ID".toCharArray(),
+                                () -> "CLIENT_SECRET".toCharArray()))
                 .build();
         
         var subscriptionsApiClient = SubscriptionsApiClient.create(config);
 
-        var plan = subscriptionsApiClient.billingPlans().get().withId("1").retrieve().toEntity();
+        var plan = subscriptionsApiClient.billingPlans()
+                .get()
+                .withId("1")
+                .retrieve()
+                .toEntity();
 
         System.out.println("Retrieved plan ID: " + plan.id());
 

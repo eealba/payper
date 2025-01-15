@@ -1,6 +1,6 @@
 package io.github.eealba.payper.e2e.examples.subscriptions;
 
-import io.github.eealba.payper.core.PayperAuthenticator;
+import io.github.eealba.payper.core.client.PayperAuthenticator;
 import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;
 import io.github.eealba.payper.subscriptions.v1.model.BillingCycle;
 

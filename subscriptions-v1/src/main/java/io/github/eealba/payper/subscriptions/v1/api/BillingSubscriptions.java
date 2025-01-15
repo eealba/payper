@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.subscriptions.v1.api;
 
-import io.github.eealba.payper.core.spec.RequestSpec;
+import io.github.eealba.payper.core.client.RequestSpec;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
 import io.github.eealba.payper.subscriptions.v1.model.Subscription;
@@ -169,14 +169,8 @@ public interface BillingSubscriptions {
     /**
      * Interface for getting a subscription.
      */
-    interface GetSubscription extends RequestSpec<Subscription, ErrorDefault>, RequestSpec.IdSpec<GetSubscription> {
-        /**
-         * Sets the fields to be retrieved for the request.
-         *
-         * @param fields the fields to be retrieved
-         * @return the get subscription request specification
-         */
-        GetSubscription withFields(String fields);
+    interface GetSubscription extends RequestSpec<Subscription, ErrorDefault>, RequestSpec.IdSpec<GetSubscription>,
+    RequestSpec.FieldsSpec<GetSubscription> {
     }
 
     /**

@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.catalog.products.v1.api;
 
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.PayperConfig;
 import io.github.eealba.payper.core.util.Providers;
 
 /**

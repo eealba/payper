@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.payments.v2.api;
 
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.PayperConfig;
 
 /**
  * Abstract class for payments API client.

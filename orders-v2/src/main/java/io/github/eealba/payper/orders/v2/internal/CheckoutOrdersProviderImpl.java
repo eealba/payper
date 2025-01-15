@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.orders.v2.internal;
 
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.PayperConfig;
 import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 import io.github.eealba.payper.orders.v2.api.CheckoutOrdersProvider;
 

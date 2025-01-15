@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.orders.v2.api;
 
-import io.github.eealba.payper.core.spec.RequestSpec;
+import io.github.eealba.payper.core.client.RequestSpec;
 import io.github.eealba.payper.orders.v2.model.ConfirmOrderRequest;
 import io.github.eealba.payper.orders.v2.model.ErrorDefault;
 import io.github.eealba.payper.orders.v2.model.Order;
@@ -137,8 +137,7 @@ public interface Orders {
      * This interface defines the specifications for retrieving a specific order by its ID.
      */
     interface GetOrder extends RequestSpec<Order, ErrorDefault>,
-            RequestSpec.IdSpec<GetOrder> {
-        void withFields(String fields);
+            RequestSpec.IdSpec<GetOrder>, RequestSpec.FieldsSpec<GetOrder> {
     }
 
     /**

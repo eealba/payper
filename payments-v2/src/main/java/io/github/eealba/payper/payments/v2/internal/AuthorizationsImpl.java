@@ -14,14 +14,14 @@
 
 package io.github.eealba.payper.payments.v2.internal;
 
-import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.PayperRequest;
+import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.client.PayperProvider;
+import io.github.eealba.payper.core.client.PayperRequest;
+import io.github.eealba.payper.core.client.RequestSpecsFactory;
 import io.github.eealba.payper.payments.v2.api.Authorizations;
 import io.github.eealba.payper.payments.v2.model.Authorization2;
 import io.github.eealba.payper.payments.v2.model.Capture2;
-import io.github.eealba.payper.payments.v2.model.CaptureRequest;
 import io.github.eealba.payper.payments.v2.model.ErrorDefault;
-import io.github.eealba.payper.payments.v2.model.ReauthorizeRequest;
 
 /**
  * Authorizations implementation.
@@ -31,9 +31,9 @@ import io.github.eealba.payper.payments.v2.model.ReauthorizeRequest;
  * @author Edgar Alba
  */
 class AuthorizationsImpl implements Authorizations {
-    private final Payper payer;
+    private final Payper payper;
     AuthorizationsImpl(Payper payper) {
-        this.payer = payper;
+        this.payper = payper;
     }
 
     /**
@@ -46,7 +46,10 @@ class AuthorizationsImpl implements Authorizations {
      */
     @Override
     public GetAuthorization get() {
-        return new GetAuthorizationImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(GetAuthorization.class, payper,
+                "/v2/payments/authorizations/{id}", Authorization2.class, ErrorDefault.class)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -58,7 +61,11 @@ class AuthorizationsImpl implements Authorizations {
      */
     @Override
     public CaptureAuthorization capture() {
-        return new CaptureAuthorizationImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(CaptureAuthorization.class, payper,
+                "/v2/payments/authorizations/{id}/capture", Capture2.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -70,7 +77,11 @@ class AuthorizationsImpl implements Authorizations {
      */
     @Override
     public ReauthorizeAuthorization reauthorize() {
-        return new ReauthorizeAuthorizationImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(ReauthorizeAuthorization.class, payper,
+                "/v2/payments/authorizations/{id}/reauthorize", Authorization2.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -82,50 +93,11 @@ class AuthorizationsImpl implements Authorizations {
      */
     @Override
     public VoidAuthorization voidAuthorization() {
-        return new VoidAuthorizationImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(VoidAuthorization.class, payper,
+                "/v2/payments/authorizations/{id}/void", Authorization2.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
-    private static class GetAuthorizationImpl extends RequestSpecImpl<GetAuthorization, Void, Authorization2, ErrorDefault>
-            implements GetAuthorization {
-        GetAuthorizationImpl(Payper payper) {
-            super(payper, "/v2/payments/authorizations/{id}", Authorization2.class, ErrorDefault.class);
-        }
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.GET;
-        }
-    }
-
-    private static class CaptureAuthorizationImpl extends RequestSpecImpl<CaptureAuthorization, CaptureRequest, Capture2, ErrorDefault>
-            implements CaptureAuthorization {
-        CaptureAuthorizationImpl(Payper payper) {
-            super(payper, "/v2/payments/authorizations/{id}/capture", Capture2.class, ErrorDefault.class);
-        }
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class ReauthorizeAuthorizationImpl extends RequestSpecImpl<ReauthorizeAuthorization, ReauthorizeRequest, Authorization2, ErrorDefault>
-            implements ReauthorizeAuthorization {
-        ReauthorizeAuthorizationImpl(Payper payper) {
-            super(payper, "/v2/payments/authorizations/{id}/reauthorize", Authorization2.class, ErrorDefault.class);
-        }
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class VoidAuthorizationImpl extends RequestSpecImpl<VoidAuthorization, Void, Authorization2, ErrorDefault>
-            implements VoidAuthorization {
-        VoidAuthorizationImpl(Payper payper) {
-            super(payper, "/v2/payments/authorizations/{id}/void", Authorization2.class, ErrorDefault.class);
-        }
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
 }

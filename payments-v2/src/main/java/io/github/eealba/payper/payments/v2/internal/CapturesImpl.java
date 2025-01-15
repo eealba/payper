@@ -13,13 +13,14 @@
  */
 package io.github.eealba.payper.payments.v2.internal;
 
-import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.PayperRequest;
+import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.client.PayperProvider;
+import io.github.eealba.payper.core.client.PayperRequest;
+import io.github.eealba.payper.core.client.RequestSpecsFactory;
 import io.github.eealba.payper.payments.v2.api.Captures;
 import io.github.eealba.payper.payments.v2.model.Capture2;
 import io.github.eealba.payper.payments.v2.model.ErrorDefault;
 import io.github.eealba.payper.payments.v2.model.Refund;
-import io.github.eealba.payper.payments.v2.model.RefundRequest;
 
 /**
  * Captures implementation.
@@ -45,7 +46,10 @@ class CapturesImpl implements Captures {
      */
     @Override
     public GetCapture get() {
-        return new GetCaptureImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(GetCapture.class, payer,
+                "/v2/payments/captures/{id}", Capture2.class, ErrorDefault.class)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -57,29 +61,12 @@ class CapturesImpl implements Captures {
      */
     @Override
     public RefundCapture refund() {
-        return new RefundCaptureImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(RefundCapture.class, payer,
+                "/v2/payments/captures/{id}/refund", Refund.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
-
-    private static class GetCaptureImpl extends RequestSpecImpl<GetCapture, Void, Capture2, ErrorDefault>
-            implements GetCapture {
-        GetCaptureImpl(Payper payper) {
-            super(payper, "/v2/payments/captures/{id}", Capture2.class, ErrorDefault.class);
-        }
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.GET;
-        }
-    }
-
-    private static class RefundCaptureImpl extends RequestSpecImpl<RefundCapture, RefundRequest, Refund, ErrorDefault>
-            implements RefundCapture {
-        RefundCaptureImpl(Payper payper) {
-            super(payper, "/v2/payments/captures/{id}/refund", Refund.class, ErrorDefault.class);
-        }
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
 }

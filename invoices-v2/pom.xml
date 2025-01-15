@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.github.eealba.payper</groupId>
+        <artifactId>payper-parent</artifactId>
+        <version>0.4.0</version>
+    </parent>
+
+    <artifactId>payper-invoices-v2</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Payper Invoices V2</name>
+    <description>Invoices API client for the Payper library,
+        providing methods to interact with the PayPal Invoices API V2.</description>
+    <url>https://github.com/eealba/payper</url>
+    <scm>
+        <url>https://github.com/eealba/payper</url>
+        <connection>scm:git:git@github.com:eealba/payper.git</connection>
+        <developerConnection>scm:git:git@github.com:eealba/payper.git</developerConnection>
+    </scm>
+    <dependencies>
+        <dependency>
+            <groupId>io.github.eealba.payper</groupId>
+            <artifactId>payper-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>

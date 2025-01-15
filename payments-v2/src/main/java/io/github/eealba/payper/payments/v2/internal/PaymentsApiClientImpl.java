@@ -13,8 +13,8 @@
  */
 package io.github.eealba.payper.payments.v2.internal;
 
-import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.client.PayperConfig;
 import io.github.eealba.payper.payments.v2.api.Authorizations;
 import io.github.eealba.payper.payments.v2.api.Captures;
 import io.github.eealba.payper.payments.v2.api.PaymentsApiClient;

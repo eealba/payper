@@ -15,7 +15,7 @@ package io.github.eealba.payper.catalog.products.v1.internal;
 
 import io.github.eealba.payper.catalog.products.v1.api.CatalogProductsApiClient;
 import io.github.eealba.payper.catalog.products.v1.api.CatalogProductsProvider;
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.PayperConfig;
 /**
  * Implementation of the CatalogProductsProvider API
  * @see CatalogProductsProvider

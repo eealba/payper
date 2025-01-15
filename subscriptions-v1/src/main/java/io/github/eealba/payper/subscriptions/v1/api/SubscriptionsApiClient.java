@@ -13,7 +13,7 @@
  */
 package io.github.eealba.payper.subscriptions.v1.api;
 
-import io.github.eealba.payper.core.PayperConfig;
+import io.github.eealba.payper.core.client.PayperConfig;
 
 /**
  * Abstract class representing Subscriptions.
@@ -24,7 +24,7 @@ import io.github.eealba.payper.core.PayperConfig;
  * The Subscriptions API client provides methods for accessing and managing billing plans and subscriptions,
  * including creating, retrieving, updating, activating, deactivating, and listing plans, as well as managing subscriptions.
  * <p>
- * Usage of this client requires proper configuration, which can be provided through the {@link io.github.eealba.payper.core.PayperConfig} class.
+ * Usage of this client requires proper configuration, which can be provided through the {@link PayperConfig} class.
  * The configuration includes necessary credentials and settings for authenticating and communicating with the PayPal API.
  * <p>
  * Example usage:
@@ -89,7 +89,7 @@ import io.github.eealba.payper.core.PayperConfig;
  *
  * @since 1.0
  * @version 1.0
- * @see io.github.eealba.payper.core.PayperConfig
+ * @see PayperConfig
  * @see io.github.eealba.payper.subscriptions.v1.api.BillingPlans
  * @see io.github.eealba.payper.subscriptions.v1.api.BillingSubscriptions
  */

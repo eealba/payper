@@ -13,24 +13,21 @@
  */
 package io.github.eealba.payper.orders.v2.internal;
 
-import io.github.eealba.payper.core.Payper;
-import io.github.eealba.payper.core.PayperRequest;
+import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.client.PayperProvider;
+import io.github.eealba.payper.core.client.PayperRequest;
+import io.github.eealba.payper.core.client.RequestSpecsFactory;
 import io.github.eealba.payper.orders.v2.api.Orders;
-import io.github.eealba.payper.orders.v2.model.ConfirmOrderRequest;
 import io.github.eealba.payper.orders.v2.model.ErrorDefault;
 import io.github.eealba.payper.orders.v2.model.Order;
-import io.github.eealba.payper.orders.v2.model.OrderAuthorizeRequest;
 import io.github.eealba.payper.orders.v2.model.OrderAuthorizeResponse;
-import io.github.eealba.payper.orders.v2.model.OrderCaptureRequest;
-import io.github.eealba.payper.orders.v2.model.OrderRequest;
-import io.github.eealba.payper.orders.v2.model.OrderTrackerRequest;
-import io.github.eealba.payper.orders.v2.model.PatchRequest;
+
 
 class OrdersImpl implements Orders {
-    private final Payper payer;
+    private final Payper payper;
 
     OrdersImpl(Payper payper) {
-        this.payer = payper;
+        this.payper = payper;
     }
 
     /**
@@ -44,7 +41,10 @@ class OrdersImpl implements Orders {
      */
     @Override
     public CreateOrder create() {
-        return new CreateOrderImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(CreateOrder.class, payper,
+                        "/v2/checkout/orders", Order.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST).build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -57,7 +57,10 @@ class OrdersImpl implements Orders {
      */
     @Override
     public GetOrder get() {
-        return new GetOrderImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(GetOrder.class, payper, "/v2/checkout/orders/{id}",
+                        Order.class, ErrorDefault.class)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -70,7 +73,10 @@ class OrdersImpl implements Orders {
      */
     @Override
     public UpdateOrder update() {
-        return new UpdateOrderImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(UpdateOrder.class, payper,
+                        "/v2/checkout/orders/{id}", Void.class, ErrorDefault.class)
+                .method(PayperRequest.Method.PATCH).build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -83,7 +89,11 @@ class OrdersImpl implements Orders {
      */
     @Override
     public ConfirmPaymentSourceOrder confirmPaymentSource() {
-        return new ConfirmPaymentSourceOrderImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(ConfirmPaymentSourceOrder.class, payper,
+                        "/v2/checkout/orders/{id}/confirm-payment-source", Order.class,ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -96,7 +106,12 @@ class OrdersImpl implements Orders {
      */
     @Override
     public AuthorizeOrder authorize() {
-        return new AuthorizeOrderImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(AuthorizeOrder.class, payper,
+                        "/v2/checkout/orders/{id}/authorize", OrderAuthorizeResponse.class,
+                ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -109,7 +124,11 @@ class OrdersImpl implements Orders {
      */
     @Override
     public CaptureOrder capture() {
-        return new CaptureOrderImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(CaptureOrder.class, payper,
+                        "/v2/checkout/orders/{id}/capture", Order.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -122,7 +141,11 @@ class OrdersImpl implements Orders {
      */
     @Override
     public TrackOrder track() {
-        return new TrackOrderImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(TrackOrder.class, payper,
+                        "/v2/checkout/orders/{id}/track", Order.class, ErrorDefault.class)
+                .method(PayperRequest.Method.POST)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     /**
@@ -135,116 +158,13 @@ class OrdersImpl implements Orders {
      */
     @Override
     public UpdateTrackingOrder updateTracking() {
-        return new UpdateTrackingOrderImpl(payer);
+        var spec = PayperProvider.provider().createSpecBuilder(UpdateTrackingOrder.class, payper,
+                        "/v2/checkout/orders/{id}/trackers/{id2}",Void.class,ErrorDefault.class)
+                .alias("withTrackingId", "withId2")
+                .method(PayperRequest.Method.PATCH)
+                .build();
+        return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
-    private static class CreateOrderImpl extends RequestSpecImpl<CreateOrder, OrderRequest, Order, ErrorDefault>
-            implements CreateOrder {
-        CreateOrderImpl(Payper payper) {
-            super(payper, "/v2/checkout/orders", Order.class, ErrorDefault.class);
-        }
 
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class GetOrderImpl extends RequestSpecImpl<GetOrder, Void, Order, ErrorDefault>
-            implements GetOrder {
-        GetOrderImpl(Payper payper) {
-            super(payper, "/v2/checkout/orders/{id}", Order.class, ErrorDefault.class);
-        }
-
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.GET;
-        }
-
-        @Override
-        public void withFields(String fields) {
-            query("fields", fields);
-        }
-    }
-
-    private static class UpdateOrderImpl extends RequestSpecImpl<UpdateOrder, PatchRequest, Void, ErrorDefault>
-            implements UpdateOrder {
-        UpdateOrderImpl(Payper payper) {
-            super(payper, "/v2/checkout/orders/{id}", Void.class, ErrorDefault.class);
-        }
-
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.PATCH;
-        }
-    }
-
-    private static class ConfirmPaymentSourceOrderImpl extends RequestSpecImpl<ConfirmPaymentSourceOrder,
-            ConfirmOrderRequest, Order, ErrorDefault>
-            implements ConfirmPaymentSourceOrder {
-        ConfirmPaymentSourceOrderImpl(Payper payper) {
-            super(payper, "/v2/checkout/orders/{id}/confirm-payment-source", Order.class, ErrorDefault.class);
-        }
-
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class AuthorizeOrderImpl extends RequestSpecImpl<AuthorizeOrder, OrderAuthorizeRequest,
-            OrderAuthorizeResponse, ErrorDefault>
-            implements AuthorizeOrder {
-        AuthorizeOrderImpl(Payper payper) {
-            super(payper, "/v2/checkout/orders/{id}/authorize", OrderAuthorizeResponse.class, ErrorDefault.class);
-        }
-
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class CaptureOrderImpl extends RequestSpecImpl<CaptureOrder, OrderCaptureRequest, Order, ErrorDefault>
-            implements CaptureOrder {
-        CaptureOrderImpl(Payper payper) {
-            super(payper, "/v2/checkout/orders/{id}/capture", Order.class, ErrorDefault.class);
-        }
-
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class TrackOrderImpl extends RequestSpecImpl<TrackOrder, OrderTrackerRequest, Order, ErrorDefault>
-            implements TrackOrder {
-        TrackOrderImpl(Payper payper) {
-            super(payper, "/v2/checkout/orders/{id}/track", Order.class, ErrorDefault.class);
-        }
-
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.POST;
-        }
-    }
-
-    private static class UpdateTrackingOrderImpl extends RequestSpecImpl<UpdateTrackingOrder, PatchRequest,
-            Void, ErrorDefault>
-            implements UpdateTrackingOrder {
-        UpdateTrackingOrderImpl(Payper payper) {
-            super(payper, "/v2/checkout/orders/{id}/trackers/{tracker_id}", Void.class, ErrorDefault.class);
-        }
-
-        @Override
-        PayperRequest.Method getMethod() {
-            return PayperRequest.Method.PATCH;
-        }
-
-        @Override
-        public UpdateTrackingOrder withTrackingId(String trackingId) {
-            pathParameter("tracker_id", trackingId);
-            return this;
-        }
-    }
 }
