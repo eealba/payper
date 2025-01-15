@@ -14,21 +14,56 @@
 package io.github.eealba.payper.core.client;
 
 
-import java.util.Map;
-
+/**
+ * Factory for creating request specifications.
+ *
+ * @since 1.0
+ * @version 1.0
+ *
+ * @see Spec
+ * @see PayperProvider
+ * @see PayperProvider#provider
+ * 
+ * @author Edgar Alba
+ */
 public abstract class RequestSpecsFactory {
     private static final RequestSpecsFactory INSTANCE = PayperProvider.provider().createRequestSpecsFactory();
-
-    public abstract <T1> T1 post(Spec<T1> spec);
-    public abstract <T1> T1 get(Spec<T1> spec);
-    public abstract <T1> T1 get(Spec<T1> spec, Map<String, String> alias);
-    public abstract <T1> T1 put(Spec<T1> spec);
-    public abstract <T1> T1 put(Spec<T1> spec, Map<String, String> alias);
-    public abstract <T1> T1 delete(Spec<T1> spec);
-    public abstract <T1> T1 delete(Spec<T1> spec, Map<String, String> alias);
-    public abstract <T1> T1 patch(Spec<T1> spec);
-    public abstract <T1> T1 patch(Spec<T1> spec, Map<String, String> alias);
-
+    /**
+     * Creates a new request specification.
+     *
+     * @param <T> the type of the request specification
+     * @return the request specification
+     */
+    public abstract <T> T post(Spec<T> spec);
+    /**
+     * Creates a new request specification.
+     *
+     * @param <T> the type of the request specification
+     * @return the request specification
+     */
+    public abstract <T> T get(Spec<T> spec);
+    /**
+     * Creates a new request specification.
+     *
+     * @param <T> the type of the request specification
+     * @return the request specification
+     */
+    public abstract <T> T put(Spec<T> spec);
+    /**
+     * Creates a new request specification.
+     *
+     * @param <T> the type of the request specification
+     * @return the request specification
+     */
+    public abstract <T> T delete(Spec<T> spec);
+    /**
+     * Creates a new request specification.
+     *
+     * @param <T> the type of the request specification
+     * @return the request specification
+     */
+    public abstract <T> T patch(Spec<T> spec);
+    
     public static RequestSpecsFactory getInstance() {
         return INSTANCE;
     }

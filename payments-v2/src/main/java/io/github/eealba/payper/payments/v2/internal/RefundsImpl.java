@@ -14,8 +14,8 @@
 package io.github.eealba.payper.payments.v2.internal;
 
 import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.client.PayperProvider;
 import io.github.eealba.payper.core.client.RequestSpecsFactory;
-import io.github.eealba.payper.core.client.Spec;
 import io.github.eealba.payper.payments.v2.api.Refunds;
 import io.github.eealba.payper.payments.v2.model.ErrorDefault;
 import io.github.eealba.payper.payments.v2.model.Refund;
@@ -37,8 +37,11 @@ class RefundsImpl implements Refunds {
      */
     @Override
     public GetRefund get() {
-        var spec = new Spec<>(GetRefund.class, payer, "/v2/payments/refunds/{id}",
-                Refund.class, ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(GetRefund.class, payer,
+                "/v2/payments/refunds/{id}")
+                .entityClass(Refund.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().get(spec);
     }
 

@@ -83,7 +83,7 @@ class PayperImpl extends Payper {
             return getToken().thenCompose(token ->
                     webClient.sendAsync(Mapper.mapRequest(config, request, token), Response.BodyHandlers.ofBytes())
                             .thenApply(res -> new PayperResponseImpl(res.body(), res.statusCode(),
-                                    res.charset())));
+                                    res.charset(), res.headers().contentType().orElse(null))));
         }
 
         /**
@@ -93,14 +93,16 @@ class PayperImpl extends Payper {
             private Charset charset;
             private byte[] data;
             private int statusCode;
+            private String contentType;
 
             PayperResponseImpl() {
             }
 
-            PayperResponseImpl(byte[] data, int statusCode, Charset charset) {
+            PayperResponseImpl(byte[] data, int statusCode, Charset charset, String contentType) {
                 this.data = data;
                 this.statusCode = statusCode;
                 this.charset = charset;
+                this.contentType = contentType;
             }
 
             private void call(boolean discard) {
@@ -115,6 +117,7 @@ class PayperImpl extends Payper {
                         statusCode = res.statusCode();
                         data = res.body();
                         charset = res.charset();
+                        contentType = res.headers().contentType().orElse(null);
                     }
                 }
             }

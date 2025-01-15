@@ -95,4 +95,7 @@ public abstract class PayperProvider {
      * @return a RequestSpecsFactory object
      */
     public abstract RequestSpecsFactory createRequestSpecsFactory();
+
+    public abstract <T> Spec.Builder<T> createSpecBuilder(Class<T> clazz, Payper payper, String path);
+
 }

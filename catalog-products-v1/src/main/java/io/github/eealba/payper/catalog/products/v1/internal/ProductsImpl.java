@@ -5,8 +5,8 @@ import io.github.eealba.payper.catalog.products.v1.model.ErrorDefault;
 import io.github.eealba.payper.catalog.products.v1.model.Product;
 import io.github.eealba.payper.catalog.products.v1.model.ProductCollection;
 import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.client.PayperProvider;
 import io.github.eealba.payper.core.client.RequestSpecsFactory;
-import io.github.eealba.payper.core.client.Spec;
 
 class ProductsImpl implements Products {
     private final Payper payper;
@@ -22,8 +22,11 @@ class ProductsImpl implements Products {
      */
     @Override
     public CreateProduct create() {
-        var spec = new Spec<>(CreateProduct.class, payper, "/v1/catalogs/products",
-                Product.class, ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(CreateProduct.class, payper,
+                        "/v1/catalogs/products")
+                .entityClass(Product.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().post(spec);
 
     }
@@ -35,8 +38,11 @@ class ProductsImpl implements Products {
      */
     @Override
     public ListProducts list() {
-        var spec = new Spec<>(ListProducts.class, payper, "/v1/catalogs/products",
-                ProductCollection.class, ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(ListProducts.class, payper,
+                        "/v1/catalogs/products")
+                .entityClass(ProductCollection.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().get(spec);
     }
 
@@ -47,8 +53,11 @@ class ProductsImpl implements Products {
      */
     @Override
     public GetProduct get() {
-        var spec = new Spec<>(GetProduct.class, payper, "/v1/catalogs/products/{id}",
-                Product.class, ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(GetProduct.class, payper,
+                        "/v1/catalogs/products/{id}")
+                .entityClass(Product.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().get(spec);
     }
 
@@ -59,8 +68,11 @@ class ProductsImpl implements Products {
      */
     @Override
     public UpdateProduct update() {
-        var spec = new Spec<>(UpdateProduct.class, payper, "/v1/catalogs/products/{id}",
-                Void.class, ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(UpdateProduct.class, payper,
+                        "/v1/catalogs/products/{id}")
+                .entityClass(Void.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().patch(spec);
     }
 

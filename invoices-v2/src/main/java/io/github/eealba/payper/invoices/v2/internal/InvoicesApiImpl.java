@@ -14,8 +14,8 @@
 package io.github.eealba.payper.invoices.v2.internal;
 
 import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.client.PayperProvider;
 import io.github.eealba.payper.core.client.RequestSpecsFactory;
-import io.github.eealba.payper.core.client.Spec;
 import io.github.eealba.payper.invoices.v2.api.InvoicesApi;
 import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
 import io.github.eealba.payper.invoices.v2.model.Invoice;
@@ -25,7 +25,6 @@ import io.github.eealba.payper.invoices.v2.model.PaymentReference;
 import io.github.eealba.payper.invoices.v2.model.QR;
 import io.github.eealba.payper.invoices.v2.model.RefundReference;
 
-import java.util.HashMap;
 
 class InvoicesApiImpl implements InvoicesApi {
     private final Payper payper;
@@ -37,39 +36,54 @@ class InvoicesApiImpl implements InvoicesApi {
         this.refundsInvoices = new RefundsInvoicesImpl(payper);
         this.paymentsInvoices = new PaymentsInvoicesImpl(payper);
     }
+
     @Override
     public CreateInvoice create() {
-        var spec = new Spec<>(CreateInvoice.class, payper,"/v2/invoicing/invoices", Invoice.class,
-                ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(CreateInvoice.class, payper,
+                        "/v2/invoicing/invoices")
+                .entityClass(Invoice.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().post(spec);
     }
 
     @Override
     public ListInvoices list() {
-        var spec = new Spec<>(ListInvoices.class, payper,"/v2/invoicing/invoices", Invoices.class,
-                ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(ListInvoices.class, payper,
+                        "/v2/invoicing/invoices")
+                .entityClass(Invoices.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().get(spec);
     }
 
     @Override
     public SendInvoice send() {
-        var spec = new Spec<>(SendInvoice.class, payper,"/v2/invoicing/invoices/{id}/send", LinkDescription.class,
-                ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(SendInvoice.class, payper,
+                        "/v2/invoicing/invoices/{id}/send")
+                .entityClass(LinkDescription.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().post(spec);
     }
 
     @Override
     public RemindInvoice remind() {
-        var spec = new Spec<>(RemindInvoice.class, payper,"/v2/invoicing/invoices/{id}/remind", Void.class,
-                ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(RemindInvoice.class, payper,
+                        "/v2/invoicing/invoices/{id}/remind")
+                .entityClass(Void.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().post(spec);
-
     }
 
     @Override
     public CancelInvoice cancel() {
-        var spec = new Spec<>(CancelInvoice.class, payper,"/v2/invoicing/invoices/{id}/cancel", Void.class,
-                ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(CancelInvoice.class, payper,
+                        "/v2/invoicing/invoices/{id}/cancel")
+                .entityClass(Void.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().post(spec);
     }
 
@@ -85,80 +99,90 @@ class InvoicesApiImpl implements InvoicesApi {
 
     @Override
     public GenerateQRCode generateQRCode() {
-        var spec = new Spec<>(GenerateQRCode.class, payper,"/v2/invoicing/invoices/{id}/generate_gr_code",
-                QR.class, ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(GenerateQRCode.class, payper,
+                        "/v2/invoicing/invoices/{id}/generate-qr-code")
+                .entityClass(QR.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().post(spec);
     }
 
     @Override
     public UpdateInvoice update() {
-        var spec = new Spec<>(UpdateInvoice.class, payper,"/v2/invoicing/invoices/{id}", Invoice.class,
-                ErrorDefault.class);
-        var map = new HashMap<String, String>();
-        map.put("send_to_recipient", "query,send_to_recipient");
-        map.put("send_to_invoicer", "query,send_to_invoicer");
-        return RequestSpecsFactory.getInstance().put(spec, map);
+        var spec = PayperProvider.provider().createSpecBuilder(UpdateInvoice.class, payper,
+                        "/v2/invoicing/invoices/{id}")
+                .entityClass(Invoice.class)
+                .errorClass(ErrorDefault.class)
+                .alias("send_to_recipient", "query,send_to_recipient")
+                .alias("send_to_invoicer", "query,send_to_invoicer")
+                .build();
+        return RequestSpecsFactory.getInstance().put(spec);
     }
 
     @Override
     public DeleteInvoice delete() {
-        var spec = new Spec<>(DeleteInvoice.class, payper,"/v2/invoicing/invoices/{id}", Void.class,
-                ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(DeleteInvoice.class, payper,
+                        "/v2/invoicing/invoices/{id}")
+                .entityClass(Void.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().delete(spec);
     }
 
     @Override
     public GetInvoice get() {
-        var spec = new Spec<>(GetInvoice.class, payper,"/v2/invoicing/invoices/{id}", Invoice.class,
-                ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(GetInvoice.class, payper, "/v2/invoicing/invoices/{id}")
+                .entityClass(Invoice.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().get(spec);
     }
 
-    private static class PaymentsInvoicesImpl implements PaymentsInvoices {
-        private final Payper payper;
-
-        PaymentsInvoicesImpl(Payper payper) {
-            this.payper = payper;
-        }
+    private record PaymentsInvoicesImpl(Payper payper) implements PaymentsInvoices {
 
         @Override
-        public CreatePayment create() {
-            var spec = new Spec<>(CreatePayment.class, payper,"/v2/invoicing/invoices/{id}/payments",
-                    PaymentReference.class, ErrorDefault.class);
-            return RequestSpecsFactory.getInstance().post(spec);
+            public CreatePayment create() {
+                var spec = PayperProvider.provider().createSpecBuilder(CreatePayment.class, payper,
+                                "/v2/invoicing/invoices/{id}/payments")
+                        .entityClass(PaymentReference.class)
+                        .errorClass(ErrorDefault.class)
+                        .build();
+                return RequestSpecsFactory.getInstance().post(spec);
+            }
+
+            @Override
+            public DeletePayment delete() {
+                var spec = PayperProvider.provider().createSpecBuilder(DeletePayment.class, payper,
+                                "/v2/invoicing/invoices/{id}/payments/{id2}")
+                        .entityClass(Void.class)
+                        .errorClass(ErrorDefault.class)
+                        .alias("withTransactionId", "withId2")
+                        .build();
+                return RequestSpecsFactory.getInstance().delete(spec);
+            }
         }
+
+    private record RefundsInvoicesImpl(Payper payper) implements RefundsInvoices {
 
         @Override
-        public DeletePayment delete() {
-            var spec = new Spec<>(DeletePayment.class, payper,"/v2/invoicing/invoices/{id}/payments/{id2}",
-                    Void.class, ErrorDefault.class);
-            var map = new HashMap<String, String>();
-            map.put("withTransactionId", "id2");
-            return RequestSpecsFactory.getInstance().delete(spec, map);
-        }
-    }
+            public CreateRefund create() {
+                var spec = PayperProvider.provider().createSpecBuilder(CreateRefund.class, payper,
+                                "/v2/invoicing/invoices/{id}/refunds")
+                        .entityClass(RefundReference.class)
+                        .errorClass(ErrorDefault.class)
+                        .build();
+                return RequestSpecsFactory.getInstance().post(spec);
+            }
 
-    private static class RefundsInvoicesImpl implements RefundsInvoices {
-        private final Payper payper;
-
-        RefundsInvoicesImpl(Payper payper) {
-            this.payper = payper;
+            @Override
+            public DeleteRefund delete() {
+                var spec = PayperProvider.provider().createSpecBuilder(DeleteRefund.class, payper,
+                                "/v2/invoicing/invoices/{id}/refunds/{id2}")
+                        .entityClass(Void.class)
+                        .errorClass(ErrorDefault.class)
+                        .alias("withTransactionId", "withId2")
+                        .build();
+                return RequestSpecsFactory.getInstance().delete(spec);
+            }
         }
-
-        @Override
-        public CreateRefund create() {
-            var spec = new Spec<>(CreateRefund.class, payper,"/v2/invoicing/invoices/{id}/refunds",
-                    RefundReference.class, ErrorDefault.class);
-            return RequestSpecsFactory.getInstance().post(spec);
-        }
-
-        @Override
-        public DeleteRefund delete() {
-            var spec = new Spec<>(DeleteRefund.class, payper,"/v2/invoicing/invoices/{id}/refunds/{id2}",
-                    Void.class, ErrorDefault.class);
-            var map = new HashMap<String, String>();
-            map.put("withTransactionId", "id2");
-            return RequestSpecsFactory.getInstance().delete(spec, map);
-        }
-    }
 }

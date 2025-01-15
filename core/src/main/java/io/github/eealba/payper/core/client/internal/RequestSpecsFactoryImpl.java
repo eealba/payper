@@ -16,48 +16,37 @@ class RequestSpecsFactoryImpl extends RequestSpecsFactory {
     @Override
     public <T1> T1 post(Spec<T1> spec) {
         var obj = new RequestSpecImpl.PostRequestSpecImpl<>(spec);
-        var proxyObj = ProxyImpl.newInstance(obj, spec);
+        var proxyObj = newProxyInstance(obj, spec);
         return castObject(proxyObj);
     }
 
     @Override
     public <T1> T1 get(Spec<T1> spec) {
         var obj = new RequestSpecImpl.GetRequestSpecImpl<>(spec);
-        var proxyObj = ProxyImpl.newInstance(obj, spec);
-        return castObject(proxyObj);
-    }
-    @Override
-    public <T1> T1 get(Spec<T1> spec, Map<String, String> alias) {
-        var obj = new RequestSpecImpl.GetRequestSpecImpl<>(spec);
-        var proxyObj = ProxyImpl.newInstance(obj, spec, alias);
+        var proxyObj = newProxyInstance(obj, spec);
         return castObject(proxyObj);
     }
 
     @Override
     public <T1> T1 put(Spec<T1> spec) {
         var obj = new RequestSpecImpl.PutRequestSpecImpl<>(spec);
-        var proxyObj = ProxyImpl.newInstance(obj, spec);
+        var proxyObj = newProxyInstance(obj, spec);
         return castObject(proxyObj);
     }
+
 
     @Override
     public <T1> T1 delete(Spec<T1> spec) {
         var obj = new RequestSpecImpl.DeleteRequestSpecImpl<>(spec);
-        var proxyObj = ProxyImpl.newInstance(obj, spec);
+        var proxyObj = newProxyInstance(obj, spec);
         return castObject(proxyObj);
     }
+
 
     @Override
     public <T1> T1 patch(Spec<T1> spec) {
         var obj = new RequestSpecImpl.PatchRequestSpecImpl<>(spec);
-        var proxyObj = ProxyImpl.newInstance(obj, spec);
-        return castObject(proxyObj);
-    }
-
-    @Override
-    public <T1> T1 patch(Spec<T1> spec, Map<String, String> alias) {
-        var obj = new RequestSpecImpl.PatchRequestSpecImpl<>(spec);
-        var proxyObj = ProxyImpl.newInstance(obj, spec, alias);
+        var proxyObj = newProxyInstance(obj, spec);
         return castObject(proxyObj);
     }
 
@@ -66,30 +55,17 @@ class RequestSpecsFactoryImpl extends RequestSpecsFactory {
         return (T1) obj;
     }
 
-    private static class ProxyImpl implements java.lang.reflect.InvocationHandler {
+    private static Object newProxyInstance(Object obj, Spec<?> spec) {
+        return Proxy.newProxyInstance(
+                spec.clazz().getClassLoader(),
+                new Class[]{spec.clazz()},
+                new ProxyImpl(obj, spec.alias().orElse(Collections.emptyMap()))
+        );
+    }
 
-        private final Object obj;
-        private final Map<String, String> alias;
-
-        private static Object newInstance(Object obj, Spec<?> spec) {
-            return newInstance(obj, spec, Collections.emptyMap());
-        }
-
-        public static <T1> Object newInstance(Object obj, Spec<T1> spec, Map<String, String> alias) {
-            return Proxy.newProxyInstance(
-                    spec.clazz().getClassLoader(),
-                    new Class[]{spec.clazz()},
-                    new ProxyImpl(obj, alias));
-        }
-
-        private ProxyImpl(Object obj, Map<String, String> alias) {
-            this.obj = obj;
-            this.alias = alias;
-        }
-
-
+    private record ProxyImpl(Object obj, Map<String, String> alias) implements java.lang.reflect.InvocationHandler {
         @Override
-        public Object invoke(Object proxy, java.lang.reflect.Method m, Object[] args)
+        public Object invoke(Object proxy, Method m, Object[] args)
                 throws Throwable {
             try {
                 return invoke2(proxy, m, args);
@@ -114,7 +90,7 @@ class RequestSpecsFactoryImpl extends RequestSpecsFactory {
                         for (int i = 0; i < args.length; i++) {
                             types[i] = args[i].getClass();
                         }
-                        m = obj.getClass().getMethod(values[0],types);
+                        m = obj.getClass().getMethod(values[0], types);
                     }
                 }
             }
@@ -127,10 +103,7 @@ class RequestSpecsFactoryImpl extends RequestSpecsFactory {
 
         private static Object[] getArguments(Object[] args, String[] values) {
             Object[] params = new Object[args.length + 1];
-            //copy the args
-            for (int i = 0; i < args.length; i++) {
-                params[i+1] = args[i];
-            }
+            System.arraycopy(args, 0, params, 1, args.length);
             params[0] = values[1];
             args = params;
             return args;

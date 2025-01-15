@@ -8,6 +8,7 @@ import io.github.eealba.payper.invoices.v2.api.InvoicingApiClient;
 import io.github.eealba.payper.invoices.v2.model.Invoice;
 import io.github.eealba.payper.invoices.v2.model.Notification;
 import io.github.eealba.payper.invoices.v2.model.PaymentDetail;
+import io.github.eealba.payper.invoices.v2.model.QrConfig;
 import io.github.eealba.payper.invoices.v2.model.RefundDetail;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.time.Instant;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.delete;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
@@ -194,7 +196,7 @@ public class InvoicesApiTest {
 
     @Test
     void test_delete_payment() {
-        stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/payments/123")
+        stubFor(delete("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/payments/123")
                 .willReturn(aResponse().withStatus(204)));
 
         var result = invoicesApi.payments().delete()
@@ -231,7 +233,7 @@ public class InvoicesApiTest {
 
     @Test
     void test_delete_refund() {
-        stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/refunds/1234")
+        stubFor(delete("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/refunds/1234")
                 .willReturn(aResponse().withStatus(204)));
 
         var result = invoicesApi.refunds().delete()
@@ -242,5 +244,33 @@ public class InvoicesApiTest {
 
         assertNotNull(result);
         assertEquals(204, result.statusCode());
+    }
+
+    @Test
+    void test_generate_qr_code() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "qr_config.json");
+        var response = readResource(EXAMPLES + "qr.txt");
+
+        stubFor(post("/v2/invoicing/invoices/INV2-GWNR-QBAW-496B-4Y5P/generate-qr-code")
+                .withRequestBody(equalToJson(jsonRequest))
+                .willReturn(
+                        aResponse()
+                                .withHeader("Content-Type",
+                                        "multipart/form-data; boundary=670d6104-e9dd-40fa-808b-9c3577848bed")
+                                .withStatus(200)
+                                .withBody(response)
+
+                ));
+        var body = Json.create().fromJson(jsonRequest, QrConfig.class);
+
+        var result = invoicesApi.generateQRCode()
+                .withId("INV2-GWNR-QBAW-496B-4Y5P")
+                .withBody(body)
+                .retrieve()
+                .toResponse();
+
+        assertNotNull(result);
+        assertEquals(200, result.statusCode());
+        assertEquals(response, result.toEntity().value());
     }
 }

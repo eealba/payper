@@ -229,7 +229,8 @@ abstract class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
     @SuppressWarnings("unchecked")
     static class PostRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
         PostRequestSpecImpl(Spec<T1> spec) {
-            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass(), (Class<Object>) spec.errorClass());
+            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass().orElse(null),
+                    (Class<Object>) spec.errorClass().orElse(null));
         }
 
         @Override
@@ -241,7 +242,8 @@ abstract class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
     @SuppressWarnings("unchecked")
     static class GetRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
         GetRequestSpecImpl(Spec<T1> spec) {
-            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass(), (Class<Object>) spec.errorClass());
+            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass().orElse(null),
+                    (Class<Object>) spec.errorClass().orElse(null));
         }
 
         @Override
@@ -253,7 +255,8 @@ abstract class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
     @SuppressWarnings("unchecked")
     static class PutRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
         PutRequestSpecImpl(Spec<T1> spec) {
-            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass(), (Class<Object>) spec.errorClass());
+            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass().orElse(null),
+                    (Class<Object>) spec.errorClass().orElse(null));
         }
 
         @Override
@@ -265,7 +268,8 @@ abstract class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
     @SuppressWarnings("unchecked")
     static class DeleteRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
         DeleteRequestSpecImpl(Spec<T1> spec) {
-            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass(), (Class<Object>) spec.errorClass());
+            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass().orElse(null),
+                    (Class<Object>) spec.errorClass().orElse(null));
         }
 
         @Override
@@ -277,7 +281,8 @@ abstract class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
     @SuppressWarnings("unchecked")
     static class PatchRequestSpecImpl<T1> extends RequestSpecImpl<T1, Object,  Object, Object> {
         PatchRequestSpecImpl(Spec<T1> spec) {
-            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass(), (Class<Object>) spec.errorClass());
+            super(spec.payper(), spec.path(), (Class<Object>) spec.entityClass().orElse(null),
+                    (Class<Object>) spec.errorClass().orElse(null));
         }
 
         @Override

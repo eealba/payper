@@ -72,4 +72,8 @@ public final class Headers {
         }
         return array;
     }
+
+    public Optional<String> contentType() {
+        return getValue("Content-Type");
+    }
 }

@@ -14,8 +14,8 @@
 package io.github.eealba.payper.invoices.v2.internal;
 
 import io.github.eealba.payper.core.client.Payper;
+import io.github.eealba.payper.core.client.PayperProvider;
 import io.github.eealba.payper.core.client.RequestSpecsFactory;
-import io.github.eealba.payper.core.client.Spec;
 import io.github.eealba.payper.invoices.v2.api.TemplatesApi;
 import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
 import io.github.eealba.payper.invoices.v2.model.Template;
@@ -35,8 +35,11 @@ class TemplatesApiImpl implements TemplatesApi {
      */
     @Override
     public ListTemplates list() {
-        var spec = new Spec<>(ListTemplates.class, payper, "v2/invoicing/templates",
-                Templates.class, ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(ListTemplates.class, payper,
+                        "/v2/invoicing/templates")
+                .entityClass(Templates.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().get(spec);
     }
 
@@ -47,8 +50,11 @@ class TemplatesApiImpl implements TemplatesApi {
      */
     @Override
     public CreateTemplate create() {
-        var spec = new Spec<>(CreateTemplate.class, payper, "v2/invoicing/templates",
-                Template.class, ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(CreateTemplate.class, payper,
+                        "/v2/invoicing/templates")
+                .entityClass(Template.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().post(spec);
     }
 
@@ -59,8 +65,11 @@ class TemplatesApiImpl implements TemplatesApi {
      */
     @Override
     public UpdateTemplate update() {
-        var spec = new Spec<>(UpdateTemplate.class, payper, "v2/invoicing/templates",
-                Template.class, ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(UpdateTemplate.class, payper,
+                        "/v2/invoicing/templates")
+                .entityClass(Template.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().put(spec);
     }
 
@@ -71,8 +80,11 @@ class TemplatesApiImpl implements TemplatesApi {
      */
     @Override
     public DeleteTemplate delete() {
-        var spec = new Spec<>(DeleteTemplate.class, payper, "v2/invoicing/templates",
-                Void.class, ErrorDefault.class);
+        var spec = PayperProvider.provider().createSpecBuilder(DeleteTemplate.class, payper,
+                        "/v2/invoicing/templates")
+                .entityClass(Void.class)
+                .errorClass(ErrorDefault.class)
+                .build();
         return RequestSpecsFactory.getInstance().delete(spec);
     }
 
