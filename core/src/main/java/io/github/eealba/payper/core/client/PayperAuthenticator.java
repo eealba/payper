@@ -15,7 +15,14 @@ package io.github.eealba.payper.core.client;
 
 import io.github.eealba.payper.core.exceptions.PayperException;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.function.Supplier;
 
 /**
@@ -140,6 +147,41 @@ public interface PayperAuthenticator {
         public static PayperAuthenticator ofSandBox(Supplier<char[]> clientId, Supplier<char[]> clientSecret) {
             return of(() -> API_SANDBOX_PAYPAL_COM, clientId, clientSecret);
         }
+        /**
+         * Creates a sandbox PayperAuthenticator with the specified credential file.
+         *
+         * @param file the credential file
+         * @return the PayperAuthenticator
+         * @throws IOException if an I/O error occurs
+         */
+        public static PayperAuthenticator ofSandBox(File file) throws IOException {
+            return ofSandBox(new FileInputStream(file));
+        }
+        /**
+         * Creates a sandbox PayperAuthenticator with the specified path to the credential file.
+         *
+         * @param credentialFile the credential file
+         * @return the PayperAuthenticator
+         * @throws IOException if an I/O error occurs
+         */
+        public static PayperAuthenticator ofSandBox(Path credentialFile) throws IOException {
+            return ofSandBox(Files.newInputStream(credentialFile));
+        }
+
+        /**
+         * Creates a sandbox PayperAuthenticator with the specified input stream.
+         *
+         * @param inputStream the input stream
+         * @return the PayperAuthenticator
+         * @throws IOException if an I/O error occurs
+         */
+        public static PayperAuthenticator ofSandBox(InputStream inputStream) throws IOException {
+            var props = new Properties();
+            props.load(inputStream);
+            var clientId = props.getProperty("PAYPAL-CLIENT-ID").toCharArray();
+            var clientSecret = props.getProperty("PAYPAL-CLIENT-SECRET").toCharArray();
+            return of(() -> API_SANDBOX_PAYPAL_COM, () -> clientId, () -> clientSecret);
+        }
 
         /**
          * Creates a sandbox PayperAuthenticator with default client ID and client secret.
@@ -168,6 +210,41 @@ public interface PayperAuthenticator {
          */
         public static PayperAuthenticator ofLive() {
             return ofLive(CLIENT_ID, CLIENT_SECRET);
+        }
+        /**
+         * Creates a live PayperAuthenticator with the specified credential file.
+         *
+         * @param file the credential file
+         * @return the PayperAuthenticator
+         * @throws IOException if an I/O error occurs
+         */
+        public static PayperAuthenticator ofLive(File file) throws IOException {
+            return ofLive(new FileInputStream(file));
+        }
+        /**
+         * Creates a live PayperAuthenticator with the specified path to the credential file.
+         *
+         * @param credentialFile the credential file
+         * @return the PayperAuthenticator
+         * @throws IOException if an I/O error occurs
+         */
+        public static PayperAuthenticator ofLive(Path credentialFile) throws IOException {
+            return ofLive(Files.newInputStream(credentialFile));
+        }
+
+        /**
+         * Creates a live PayperAuthenticator with the specified input stream.
+         *
+         * @param inputStream the input stream
+         * @return the PayperAuthenticator
+         * @throws IOException if an I/O error occurs
+         */
+        public static PayperAuthenticator ofLive(InputStream inputStream) throws IOException {
+            var props = new Properties();
+            props.load(inputStream);
+            var clientId = props.getProperty("PAYPAL-CLIENT-ID").toCharArray();
+            var clientSecret = props.getProperty("PAYPAL-CLIENT-SECRET").toCharArray();
+            return of(() -> API_PAYPAL_COM, () -> clientId, () -> clientSecret);
         }
 
         /**

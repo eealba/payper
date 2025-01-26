@@ -19,6 +19,7 @@ import io.github.eealba.payper.core.client.ResponseSpec;
 import io.github.eealba.payper.core.client.Spec;
 
 import java.time.Instant;
+import java.util.Collections;
 
 /**
  * Abstract class representing a request specification.
@@ -54,6 +55,7 @@ final class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
     RequestSpecImpl(Spec<T, R1, R2> spec) {
         this.spec = spec;
         requestBuilder.path(spec.path());
+        spec.headers().orElse(Collections.emptyMap()).forEach(requestBuilder::header);
         var method = spec.getMethod();
         switch (method) {
             case GET -> requestBuilder.GET();

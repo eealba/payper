@@ -127,6 +127,7 @@ class OrdersImpl implements Orders {
         var spec = PayperProvider.provider().createSpecBuilder(CaptureOrder.class, payper,
                         "/v2/checkout/orders/{id}/capture", Order.class, ErrorDefault.class)
                 .method(PayperRequest.Method.POST)
+                .header("Content-Type", "application/json")
                 .build();
         return RequestSpecsFactory.getInstance().requestSpec(spec);
     }

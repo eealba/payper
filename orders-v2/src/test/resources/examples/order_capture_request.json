@@ -18,7 +18,7 @@
         "admin_area_2": "string",
         "admin_area_1": "string",
         "postal_code": "string",
-        "country_code": "GC",
+        "country_code": "GB",
         "address_details": {
           "street_number": "string",
           "street_name": "string",
@@ -106,7 +106,7 @@
         "admin_area_2": "string",
         "admin_area_1": "string",
         "postal_code": "string",
-        "country_code": "FD",
+        "country_code": "GB",
         "address_details": {
           "street_number": "string",
           "street_name": "string",
@@ -150,7 +150,7 @@
                 "label": "string",
                 "type": "SHIPPING",
                 "amount": {
-                  "currency_code": "str",
+                  "currency_code": "USD",
                   "value": "746309297980231086778627"
                 },
                 "selected": true
@@ -196,7 +196,7 @@
     },
     "bancontact": {
       "name": "string",
-      "country_code": "FS",
+      "country_code": "GB",
       "experience_context": {
         "brand_name": "name",
         "locale": "mp",
@@ -208,7 +208,7 @@
     },
     "blik": {
       "name": "string",
-      "country_code": "HI",
+      "country_code": "GB",
       "email": "email@email.com",
       "experience_context": {
         "brand_name": "name",
@@ -231,7 +231,7 @@
     },
     "eps": {
       "name": "string",
-      "country_code": "YP",
+      "country_code": "GB",
       "experience_context": {
         "brand_name": "name",
         "locale": "pq-Izrx",
@@ -242,7 +242,7 @@
     },
     "giropay": {
       "name": "string",
-      "country_code": "YR",
+      "country_code": "GB",
       "experience_context": {
         "brand_name": "c",
         "locale": "kg",
@@ -253,7 +253,7 @@
     },
     "ideal": {
       "name": "string",
-      "country_code": "QO",
+      "country_code": "GB",
       "bic": "k5DhllFTEai",
       "experience_context": {
         "brand_name": "d",
@@ -266,7 +266,7 @@
     },
     "mybank": {
       "name": "string",
-      "country_code": "PJ",
+      "country_code": "GB",
       "experience_context": {
         "brand_name": "e",
         "locale": "gx-Lwvw",
@@ -278,7 +278,7 @@
     "p24": {
       "name": "string",
       "email": "email@email.com",
-      "country_code": "AB",
+      "country_code": "GB",
       "experience_context": {
         "brand_name": "f",
         "locale": "pl-Ymmg",
@@ -289,7 +289,7 @@
     },
     "sofort": {
       "name": "string",
-      "country_code": "EV",
+      "country_code": "GB",
       "experience_context": {
         "brand_name": "f",
         "locale": "bh",
@@ -300,7 +300,7 @@
     },
     "trustly": {
       "name": "string",
-      "country_code": "GC",
+      "country_code": "GB",
       "experience_context": {
         "brand_name": "ge",
         "locale": "zs",

@@ -62,6 +62,13 @@ public interface Spec<T1, R1, R2> {
     PayperRequest.Method getMethod();
 
     /**
+     * Gets the headers mapping for the request.
+     *
+     * @return the headers mapping
+     */
+    Optional<Map<String, String>> headers();
+
+    /**
      * Builder interface for constructing instances of {@link Spec}.
      *
      * @param <T1> the type of the request specification
@@ -108,5 +115,15 @@ public interface Spec<T1, R1, R2> {
          * @return the built {@link Spec} instance
          */
         Spec<T1, R1, R2> build();
+
+
+        /**
+         * Adds a header to the request.
+         *
+         * @param name  the name of the header
+         * @param value the value of the header
+         * @return the builder
+         */
+        Builder<T1, R1, R2>  header(String name, String value);
     }
 }

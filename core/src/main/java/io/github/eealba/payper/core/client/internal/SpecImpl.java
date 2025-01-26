@@ -46,6 +46,7 @@ class SpecImpl<T1, R1, R2> implements Spec<T1, R1, R2> {
     private final Class<R2> errorClass;
     private final Class<T1> clazz;
     private final Map<String, String> alias;
+    private final Map<String, String> headers;
     private final PayperResponse.BodyHandler<R1> entityHandler;
     private final PayperResponse.BodyHandler<R2> errorHandler;
     private final PayperRequest.Method method;
@@ -56,7 +57,8 @@ class SpecImpl<T1, R1, R2> implements Spec<T1, R1, R2> {
         this.entityClass = builder.entityClass;
         this.errorClass = builder.errorClass;
         this.clazz = builder.clazz;
-        this.alias = builder.alias;
+        this.alias = Map.copyOf(builder.alias);
+        this.headers = Map.copyOf(builder.headers);
         this.entityHandler = Optional.ofNullable(builder.entityHandler)
                 .orElseGet(() -> PayperResponse.BodyHandlers.ofClass(entityClass));
         this.errorHandler = Optional.ofNullable(builder.errorHandler)
@@ -119,6 +121,13 @@ class SpecImpl<T1, R1, R2> implements Spec<T1, R1, R2> {
         return method;
     }
 
+    @Override
+    public Optional<Map<String, String>> headers() {
+        return Optional.ofNullable(headers);
+    }
+
+
+
     static class SpecBuilder<T1, R1, R2> implements Spec.Builder<T1, R1, R2> {
         private final Class<T1> clazz;
         private final Payper payper;
@@ -126,6 +135,7 @@ class SpecImpl<T1, R1, R2> implements Spec<T1, R1, R2> {
         private final Class<R1> entityClass;
         private final Class<R2> errorClass;
         private final Map<String, String> alias = new HashMap<>();
+        private final Map<String, String> headers = new HashMap<>();
         public PayperResponse.BodyHandler<R1> entityHandler;
         public PayperResponse.BodyHandler<R2> errorHandler;
         public PayperRequest.Method method = PayperRequest.Method.GET;
@@ -197,6 +207,19 @@ class SpecImpl<T1, R1, R2> implements Spec<T1, R1, R2> {
         @Override
         public Spec<T1, R1, R2> build() {
             return new SpecImpl<>(this);
+        }
+
+        /**
+         * Adds a header to the request.
+         *
+         * @param name  the name of the header
+         * @param value the value of the header
+         * @return the builder
+         */
+        @Override
+        public Builder<T1, R1, R2> header(String name, String value) {
+            headers.put(name, value);
+            return this;
         }
     }
 }

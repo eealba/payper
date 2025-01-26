@@ -149,7 +149,7 @@
     },
     "blik": {
       "name": "string",
-      "country_code": "ZO",
+      "country_code": "GB",
       "email": "joe@doe.com",
       "one_click": {
         "consumer_reference": "ax123"
@@ -157,12 +157,12 @@
     },
     "eps": {
       "name": "string",
-      "country_code": "FY",
+      "country_code": "GB",
       "bic": "xxuIEF8Our5"
     },
     "giropay": {
       "name": "string",
-      "country_code": "OZ",
+      "country_code": "GB",
       "bic": "LO4gixTS"
     },
     "ideal": {
@@ -174,7 +174,7 @@
     },
     "mybank": {
       "name": "string",
-      "country_code": "FS",
+      "country_code": "GB",
       "bic": "-x3DoYzkaSh",
       "iban_last_chars": "vIO9"
     },
@@ -188,7 +188,7 @@
     },
     "sofort": {
       "name": "string",
-      "country_code": "EN",
+      "country_code": "GB",
       "bic": "Nw8EVQxt",
       "iban_last_chars": "S3JN"
     },
@@ -484,7 +484,7 @@
               "admin_area_2": "string",
               "admin_area_1": "string",
               "postal_code": "string",
-              "country_code": "OD",
+              "country_code": "GB",
               "address_details": {
                 "street_number": "string",
                 "street_name": "string",
@@ -617,8 +617,8 @@
                 "value": "36371225928739321966046385653729"
               },
               "exchange_rate": {
-                "source_currency": "str",
-                "target_currency": "str",
+                "source_currency": "USD",
+                "target_currency": "USD",
                 "value": "string"
               },
               "platform_fees": [
@@ -711,8 +711,8 @@
                     "value": "-.01"
                   },
                   "exchange_rate": {
-                    "source_currency": "str",
-                    "target_currency": "str",
+                    "source_currency": "USD",
+                    "target_currency": "USD",
                     "value": "string"
                   }
                 }
