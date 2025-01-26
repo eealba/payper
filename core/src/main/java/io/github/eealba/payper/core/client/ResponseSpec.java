@@ -135,5 +135,38 @@ public interface ResponseSpec<T, T2> {
          * @return the Optional error entity
          */
         Optional<T2> toOptionalErrorEntity();
+        /**
+         * Checks if the response is an error.
+         *
+         * @return true if the response is an error, false otherwise
+         */
+        default boolean isError(){
+            return statusCode() >= 400;
+        }
+        /**
+         * Checks if the response is successful.
+         *
+         * @return true if the response is successful, false otherwise
+         */
+        default boolean isSuccessful(){
+            return statusCode() >= 200 && statusCode() < 300;
+        }
+        /**
+         * Checks if the response is a client error.
+         *
+         * @return true if the response is a client error, false otherwise
+         */
+        default boolean isClientError(){
+            return statusCode() >= 400 && statusCode() < 500;
+        }
+        /**
+         * Checks if the response is a server error.
+         *
+         * @return true if the response is a server error, false otherwise
+         */
+        default boolean isServerError(){
+            return statusCode() >= 500;
+        }
+
     }
 }
