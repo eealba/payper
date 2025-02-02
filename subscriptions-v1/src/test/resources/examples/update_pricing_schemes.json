@@ -1,0 +1,30 @@
+{
+  "pricing_schemes": [
+    {
+      "billing_cycle_sequence": 1,
+      "pricing_scheme": {
+        "fixed_price": {
+          "value": "10",
+          "currency_code": "USD"
+        },
+        "roll_out_strategy": {
+          "effective_time": "2022-11-01T00:00:00Z",
+          "process_change_from": "NEXT_PAYMENT"
+        }
+      }
+    },
+    {
+      "billing_cycle_sequence": 2,
+      "pricing_scheme": {
+        "fixed_price": {
+          "value": "50",
+          "currency_code": "USD"
+        },
+        "roll_out_strategy": {
+          "effective_time": "2022-11-01T00:00:00Z",
+          "process_change_from": "NEXT_PAYMENT"
+        }
+      }
+    }
+  ]
+}
