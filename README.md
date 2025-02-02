@@ -44,7 +44,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-subscriptions-v1</artifactId>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 ### Catalog Products API
@@ -54,7 +54,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-catalog-products-v1</artifactId>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 
@@ -65,7 +65,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-orders-v2</artifactId>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 
@@ -76,7 +76,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-payments-v2</artifactId>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 ### Invoices API
@@ -86,7 +86,7 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 <dependency>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-invoices-v2</artifactId>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 
