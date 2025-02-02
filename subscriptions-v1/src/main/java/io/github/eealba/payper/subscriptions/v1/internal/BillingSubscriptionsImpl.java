@@ -66,6 +66,7 @@ class BillingSubscriptionsImpl implements BillingSubscriptions {
                         "/v1/billing/subscriptions/{id}",Subscription.class,ErrorDefault.class)
                 .method(PayperRequest.Method.PATCH)
                 .build();
+
         return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
@@ -121,6 +122,7 @@ class BillingSubscriptionsImpl implements BillingSubscriptions {
                         "/v1/billing/subscriptions/{id}/transactions", TransactionsList.class, ErrorDefault.class)
                 .alias("withStartTime", "query,start_time")
                 .alias("withEndTime", "query,end_time")
+                .header("Content-Type", "application/json")
                 .build();
         return RequestSpecsFactory.getInstance().requestSpec(spec);
     }

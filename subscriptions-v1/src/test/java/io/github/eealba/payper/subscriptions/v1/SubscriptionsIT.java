@@ -10,8 +10,15 @@ import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;
 import io.github.eealba.payper.subscriptions.v1.model.Patch;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
 import io.github.eealba.payper.subscriptions.v1.model.PlanRequestPOST;
+import io.github.eealba.payper.subscriptions.v1.model.Subscription;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionActivateRequest;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionCancelRequest;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionRequestPost;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionReviseRequest;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionSuspendRequest;
 import io.github.eealba.payper.subscriptions.v1.model.UpdatePricingSchemesListRequest;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -19,6 +26,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +44,7 @@ public class SubscriptionsIT {
     private static final String EXAMPLES = "/examples/";
     private static String productId;
     private static String planId;
+    private static String subscriptionId;
 
     @BeforeAll
     static void setup() throws IOException {
@@ -187,4 +196,140 @@ public class SubscriptionsIT {
         assertTrue(response.isSuccessful(), () -> response.toErrorEntity().message());
     }
 
+    /*************************************************************************
+     * Subscriptions API - Subscriptions
+     *************************************************************************/
+
+    @Test
+    @Order(9)
+    void create_subscription() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "subscription_request_post2.json")
+                .replaceAll("\\{\\{billing_plan_id}}", planId)
+                .replaceAll("\\{\\{tomorrow}}", Instant.now().plusSeconds(86400).toString());
+
+
+        var body = Json.create().fromJson(jsonRequest, SubscriptionRequestPost.class);
+
+        var response = subscriptionsApiClient.billingSubscriptions().create()
+                .withPrefer("return=representation")
+                .withBody(body)
+                .retrieve()
+                .toResponse();
+
+        assertTrue(response.isSuccessful(), () -> response.toErrorEntity().message());
+        var subscription = response.toEntity();
+
+        assertNotNull(subscription.id());
+        subscriptionId = subscription.id();
+    }
+
+    @Test
+    @Order(10)
+    void get_subscription() {
+        var subscriptions = subscriptionsApiClient.billingSubscriptions().get()
+                .withId(subscriptionId).retrieve().toEntity();
+
+        assertEquals(Subscription.Status.APPROVAL_PENDING, subscriptions.status());
+    }
+
+    @Test
+    @Order(11)
+    @Disabled
+    void update_subscription() {
+        var patch = Patch.builder()
+                .op(Patch.Op.ADD)
+                .path("/custom_id")
+                .value("custom-id")
+                .build();
+        var body = new PatchRequest(List.of(patch));
+
+        var response = subscriptionsApiClient.billingSubscriptions().update()
+                .withId(subscriptionId)
+                .withBody(body)
+                .retrieve()
+                .toResponse();
+
+        assertTrue(response.isSuccessful(), () -> response.toErrorEntity().message());
+    }
+
+    @Test
+    @Order(12)
+    @Disabled
+    void revise_subscription() throws IOException {
+        var jsonRequest = readResource(EXAMPLES + "subscription_revise_request.json")
+                .replaceAll("P-5ML4271244454362WXNWU5NQ", planId);
+
+        var body = Json.create().fromJson(jsonRequest, SubscriptionReviseRequest.class);
+
+        var response = subscriptionsApiClient.billingSubscriptions().revise()
+                .withId(subscriptionId)
+                .withBody(body)
+                .retrieve()
+                .toResponse();
+
+        assertTrue(response.isSuccessful(), () -> response.toErrorEntity().message());
+    }
+
+    @Test
+    @Order(13)
+    @Disabled
+    void suspend_subscription() {
+        var response = subscriptionsApiClient.billingSubscriptions().suspend()
+                .withId(subscriptionId)
+                .withBody(new SubscriptionSuspendRequest("Suspended by user"))
+                .retrieve()
+                .toResponse();
+
+        assertTrue(response.isSuccessful(), () -> response.toErrorEntity().message());
+    }
+
+    @Test
+    @Order(14)
+    @Disabled
+    void activate_subscription() {
+        var response = subscriptionsApiClient.billingSubscriptions().activate()
+                .withId(subscriptionId)
+                .withBody(SubscriptionActivateRequest.builder().reason("Activated by user").build())
+                .retrieve()
+                .toResponse();
+
+        assertTrue(response.isSuccessful(), () -> response.toErrorEntity().message());
+    }
+
+    @Test
+    @Order(15)
+    @Disabled
+    void cancel_subscription() {
+        var response = subscriptionsApiClient.billingSubscriptions().cancel()
+                .withId(subscriptionId)
+                .withBody(new SubscriptionCancelRequest("Canceled by user"))
+                .retrieve()
+                .toResponse();
+
+        assertTrue(response.isSuccessful(), () -> response.toErrorEntity().message());
+    }
+
+    @Test
+    @Order(16)
+    @Disabled
+    void capture_subscription() {
+        var response = subscriptionsApiClient.billingSubscriptions().capture()
+                .withId(subscriptionId)
+                .retrieve()
+                .toResponse();
+
+        assertTrue(response.isSuccessful(), () -> response.toErrorEntity().message());
+    }
+
+    @Test
+    @Order(17)
+    @Disabled
+    void list_transactions() {
+        var response = subscriptionsApiClient.billingSubscriptions().listTransactions()
+                .withId(subscriptionId)
+                .retrieve()
+                .toResponse();
+
+        assertTrue(response.isSuccessful(), () -> response.toErrorEntity().message());
+    }
 }
