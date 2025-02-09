@@ -123,6 +123,19 @@ public interface ResponseSpec<T, T2> {
         void toVoid();
 
         /**
+         * Retrieves the headers of the response.
+         *
+         * @return the headers
+         */
+        byte[] toByteArray();
+        /**
+         * Retrieves the headers of the response.
+         *
+         * @return the headers
+         */
+        String toRawString();
+
+        /**
          * Converts the response to an Optional entity.
          *
          * @return the Optional response entity

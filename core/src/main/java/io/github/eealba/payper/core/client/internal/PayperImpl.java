@@ -164,6 +164,26 @@ class PayperImpl extends Payper {
                 return Optional.ofNullable(bodyHandler2.apply().apply(charset, data));
             }
 
+            /**
+             * Retrieves the headers of the response.
+             *
+             * @return the headers
+             */
+            @Override
+            public byte[] toByteArray() {
+                return data.clone();
+            }
+
+            /**
+             * Retrieves the headers of the response.
+             *
+             * @return the headers
+             */
+            @Override
+            public String toRawString() {
+                return new String(data, charset);
+            }
+
             @Override
             public void toVoid() {
                 call(true);

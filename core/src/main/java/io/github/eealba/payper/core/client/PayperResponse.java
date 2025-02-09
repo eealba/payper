@@ -72,6 +72,20 @@ public interface PayperResponse<T, T2> {
     Optional<T2> toOptionalErrorEntity();
 
     /**
+     * Retrieves the headers of the response.
+     *
+     * @return the headers
+     */
+    byte[] toByteArray();
+
+    /**
+     * Retrieves the headers of the response.
+     *
+     * @return the headers
+     */
+    String toRawString();
+
+    /**
      * The interface PayperResponseSpec.
      * This interface provides methods to handle the response in different ways.
      *

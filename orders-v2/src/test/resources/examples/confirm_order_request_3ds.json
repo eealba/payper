@@ -1,0 +1,22 @@
+{
+  "payment_source": {
+    "card": {
+      "number": "4032037064388131",
+      "expiry": "2035-12",
+      "name": "John Doe",
+      "billing_address": {
+        "address_line_1": "2211 N First Street",
+        "address_line_2": "17.3.160",
+        "admin_area_1": "CA",
+        "admin_area_2": "San Jose",
+        "postal_code": "95131",
+        "country_code": "US"
+      },
+      "attributes": {
+        "verification": {
+          "method": "SCA_ALWAYS"
+        }
+      }
+    }
+  }
+}
