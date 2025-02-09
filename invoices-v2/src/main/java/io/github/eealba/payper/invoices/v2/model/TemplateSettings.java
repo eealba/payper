@@ -18,7 +18,6 @@ public class TemplateSettings {
     private TemplateSettings(Builder builder) {
         templateItemSettings = builder.templateItemSettings;
         templateSubtotalSettings = builder.templateSubtotalSettings;
-
     }
 
     /**

@@ -64,6 +64,7 @@ class CapturesImpl implements Captures {
         var spec = PayperProvider.provider().createSpecBuilder(RefundCapture.class, payer,
                 "/v2/payments/captures/{id}/refund", Refund.class, ErrorDefault.class)
                 .method(PayperRequest.Method.POST)
+                .header("Content-Type", "application/json")
                 .build();
 
         return RequestSpecsFactory.getInstance().requestSpec(spec);

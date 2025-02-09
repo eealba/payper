@@ -60,7 +60,6 @@ public class SearchData {
         creationDateRange = builder.creationDateRange;
         archived = builder.archived;
         fields = builder.fields;
-
     }
 
     /**

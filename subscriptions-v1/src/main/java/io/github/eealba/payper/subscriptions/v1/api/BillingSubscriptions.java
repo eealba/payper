@@ -17,10 +17,13 @@ import io.github.eealba.payper.core.client.RequestSpec;
 import io.github.eealba.payper.subscriptions.v1.model.ErrorDefault;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
 import io.github.eealba.payper.subscriptions.v1.model.Subscription;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionActivateRequest;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionCancelRequest;
 import io.github.eealba.payper.subscriptions.v1.model.SubscriptionCaptureRequest;
 import io.github.eealba.payper.subscriptions.v1.model.SubscriptionRequestPost;
 import io.github.eealba.payper.subscriptions.v1.model.SubscriptionReviseRequest;
 import io.github.eealba.payper.subscriptions.v1.model.SubscriptionReviseResponse;
+import io.github.eealba.payper.subscriptions.v1.model.SubscriptionSuspendRequest;
 import io.github.eealba.payper.subscriptions.v1.model.Transaction;
 import io.github.eealba.payper.subscriptions.v1.model.TransactionsList;
 
@@ -192,19 +195,22 @@ public interface BillingSubscriptions {
     /**
      * Interface for suspending a subscription.
      */
-    interface SuspendSubscription extends RequestSpec<Void, ErrorDefault>, RequestSpec.IdSpec<SuspendSubscription> {
+    interface SuspendSubscription extends RequestSpec<Void, ErrorDefault>, RequestSpec.IdSpec<SuspendSubscription>,
+    RequestSpec.BodySpec<SuspendSubscription, SubscriptionSuspendRequest> {
     }
 
     /**
      * Interface for canceling a subscription.
      */
-    interface CancelSubscription extends RequestSpec<Void, ErrorDefault>, RequestSpec.IdSpec<CancelSubscription> {
+    interface CancelSubscription extends RequestSpec<Void, ErrorDefault>, RequestSpec.IdSpec<CancelSubscription>,
+    RequestSpec.BodySpec<CancelSubscription, SubscriptionCancelRequest> {
     }
 
     /**
      * Interface for activating a subscription.
      */
-    interface ActivateSubscription extends RequestSpec<Void, ErrorDefault>, RequestSpec.IdSpec<ActivateSubscription> {
+    interface ActivateSubscription extends RequestSpec<Void, ErrorDefault>, RequestSpec.IdSpec<ActivateSubscription>,
+    RequestSpec.BodySpec<ActivateSubscription, SubscriptionActivateRequest> {
     }
 
     /**

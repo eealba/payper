@@ -17,7 +17,6 @@ public class TemplateSubtotalSetting {
     private TemplateSubtotalSetting(Builder builder) {
         fieldName = builder.fieldName;
         displayPreference = builder.displayPreference;
-
     }
 
     /**

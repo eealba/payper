@@ -26,7 +26,6 @@ public class Configuration {
         allowTip = builder.allowTip;
         partialPayment = builder.partialPayment;
         templateId = builder.templateId;
-
     }
 
     /**

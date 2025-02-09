@@ -63,7 +63,7 @@ public abstract class InvoicingApiClient {
      * @param build the configuration to use
      * @return a new instance of {@link InvoicingApiClient}
      */
-    private static InvoicingApiClient create(PayperConfig build) {
+    public static InvoicingApiClient create(PayperConfig build) {
         return InvoicingProvider.provider().create(build);
     }
 }

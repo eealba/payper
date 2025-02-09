@@ -3,7 +3,6 @@ package io.github.eealba.payper.invoices.v2.model;
 import io.github.eealba.jasoner.JasonerProperty;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 /**
  * An array of invoice line item information. The maximum items for an invoice is `100`.
@@ -32,14 +31,14 @@ public class Item {
 
     private Item(Builder builder) {
         id = builder.id;
+        name = builder.name;
         description = builder.description;
+        quantity = builder.quantity;
+        unitAmount = builder.unitAmount;
         tax = builder.tax;
         itemDate = builder.itemDate;
         discount = builder.discount;
         unitOfMeasure = builder.unitOfMeasure;
-        name = Objects.requireNonNull(builder.name);
-        quantity = Objects.requireNonNull(builder.quantity);
-        unitAmount = Objects.requireNonNull(builder.unitAmount);
     }
 
     /**

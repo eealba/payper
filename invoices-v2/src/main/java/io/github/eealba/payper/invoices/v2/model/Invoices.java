@@ -25,7 +25,6 @@ public class Invoices {
         totalItems = builder.totalItems;
         items = builder.items;
         links = builder.links;
-
     }
 
     /**

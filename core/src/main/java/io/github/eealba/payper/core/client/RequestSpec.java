@@ -30,7 +30,22 @@ public interface RequestSpec<R1, R2> {
      * @return the response specification
      */
     ResponseSpec<R1, R2> retrieve();
+    enum Prefer{
+        RETURN_MINIMAL("return=minimal"),
+        RETURN_REPRESENTATION("return=representation");
+        private final String value;
+        Prefer(String value){
+            this.value = value;
+        }
+        public String getValue(){
+            return value;
+        }
 
+        @Override
+        public String toString() {
+            return getValue();
+        }
+    }
     /**
      * Interface for specifying the 'Prefer' header.
      *
@@ -44,7 +59,7 @@ public interface RequestSpec<R1, R2> {
          * @param prefer the 'Prefer' header value
          * @return the request specification
          */
-        T withPrefer(String prefer);
+        T withPrefer(Prefer prefer);
     }
 
     /**

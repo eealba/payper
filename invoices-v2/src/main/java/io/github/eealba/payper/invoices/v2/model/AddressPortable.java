@@ -3,8 +3,6 @@ package io.github.eealba.payper.invoices.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-import java.util.Objects;
-
 /**
  * The portable international postal address. Maps to 
 [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 
@@ -44,8 +42,8 @@ public class AddressPortable {
         adminArea2 = builder.adminArea2;
         adminArea1 = builder.adminArea1;
         postalCode = builder.postalCode;
+        countryCode = builder.countryCode;
         addressDetails = builder.addressDetails;
-        countryCode = Objects.requireNonNull(builder.countryCode);
     }
 
     /**
@@ -290,7 +288,6 @@ public static class AddressDetails {
         deliveryService = builder.deliveryService;
         buildingName = builder.buildingName;
         subBuilding = builder.subBuilding;
-
     }
 
     /**

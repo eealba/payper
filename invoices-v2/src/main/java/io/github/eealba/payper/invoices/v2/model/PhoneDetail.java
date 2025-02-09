@@ -3,8 +3,6 @@ package io.github.eealba.payper.invoices.v2.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
 
-import java.util.Objects;
-
 /**
  * The phone details. Includes the phone number and type.
  */
@@ -21,10 +19,10 @@ public class PhoneDetail {
     private final PhoneType phoneType;
 
     private PhoneDetail(Builder builder) {
+        countryCode = builder.countryCode;
+        nationalNumber = builder.nationalNumber;
         extensionNumber = builder.extensionNumber;
         phoneType = builder.phoneType;
-        countryCode = Objects.requireNonNull(builder.countryCode);
-        nationalNumber = Objects.requireNonNull(builder.nationalNumber);
     }
 
     /**

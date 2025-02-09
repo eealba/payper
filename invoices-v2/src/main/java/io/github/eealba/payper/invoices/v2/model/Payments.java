@@ -18,7 +18,6 @@ public class Payments {
     private Payments(Builder builder) {
         paidAmount = builder.paidAmount;
         transactions = builder.transactions;
-
     }
 
     /**

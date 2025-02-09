@@ -70,8 +70,8 @@ final class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
      * @return the request specification
      */
     @Override
-    public T withPrefer(String prefer) {
-        header("Prefer", prefer);
+    public T withPrefer(Prefer prefer) {
+        header("Prefer", prefer.getValue());
         return self();
     }
     /**

@@ -48,7 +48,6 @@ public class Metadata {
         createdByFlow = builder.createdByFlow;
         recipientViewUrl = builder.recipientViewUrl;
         invoicerViewUrl = builder.invoicerViewUrl;
-
     }
 
     /**

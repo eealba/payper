@@ -46,31 +46,31 @@
       "settings": {
         "template_item_settings": [
           {
-            "field_name": "ITEMS_DATE",
+            "field_name": "items.date",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "ITEMS_DISCOUNT",
+            "field_name": "items.discount",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "ITEMS_TAX",
+            "field_name": "items.tax",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "ITEMS_DESCRIPTION",
+            "field_name": "items.description",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "ITEMS_QUANTITY",
+            "field_name": "items.quantity",
             "display_preference": {
               "hidden": true
             }
@@ -78,19 +78,19 @@
         ],
         "template_subtotal_settings": [
           {
-            "field_name": "CUSTOM",
+            "field_name": "custom",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "DISCOUNT",
+            "field_name": "discount",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "SHIPPING",
+            "field_name": "shipping",
             "display_preference": {
               "hidden": true
             }
@@ -134,19 +134,19 @@
       "settings": {
         "template_item_settings": [
           {
-            "field_name": "ITEMS_DATE",
+            "field_name": "items.date",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "ITEMS_DISCOUNT",
+            "field_name": "items.discount",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "ITEMS_TAX",
+            "field_name": "items.tax",
             "display_preference": {
               "hidden": true
             }
@@ -154,13 +154,13 @@
         ],
         "template_subtotal_settings": [
           {
-            "field_name": "CUSTOM",
+            "field_name": "custom",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "SHIPPING",
+            "field_name": "shipping",
             "display_preference": {
               "hidden": true
             }
@@ -204,25 +204,25 @@
       "settings": {
         "template_item_settings": [
           {
-            "field_name": "ITEMS_DATE",
+            "field_name": "items.date",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "ITEMS_DISCOUNT",
+            "field_name": "items.discount",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "ITEMS_TAX",
+            "field_name": "items.tax",
             "display_preference": {
               "hidden": false
             }
           },
           {
-            "field_name": "ITEMS_DESCRIPTION",
+            "field_name": "items.description",
             "display_preference": {
               "hidden": false
             }
@@ -230,19 +230,19 @@
         ],
         "template_subtotal_settings": [
           {
-            "field_name": "CUSTOM",
+            "field_name": "custom",
             "display_preference": {
               "hidden": true
             }
           },
           {
-            "field_name": "DISCOUNT",
+            "field_name": "discount",
             "display_preference": {
               "hidden": false
             }
           },
           {
-            "field_name": "SHIPPING",
+            "field_name": "shipping",
             "display_preference": {
               "hidden": false
             }

@@ -17,7 +17,6 @@ public class TemplateItemSetting {
     private TemplateItemSetting(Builder builder) {
         fieldName = builder.fieldName;
         displayPreference = builder.displayPreference;
-
     }
 
     /**

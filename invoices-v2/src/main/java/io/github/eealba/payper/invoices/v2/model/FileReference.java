@@ -27,7 +27,6 @@ public class FileReference {
         contentType = builder.contentType;
         createTime = builder.createTime;
         size = builder.size;
-
     }
 
     /**

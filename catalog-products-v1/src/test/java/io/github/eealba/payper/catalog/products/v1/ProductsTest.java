@@ -6,6 +6,7 @@ import io.github.eealba.payper.catalog.products.v1.api.Products;
 import io.github.eealba.payper.catalog.products.v1.model.PatchRequest;
 import io.github.eealba.payper.catalog.products.v1.model.ProductRequestPOST;
 import io.github.eealba.payper.core.client.PayperAuthenticator;
+import io.github.eealba.payper.core.client.RequestSpec;
 import io.github.eealba.payper.core.json.Json;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -111,7 +112,7 @@ class ProductsTest {
                 .willReturn(okJson(jsonResponse)));
 
         var product = products.create()
-                .withPrefer("return=representation")
+                .withPrefer(RequestSpec.Prefer.RETURN_REPRESENTATION)
                 .withPaypalRequestId("request-id")
                 .withBody(body)
                 .retrieve().toEntity();

@@ -18,7 +18,6 @@ public class AggregatedDiscount {
     private AggregatedDiscount(Builder builder) {
         invoiceDiscount = builder.invoiceDiscount;
         itemDiscount = builder.itemDiscount;
-
     }
 
     /**

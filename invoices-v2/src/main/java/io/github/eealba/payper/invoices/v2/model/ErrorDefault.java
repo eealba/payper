@@ -27,7 +27,6 @@ public class ErrorDefault {
         details = builder.details;
         debugId = builder.debugId;
         links = builder.links;
-
     }
 
     /**

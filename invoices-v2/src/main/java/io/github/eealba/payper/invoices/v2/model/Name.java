@@ -32,7 +32,6 @@ public class Name {
         suffix = builder.suffix;
         alternateFullName = builder.alternateFullName;
         fullName = builder.fullName;
-
     }
 
     /**

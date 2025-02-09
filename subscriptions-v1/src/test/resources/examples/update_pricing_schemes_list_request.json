@@ -1,1 +1,40 @@
-{"pricing_schemes":[{"billing_cycle_sequence":1,"pricing_scheme":{"fixed_price":{"value":"50","currency_code":"USD"}}},{"billing_cycle_sequence":2,"pricing_scheme":{"fixed_price":{"value":"100","currency_code":"USD"},"pricing_model":"VOLUME","tiers":[{"starting_quantity":"1","ending_quantity":"1000","amount":{"value":"150","currency_code":"USD"}},{"starting_quantity":"1001","amount":{"value":"250","currency_code":"USD"}}]}}]}
+{
+  "pricing_schemes": [
+    {
+      "billing_cycle_sequence": 1,
+      "pricing_scheme": {
+        "fixed_price": {
+          "value": "50",
+          "currency_code": "USD"
+        }
+      }
+    },
+    {
+      "billing_cycle_sequence": 2,
+      "pricing_scheme": {
+        "fixed_price": {
+          "value": "100",
+          "currency_code": "USD"
+        },
+        "pricing_model": "VOLUME",
+        "tiers": [
+          {
+            "starting_quantity": "1",
+            "ending_quantity": "1000",
+            "amount": {
+              "value": "150",
+              "currency_code": "USD"
+            }
+          },
+          {
+            "starting_quantity": "1001",
+            "amount": {
+              "value": "250",
+              "currency_code": "USD"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -27,7 +27,6 @@ public class AmountWithBreakdown {
         taxTotal = builder.taxTotal;
         shipping = builder.shipping;
         custom = builder.custom;
-
     }
 
     /**

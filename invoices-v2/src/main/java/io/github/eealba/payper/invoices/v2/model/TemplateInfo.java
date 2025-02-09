@@ -36,7 +36,6 @@ public class TemplateInfo {
         configuration = builder.configuration;
         amount = builder.amount;
         dueAmount = builder.dueAmount;
-
     }
 
     /**

@@ -2,6 +2,7 @@ package io.github.eealba.payper.payments.v2;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.eealba.payper.core.client.PayperAuthenticator;
+import io.github.eealba.payper.core.client.RequestSpec;
 import io.github.eealba.payper.core.json.Json;
 import io.github.eealba.payper.payments.v2.api.Authorizations;
 import io.github.eealba.payper.payments.v2.api.PaymentsApiClient;
@@ -114,7 +115,7 @@ class AuthorizationsTest {
         var res = authorizations.capture()
                 .withId("1")
                 .withPaypalRequestId("123")
-                .withPrefer("return=representation")
+                .withPrefer(RequestSpec.Prefer.RETURN_REPRESENTATION)
                 .withBody(body)
                 .retrieve()
                 .toEntity();
@@ -141,7 +142,7 @@ class AuthorizationsTest {
         var res = authorizations.reauthorize()
                 .withId("1")
                 .withPaypalRequestId("123")
-                .withPrefer("return=representation")
+                .withPrefer(RequestSpec.Prefer.RETURN_REPRESENTATION)
                 .withBody(body)
                 .retrieve()
                 .toEntity();
@@ -164,7 +165,7 @@ class AuthorizationsTest {
         var res = authorizations.voidAuthorization()
                 .withId("1")
                 .withPayPalAuthAssertion("123")
-                .withPrefer("return=representation")
+                .withPrefer(RequestSpec.Prefer.RETURN_REPRESENTATION)
                 .retrieve()
                 .toEntity();
 

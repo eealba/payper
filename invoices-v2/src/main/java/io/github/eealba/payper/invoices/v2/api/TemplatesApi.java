@@ -79,7 +79,8 @@ public interface TemplatesApi {
      * @version 1.0
      */
     interface CreateTemplate extends RequestSpec<Template, ErrorDefault>,
-            RequestSpec.BodySpec<CreateTemplate, Template> {
+            RequestSpec.BodySpec<CreateTemplate, Template>,
+            RequestSpec.PreferSpec<CreateTemplate> {
     }
 
     /**

@@ -33,7 +33,6 @@ public class BillingInfo {
         phones = builder.phones;
         additionalInfo = builder.additionalInfo;
         language = builder.language;
-
     }
 
     /**

@@ -3,7 +3,6 @@ package io.github.eealba.payper.invoices.v2.model;
 import io.github.eealba.jasoner.JasonerProperty;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 /**
  * The payment details of the invoice. Includes payment type, method, date, discount, and transaction type.
@@ -30,10 +29,10 @@ public class PaymentDetail {
         type = builder.type;
         paymentId = builder.paymentId;
         paymentDate = builder.paymentDate;
+        method = builder.method;
         note = builder.note;
         amount = builder.amount;
         shippingInfo = builder.shippingInfo;
-        method = Objects.requireNonNull(builder.method);
     }
 
     /**

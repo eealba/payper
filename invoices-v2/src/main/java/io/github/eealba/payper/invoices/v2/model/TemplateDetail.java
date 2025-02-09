@@ -3,7 +3,6 @@ package io.github.eealba.payper.invoices.v2.model;
 import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * The template-related details. Includes notes, terms and conditions, memo, and attachments.
@@ -30,13 +29,13 @@ public class TemplateDetail {
 
     private TemplateDetail(Builder builder) {
         reference = builder.reference;
+        currencyCode = builder.currencyCode;
         note = builder.note;
         termsAndConditions = builder.termsAndConditions;
         memo = builder.memo;
         attachments = builder.attachments;
         paymentTerm = builder.paymentTerm;
         metadata = builder.metadata;
-        currencyCode = Objects.requireNonNull(builder.currencyCode);
     }
 
     /**

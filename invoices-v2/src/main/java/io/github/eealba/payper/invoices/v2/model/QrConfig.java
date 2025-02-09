@@ -19,7 +19,6 @@ public class QrConfig {
         width = builder.width;
         height = builder.height;
         action = builder.action;
-
     }
 
     /**

@@ -107,7 +107,8 @@ public interface InvoicesApi {
      * Interface for creating an invoice.
      */
     interface CreateInvoice extends RequestSpec<Invoice, ErrorDefault>,
-            RequestSpec.BodySpec<CreateInvoice, Invoice> {
+            RequestSpec.BodySpec<CreateInvoice, Invoice>,
+            RequestSpec.PreferSpec<CreateInvoice> {
     }
 
     /**

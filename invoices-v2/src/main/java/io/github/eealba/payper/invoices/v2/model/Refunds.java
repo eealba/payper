@@ -18,7 +18,6 @@ public class Refunds {
     private Refunds(Builder builder) {
         refundAmount = builder.refundAmount;
         transactions = builder.transactions;
-
     }
 
     /**

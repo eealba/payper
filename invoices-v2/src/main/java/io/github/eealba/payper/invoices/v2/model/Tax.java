@@ -1,7 +1,6 @@
 package io.github.eealba.payper.invoices.v2.model;
 
 
-import java.util.Objects;
 
 /**
  * The tax information. Includes the tax name and tax rate of invoice items. The tax amount is added to the item total.
@@ -17,9 +16,9 @@ public class Tax {
     private final Money amount;
 
     private Tax(Builder builder) {
+        name = builder.name;
+        percent = builder.percent;
         amount = builder.amount;
-        name = Objects.requireNonNull(builder.name);
-        percent = Objects.requireNonNull(builder.percent);
     }
 
     /**

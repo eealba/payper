@@ -110,6 +110,7 @@ class OrdersImpl implements Orders {
                         "/v2/checkout/orders/{id}/authorize", OrderAuthorizeResponse.class,
                 ErrorDefault.class)
                 .method(PayperRequest.Method.POST)
+                .header("Content-Type", "application/json")
                 .build();
         return RequestSpecsFactory.getInstance().requestSpec(spec);
     }

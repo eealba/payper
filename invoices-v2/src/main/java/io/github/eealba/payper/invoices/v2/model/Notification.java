@@ -27,7 +27,6 @@ public class Notification {
         sendToInvoicer = builder.sendToInvoicer;
         sendToRecipient = builder.sendToRecipient;
         additionalRecipients = builder.additionalRecipients;
-
     }
 
     /**

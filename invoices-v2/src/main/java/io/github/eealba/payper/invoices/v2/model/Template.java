@@ -36,7 +36,6 @@ public class Template {
         unitOfMeasure = builder.unitOfMeasure;
         standardTemplate = builder.standardTemplate;
         links = builder.links;
-
     }
 
     /**

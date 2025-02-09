@@ -18,7 +18,6 @@ public class InvoicePaymentTerm {
     private InvoicePaymentTerm(Builder builder) {
         termType = builder.termType;
         dueDate = builder.dueDate;
-
     }
 
     /**

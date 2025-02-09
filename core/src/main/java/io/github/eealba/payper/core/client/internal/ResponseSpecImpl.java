@@ -92,6 +92,28 @@ class ResponseSpecImpl<R1, R2> implements ResponseSpec<R1, R2> {
             payperResponse.toVoid();
         }
 
+        /**
+         * Retrieves the headers of the response.
+         *
+         * @return the headers
+         */
+        @Override
+        public byte[] toByteArray() {
+            call();
+            return payperResponse.toByteArray();
+        }
+
+        /**
+         * Retrieves the headers of the response.
+         *
+         * @return the headers
+         */
+        @Override
+        public String toRawString() {
+            call();
+            return payperResponse.toRawString();
+        }
+
         @Override
         public Optional<R1> toOptionalEntity() {
             call();
