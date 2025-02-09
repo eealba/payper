@@ -14,7 +14,6 @@ public class PaymentReference {
 
     private PaymentReference(Builder builder) {
         paymentId = builder.paymentId;
-
     }
 
     /**

@@ -16,7 +16,6 @@ public class Discount {
     private Discount(Builder builder) {
         percent = builder.percent;
         amount = builder.amount;
-
     }
 
     /**

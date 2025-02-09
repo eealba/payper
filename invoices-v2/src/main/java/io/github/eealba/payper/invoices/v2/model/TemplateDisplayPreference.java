@@ -13,7 +13,6 @@ public class TemplateDisplayPreference {
 
     private TemplateDisplayPreference(Builder builder) {
         hidden = builder.hidden;
-
     }
 
     /**

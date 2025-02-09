@@ -24,7 +24,6 @@ public class TemplateMetadata {
         createdBy = builder.createdBy;
         lastUpdateTime = builder.lastUpdateTime;
         lastUpdatedBy = builder.lastUpdatedBy;
-
     }
 
     /**

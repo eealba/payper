@@ -1,4 +1,5 @@
 {
+  "name": "template_<<timestamp>>",
   "default_template": true,
   "template_info": {
     "configuration": {
@@ -137,7 +138,6 @@
     ],
     "amount": {
       "currency_code": "USD",
-      "value": "74.21",
       "breakdown": {
         "custom": {
           "label": "Packing Charges",

@@ -17,7 +17,6 @@ public class RecipientInfo {
     private RecipientInfo(Builder builder) {
         billingInfo = builder.billingInfo;
         shippingInfo = builder.shippingInfo;
-
     }
 
     /**

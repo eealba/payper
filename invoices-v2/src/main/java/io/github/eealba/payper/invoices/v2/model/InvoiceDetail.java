@@ -4,7 +4,6 @@ import io.github.eealba.jasoner.JasonerProperty;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * The details of the invoice. Includes invoice number, date, payment terms, and audit metadata.
@@ -35,6 +34,7 @@ public class InvoiceDetail {
 
     private InvoiceDetail(Builder builder) {
         reference = builder.reference;
+        currencyCode = builder.currencyCode;
         note = builder.note;
         termsAndConditions = builder.termsAndConditions;
         memo = builder.memo;
@@ -43,7 +43,6 @@ public class InvoiceDetail {
         invoiceDate = builder.invoiceDate;
         paymentTerm = builder.paymentTerm;
         metadata = builder.metadata;
-        currencyCode = Objects.requireNonNull(builder.currencyCode);
     }
 
     /**

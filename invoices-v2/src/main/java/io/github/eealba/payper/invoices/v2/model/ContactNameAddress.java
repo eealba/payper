@@ -20,7 +20,6 @@ public class ContactNameAddress {
         businessName = builder.businessName;
         name = builder.name;
         address = builder.address;
-
     }
 
     /**

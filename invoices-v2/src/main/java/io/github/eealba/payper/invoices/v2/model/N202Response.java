@@ -13,7 +13,6 @@ public class N202Response {
 
     private N202Response(Builder builder) {
         links = builder.links;
-
     }
 
     /**

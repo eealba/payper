@@ -14,7 +14,6 @@ public class RefundReference {
 
     private RefundReference(Builder builder) {
         refundId = builder.refundId;
-
     }
 
     /**

@@ -1,7 +1,6 @@
 package io.github.eealba.payper.invoices.v2.model;
 
 
-import java.util.Objects;
 
 /**
  * The custom amount to apply to an invoice. If you include a label, you must include a custom amount.
@@ -15,8 +14,8 @@ public class CustomAmount {
     private final Money amount;
 
     private CustomAmount(Builder builder) {
+        label = builder.label;
         amount = builder.amount;
-        label = Objects.requireNonNull(builder.label);
     }
 
     /**

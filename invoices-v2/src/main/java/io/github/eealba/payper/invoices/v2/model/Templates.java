@@ -26,7 +26,6 @@ public class Templates {
         phones = builder.phones;
         templates = builder.templates;
         links = builder.links;
-
     }
 
     /**

@@ -1,0 +1,10 @@
+{
+  "subject": "<The subject of the email that is sent as a notification to the recipient.>",
+  "note": "<A note to the payer.>",
+  "send_to_recipient": true,
+  "additional_recipients": [
+    "recipient_cc1@example.com",
+    "recipient_cc2@example.com"
+  ],
+  "send_to_invoicer": false
+}

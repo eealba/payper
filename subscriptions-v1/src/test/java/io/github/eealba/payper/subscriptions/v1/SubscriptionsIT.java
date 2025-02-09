@@ -5,6 +5,7 @@ import io.github.eealba.payper.catalog.products.v1.model.ProductCategory;
 import io.github.eealba.payper.catalog.products.v1.model.ProductRequestPOST;
 import io.github.eealba.payper.core.client.PayperAuthenticator;
 import io.github.eealba.payper.core.client.PayperConfig;
+import io.github.eealba.payper.core.client.RequestSpec;
 import io.github.eealba.payper.core.json.Json;
 import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;
 import io.github.eealba.payper.subscriptions.v1.model.Patch;
@@ -92,7 +93,7 @@ public class SubscriptionsIT {
         var body = Json.create().fromJson(jsonRequest, PlanRequestPOST.class);
 
         var plan = subscriptionsApiClient.billingPlans().create()
-                .withPrefer("return=representation")
+                .withPrefer(RequestSpec.Prefer.RETURN_REPRESENTATION)
                 .withBody(body)
                 .retrieve()
                 .toOptionalEntity()
@@ -211,7 +212,7 @@ public class SubscriptionsIT {
         var body = Json.create().fromJson(jsonRequest, SubscriptionRequestPost.class);
 
         var response = subscriptionsApiClient.billingSubscriptions().create()
-                .withPrefer("return=representation")
+                .withPrefer(RequestSpec.Prefer.RETURN_REPRESENTATION)
                 .withBody(body)
                 .retrieve()
                 .toResponse();

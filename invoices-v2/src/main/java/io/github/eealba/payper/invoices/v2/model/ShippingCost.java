@@ -16,7 +16,6 @@ public class ShippingCost {
     private ShippingCost(Builder builder) {
         amount = builder.amount;
         tax = builder.tax;
-
     }
 
     /**

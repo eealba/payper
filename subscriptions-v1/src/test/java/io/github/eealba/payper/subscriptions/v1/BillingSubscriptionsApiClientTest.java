@@ -2,6 +2,7 @@ package io.github.eealba.payper.subscriptions.v1;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.eealba.payper.core.client.PayperAuthenticator;
+import io.github.eealba.payper.core.client.RequestSpec;
 import io.github.eealba.payper.core.json.Json;
 import io.github.eealba.payper.subscriptions.v1.api.SubscriptionsApiClient;
 import io.github.eealba.payper.subscriptions.v1.model.PatchRequest;
@@ -108,7 +109,7 @@ class BillingSubscriptionsApiClientTest {
                 .willReturn(okJson(jsonResponse)));
 
         var subscription = subscriptionsApiClient.billingSubscriptions().create()
-                .withPrefer("return=representation")
+                .withPrefer(RequestSpec.Prefer.RETURN_REPRESENTATION)
                 .withPaypalRequestId("request-id")
                 .withBody(body)
                 .retrieve().toFuture().join();

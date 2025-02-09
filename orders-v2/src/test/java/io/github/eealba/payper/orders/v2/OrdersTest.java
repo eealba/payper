@@ -2,6 +2,7 @@ package io.github.eealba.payper.orders.v2;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.eealba.payper.core.client.PayperAuthenticator;
+import io.github.eealba.payper.core.client.RequestSpec;
 import io.github.eealba.payper.core.json.Json;
 import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 import io.github.eealba.payper.orders.v2.api.Orders;
@@ -106,7 +107,7 @@ class OrdersTest {
                 .willReturn(okJson(jsonResponse)));
 
         var res = orders.create()
-                .withPrefer("return=representation")
+                .withPrefer(RequestSpec.Prefer.RETURN_REPRESENTATION)
                 .withPaypalRequestId("request-id")
                 .withBody(body)
                 .retrieve().toEntity();

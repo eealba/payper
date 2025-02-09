@@ -3,7 +3,6 @@ package io.github.eealba.payper.invoices.v2.model;
 import io.github.eealba.jasoner.JasonerProperty;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 /**
  * The refund details of the invoice. Includes the refund type, date, amount, and method.
@@ -27,7 +26,7 @@ public class RefundDetail {
         refundId = builder.refundId;
         refundDate = builder.refundDate;
         amount = builder.amount;
-        method = Objects.requireNonNull(builder.method);
+        method = builder.method;
     }
 
     /**

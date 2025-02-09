@@ -20,7 +20,6 @@ public class AmountSummaryDetail {
         currencyCode = builder.currencyCode;
         value = builder.value;
         breakdown = builder.breakdown;
-
     }
 
     /**

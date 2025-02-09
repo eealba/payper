@@ -17,7 +17,6 @@ public class PartialPayment {
     private PartialPayment(Builder builder) {
         allowPartialPayment = builder.allowPartialPayment;
         minimumAmountDue = builder.minimumAmountDue;
-
     }
 
     /**

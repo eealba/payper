@@ -96,7 +96,7 @@ public class TemplatesApiTest {
 
     @Test
     void should_create_template() throws IOException {
-        var template = readResource(EXAMPLES + "template.json");
+        var template = readResource(EXAMPLES + "template2.json");
 
         stubFor(post(urlPathEqualTo("/v2/invoicing/templates"))
                 .withRequestBody(equalToJson(template))
@@ -132,7 +132,7 @@ public class TemplatesApiTest {
 
     @Test
     void should_update_template() throws IOException {
-        var template = readResource(EXAMPLES + "template.json");
+        var template = readResource(EXAMPLES + "template2.json");
 
         stubFor(put(urlPathEqualTo("/v2/invoicing/templates/1"))
                 .withRequestBody(equalToJson(template))

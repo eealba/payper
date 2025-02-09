@@ -3,7 +3,6 @@ package io.github.eealba.payper.invoices.v2.model;
 import io.github.eealba.jasoner.JasonerProperty;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * The invoice details which includes all information of the invoice like items, billing information.
@@ -46,6 +45,7 @@ public class Invoice {
         id = builder.id;
         parentId = builder.parentId;
         status = builder.status;
+        detail = builder.detail;
         invoicer = builder.invoicer;
         primaryRecipients = builder.primaryRecipients;
         additionalRecipients = builder.additionalRecipients;
@@ -57,7 +57,6 @@ public class Invoice {
         payments = builder.payments;
         refunds = builder.refunds;
         links = builder.links;
-        detail = Objects.requireNonNull(builder.detail);
     }
 
     /**

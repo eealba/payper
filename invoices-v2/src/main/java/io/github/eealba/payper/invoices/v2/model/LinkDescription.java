@@ -1,7 +1,6 @@
 package io.github.eealba.payper.invoices.v2.model;
 
 
-import java.util.Objects;
 
 /**
  * The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
@@ -17,9 +16,9 @@ public class LinkDescription {
     private final Method method;
 
     private LinkDescription(Builder builder) {
+        href = builder.href;
+        rel = builder.rel;
         method = builder.method;
-        href = Objects.requireNonNull(builder.href);
-        rel = Objects.requireNonNull(builder.rel);
     }
 
     /**

@@ -14,7 +14,6 @@ public class PaymentTerm {
 
     private PaymentTerm(Builder builder) {
         termType = builder.termType;
-
     }
 
     /**

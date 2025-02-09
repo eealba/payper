@@ -1,7 +1,6 @@
 package io.github.eealba.payper.invoices.v2.model;
 
 
-import java.util.Objects;
 
 /**
  * The error details. Required for client-side `4XX` errors.
@@ -24,8 +23,8 @@ public class ErrorDetails {
         field = builder.field;
         value = builder.value;
         location = builder.location;
+        issue = builder.issue;
         description = builder.description;
-        issue = Objects.requireNonNull(builder.issue);
     }
 
     /**

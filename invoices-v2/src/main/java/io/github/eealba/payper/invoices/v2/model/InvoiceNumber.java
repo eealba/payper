@@ -14,7 +14,6 @@ public class InvoiceNumber {
 
     private InvoiceNumber(Builder builder) {
         invoiceNumber = builder.invoiceNumber;
-
     }
 
     /**

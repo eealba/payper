@@ -39,7 +39,6 @@ public class InvoicerInfo {
         taxId = builder.taxId;
         additionalNotes = builder.additionalNotes;
         logoUrl = builder.logoUrl;
-
     }
 
     /**

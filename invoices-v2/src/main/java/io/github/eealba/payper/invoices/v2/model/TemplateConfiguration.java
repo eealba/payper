@@ -23,7 +23,6 @@ public class TemplateConfiguration {
         taxInclusive = builder.taxInclusive;
         allowTip = builder.allowTip;
         partialPayment = builder.partialPayment;
-
     }
 
     /**

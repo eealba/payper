@@ -1,17 +1,16 @@
 {
-  "id": "INV2-GWNR-QBAW-496B-4Y5P",
   "detail": {
-    "invoice_number": "#123",
-    "reference": "deal-ref",
-    "invoice_date": "2018-11-12",
-    "currency_code": "USD",
-    "note": "Thank you for your business.",
-    "terms_and_conditions": "No refunds after 30 days.",
-    "memo": "This is a long contract",
+    "invoice_number": "{{draft_invoice_number}}",
+    "invoice_date": "2022-02-04",
     "payment_term": {
       "term_type": "NET_10",
-      "due_date": "2018-11-22"
-    }
+      "due_date": "2022-02-14"
+    },
+    "currency_code": "USD",
+    "reference": "<The reference data. Includes a post office (PO) number.>",
+    "note": "<A note to the invoice recipient. Also appears on the invoice notification email.>",
+    "terms_and_conditions": "<The general terms of the invoice. Can include return or cancellation policy and other terms and conditions.>",
+    "memo": "<A private bookkeeping note for merchant.>"
   },
   "invoicer": {
     "name": {
@@ -19,14 +18,13 @@
       "surname": "Larusso"
     },
     "address": {
-      "address_line_1": "1234 First Street",
-      "address_line_2": "337673 Hillside Court",
-      "admin_area_2": "Anytown",
+      "address_line_1": "123 Townsend St",
+      "address_line_2": "Floor 6",
+      "admin_area_2": "San Francisco",
       "admin_area_1": "CA",
-      "postal_code": "98765",
+      "postal_code": "94107",
       "country_code": "US"
     },
-    "email_address": "merchant@example.com",
     "phones": [
       {
         "country_code": "001",
@@ -34,10 +32,10 @@
         "phone_type": "MOBILE"
       }
     ],
-    "website": "www.test.com",
-    "tax_id": "ABcNkWSfb5ICTt73nD3QON1fnnpgNKBy- Jb5SeuGj185MNNw6g",
-    "logo_url": "https://example.com/logo.PNG",
-    "additional_notes": "2-4"
+    "website": "www.example.com",
+    "tax_id": "XX-XXXXXXX",
+    "logo_url": "https://example.com/logo.png",
+    "additional_notes": "<Any additional information. Includes business hours.>"
   },
   "primary_recipients": [
     {
@@ -53,14 +51,15 @@
           "postal_code": "98765",
           "country_code": "US"
         },
-        "email_address": "bill-me@example.com",
+        "email_address": "foobuyer@example.com",
         "phones": [
           {
             "country_code": "001",
             "national_number": "4884551234",
             "phone_type": "HOME"
           }
-        ]
+        ],
+        "additional_info_value": "add-info"
       },
       "shipping_info": {
         "name": {
@@ -125,8 +124,7 @@
     },
     "allow_tip": true,
     "tax_calculated_after_discount": true,
-    "tax_inclusive": false,
-    "template_id": "TEMP-19V05281TU309413B"
+    "tax_inclusive": false
   },
   "amount": {
     "breakdown": {
