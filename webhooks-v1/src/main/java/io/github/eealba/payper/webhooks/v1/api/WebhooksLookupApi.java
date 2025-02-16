@@ -46,8 +46,7 @@ public interface WebhooksLookupApi {
      * @since 1.0
      * @version 1.0
      */
-    interface CreateWebhookLookup extends RequestSpec<WebhooksLookup, Error>,
-            RequestSpec.BodySpec<CreateWebhookLookup, WebhooksLookup> {
+    interface CreateWebhookLookup extends RequestSpec<WebhooksLookup, Error>{
     }
     /**
      * API to list webhook lookup.
