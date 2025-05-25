@@ -1,5 +1,6 @@
 package io.github.eealba.payper.payments.v2;
 
+import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.eealba.payper.core.client.PayperAuthenticator;
 import io.github.eealba.payper.payments.v2.api.PaymentsApiClient;
@@ -23,14 +24,14 @@ import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@WireMockTest(httpPort = 8080)
+@WireMockTest
 class RefundsTest {
     private static final String EXAMPLES = "/examples/";
     private static Refunds refunds;
 
     @BeforeAll
-    static void setupAll() {
-        System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_BASE_URL, "http://localhost:8080");
+    static void setupAll(WireMockRuntimeInfo wireMockRuntimeInfo) {
+        System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_BASE_URL, "http://localhost:" + wireMockRuntimeInfo.getHttpPort());
         System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_ID, "client-id");
         System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_SECRET, "client-secret");
         refunds = PaymentsApiClient.create().refunds();

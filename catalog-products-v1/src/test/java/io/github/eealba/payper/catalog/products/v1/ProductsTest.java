@@ -1,5 +1,6 @@
 package io.github.eealba.payper.catalog.products.v1;
 
+import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.eealba.payper.catalog.products.v1.api.CatalogProductsApiClient;
 import io.github.eealba.payper.catalog.products.v1.api.Products;
@@ -29,14 +30,15 @@ import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static io.github.eealba.payper.catalog.products.v1.Util.readResource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-@WireMockTest(httpPort = 8080)
+
+@WireMockTest
 class ProductsTest {
     private static final String EXAMPLES = "/examples/";
     private static Products products;
 
     @BeforeAll
-    static void setupAll() {
-        System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_BASE_URL, "http://localhost:8080");
+    static void setupAll(WireMockRuntimeInfo wmRuntimeInfo) {
+        System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_BASE_URL, "http://localhost:" + wmRuntimeInfo.getHttpPort());
         System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_ID, "client-id");
         System.setProperty(PayperAuthenticator.PayperAuthenticators.PAYPAL_CLIENT_SECRET, "client-secret");
         products = CatalogProductsApiClient.create().products();

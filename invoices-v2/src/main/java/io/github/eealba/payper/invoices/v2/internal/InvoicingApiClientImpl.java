@@ -26,14 +26,16 @@ import io.github.eealba.payper.invoices.v2.api.TemplatesApi;
 import io.github.eealba.payper.invoices.v2.model.ErrorDefault;
 import io.github.eealba.payper.invoices.v2.model.InvoiceNumber;
 import io.github.eealba.payper.invoices.v2.model.Invoices;
+
 /**
  * Implementation of the Invoicing API client.
  * <p>
  * Provides access to the invoices, templates, generate next invoice number, and search invoices endpoints.
  * </p>
- * @since 1.0
- * @version 1.0
+ *
  * @author Edgar Alba
+ * @version 1.0
+ * @since 1.0
  */
 class InvoicingApiClientImpl extends InvoicingApiClient {
     private final InvoicesApiImpl invoices;
@@ -61,18 +63,21 @@ class InvoicingApiClientImpl extends InvoicingApiClient {
     @Override
     public GenerateNextInvoiceNumber generateNextInvoiceNumber() {
         var spec = PayperProvider.provider().createSpecBuilder(GenerateNextInvoiceNumber.class, payper,
-                        "/v2/invoicing/generate-next-invoice-number", InvoiceNumber.class, ErrorDefault.class)
-                .method(PayperRequest.Method.POST)
-                .build();
+                                                               "/v2/invoicing/generate-next-invoice-number",
+                                                               InvoiceNumber.class, ErrorDefault.class)
+                                 .method(PayperRequest.Method.POST)
+                                 .header("Content-Type", "application/json")
+                                 .build();
         return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 
     @Override
     public SearchInvoices searchInvoices() {
         var spec = PayperProvider.provider().createSpecBuilder(SearchInvoices.class, payper,
-                        "/v2/invoicing/search-invoices", Invoices.class, ErrorDefault.class)
-                .method(PayperRequest.Method.POST)
-                .build();
+                                                               "/v2/invoicing/search-invoices", Invoices.class,
+                                                               ErrorDefault.class)
+                                 .method(PayperRequest.Method.POST)
+                                 .build();
         return RequestSpecsFactory.getInstance().requestSpec(spec);
     }
 }
