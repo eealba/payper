@@ -10,7 +10,7 @@ import io.github.eealba.payper.core.util.Providers;
  * @author Edgar Alba
  */
 public abstract class WebhooksProvider {
-    private static final String DEFAULT = "io.github.eealba.payper.webhooks.v1.api.internal.WebhooksProviderImpl";
+    private static final String DEFAULT = "io.github.eealba.payper.webhooks.v1.internal.WebhooksProviderImpl";
     /**
      * Return a default WebhooksProvider.
      */

@@ -1,6 +1,7 @@
 package io.github.eealba.payper.webhooks.v1.api;
 
 import io.github.eealba.payper.core.client.RequestSpec;
+import io.github.eealba.payper.webhooks.v1.model.AnchorType;
 import io.github.eealba.payper.webhooks.v1.model.EventTypeList;
 import io.github.eealba.payper.webhooks.v1.model.PatchRequest;
 import io.github.eealba.payper.webhooks.v1.model.Webhook;
@@ -101,7 +102,7 @@ public interface WebhooksApi {
          * @param anchorType the anchor type
          * @return the list webhooks request specification
          */
-        ListWebhooks withAnchorType(String anchorType);
+        ListWebhooks withAnchorType(AnchorType anchorType);
     }
 
     /**

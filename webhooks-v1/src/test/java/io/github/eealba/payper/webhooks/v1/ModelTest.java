@@ -21,8 +21,8 @@ import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
+
+import static io.github.eealba.payper.webhooks.v1.Util.readResource;
 
 public class ModelTest {
     static Jasoner jasoner;
@@ -147,9 +147,4 @@ public class ModelTest {
         JSONAssert.assertEquals(control, json, true);
     }
 
-    private static String readResource(String path) throws IOException {
-        try (var inputStream = ModelTest.class.getResourceAsStream(path)) {
-            return new String(Objects.requireNonNull(inputStream).readAllBytes(), StandardCharsets.UTF_8);
-        }
-    }
 }

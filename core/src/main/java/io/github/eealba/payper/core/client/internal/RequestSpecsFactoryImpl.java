@@ -53,14 +53,14 @@ class RequestSpecsFactoryImpl extends RequestSpecsFactory {
                 if (entry.getKey().equals(m.getName())) {
                     String[] values = entry.getValue().split(",");
                     if (values.length == 1) {
-                        m = obj.getClass().getMethod(values[0], m.getParameterTypes());
+                        m = getMethod(obj, values[0], m.getParameterTypes());
                     } else {
                         args = getArguments(args, values);
                         Class<?>[] types = new Class[args.length];
                         for (int i = 0; i < args.length; i++) {
                             types[i] = args[i].getClass();
                         }
-                        m = obj.getClass().getMethod(values[0], types);
+                        m = getMethod(obj, values[0], types);
                     }
                 }
             }
@@ -69,6 +69,18 @@ class RequestSpecsFactoryImpl extends RequestSpecsFactory {
                 return proxy;
             }
             return result;
+        }
+
+        private Method getMethod(Object obj, String name, Class<?>[] types) throws NoSuchMethodException {
+            try {
+                return obj.getClass().getMethod(name, types);
+            }catch (NoSuchMethodException e){
+                if (types.length == 2 && types[0] == String.class) {
+                    // Special case for methods with String and Object parameters
+                    return obj.getClass().getMethod(name, String.class, Object.class);
+                }
+                throw e;
+            }
         }
 
         private static Object[] getArguments(Object[] args, String[] values) {

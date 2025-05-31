@@ -41,10 +41,5 @@
             <groupId>com.tngtech.archunit</groupId>
             <artifactId>archunit-junit5</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.github.eealba.payper</groupId>
-            <artifactId>payper-orders-v2</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 </project>
