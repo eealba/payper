@@ -14,7 +14,7 @@ import io.github.eealba.payper.webhooks.v1.api.WebhooksEventsApi;
 import io.github.eealba.payper.webhooks.v1.api.WebhooksLookupApi;
 import io.github.eealba.payper.webhooks.v1.model.Event;
 import io.github.eealba.payper.webhooks.v1.model.EventTypeList;
-import io.github.eealba.payper.webhooks.v1.model.VerifyWebhookSignature;
+import io.github.eealba.payper.webhooks.v1.model.VerifyWebhookSignatureResponse;
 
 class WebhooksApiClientImpl extends WebhooksApiClient {
     private final WebhooksApi webhooksImpl;
@@ -57,7 +57,8 @@ class WebhooksApiClientImpl extends WebhooksApiClient {
     @Override
     public VerifyWebhookSignatureApi verifyWebhookSignature() {
         var spec = PayperProvider.provider().createSpecBuilder(VerifyWebhookSignatureApi.class, payper,
-                        "/v1/notifications/verify-webhook-signature", VerifyWebhookSignature.class, Error.class)
+                                                               "/v1/notifications/verify-webhook-signature",
+                                                               VerifyWebhookSignatureResponse.class, Error.class)
                 .method(PayperRequest.Method.POST)
                 .build();
         return RequestSpecsFactory.getInstance().requestSpec(spec);
