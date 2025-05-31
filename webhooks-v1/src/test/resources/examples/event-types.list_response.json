@@ -1,0 +1,16 @@
+{
+  "event_types": [
+    {
+      "name": "PAYMENT.AUTHORIZATION.CREATED",
+      "description": "A payment authorization was created.",
+      "status": "ACTIVE",
+      "resource_versions": ["1.0"]
+    },
+    {
+      "name": "PAYMENT.AUTHORIZATION.VOIDED",
+      "description": "A payment authorization was voided.",
+      "status": "ACTIVE",
+      "resource_versions": ["1.0"]
+    }
+  ]
+}
