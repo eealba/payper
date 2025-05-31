@@ -173,6 +173,10 @@ final class RequestSpecImpl<T, T2, R1, R2> implements RequestSpec<R1, R2>,
         requestBuilder.query(name, String.valueOf(value));
         return self();
     }
+    public T query(String name, Object value) {
+        requestBuilder.query(name, String.valueOf(value));
+        return self();
+    }
     /**
      * Adds a path parameter to the request.
      *

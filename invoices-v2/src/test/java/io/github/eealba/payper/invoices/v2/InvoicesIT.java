@@ -49,6 +49,7 @@ public class InvoicesIT {
         var response = invoicingApiClient.generateNextInvoiceNumber().retrieve().toResponse();
         assertTrue(response.isSuccessful(), () -> response.toErrorEntity().message());
         draftInvoiceNumber = response.toEntity().invoiceNumber();
+        System.out.println("draftInvoiceNumber: " + draftInvoiceNumber);
     }
 
     @Test

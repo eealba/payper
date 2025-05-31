@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.eealba.payper</groupId>
     <artifactId>payper-parent</artifactId>
-    <version>0.6.0</version>
+    <version>0.7.0</version>
     <name>PayPer Parent</name>
     <description>PayPer Parent - Unofficial Java Client for PayPal REST API, providing core functionalities
         and utilities for interacting with various PayPal APIs.</description>
@@ -48,7 +48,7 @@
             <dependency>
                 <groupId>io.github.eealba</groupId>
                 <artifactId>jasoner</artifactId>
-                <version>0.6.4</version>
+                <version>0.9.0</version>
             </dependency>
             <dependency>
                 <groupId>org.junit</groupId>
@@ -85,7 +85,7 @@
             <dependency>
                 <groupId>org.wiremock</groupId>
                 <artifactId>wiremock</artifactId>
-                <version>3.9.2</version>
+                <version>3.13.0</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -136,6 +136,7 @@
         <module>orders-v2</module>
         <module>payments-v2</module>
         <module>invoices-v2</module>
+        <module>webhooks-v1</module>
     </modules>
     <build>
         <pluginManagement>
@@ -208,7 +209,7 @@
                 <plugin>
                     <groupId>org.sonatype.central</groupId>
                     <artifactId>central-publishing-maven-plugin</artifactId>
-                    <version>0.6.0</version>
+                    <version>0.7.0</version>
                     <extensions>true</extensions>
                     <configuration>
                         <publishingServerId>central</publishingServerId>
@@ -329,7 +330,7 @@
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
-                        <version>0.6.0</version>
+                        <version>0.7.0</version>
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>

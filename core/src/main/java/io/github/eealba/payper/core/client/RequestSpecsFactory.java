@@ -17,25 +17,32 @@ package io.github.eealba.payper.core.client;
 /**
  * Factory for creating request specifications.
  *
- * @since 1.0
+ * @author Edgar Alba
  * @version 1.0
- *
  * @see Spec
  * @see PayperProvider
- * @see PayperProvider#provider
- * 
- * @author Edgar Alba
+ * @see PayperProvider#provider PayperProvider#provider
+ * @since 1.0
  */
 public abstract class RequestSpecsFactory {
     private static final RequestSpecsFactory INSTANCE = PayperProvider.provider().createRequestSpecsFactory();
+
     /**
      * Creates a new request specification.
      *
-     * @param <T> the type of the request specification
+     * @param <T>  the type of the request specification
+     * @param <R1> the type parameter
+     * @param <R2> the type parameter
+     * @param spec the spec
      * @return the request specification
      */
     public abstract <T, R1, R2> T requestSpec(Spec<T, R1, R2> spec);
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static RequestSpecsFactory getInstance() {
         return INSTANCE;
     }

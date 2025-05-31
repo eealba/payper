@@ -1,0 +1,15 @@
+{
+  "webhooks_lookups": [
+    {
+      "id": "WL-1234567890",
+      "client_id": "client-id-123",
+      "links": [
+        {
+          "href": "https://api-m.sandbox.paypal.com/v1/notifications/webhooks-lookup/WL-1234567890",
+          "rel": "self",
+          "method": "GET"
+        }
+      ]
+    }
+  ]
+}
