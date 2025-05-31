@@ -2,11 +2,13 @@ package io.github.eealba.payper.webhooks.v1;
 
 import io.github.eealba.jasoner.Jasoner;
 import io.github.eealba.jasoner.JasonerBuilder;
+import io.github.eealba.payper.webhooks.v1.model.Error;
 import io.github.eealba.payper.webhooks.v1.model.Event;
 import io.github.eealba.payper.webhooks.v1.model.EventList;
 import io.github.eealba.payper.webhooks.v1.model.EventResend;
 import io.github.eealba.payper.webhooks.v1.model.EventTypeList;
 import io.github.eealba.payper.webhooks.v1.model.Patch;
+import io.github.eealba.payper.webhooks.v1.model.SimulateEvent;
 import io.github.eealba.payper.webhooks.v1.model.VerifyWebhookSignature;
 import io.github.eealba.payper.webhooks.v1.model.VerifyWebhookSignatureResponse;
 import io.github.eealba.payper.webhooks.v1.model.Webhook;
@@ -56,6 +58,8 @@ public class ModelTest {
     void webhooks_update_request() throws IOException, JSONException {
         execute("/examples/webhooks.update_request.json", Patch[].class);
     }
+
+
     @Test
     void webhooks_update_response() throws IOException, JSONException {
         execute("/examples/webhooks.update_response.json", Webhook.class);
@@ -63,8 +67,8 @@ public class ModelTest {
 
     // webhooks.delete (response)
     @Test
-    void webhooks_delete_response() throws IOException, JSONException {
-        execute("/examples/webhooks.delete_response.json", Object.class);
+    void error() throws IOException, JSONException {
+        execute("/examples/error.json", Error.class);
     }
 
     // event-types.list (response)
@@ -92,11 +96,6 @@ public class ModelTest {
         execute("/examples/webhooks-lookup.get_response.json", WebhooksLookup.class);
     }
 
-    // webhooks-lookup.delete (response)
-    @Test
-    void webhooks_lookup_delete_response() throws IOException, JSONException {
-        execute("/examples/webhooks-lookup.delete_response.json", Object.class);
-    }
 
     // verify-webhook-signature.post (request/response)
     @Test
@@ -134,6 +133,10 @@ public class ModelTest {
     @Test
     void webhooks_events_resend_response() throws IOException, JSONException {
         execute("/examples/webhooks-events.resend_response.json", Event.class);
+    }
+    @Test
+    void simulate_event() throws IOException, JSONException {
+        execute("/examples/simulate-event.json", SimulateEvent.class);
     }
 
     private static void execute(String resourceControl, Class<?> clazz) throws IOException, JSONException {

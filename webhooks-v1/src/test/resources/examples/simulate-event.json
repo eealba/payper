@@ -1,0 +1,5 @@
+{
+  "url": "https://example.com/example_webhook",
+  "event_type": "PAYMENT.AUTHORIZATION.CREATED",
+  "resource_version": "1.0"
+}
