@@ -1,6 +1,7 @@
 package io.github.eealba.payper.webhooks.v1.model;
 
 import io.github.eealba.jasoner.JasonerProperty;
+import io.github.eealba.jasoner.JsonObject;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class Event {
     @JasonerProperty("resource_version")
     private final ResourceVersion resourceVersion;
     
-    private final Resource resource;
+    private final JsonObject resource;
     
     private final List<LinkDescription> links;
 
@@ -102,7 +103,7 @@ format](https://tools.ietf.org/html/rfc3339#section-5.6).
      * The resource that triggered the webhook event notification.
      */
     
-    public Resource resource() {
+    public JsonObject resource() {
         return resource;
     }
 
@@ -127,7 +128,7 @@ format](https://tools.ietf.org/html/rfc3339#section-5.6).
         private String eventType;
         private String summary;
         private ResourceVersion resourceVersion;
-        private Resource resource;
+        private JsonObject resource;
         private List<LinkDescription> links;
 
         /**
@@ -198,7 +199,7 @@ format](https://tools.ietf.org/html/rfc3339#section-5.6).
          * The resource that triggered the webhook event notification.
          */
         
-        public Builder resource(Resource value) {
+        public Builder resource(JsonObject value) {
             this.resource = value;
             return this;
         }
@@ -218,12 +219,7 @@ format](https://tools.ietf.org/html/rfc3339#section-5.6).
 
     }
 
-public static record Resource() {
 
-    public Resource() {
-    }
-
-}
 
 }
 
