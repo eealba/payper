@@ -9,16 +9,34 @@ Payper is an unofficial Java SDK for the PayPal REST API. It is tested and fully
 
 ## Features
 
-- **Java LTS compatibility (17, 21, 25)**: Tested and fully supported on current Java LTS releases — 17, 21 and 25 — and compatible with later Java 17+ runtimes; leverages modern language features for safer and clearer APIs.
-- **Modern Java HTTP client**: Uses the platform's modern Java HTTP client to take advantage of HTTP/2, improved TLS, efficient connection management and non-blocking I/O for better performance and reliability.
-- **Immutable, thread-safe models**: Domain objects are immutable and clients are designed for concurrent use, so instances can be safely shared across threads without external synchronization.
-- **Fluent, expressive API**: Builder patterns and method chaining make request construction and call flows concise and easy to read (examples: toEntity(), toFuture(), toVoid()).
-- **Automatic OAuth 2.0 token management**: Automatically acquires, caches and refreshes OAuth 2.0 access tokens to minimize credential handling in application code.
-- **Asynchronous & non-blocking support**: CompletableFuture-based async variants for non-blocking integrations and easy composition of async workflows.
-- **Flexible configuration**: Configure via environment variables, system properties or programmatic builders. You can supply a custom executor for request dispatching, configure connection and read timeouts, and route requests through a proxy — making it simple to tune concurrency, latency and networking behavior for your environment.
-- **Performance-oriented by design**: Low-overhead architecture with connection management, configurable timeouts and retry policies to perform well under high concurrency.
-- **Response helpers & centralized error handling**: Utilities to map HTTP responses to domain entities, inspect status codes, extract errors and centralize error handling logic.
-- **Hands-on examples**: Ready-to-run examples and quickstarts are available in https://github.com/eealba/payper-examples (quickstarts, orders, subscriptions, webstore).
+A concise, scannable summary of Payper's main capabilities. The table below helps you scan features quickly — expand the details if you want more context.
+
+| Feature | Summary |
+|---|---|
+| 🧭 Java LTS compatibility (17, 21, 25) | Tested and supported on current Java LTS releases — 17, 21 and 25 — and compatible with Java 17+ runtimes. |
+| ⚡ Modern Java HTTP client | Uses the platform's modern HTTP client for HTTP/2, improved TLS and efficient connection handling. |
+| 🔒 Immutable, thread-safe models | Domain objects are immutable and safe to share across threads. |
+| ✨ Fluent, expressive API | Builder patterns and method chaining for concise, readable call flows. |
+| 🔑 Automatic OAuth 2.0 token management | Automatic acquisition, caching and refresh of OAuth 2.0 tokens. |
+| 🚀 Asynchronous & non-blocking support | CompletableFuture-based async APIs for non-blocking integrations. |
+| ⚙️ Flexible configuration | Configure via env vars, system properties or builders; specify executor, timeouts and proxies. |
+| 🏎️ Performance-oriented design | Low-overhead, connection management and retry policies for high concurrency. |
+| 🛠️ Response helpers & centralized error handling | Utilities to map responses, inspect status codes and centralize error handling. |
+| 📚 Hands-on examples | Ready-to-run examples and quickstarts: https://github.com/eealba/payper-examples |
+
+<details>
+<summary><strong>More about key features</strong></summary>
+
+### Modern Java HTTP client
+Payper leverages the platform HTTP client to benefit from HTTP/2, modern TLS improvements, connection pooling and non-blocking I/O. This yields better performance, reduced resource usage and simpler integration with Java networking features.
+
+### Flexible configuration (executor / timeouts / proxies)
+You can tune networking and concurrency for your environment by providing a custom executor for request dispatching, configuring connection/read timeouts, and routing requests through a proxy. These options make it easy to adapt Payper to different deployment constraints.
+
+### Response helpers & error handling
+The SDK provides helpers to convert raw HTTP responses into domain entities, inspect status codes and extract error details so you can centralize how your application handles API errors.
+
+</details>
 
 ## Supported PayPal REST APIs
 
@@ -358,3 +376,5 @@ Otherwise, you can pass the credentials directly to the Payper client using supp
 
     }
 ```
+
+> Note: code snippets and examples target Java 17+ (LTS: 17, 21, 25). If you're running an older JVM, some examples may use APIs introduced in Java 9+.
