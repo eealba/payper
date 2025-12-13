@@ -5,20 +5,20 @@
 [![Build Status](https://github.com/eealba/payper/actions/workflows/github_action.yaml/badge.svg)](https://github.com/eealba/payper/actions)
 
 
-Payper is an unofficial Java SDK for the PayPal REST API. It is designed to be used with Java 17 and is prepared 
-for multithreading and high concurrency. Payper uses immutable objects and provides a fluent API for ease of use.
+Payper is an unofficial Java SDK for the PayPal REST API. It is tested and fully supported on current Java LTS releases (17, 21 and 25) and compatible with later Java 17+ runtimes. The library is built for multithreaded, high-concurrency environments: it uses immutable domain models and exposes a fluent API for concise, readable code.
 
 ## Features
 
-- **Java 17+**: Built with Java 17+.
-- **Multithreading and High Concurrency**: Designed to handle high concurrency and multithreading scenarios.
-- **Immutable Objects**: Ensures thread safety and reliability with immutable objects.
-- **Fluent API**: Provides a fluent API for intuitive and readable code.
-- **Fast**: Optimized for performance.
-- **Easy Configuration**: Simple setup with minimal configuration required.
-- **OAuth 2.0**: Supports OAuth 2.0 for authentication.
-- **Automatic Token Refresh**: Automatically refreshes OAuth 2.0 access tokens.
-- **Asynchronous Support**: Supports asynchronous requests with completable futures.
+- **Java LTS compatibility (17, 21, 25)**: Tested and fully supported on current Java LTS releases — 17, 21 and 25 — and compatible with later Java 17+ runtimes; leverages modern language features for safer and clearer APIs.
+- **Modern Java HTTP client**: Uses the platform's modern Java HTTP client to take advantage of HTTP/2, improved TLS, efficient connection management and non-blocking I/O for better performance and reliability.
+- **Immutable, thread-safe models**: Domain objects are immutable and clients are designed for concurrent use, so instances can be safely shared across threads without external synchronization.
+- **Fluent, expressive API**: Builder patterns and method chaining make request construction and call flows concise and easy to read (examples: toEntity(), toFuture(), toVoid()).
+- **Automatic OAuth 2.0 token management**: Automatically acquires, caches and refreshes OAuth 2.0 access tokens to minimize credential handling in application code.
+- **Asynchronous & non-blocking support**: CompletableFuture-based async variants for non-blocking integrations and easy composition of async workflows.
+- **Flexible configuration**: Configure via environment variables, system properties or programmatic builders. You can supply a custom executor for request dispatching, configure connection and read timeouts, and route requests through a proxy — making it simple to tune concurrency, latency and networking behavior for your environment.
+- **Performance-oriented by design**: Low-overhead architecture with connection management, configurable timeouts and retry policies to perform well under high concurrency.
+- **Response helpers & centralized error handling**: Utilities to map HTTP responses to domain entities, inspect status codes, extract errors and centralize error handling logic.
+- **Hands-on examples**: Ready-to-run examples and quickstarts are available in https://github.com/eealba/payper-examples (quickstarts, orders, subscriptions, webstore).
 
 ## Supported PayPal REST APIs
 
@@ -112,6 +112,17 @@ in your `pom.xml`, in the table below the corresponding payper module appears fo
 | Payment Method Tokens | v3      | [API Reference](https://developer.paypal.com/docs/api/payment-tokens/v3/)              |
 | Payouts               | v1      | [API Reference](https://developer.paypal.com/docs/api/payments.payouts-batch/v1/)      |
 | Transaction Search    | v1      | [API Reference](https://developer.paypal.com/docs/api/transaction-search/v1/)          |
+
+## Examples
+This project maintains a separate repository with runnable examples showing how to use the Payper SDK: https://github.com/eealba/payper-examples
+
+| Example               | Summary                                                                 | Link |
+|-----------------------|-------------------------------------------------------------------------|------|
+| payper-5-minutes      | 5-minute quickstart to validate sandbox credentials and perform a simple Catalog Products API call. | [Open](https://github.com/eealba/payper-examples/tree/main/payper-5-minutes) |
+| payper-orders-basic   | Demonstrates Orders API v2: create, retrieve, confirm payment source, capture.                    | [Open](https://github.com/eealba/payper-examples/tree/main/payper-orders-basic) |
+| subscriptions-app     | Demonstrates product and subscription plan creation (sync App.java and async AppAsync.java).      | [Open](https://github.com/eealba/payper-examples/tree/main/subscriptions-app) |
+| webstore              | Spring Boot demo webstore showcasing catalog, checkout and backoffice integrations (OpenAPI included). | [Open](https://github.com/eealba/payper-examples/tree/main/webstore) |
+
 
 ## Usage
 
@@ -347,5 +358,3 @@ Otherwise, you can pass the credentials directly to the Payper client using supp
 
     }
 ```
-
-
