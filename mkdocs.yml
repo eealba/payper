@@ -1,0 +1,91 @@
+site_name: Payper
+site_description: Unofficial Java SDK for PayPal REST API
+site_author: Edgar Alba
+site_url: https://eealba.github.io/payper/
+repo_name: eealba/payper
+repo_url: https://github.com/eealba/payper
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+
+plugins:
+  - search
+  - social
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/eealba/payper
+    - icon: fontawesome/solid/book
+      link: https://javadoc.io/doc/io.github.eealba.payper
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quickstart.md
+      - Authentication: getting-started/authentication.md
+  - APIs:
+      - Orders: apis/orders.md
+      - Subscriptions: apis/subscriptions.md
+      - Payments: apis/payments.md
+      - Invoices: apis/invoices.md
+      - Catalog Products: apis/catalog.md
+      - Webhooks: apis/webhooks.md
+  - Examples:
+      - Overview: examples/overview.md
+      - 5 Minutes Start: examples/5-minutes.md
+      - Orders: examples/orders.md
+      - Subscriptions: examples/subscriptions.md
+  - Advanced:
+      - Configuration: advanced/configuration.md
+      - Async Operations: advanced/async.md
+      - Error Handling: advanced/error-handling.md
+  - API Reference: https://javadoc.io/doc/io.github.eealba.payper
