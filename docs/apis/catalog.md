@@ -313,22 +313,30 @@ public class ErrorHandlingExample {
     public static void main(String[] args) {
         var client = CatalogProductsApiClient.create();
         
-        try {
-            var product = client.products()
-                    .get()
-                    .withId("INVALID_PRODUCT_ID")
-                    .retrieve()
-                    .toEntity();
+        var response = client.products()
+                .get()
+                .withId("INVALID_PRODUCT_ID")
+                .retrieve()
+                .toResponse();
+        
+        if (response.isSuccessful()) {
+            var product = response.toEntity();
+            System.out.println("Product: " + product.id());
+        } else {
+            System.err.println("API Error - Status: " + response.statusCode());
             
-        } catch (PayperException ex) {
-            System.err.println("API Error: " + ex.getMessage());
-            System.err.println("Status Code: " + ex.statusCode());
-            
-            // Handle specific errors
-            if (ex.statusCode() == 404) {
-                System.err.println("Product not found");
-            } else if (ex.statusCode() == 400) {
-                System.err.println("Invalid request");
+            // Handle specific error codes
+            switch (response.statusCode()) {
+                case 404:
+                    System.err.println("Product not found");
+                    break;
+                case 400:
+                    System.err.println("Invalid request");
+                    var errorEntity = response.toErrorEntity();
+                    System.err.println("Details: " + errorEntity.message());
+                    break;
+                default:
+                    System.err.println("Error: " + response.toErrorEntity().message());
             }
         }
     }

@@ -41,7 +41,7 @@ Create Order → Customer Approval → Capture Payment
 ### Step 1: Create an Order
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 import io.github.eealba.payper.orders.v2.model.*;
 
 import java.util.List;
@@ -49,7 +49,7 @@ import java.util.List;
 public class OrdersExample {
     public static void main(String[] args) {
         // Create the client
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         // Build the order request
         var orderRequest = OrderRequest.builder()
@@ -138,7 +138,7 @@ Approval URL: https://www.sandbox.paypal.com/checkoutnow?token=5O190127TN364715T
 After the customer approves the order, retrieve the updated details:
 
 ```java
-public static void retrieveOrder(OrdersApiClient client, String orderId) {
+public static void retrieveOrder(CheckoutOrdersApiClient client, String orderId) {
     // Retrieve order
     var order = client.orders()
             .get()
@@ -190,7 +190,7 @@ public static void retrieveOrder(OrdersApiClient client, String orderId) {
 Once approved, capture the payment:
 
 ```java
-public static void captureOrder(OrdersApiClient client, String orderId) {
+public static void captureOrder(CheckoutOrdersApiClient client, String orderId) {
     // Capture the order
     var order = client.orders()
             .capture()
@@ -241,7 +241,7 @@ Here's the complete flow combining all steps:
 ```java
 public class CompleteOrderWorkflow {
     public static void main(String[] args) {
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         try {
             // Step 1: Create order
@@ -274,7 +274,7 @@ public class CompleteOrderWorkflow {
         }
     }
     
-    private static Order createOrder(OrdersApiClient client) {
+    private static Order createOrder(CheckoutOrdersApiClient client) {
         // Create order implementation (from Step 1)
         // ...
     }
@@ -287,12 +287,12 @@ public class CompleteOrderWorkflow {
                 .orElseThrow(() -> new RuntimeException("Approval URL not found"));
     }
     
-    private static void retrieveOrder(OrdersApiClient client, String orderId) {
+    private static void retrieveOrder(CheckoutOrdersApiClient client, String orderId) {
         // Retrieve order implementation (from Step 2)
         // ...
     }
     
-    private static void captureOrder(OrdersApiClient client, String orderId) {
+    private static void captureOrder(CheckoutOrdersApiClient client, String orderId) {
         // Capture order implementation (from Step 3)
         // ...
     }
@@ -396,26 +396,33 @@ PayPal provides test card numbers for sandbox:
 ## Error Handling
 
 ```java
-import io.github.eealba.payper.core.PayperException;
+import io.github.eealba.payper.core.client.PayperResponse;
 
-try {
-    var order = client.orders()
-            .capture()
-            .withId(orderId)
-            .withBody(OrderCaptureRequest.builder().build())
-            .retrieve()
-            .toEntity();
+var response = client.orders()
+        .capture()
+        .withId(orderId)
+        .withBody(OrderCaptureRequest.builder().build())
+        .retrieve()
+        .toResponse();
+
+if (response.isSuccessful()) {
+    var order = response.toEntity();
+    System.out.println("Order captured successfully: " + order.id());
+} else {
+    System.err.println("Capture failed - Status: " + response.statusCode());
     
-} catch (PayperException e) {
-    switch (e.statusCode()) {
+    // Handle specific error codes
+    switch (response.statusCode()) {
         case 404:
             System.err.println("Order not found");
             break;
         case 422:
             System.err.println("Order cannot be captured (wrong status)");
+            var errorEntity = response.toErrorEntity();
+            System.err.println("Details: " + errorEntity.message());
             break;
         default:
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Error: " + response.toErrorEntity().message());
     }
 }
 ```

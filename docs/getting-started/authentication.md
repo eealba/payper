@@ -123,7 +123,7 @@ For more control, you can configure credentials programmatically using `PayperCo
 ```java
 import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.core.PayperAuthenticator;
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 
 public class Example {
     public static void main(String[] args) {
@@ -137,7 +137,7 @@ public class Example {
                 .build();
         
         // Create client with custom configuration
-        var client = OrdersApiClient.create(config);
+        var client = CheckoutOrdersApiClient.create(config);
         
         // Use the client...
     }

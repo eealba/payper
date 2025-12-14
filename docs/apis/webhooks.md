@@ -402,19 +402,23 @@ public class ErrorHandlingExample {
     public static void main(String[] args) {
         var client = WebhooksApiClient.create();
         
-        try {
-            var webhook = client.webhooks()
-                    .get()
-                    .withId("INVALID_WEBHOOK_ID")
-                    .retrieve()
-                    .toEntity();
+        var response = client.webhooks()
+                .get()
+                .withId("INVALID_WEBHOOK_ID")
+                .retrieve()
+                .toResponse();
+        
+        if (response.isSuccessful()) {
+            var webhook = response.toEntity();
+            System.out.println("Webhook: " + webhook.id());
+        } else {
+            System.err.println("API Error - Status: " + response.statusCode());
             
-        } catch (PayperException ex) {
-            System.err.println("API Error: " + ex.getMessage());
-            System.err.println("Status Code: " + ex.statusCode());
-            
-            if (ex.statusCode() == 404) {
+            if (response.statusCode() == 404) {
                 System.err.println("Webhook not found");
+            } else {
+                var errorEntity = response.toErrorEntity();
+                System.err.println("Error: " + errorEntity.message());
             }
         }
     }
