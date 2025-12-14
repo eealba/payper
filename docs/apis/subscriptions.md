@@ -412,16 +412,22 @@ public class ErrorHandlingExample {
     public static void main(String[] args) {
         var client = SubscriptionsApiClient.create();
         
-        try {
-            var subscription = client.subscriptions()
-                    .get()
-                    .withId("INVALID_ID")
-                    .retrieve()
-                    .toEntity();
+        var response = client.billingSubscriptions()
+                .get()
+                .withId("INVALID_ID")
+                .retrieve()
+                .toResponse();
+        
+        if (response.isSuccessful()) {
+            var subscription = response.toEntity();
+            System.out.println("Subscription: " + subscription.id());
+            System.out.println("Status: " + subscription.status());
+        } else {
+            System.err.println("API Error - Status: " + response.statusCode());
             
-        } catch (PayperException ex) {
-            System.err.println("API Error: " + ex.getMessage());
-            System.err.println("Status Code: " + ex.statusCode());
+            // Access error details  
+            var errorEntity = response.toErrorEntity();
+            System.err.println("Error: " + errorEntity.message());
         }
     }
 }

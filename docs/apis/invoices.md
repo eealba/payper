@@ -381,28 +381,34 @@ Handle errors gracefully:
 
 ```java
 import io.github.eealba.payper.invoices.v2.api.InvoicingApiClient;
-import io.github.eealba.payper.core.PayperException;
 
 public class ErrorHandlingExample {
     public static void main(String[] args) {
         var client = InvoicingApiClient.create();
         
-        try {
-            var invoice = client.invoices()
-                    .get()
-                    .withId("INVALID_INVOICE_ID")
-                    .retrieve()
-                    .toEntity();
-            
-        } catch (PayperException ex) {
-            System.err.println("API Error: " + ex.getMessage());
-            System.err.println("Status Code: " + ex.statusCode());
+        var response = client.invoices()
+                .get()
+                .withId("INVALID_INVOICE_ID")
+                .retrieve()
+                .toResponse();
+        
+        if (response.isSuccessful()) {
+            var invoice = response.toEntity();
+            System.out.println("Invoice: " + invoice.id());
+        } else {
+            System.err.println("API Error - Status: " + response.statusCode());
             
             // Handle specific errors
-            if (ex.statusCode() == 404) {
-                System.err.println("Invoice not found");
-            } else if (ex.statusCode() == 422) {
-                System.err.println("Invalid invoice data");
+            switch (response.statusCode()) {
+                case 404:
+                    System.err.println("Invoice not found");
+                    break;
+                case 422:
+                    System.err.println("Invalid invoice data");
+                    System.err.println("Details: " + response.toErrorEntity().message());
+                    break;
+                default:
+                    System.err.println("Error: " + response.toErrorEntity().message());
             }
         }
     }

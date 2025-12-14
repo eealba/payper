@@ -24,10 +24,10 @@ Payper uses the `PayperConfig` class for configuration. You can customize:
 The simplest way to use Payper is with default configuration:
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 
 // Uses environment variables for credentials
-var client = OrdersApiClient.create();
+var client = CheckoutOrdersApiClient.create();
 ```
 
 This automatically:
@@ -45,7 +45,7 @@ This automatically:
 ```java
 import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.core.PayperAuthenticator;
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 
 import java.time.Duration;
 
@@ -59,7 +59,7 @@ PayperConfig config = PayperConfig.builder()
         .readTimeout(Duration.ofSeconds(90))
         .build();
 
-var client = OrdersApiClient.create(config);
+var client = CheckoutOrdersApiClient.create(config);
 ```
 
 ---
@@ -281,7 +281,7 @@ Configure authentication credentials:
 ```java
 import io.github.eealba.payper.core.PayperConfig;
 import io.github.eealba.payper.core.PayperAuthenticator;
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 
 import java.net.http.HttpClient;
 import java.time.Duration;
@@ -314,7 +314,7 @@ public class ConfigurationExample {
                 .build();
         
         // Create client with custom configuration
-        var client = OrdersApiClient.create(config);
+        var client = CheckoutOrdersApiClient.create(config);
         
         // Use the client
         // ...

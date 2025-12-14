@@ -296,22 +296,26 @@ public class ErrorHandlingExample {
                                     .build())
                             .build())
                     .retrieve()
-                    .toEntity();
+                    .toResponse();
             
-        } catch (PayperException ex) {
-            System.err.println("API Error: " + ex.getMessage());
-            System.err.println("Status Code: " + ex.statusCode());
-            
-            // Handle specific error codes
-            switch (ex.statusCode()) {
-                case 404:
-                    System.err.println("Authorization not found");
-                    break;
-                case 422:
-                    System.err.println("Invalid request parameters");
-                    break;
-                default:
-                    System.err.println("Unexpected error");
+            if (response.isSuccessful()) {
+                var capture = response.toEntity();
+                System.out.println("Captured: " + capture.id());
+            } else {
+                System.err.println("API Error - Status: " + response.statusCode());
+                
+                // Handle specific error codes
+                switch (response.statusCode()) {
+                    case 404:
+                        System.err.println("Authorization not found");
+                        break;
+                    case 422:
+                        System.err.println("Invalid request parameters");
+                        System.err.println("Details: " + response.toErrorEntity().message());
+                        break;
+                    default:
+                        System.err.println("Error: " + response.toErrorEntity().message());
+                }
             }
         }
     }

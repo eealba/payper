@@ -48,12 +48,12 @@ CompletableFuture.allOf(future1, future2, future3).join();
 ### Making an Async Request
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncExample {
     public static void main(String[] args) {
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         // Async request returns CompletableFuture
         CompletableFuture<Order> orderFuture = client.orders()
@@ -177,7 +177,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ParallelExample {
     public static void main(String[] args) {
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         List<String> orderIds = List.of("ORDER-1", "ORDER-2", "ORDER-3", "ORDER-4");
         
@@ -475,7 +475,7 @@ for (int i = 0; i < orderIds.size(); i += batchSize) {
 ## Complete Example
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 import io.github.eealba.payper.orders.v2.model.*;
 
 import java.util.List;
@@ -483,7 +483,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class AsyncCompleteExample {
     public static void main(String[] args) {
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         System.out.println("🚀 Starting async operations...\n");
         
@@ -512,7 +512,7 @@ public class AsyncCompleteExample {
         System.out.println("\n✅ All async operations completed!");
     }
     
-    private static CompletableFuture<Order> createOrderAsync(OrdersApiClient client) {
+    private static CompletableFuture<Order> createOrderAsync(CheckoutOrdersApiClient client) {
         return client.orders()
                 .create()
                 .withBody(OrderRequest.builder()
@@ -532,7 +532,7 @@ public class AsyncCompleteExample {
     }
     
     private static CompletableFuture<Order> captureOrderAsync(
-            OrdersApiClient client, String orderId) {
+            CheckoutOrdersApiClient client, String orderId) {
         return client.orders()
                 .capture()
                 .withId(orderId)

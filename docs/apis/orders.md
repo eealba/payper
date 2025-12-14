@@ -37,12 +37,12 @@ Add the Orders API dependency to your project:
 ## Creating the Client
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 
 public class Example {
     public static void main(String[] args) {
         // Create client (uses environment variables for credentials)
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         // Access the orders API
         var ordersApi = client.orders();
@@ -59,12 +59,12 @@ public class Example {
 Create a new order with purchase units:
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 import io.github.eealba.payper.orders.v2.model.*;
 
 public class CreateOrderExample {
     public static void main(String[] args) {
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         // Build the order request
         var orderRequest = OrderRequest.builder()
@@ -112,11 +112,11 @@ Approval URL: https://www.sandbox.paypal.com/checkoutnow?token=5O190127TN364715T
 Get details of an existing order:
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 
 public class GetOrderExample {
     public static void main(String[] args) {
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         // Retrieve order by ID
         var order = client.orders()
@@ -141,12 +141,12 @@ public class GetOrderExample {
 Update order details before it's authorized or captured:
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 import io.github.eealba.payper.orders.v2.model.*;
 
 public class UpdateOrderExample {
     public static void main(String[] args) {
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         // Create patch operations
         var patches = List.of(
@@ -180,12 +180,12 @@ public class UpdateOrderExample {
 Authorize payment for an order:
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 import io.github.eealba.payper.orders.v2.model.OrderAuthorizeRequest;
 
 public class AuthorizeOrderExample {
     public static void main(String[] args) {
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         // Authorize the order
         var order = client.orders()
@@ -215,12 +215,12 @@ public class AuthorizeOrderExample {
 Capture payment for an order:
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 import io.github.eealba.payper.orders.v2.model.OrderCaptureRequest;
 
 public class CaptureOrderExample {
     public static void main(String[] args) {
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         // Capture the order
         var order = client.orders()
@@ -259,7 +259,7 @@ Amount: 100.00 USD
 All operations support asynchronous execution using `CompletableFuture`:
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
 import io.github.eealba.payper.orders.v2.model.*;
 
 import java.util.List;
@@ -267,7 +267,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class AsyncOrderExample {
     public static void main(String[] args) {
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
         // Create order asynchronously
         CompletableFuture<Order> futureOrder = client.orders()
@@ -310,33 +310,31 @@ public class AsyncOrderExample {
 
 ## Error Handling
 
-Handle errors gracefully:
+Handle errors gracefully using `PayperResponse`:
 
 ```java
-import io.github.eealba.payper.orders.v2.api.OrdersApiClient;
-import io.github.eealba.payper.core.PayperException;
+import io.github.eealba.payper.orders.v2.api.CheckoutOrdersApiClient;
+import io.github.eealba.payper.core.client.PayperResponse;
 
 public class ErrorHandlingExample {
     public static void main(String[] args) {
-        var client = OrdersApiClient.create();
+        var client = CheckoutOrdersApiClient.create();
         
-        try {
-            var order = client.orders()
-                    .get()
-                    .withId("INVALID_ORDER_ID")
-                    .retrieve()
-                    .toEntity();
-            
+        var response = client.orders()
+                .get()
+                .withId("INVALID_ORDER_ID")
+                .retrieve()
+                .toResponse();
+        
+        if (response.isSuccessful()) {
+            var order = response.toEntity();
             System.out.println("Order: " + order.id());
+        } else {
+            System.err.println("API Error - Status: " + response.statusCode());
             
-        } catch (PayperException ex) {
-            System.err.println("API Error: " + ex.getMessage());
-            System.err.println("Status Code: " + ex.statusCode());
-            
-            // Access error details from response
-            if (ex.hasResponse()) {
-                System.err.println("Response Body: " + ex.responseBody());
-            }
+            // Access structured error details
+            var errorEntity = response.toErrorEntity();
+            System.err.println("Error message: " + errorEntity.message());
         }
     }
 }

@@ -1,6 +1,6 @@
 # Payper - Unofficial Java SDK for PayPal REST API
 
-[![Coverage](https://github.com/eealba/payper/blob/main/.github/badges/jacoco.svg)](https://github.com/eealba/payper/actions/workflows/github_action.yaml)
+[![Coverage](https://raw.githubusercontent.com/eealba/payper/refs/heads/main/.github/badges/jacoco.svg)](https://github.com/eealba/payper/actions/workflows/github_action.yaml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Java Version](https://img.shields.io/badge/Java-17%2B-brightgreen)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.eealba.payper/payper-core.svg?label=Maven%20Central)](https://central.sonatype.com/search?q=io.github.eealba.payper)
